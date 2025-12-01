@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Trabalhista | Simulados de Direito</title>
+    <meta name="description" content="Calculadora trabalhista completa: hora extra, férias, 13º, rescisão, verbas trabalhistas e mais. Conforme CLT e legislação brasileira.">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .alert-test {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .legal-advice {
+            background: #e7f3ff;
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .legal-advice a {
+            color: #8B0000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .legal-advice a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 85, 170, 0.2);
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #003d7a;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .btn-warning {
+            background: var(--warning-color);
+            color: #000;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        
+        .results {
+            background: #e7f3ff;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .results h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .result-item {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .result-item strong {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--success-color);
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .calculator-box {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 25px;
+            transition: var(--transition);
+        }
+        
+        .calculator-box:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        .calculator-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .calculation-explanation {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .calculation-explanation h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .legislation-ref {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .tab:hover {
+            color: var(--accent-color);
+        }
+        
+        .tab.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: left;
+                padding: 10px 15px;
+            }
+        }
+        
+        .icon {
+            font-size: 1.2em;
+        }
+        
+        .currency {
+            font-size: 1.4em;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👷 Calculadora Trabalhista - CLT</h1>
+        <p>Cálculos trabalhistas conforme Consolidação das Leis do Trabalho</p>
+    </div>
+
+    <div class="alert-test">
+        <strong>⚠️ VERSÃO EM TESTES</strong><br>
+        Esta calculadora está em fase de desenvolvimento. Os cálculos são aproximados e para fins educacionais.
+    </div>
+
+    <div class="legal-advice">
+        <strong>⚖️ PARA CÁLCULOS PRECISOS E ORIENTAÇÃO JURÍDICA PROFISSIONAL:</strong><br>
+        Recomendamos consultar a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank">Advocacia Vera Catarina</a><br>
+        E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">🏠 Início</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'horaExtra')">⏰ Hora Extra</button>
+                <button class="tab" onclick="openTab(event, 'ferias')">🏖️ Férias</button>
+                <button class="tab" onclick="openTab(event, 'decimoTerceiro')">🎄 13º Salário</button>
+                <button class="tab" onclick="openTab(event, 'rescisao')">📝 Rescisão</button>
+                <button class="tab" onclick="openTab(event, 'verbas')">💰 Outras Verbas</button>
+            </div>
+            
+            <!-- Tab 1: Hora Extra -->
+            <div id="horaExtra" class="tab-content active">
+                <h2>⏰ Cálculo de Hora Extra</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="salario">Salário Mensal (R$):</label>
+                        <input type="number" id="salario" step="0.01" placeholder="Ex: 2200.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="horasDia">Horas por Dia:</label>
+                        <input type="number" id="horasDia" value="8" placeholder="Ex: 8">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="diasSemana">Dias por Semana:</label>
+                        <input type="number" id="diasSemana" value="5" placeholder="Ex: 5">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="horasExtras">Horas Extras no Mês:</label>
+                        <input type="number" id="horasExtras" placeholder="Ex: 20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="percentualHE">Percentual da Hora Extra:</label>
+                        <select id="percentualHE">
+                            <option value="50">50% (comum)</option>
+                            <option value="100">100% (domingos/feriados)</option>
+                            <option value="150">150% (horas noturnas)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calcularHoraExtra()">Calcular Hora Extra</button>
+                
+                <div class="results" id="resultHoraExtra">
+                    <h3>Resultado do Cálculo</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Valor da Hora Normal:</strong>
+                            <div class="result-value" id="valorHoraNormal">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor da Hora Extra:</strong>
+                            <div class="result-value" id="valorHoraExtra">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total Horas Extras:</strong>
+                            <div class="result-value" id="totalHorasExtras">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Salário + HE:</strong>
+                            <div class="result-value" id="salarioTotal">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é feito o cálculo:</h4>
+                        <p><strong>Fórmulas utilizadas:</strong></p>
+                        <ol>
+                            <li><strong>Valor da hora normal:</strong> Salário mensal ÷ (horas/dia × dias/semana × 4,5 semanas)</li>
+                            <li><strong>Valor da hora extra:</strong> Valor hora normal × (1 + percentual/100)</li>
+                            <li><strong>Total horas extras:</strong> Valor hora extra × quantidade de horas extras</li>
+                            <li><strong>Salário total:</strong> Salário normal + total horas extras</li>
+                        </ol>
+                        <p><strong>Exemplo para salário de R$ 2.200,00 com 20 horas extras a 50%:</strong></p>
+                        <ul>
+                            <li>Hora normal: 2200 ÷ (8 × 5 × 4,5) = 2200 ÷ 180 = R$ 12,22</li>
+                            <li>Hora extra: 12,22 × 1,5 = R$ 18,33</li>
+                            <li>Total horas extras: 18,33 × 20 = R$ 366,60</li>
+                            <li>Salário total: 2200 + 366,60 = R$ 2.566,60</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - CLT:</strong><br>
+                        • <strong>Art. 7º, XVI da CF/88:</strong> Direito à remuneração do trabalho noturno superior à do diurno<br>
+                        • <strong>Art. 59 da CLT:</strong> "A duração normal do trabalho poderá ser acrescida de horas suplementares, em número não excedente de duas, mediante acordo escrito entre empregador e empregado [...]"<br>
+                        • <strong>Art. 60 da CLT:</strong> "Nas atividades em que não for possível, devido às exigências técnicas das empresas, a redução da jornada de trabalho por força do artigo anterior, a remuneração da hora normal será, pelo menos, 25% (vinte e cinco por cento) superior à da hora diurna."<br>
+                        • <strong>Art. 73, §1º da CLT:</strong> Considera-se noturno o trabalho executado entre 22h de um dia e 5h do dia seguinte<br>
+                        • <strong>Art. 384 da CLT:</strong> Hora extra para domingos e feriados
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Férias -->
+            <div id="ferias" class="tab-content">
+                <h2>🏖️ Cálculo de Férias</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="salarioFerias">Salário Base (R$):</label>
+                        <input type="number" id="salarioFerias" step="0.01" placeholder="Ex: 2200.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mesesTrabalhados">Meses Trabalhados no Período:</label>
+                        <select id="mesesTrabalhados">
+                            <option value="12">12 meses (completo)</option>
+                            <option value="11">11 meses</option>
+                            <option value="10">10 meses</option>
+                            <option value="9">9 meses</option>
+                            <option value="8">8 meses</option>
+                            <option value="7">7 meses</option>
+                            <option value="6">6 meses</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adicionalFerias">Adicional de 1/3 Constitucional:</label>
+                    <select id="adicionalFerias">
+                        <option value="sim">Sim (direito constitucional)</option>
+                        <option value="nao">Não</option>
+                    </select>
+                </div>
+                
+                <div class="info-box">
+                    ⚠️ <strong>Importante:</strong> O trabalhador tem direito a 30 dias de férias após cada período de 12 meses trabalhados (Art. 130 CLT). O 1/3 constitucional é obrigatório.
+                </div>
+                
+                <button class="btn btn-success" onclick="calcularFerias()">Calcular Férias</button>
+                
+                <div class="results" id="resultFerias">
+                    <h3>Valor das Férias</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Valor das Férias Proporcionais:</strong>
+                            <div class="result-value" id="valorFerias">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>1/3 Constitucional:</strong>
+                            <div class="result-value" id="valorUmTerco">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total a Receber:</strong>
+                            <div class="result-value" id="totalFerias">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Dias de Férias:</strong>
+                            <div class="result-value" id="diasFerias">0 dias</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é feito o cálculo:</h4>
+                        <p><strong>Fórmulas utilizadas:</strong></p>
+                        <ol>
+                            <li><strong>Dias de férias proporcionais:</strong> (Meses trabalhados ÷ 12) × 30 dias</li>
+                            <li><strong>Valor das férias:</strong> (Dias de férias ÷ 30) × Salário base</li>
+                            <li><strong>1/3 constitucional:</strong> Valor das férias ÷ 3</li>
+                            <li><strong>Total a receber:</strong> Valor férias + 1/3 constitucional</li>
+                        </ol>
+                        <p><strong>Exemplo para salário de R$ 2.200,00 com 12 meses trabalhados:</strong></p>
+                        <ul>
+                            <li>Dias de férias: (12 ÷ 12) × 30 = 30 dias</li>
+                            <li>Valor férias: (30 ÷ 30) × 2200 = R$ 2.200,00</li>
+                            <li>1/3 constitucional: 2200 ÷ 3 = R$ 733,33</li>
+                            <li>Total: 2200 + 733,33 = R$ 2.933,33</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - CLT:</strong><br>
+                        • <strong>Art. 7º, XVII da CF/88:</strong> "Gozo de férias anuais remuneradas com, pelo menos, um terço a mais do que o salário normal"<br>
+                        • <strong>Art. 129 a 153 da CLT:</strong> Capítulo IV - Das Férias Anuais<br>
+                        • <strong>Art. 130 da CLT:</strong> "Após cada período de 12 (doze) meses de vigência do contrato de trabalho, o empregado terá direito a férias"<br>
+                        • <strong>Art. 142 da CLT:</strong> "A remuneração das férias será igual, pelo menos, à remuneração que o empregado perceberia se estivesse em serviço, mais um terço, pelo menos, sobre o salário normal"<br>
+                        • <strong>Art. 146 da CLT:</strong> Pagamento das férias até 2 dias antes do início do gozo
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 3: 13º Salário -->
+            <div id="decimoTerceiro" class="tab-content">
+                <h2>🎄 Cálculo do 13º Salário</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="salarioDecimo">Salário Base (R$):</label>
+                        <input type="number" id="salarioDecimo" step="0.01" placeholder="Ex: 2200.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mesesDecimo">Meses Trabalhados no Ano:</label>
+                        <input type="number" id="mesesDecimo" min="1" max="12" value="12" placeholder="De 1 a 12">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="parcelaDecimo">Parcela a Calcular:</label>
+                    <select id="parcelaDecimo">
+                        <option value="primeira">1ª Parcela (até 30/11)</option>
+                        <option value="segunda">2ª Parcela (até 20/12)</option>
+                        <option value="total">Valor Total</option>
+                    </select>
+                </div>
+                
+                <div class="info-box">
+                    ⏰ <strong>Prazos:</strong> 1ª parcela até 30/novembro, 2ª parcela até 20/dezembro.
+                    O valor da 1ª parcela é metade do salário, proporcional aos meses trabalhados.
+                </div>
+                
+                <button class="btn" onclick="calcularDecimoTerceiro()">Calcular 13º</button>
+                
+                <div class="results" id="resultDecimo">
+                    <h3>Valor do 13º Salário</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Valor Anual Proporcional:</strong>
+                            <div class="result-value" id="valorAnualDecimo">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>1ª Parcela (50%):</strong>
+                            <div class="result-value" id="valorPrimeiraParcela">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>2ª Parcela:</strong>
+                            <div class="result-value" id="valorSegundaParcela">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor por Mês:</strong>
+                            <div class="result-value" id="valorMesDecimo">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é feito o cálculo:</h4>
+                        <p><strong>Fórmulas utilizadas:</strong></p>
+                        <ol>
+                            <li><strong>Valor mensal proporcional:</strong> Salário base ÷ 12</li>
+                            <li><strong>Valor anual proporcional:</strong> Valor mensal × meses trabalhados</li>
+                            <li><strong>1ª parcela (até 30/nov):</strong> Valor anual proporcional ÷ 2</li>
+                            <li><strong>2ª parcela (até 20/dez):</strong> Valor anual proporcional - 1ª parcela</li>
+                        </ol>
+                        <p><strong>Exemplo para salário de R$ 2.200,00 com 12 meses trabalhados:</strong></p>
+                        <ul>
+                            <li>Valor mensal: 2200 ÷ 12 = R$ 183,33</li>
+                            <li>Valor anual: 183,33 × 12 = R$ 2.200,00</li>
+                            <li>1ª parcela: 2200 ÷ 2 = R$ 1.100,00</li>
+                            <li>2ª parcela: 2200 - 1100 = R$ 1.100,00</li>
+                        </ul>
+                        <p><strong>Para 6 meses trabalhados:</strong></p>
+                        <ul>
+                            <li>Valor anual: 183,33 × 6 = R$ 1.100,00</li>
+                            <li>1ª parcela: 1100 ÷ 2 = R$ 550,00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais:</strong><br>
+                        • <strong>Art. 7º, VIII da CF/88:</strong> "Décimo terceiro salário com base na remuneração integral ou no valor da aposentadoria"<br>
+                        • <strong>Lei 4.090/1962:</strong> Institui a gratificação natalina (13º salário)<br>
+                        • <strong>Lei 4.749/1965:</strong> Altera a Lei 4.090/1962<br>
+                        • <strong>Decreto 57.155/1965:</strong> Regulamenta o pagamento do 13º salário<br>
+                        • <strong>Portaria 1/1991 do Ministério do Trabalho:</strong> Estabelece prazos para pagamento
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 4: Rescisão -->
+            <div id="rescisao" class="tab-content">
+                <h2>📝 Cálculo de Rescisão Trabalhista</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="salarioRescisao">Último Salário (R$):</label>
+                        <input type="number" id="salarioRescisao" step="0.01" placeholder="Ex: 2200.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tempoServico">Tempo de Serviço (anos):</label>
+                        <input type="number" id="tempoServico" step="0.1" placeholder="Ex: 2.5">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="tipoRescisao">Tipo de Rescisão:</label>
+                        <select id="tipoRescisao">
+                            <option value="semJustaCausa">Sem Justa Causa (demissão pelo empregador)</option>
+                            <option value="pedidoDemissao">Pedido de Demissão</option>
+                            <option value="justaCausa">Justa Causa (pelo empregador)</option>
+                            <option value="terminoContrato">Término de Contrato</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feriasVencidas">Férias Vencidas?</label>
+                        <select id="feriasVencidas">
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn btn-warning" onclick="calcularRescisao()">Calcular Rescisão</button>
+                
+                <div class="results" id="resultRescisao">
+                    <h3>Verbas Rescisórias</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Saldo de Salário:</strong>
+                            <div class="result-value" id="saldoSalario">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Férias Proporcionais:</strong>
+                            <div class="result-value" id="feriasProporcionais">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>13º Proporcional:</strong>
+                            <div class="result-value" id="decimoProporcional">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Aviso Prévio:</strong>
+                            <div class="result-value" id="avisoPrev">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Multa do FGTS (40%):</strong>
+                            <div class="result-value" id="multaFGTS">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total da Rescisão:</strong>
+                            <div class="result-value" id="totalRescisao">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como são feitos os cálculos:</h4>
+                        <p><strong>Verbas rescisórias comuns:</strong></p>
+                        <ol>
+                            <li><strong>Saldo de salário:</strong> (Dias trabalhados no mês ÷ 30) × Salário</li>
+                            <li><strong>Férias proporcionais:</strong> (Meses no ano ÷ 12) × Salário + 1/3</li>
+                            <li><strong>13º proporcional:</strong> (Meses no ano ÷ 12) × Salário</li>
+                            <li><strong>Aviso prévio:</strong> 30 dias de salário (ou proporcional ao tempo de serviço)</li>
+                            <li><strong>Multa do FGTS:</strong> Saldo FGTS × 40% (apenas sem justa causa)</li>
+                        </ol>
+                        <p><strong>Diferenças por tipo de rescisão:</strong></p>
+                        <ul>
+                            <li><strong>Sem justa causa:</strong> Todas as verbas + multa FGTS 40%</li>
+                            <li><strong>Pedido demissão:</strong> Apenas saldo salário, férias e 13º proporcionais</li>
+                            <li><strong>Justa causa:</strong> Apenas saldo salário</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - CLT:</strong><br>
+                        • <strong>Art. 477 a 486 da CLT:</strong> Rescisão do contrato de trabalho<br>
+                        • <strong>Art. 7º, XXI da CF/88:</strong> "Aviso prévio proporcional ao tempo de serviço, sendo no mínimo de trinta dias"<br>
+                        • <strong>Art. 487 a 491 da CLT:</strong> Aviso prévio<br>
+                        • <strong>Lei 8.036/1990 (Lei do FGTS):</strong> Art. 18 - Multa de 40% sobre saldo FGTS<br>
+                        • <strong>Lei 12.506/2011:</strong> Altera regras do aviso prévio<br>
+                        • <strong>Súmulas do TST:</strong> 45, 171, 258 (orientações sobre cálculos rescisórios)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 5: Outras Verbas -->
+            <div id="verbas" class="tab-content">
+                <h2>💰 Cálculo de Outras Verbas Trabalhistas</h2>
+                
+                <div class="calculator-grid">
+                    <div class="calculator-box">
+                        <h3>🌙 Hora Noturna</h3>
+                        <div class="form-group">
+                            <label for="salarioNoturno">Salário (R$):</label>
+                            <input type="number" id="salarioNoturno" step="0.01" placeholder="Ex: 2200.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="horasNoturnas">Horas Noturnas/Mês:</label>
+                            <input type="number" id="horasNoturnas" placeholder="Ex: 40">
+                        </div>
+                        <button class="btn" onclick="calcularHoraNoturna()">Calcular</button>
+                        <div class="result-item" id="resultNoturno" style="display: none; margin-top: 15px;"></div>
+                    </div>
+                    
+                    <div class="calculator-box">
+                        <h3>💼 Insalubridade</h3>
+                        <div class="form-group">
+                            <label for="salarioInsalubre">Salário (R$):</label>
+                            <input type="number" id="salarioInsalubre" step="0.01" placeholder="Ex: 2200.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="grauInsalubre">Grau de Insalubridade:</label>
+                            <select id="grauInsalubre">
+                                <option value="40">40% (Mínimo)</option>
+                                <option value="20">20% (Médio)</option>
+                                <option value="10">10% (Máximo)</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="calcularInsalubridade()">Calcular</button>
+                        <div class="result-item" id="resultInsalubre" style="display: none; margin-top: 15px;"></div>
+                    </div>
+                    
+                    <div class="calculator-box">
+                        <h3>⚠️ Periculosidade</h3>
+                        <div class="form-group">
+                            <label for="salarioPericuloso">Salário (R$):</label>
+                            <input type="number" id="salarioPericuloso" step="0.01" placeholder="Ex: 2200.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="adicionalPericulo">Adicional (%):</label>
+                            <select id="adicionalPericulo">
+                                <option value="30">30% (Padrão)</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="calcularPericulosidade()">Calcular</button>
+                        <div class="result-item" id="resultPericuloso" style="display: none; margin-top: 15px;"></div>
+                    </div>
+                </div>
+                
+                <div class="legislation-ref" style="margin-top: 20px;">
+                    <strong>📚 Fundamentos Legais dos Adicionais:</strong><br>
+                    • <strong>Hora Noturna (Art. 73, CLT):</strong> 20% sobre hora diurna (22h às 5h)<br>
+                    • <strong>Insalubridade (Art. 192, CLT):</strong> 10%, 20% ou 40% sobre salário mínimo<br>
+                    • <strong>Periculosidade (Art. 193, CLT):</strong> 30% sobre salário base<br>
+                    • <strong>NR-15 e NR-16 (MTE):</strong> Normas que regulam adicionais
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>👷 <strong>Calculadora Trabalhista - CLT</strong></p>
+        <p>⚠️ <strong>VERSÃO EM TESTES</strong> - Para cálculos precisos e orientação jurídica profissional:</p>
+        <p>Consulte a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: #8B0000; font-weight: bold;">Advocacia Vera Catarina</a></p>
+        <p>E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a></p>
+        <p>Referências: Consolidação das Leis do Trabalho (CLT) e Constituição Federal de 1988</p>
+        <p><a href="https://fabiowlademir.github.io/simuladosdireito/">Voltar para Simulados de Direito</a></p>
+    </footer>
+
+    <script>
+        // Sistema de Tabs
+        function openTab(evt, tabName) {
+            const tabcontents = document.querySelectorAll('.tab-content');
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabcontents.forEach(tab => tab.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // 1. Cálculo de Hora Extra
+        function calcularHoraExtra() {
+            const salario = parseFloat(document.getElementById('salario').value);
+            const horasDia = parseInt(document.getElementById('horasDia').value);
+            const diasSemana = parseInt(document.getElementById('diasSemana').value);
+            const horasExtras = parseInt(document.getElementById('horasExtras').value);
+            const percentual = parseInt(document.getElementById('percentualHE').value);
+            
+            if (!salario || !horasExtras || salario <= 0 || horasExtras <= 0) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+            
+            // Cálculo da hora normal
+            const horasMes = horasDia * diasSemana * 4.5; // Aproximação de 4.5 semanas/mês
+            const valorHoraNormal = salario / horasMes;
+            
+            // Cálculo da hora extra
+            const fator = 1 + (percentual / 100);
+            const valorHoraExtra = valorHoraNormal * fator;
+            
+            // Totais
+            const totalHorasExtras = valorHoraExtra * horasExtras;
+            const salarioTotal = salario + totalHorasExtras;
+            
+            // Exibir resultados
+            document.getElementById('valorHoraNormal').textContent = `R$ ${valorHoraNormal.toFixed(2)}`;
+            document.getElementById('valorHoraExtra').textContent = `R$ ${valorHoraExtra.toFixed(2)}`;
+            document.getElementById('totalHorasExtras').textContent = `R$ ${totalHorasExtras.toFixed(2)}`;
+            document.getElementById('salarioTotal').textContent = `R$ ${salarioTotal.toFixed(2)}`;
+            
+            document.getElementById('resultHoraExtra').style.display = 'block';
+        }
+        
+        // 2. Cálculo de Férias
+        function calcularFerias() {
+            const salario = parseFloat(document.getElementById('salarioFerias').value);
+            const meses = parseInt(document.getElementById('mesesTrabalhados').value);
+            const adicional = document.getElementById('adicionalFerias').value;
+            
+            if (!salario || salario <= 0) {
+                alert("Por favor, insira um salário válido.");
+                return;
+            }
+            
+            // Dias de férias proporcionais
+            const diasFerias = (meses / 12) * 30;
+            
+            // Valor das férias
+            const valorFerias = (diasFerias / 30) * salario;
+            
+            // 1/3 constitucional
+            const valorUmTerco = adicional === 'sim' ? valorFerias / 3 : 0;
+            
+            // Total
+            const totalFerias = valorFerias + valorUmTerco;
+            
+            // Exibir resultados
+            document.getElementById('valorFerias').textContent = `R$ ${valorFerias.toFixed(2)}`;
+            document.getElementById('valorUmTerco').textContent = `R$ ${valorUmTerco.toFixed(2)}`;
+            document.getElementById('totalFerias').textContent = `R$ ${totalFerias.toFixed(2)}`;
+            document.getElementById('diasFerias').textContent = `${diasFerias.toFixed(0)} dias`;
+            
+            document.getElementById('resultFerias').style.display = 'block';
+        }
+        
+        // 3. Cálculo do 13º Salário
+        function calcularDecimoTerceiro() {
+            const salario = parseFloat(document.getElementById('salarioDecimo').value);
+            const meses = parseInt(document.getElementById('mesesDecimo').value);
+            const parcela = document.getElementById('parcelaDecimo').value;
+            
+            if (!salario || !meses || salario <= 0 || meses < 1 || meses > 12) {
+                alert("Por favor, preencha os campos corretamente.");
+                return;
+            }
+            
+            // Cálculos
+            const valorMes = salario / 12;
+            const valorAnual = valorMes * meses;
+            const primeiraParcela = valorAnual / 2;
+            const segundaParcela = valorAnual - primeiraParcela;
+            
+            // Exibir resultados
+            document.getElementById('valorAnualDecimo').textContent = `R$ ${valorAnual.toFixed(2)}`;
+            document.getElementById('valorPrimeiraParcela').textContent = `R$ ${primeiraParcela.toFixed(2)}`;
+            document.getElementById('valorSegundaParcela').textContent = `R$ ${segundaParcela.toFixed(2)}`;
+            document.getElementById('valorMesDecimo').textContent = `R$ ${valorMes.toFixed(2)}`;
+            
+            document.getElementById('resultDecimo').style.display = 'block';
+        }
+        
+        // 4. Cálculo de Rescisão
+        function calcularRescisao() {
+            const salario = parseFloat(document.getElementById('salarioRescisao').value);
+            const tempoServico = parseFloat(document.getElementById('tempoServico').value);
+            const tipoRescisao = document.getElementById('tipoRescisao').value;
+            const feriasVencidas = document.getElementById('feriasVencidas').value;
+            
+            if (!salario || !tempoServico || salario <= 0 || tempoServico < 0) {
+                alert("Por favor, preencha os campos corretamente.");
+                return;
+            }
+            
+            // Verbas comuns (simplificado)
+            const saldoSalario = salario; // Considerando mês completo
+            const feriasProporcionais = feriasVencidas === 'sim' ? salario + (salario/3) : salario * (tempoServico/12);
+            const decimoProporcional = salario * (tempoServico/12);
+            const avisoPrev = salario; // 30 dias
+            
+            // Multa FGTS (apenas sem justa causa)
+            const saldoFGTS = salario * tempoServico * 0.08; // Aproximação 8% ao ano
+            const multaFGTS = tipoRescisao === 'semJustaCausa' ? saldoFGTS * 0.4 : 0;
+            
+            // Total conforme tipo
+            let totalRescisao = 0;
+            
+            if (tipoRescisao === 'semJustaCausa') {
+                totalRescisao = saldoSalario + feriasProporcionais + decimoProporcional + avisoPrev + multaFGTS;
+            } else if (tipoRescisao === 'pedidoDemissao') {
+                totalRescisao = saldoSalario + feriasProporcionais + decimoProporcional;
+            } else if (tipoRescisao === 'justaCausa') {
+                totalRescisao = saldoSalario;
+            } else {
+                totalRescisao = saldoSalario + feriasProporcionais + decimoProporcional;
+            }
+            
+            // Exibir resultados
+            document.getElementById('saldoSalario').textContent = `R$ ${saldoSalario.toFixed(2)}`;
+            document.getElementById('feriasProporcionais').textContent = `R$ ${feriasProporcionais.toFixed(2)}`;
+            document.getElementById('decimoProporcional').textContent = `R$ ${decimoProporcional.toFixed(2)}`;
+            document.getElementById('avisoPrev').textContent = `R$ ${avisoPrev.toFixed(2)}`;
+            document.getElementById('multaFGTS').textContent = `R$ ${multaFGTS.toFixed(2)}`;
+            document.getElementById('totalRescisao').textContent = `R$ ${totalRescisao.toFixed(2)}`;
+            
+            document.getElementById('resultRescisao').style.display = 'block';
+        }
+        
+        // 5. Outras verbas
+        function calcularHoraNoturna() {
+            const salario = parseFloat(document.getElementById('salarioNoturno').value);
+            const horas = parseInt(document.getElementById('horasNoturnas').value);
+            
+            if (!salario || !horas) return;
+            
+            const valorHora = salario / 220; // Base 220h/mês
+            const adicional = valorHora * 0.2; // 20%
+            const valorHoraNoturna = valorHora + adicional;
+            const total = valorHoraNoturna * horas;
+            
+            document.getElementById('resultNoturno').innerHTML = `
+                <strong>Adicional Noturno:</strong><br>
+                Valor/hora: R$ ${valorHoraNoturna.toFixed(2)}<br>
+                Total (${horas}h): R$ ${total.toFixed(2)}
+            `;
+            document.getElementById('resultNoturno').style.display = 'block';
+        }
+        
+        function calcularInsalubridade() {
+            const salario = parseFloat(document.getElementById('salarioInsalubre').value);
+            const percentual = parseInt(document.getElementById('grauInsalubre').value);
+            
+            if (!salario) return;
+            
+            // Base salário mínimo (exemplo R$ 1320,00)
+            const salarioMinimo = 1320.00;
+            const adicional = salarioMinimo * (percentual/100);
+            
+            document.getElementById('resultInsalubre').innerHTML = `
+                <strong>Adicional Insalubridade (${percentual}%):</strong><br>
+                Valor mensal: R$ ${adicional.toFixed(2)}<br>
+                Salário total: R$ ${(salario + adicional).toFixed(2)}
+            `;
+            document.getElementById('resultInsalubre').style.display = 'block';
+        }
+        
+        function calcularPericulosidade() {
+            const salario = parseFloat(document.getElementById('salarioPericuloso').value);
+            
+            if (!salario) return;
+            
+            const adicional = salario * 0.3; // 30%
+            
+            document.getElementById('resultPericuloso').innerHTML = `
+                <strong>Adicional Periculosidade (30%):</strong><br>
+                Valor mensal: R$ ${adicional.toFixed(2)}<br>
+                Salário total: R$ ${(salario + adicional).toFixed(2)}
+            `;
+            document.getElementById('resultPericuloso').style.display = 'block';
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preencher alguns campos com valores de exemplo
+            document.getElementById('salario').value = 2200.00;
+            document.getElementById('horasExtras').value = 20;
+            document.getElementById('salarioFerias').value = 2200.00;
+            document.getElementById('salarioDecimo').value = 2200.00;
+            document.getElementById('salarioRescisao').value = 2200.00;
+            document.getElementById('tempoServico').value = 2.5;
+        });
+    </script>
+</body>
+</html>

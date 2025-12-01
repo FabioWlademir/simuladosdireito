@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Penas - CPP | Simulados de Direito</title>
+    <meta name="description" content="Calculadora de penas conforme o Código de Processo Penal brasileiro. Calcule regimes, progressões, frações, suspensão condicional e mais.">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .alert-test {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .legal-advice {
+            background: #e7f3ff;
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .legal-advice a {
+            color: #8B0000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .legal-advice a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 85, 170, 0.2);
+        }
+        
+        .btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #003d7a;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: var(--danger-color);
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-success {
+            background: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .results {
+            background: #e7f3ff;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .results h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .result-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .result-item strong {
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+        
+        .result-item p {
+            margin: 5px 0;
+        }
+        
+        .calculation-explanation {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .calculation-explanation h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .calculator-box {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 25px;
+            transition: var(--transition);
+        }
+        
+        .calculator-box:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        .calculator-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .legislation-ref {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+        }
+        
+        .icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚖️ Calculadora de Penas - CPP</h1>
+        <p>Calculadora jurídica para penas conforme o Código de Processo Penal brasileiro</p>
+    </div>
+
+    <div class="alert-test">
+        <strong>⚠️ VERSÃO EM TESTES</strong><br>
+        Esta calculadora está em fase de desenvolvimento. Os cálculos são aproximados e para fins educacionais.
+    </div>
+
+    <div class="legal-advice">
+        <strong>⚖️ PARA CÁLCULOS PRECISOS E ORIENTAÇÃO JURÍDICA PROFISSIONAL:</strong><br>
+        Recomendamos consultar a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank">Advocacia Vera Catarina</a><br>
+        E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">🏠 Início</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a>
+    </nav>
+
+    <div class="container">
+        <!-- Calculadora de Regimes -->
+        <div class="card">
+            <h2>📊 Cálculo de Regime de Cumprimento de Pena</h2>
+            
+            <div class="form-group">
+                <label for="penaTotal">Pena Total Aplicada (em anos):</label>
+                <input type="number" id="penaTotal" step="0.1" min="0" placeholder="Ex: 4.5">
+            </div>
+            
+            <div class="form-group">
+                <label for="reatincidente">Réu é reincidente?</label>
+                <select id="reatincidente">
+                    <option value="nao">Não (primário)</option>
+                    <option value="sim">Sim (reincidente)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="violencia">Crime envolveu violência ou grave ameaça?</label>
+                <select id="violencia">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+            </div>
+            
+            <button class="btn" onclick="calcularRegime()">Calcular Regime</button>
+            
+            <div class="results" id="resultRegime">
+                <h3>Resultado do Cálculo de Regime</h3>
+                <div class="result-item">
+                    <strong>Regime Inicial Aplicável:</strong>
+                    <p id="regimeResultado"></p>
+                </div>
+                
+                <div class="calculation-explanation">
+                    <h4>📝 Como é feito o cálculo:</h4>
+                    <p>O regime inicial é determinado pela pena aplicada e características do réu:</p>
+                    <ul>
+                        <li><strong>Até 4 anos:</strong> Regime aberto para primários sem violência</li>
+                        <li><strong>Até 4 anos com reincidência/violência:</strong> Regime semiaberto</li>
+                        <li><strong>4 a 8 anos:</strong> Regime semiaberto</li>
+                        <li><strong>Acima de 8 anos:</strong> Regime fechado</li>
+                    </ul>
+                </div>
+                
+                <div class="legislation-ref">
+                    <strong>📚 Fundamentos Legais:</strong><br>
+                    • <strong>Art. 33 do Código Penal:</strong> Define os regimes de cumprimento de pena<br>
+                    • <strong>Lei 7.210/84 (LEP):</strong> Lei de Execução Penal<br>
+                    • <strong>Art. 2º, §2º da LEP:</strong> Critérios para fixação do regime inicial
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculadora de Progressão -->
+        <div class="card">
+            <h2>📈 Cálculo de Progressão de Regime</h2>
+            
+            <div class="form-group">
+                <label for="tempoCumprido">Tempo já cumprido (em anos):</label>
+                <input type="number" id="tempoCumprido" step="0.1" min="0" placeholder="Ex: 1.5">
+            </div>
+            
+            <div class="form-group">
+                <label for="penaTotal2">Pena Total (em anos):</label>
+                <input type="number" id="penaTotal2" step="0.1" min="0" placeholder="Ex: 6">
+            </div>
+            
+            <div class="form-group">
+                <label for="regimeAtual">Regime Atual:</label>
+                <select id="regimeAtual">
+                    <option value="fechado">Fechado</option>
+                    <option value="semiaberto">Semiaberto</option>
+                    <option value="aberto">Aberto</option>
+                </select>
+            </div>
+            
+            <div class="info-box">
+                ⚠️ <strong>Observação:</strong> Para progressão, considera-se o cumprimento mínimo de:
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Fechado → Semiaberto: 1/6 da pena (primário) ou 2/5 (reincidente)</li>
+                    <li>Semiaberto → Aberto: 1/6 da pena restante</li>
+                </ul>
+            </div>
+            
+            <button class="btn btn-success" onclick="calcularProgressao()">Calcular Progressão</button>
+            
+            <div class="results" id="resultProgressao">
+                <h3>Resultado da Progressão</h3>
+                <div class="result-item">
+                    <strong>Progressão Disponível:</strong>
+                    <p id="progressaoResultado"></p>
+                </div>
+                <div class="result-item">
+                    <strong>Tempo Necessário:</strong>
+                    <p id="tempoNecessario"></p>
+                </div>
+                
+                <div class="calculation-explanation">
+                    <h4>📝 Como é feito o cálculo:</h4>
+                    <p><strong>Fórmula:</strong> Tempo necessário = Pena total × Fração legal</p>
+                    <p><strong>Frações aplicáveis:</strong></p>
+                    <ul>
+                        <li><strong>Primários:</strong> 1/6 da pena (16,67%)</li>
+                        <li><strong>Reincidentes:</strong> 2/5 da pena (40%)</li>
+                        <li><strong>Progressão Semiaberto → Aberto:</strong> 1/6 da pena restante</li>
+                    </ul>
+                    <p><strong>Exemplo:</strong> Pena de 6 anos para primário = 6 × 1/6 = 1 ano necessário</p>
+                </div>
+                
+                <div class="legislation-ref">
+                    <strong>📚 Fundamentos Legais:</strong><br>
+                    • <strong>Art. 112 da LEP:</strong> Requisitos para progressão de regime<br>
+                    • <strong>Art. 2º, §3º da LEP:</strong> Frações para cálculo do tempo de cumprimento<br>
+                    • <strong>Súmula 716 do STF:</strong> Computação do tempo de prisão provisória
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculadora de Frações -->
+        <div class="card">
+            <h2>🔢 Cálculo de Frações de Pena</h2>
+            
+            <div class="calculator-grid">
+                <div class="calculator-box">
+                    <h3>🔍 Fração de 1/6</h3>
+                    <div class="form-group">
+                        <label for="penaFracao">Pena Total:</label>
+                        <input type="number" id="penaFracao" step="0.1" placeholder="Em anos">
+                    </div>
+                    <button class="btn" onclick="calcularFracao(6)">Calcular 1/6</button>
+                    <div class="result-item" id="fracao16" style="display: none;"></div>
+                </div>
+                
+                <div class="calculator-box">
+                    <h3>📐 Fração de 1/3</h3>
+                    <div class="form-group">
+                        <label for="penaFracao2">Pena Total:</label>
+                        <input type="number" id="penaFracao2" step="0.1" placeholder="Em anos">
+                    </div>
+                    <button class="btn" onclick="calcularFracao(3)">Calcular 1/3</button>
+                    <div class="result-item" id="fracao13" style="display: none;"></div>
+                </div>
+                
+                <div class="calculator-box">
+                    <h3>⚖️ Fração de 2/5</h3>
+                    <div class="form-group">
+                        <label for="penaFracao3">Pena Total:</label>
+                        <input type="number" id="penaFracao3" step="0.1" placeholder="Em anos">
+                    </div>
+                    <button class="btn" onclick="calcularFracao(2.5)">Calcular 2/5</button>
+                    <div class="result-item" id="fracao25" style="display: none;"></div>
+                </div>
+            </div>
+            
+            <div class="calculation-explanation" style="margin-top: 20px;">
+                <h4>📝 Como são feitos os cálculos:</h4>
+                <p><strong>Fórmula básica:</strong> Fração = Pena total ÷ Denominador da fração</p>
+                <p><strong>Conversões:</strong></p>
+                <ul>
+                    <li><strong>1/6:</strong> Pena × 0,1667 (ou Pena ÷ 6)</li>
+                    <li><strong>1/3:</strong> Pena × 0,3333 (ou Pena ÷ 3)</li>
+                    <li><strong>2/5:</strong> Pena × 0,4 (ou Pena ÷ 2,5)</li>
+                </ul>
+                <p><strong>Exemplo para pena de 6 anos:</strong></p>
+                <ul>
+                    <li>1/6 = 6 ÷ 6 = 1 ano</li>
+                    <li>1/3 = 6 ÷ 3 = 2 anos</li>
+                    <li>2/5 = 6 ÷ 2,5 = 2,4 anos</li>
+                </ul>
+            </div>
+            
+            <div class="legislation-ref">
+                <strong>📚 Frações comuns no Direito Penal e seus usos:</strong>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li><strong>1/6 (16,67%):</strong> Progressão de regime para primários (Art. 112, I, LEP)</li>
+                    <li><strong>1/3 (33,33%):</strong> Período de experiência no livramento condicional (Art. 132, LEP)</li>
+                    <li><strong>2/5 (40%):</strong> Progressão de regime para reincidentes (Art. 112, §1º, LEP)</li>
+                    <li><strong>1/2 (50%):</strong> Remição de pena por estudo (Art. 126, LEP)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Calculadora de Suspensão Condicional -->
+        <div class="card">
+            <h2>⏳ Suspensão Condicional da Pena</h2>
+            
+            <div class="form-group">
+                <label for="penaSuspensao">Pena Privativa de Liberdade (em anos):</label>
+                <input type="number" id="penaSuspensao" step="0.1" min="0" max="4" placeholder="Máximo 4 anos">
+            </div>
+            
+            <div class="form-group">
+                <label for="antecedentes">Antecedentes Criminais:</label>
+                <select id="antecedentes">
+                    <option value="bons">Bons antecedentes</option>
+                    <option value="ruins">Maus antecedentes</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="culpabilidade">Culpabilidade (Art. 59, CP):</label>
+                    <select id="culpabilidade">
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-success" onclick="calcularSuspensao()">Verificar Elegibilidade</button>
+            
+            <div class="results" id="resultSuspensao">
+                <h3>Resultado da Análise</h3>
+                <div class="result-item">
+                    <strong>Elegível para Suspensão:</strong>
+                    <p id="elegibilidadeResultado"></p>
+                </div>
+                <div class="result-item">
+                    <strong>Período de Prova:</strong>
+                    <p id="periodoProva"></p>
+                </div>
+                
+                <div class="calculation-explanation">
+                    <h4>📝 Requisitos para suspensão condicional:</h4>
+                    <p><strong>Conforme Art. 77 do Código Penal, são necessários:</strong></p>
+                    <ol>
+                        <li>Pena privativa de liberdade não superior a 4 anos</li>
+                        <li>Réu não ser reincidente em crime doloso</li>
+                        <li>Bons antecedentes</li>
+                        <li>Circunstâncias judiciais favoráveis (Art. 59, CP)</li>
+                        <li>Culpabilidade, antecedentes, conduta social, personalidade, motivos, circunstâncias e consequências do crime</li>
+                    </ol>
+                    <p><strong>Período de prova:</strong> 2 a 4 anos, conforme gravidade</p>
+                </div>
+                
+                <div class="legislation-ref">
+                    <strong>📚 Fundamentos Legais:</strong><br>
+                    • <strong>Art. 77 do Código Penal:</strong> Requisitos da suspensão condicional<br>
+                    • <strong>Art. 78 do CP:</strong> Período de prova<br>
+                    • <strong>Art. 59 do CP:</strong> Circunstâncias judiciais<br>
+                    • <strong>Art. 81 do CP:</strong> Revogação da suspensão
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculadora de Detração Penal -->
+        <div class="card">
+            <h2>⏱️ Cálculo de Detração Penal</h2>
+            <p>Desconto de tempo de prisão provisória no cumprimento da pena</p>
+            
+            <div class="form-group">
+                <label for="penaDefinitiva">Pena Definitiva (em anos):</label>
+                <input type="number" id="penaDefinitiva" step="0.1" min="0" placeholder="Ex: 8">
+            </div>
+            
+            <div class="form-group">
+                <label for="prisaoProvisoria">Tempo de Prisão Provisória (em dias):</label>
+                <input type="number" id="prisaoProvisoria" min="0" placeholder="Ex: 120">
+            </div>
+            
+            <div class="form-group">
+                <label for="regimeDetracao">Regime durante a prisão provisória:</label>
+                <select id="regimeDetracao">
+                    <option value="fechado">Fechado</option>
+                    <option value="semiaberto">Semiaberto</option>
+                </select>
+            </div>
+            
+            <button class="btn" onclick="calcularDetracao()">Calcular Detração</button>
+            
+            <div class="results" id="resultDetracao">
+                <h3>Resultado do Cálculo de Detração</h3>
+                <div class="result-item">
+                    <strong>Pena a Cumprir após Detração:</strong>
+                    <p id="penaRestante"></p>
+                </div>
+                <div class="result-item">
+                    <strong>Tempo Descontado:</strong>
+                    <p id="tempoDescontado"></p>
+                </div>
+                
+                <div class="calculation-explanation">
+                    <h4>📝 Como é feito o cálculo:</h4>
+                    <p><strong>Fórmula:</strong> Pena restante = Pena definitiva - (Tempo prisão provisória ÷ 365)</p>
+                    <p><strong>Exemplo:</strong></p>
+                    <ul>
+                        <li>Pena definitiva: 8 anos</li>
+                        <li>Prisão provisória: 180 dias (≈ 0,493 anos)</li>
+                        <li>Cálculo: 8 - (180 ÷ 365) = 8 - 0,493 = 7,507 anos restantes</li>
+                    </ul>
+                    <p><strong>Observação:</strong> O tempo de prisão provisória é descontado integralmente da pena (Súmula 716 STF)</p>
+                </div>
+                
+                <div class="legislation-ref">
+                    <strong>📚 Fundamentos Legais:</strong><br>
+                    • <strong>Art. 42 do Código Penal:</strong> Computação do tempo de prisão provisória<br>
+                    • <strong>Súmula 716 do STF:</strong> "Computa-se, na pena privativa de liberdade e na medida de segurança, o tempo de prisão provisória, no Brasil ou no estrangeiro, o de prisão administrativa e o de internação em hospital de custódia"<br>
+                    • <strong>Art. 119 da LEP:</strong> Forma de cálculo da detração
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>⚖️ <strong>Calculadora de Penas - CPP</strong></p>
+        <p>⚠️ <strong>VERSÃO EM TESTES</strong> - Para cálculos precisos e orientação jurídica profissional:</p>
+        <p>Consulte a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: #8B0000; font-weight: bold;">Advocacia Vera Catarina</a></p>
+        <p>E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a></p>
+        <p>Referências: Código Penal (Decreto-Lei 2.848/40) e Lei de Execução Penal (7.210/84)</p>
+        <p><a href="https://fabiowlademir.github.io/simuladosdireito/">Voltar para Simulados de Direito</a></p>
+    </footer>
+
+    <script>
+        // Cálculo de Regime
+        function calcularRegime() {
+            const pena = parseFloat(document.getElementById('penaTotal').value);
+            const reincidente = document.getElementById('reatincidente').value;
+            const violencia = document.getElementById('violencia').value;
+            
+            if (!pena || pena <= 0) {
+                alert("Por favor, insira uma pena válida.");
+                return;
+            }
+            
+            let resultado = "";
+            let fundamento = "";
+            
+            if (pena <= 4) {
+                if (reincidente === 'nao' && violencia === 'nao') {
+                    resultado = "Regime Aberto (Art. 33, §2º, 'b', CP)";
+                    fundamento = "Pena até 4 anos, primário, sem violência";
+                } else if (reincidente === 'sim' || violencia === 'sim') {
+                    resultado = "Regime Semiaberto (Art. 33, §2º, 'a', CP)";
+                    fundamento = "Reincidente ou crime com violência";
+                }
+            } else if (pena <= 8) {
+                resultado = "Regime Semiaberto";
+                fundamento = "Pena superior a 4 e até 8 anos";
+            } else {
+                resultado = "Regime Fechado";
+                fundamento = "Pena superior a 8 anos";
+            }
+            
+            document.getElementById('regimeResultado').innerHTML = `
+                <strong>${resultado}</strong><br>
+                <small>${fundamento}</small>
+            `;
+            document.getElementById('resultRegime').style.display = 'block';
+        }
+        
+        // Cálculo de Progressão
+        function calcularProgressao() {
+            const tempoCumprido = parseFloat(document.getElementById('tempoCumprido').value);
+            const penaTotal = parseFloat(document.getElementById('penaTotal2').value);
+            const regimeAtual = document.getElementById('regimeAtual').value;
+            
+            if (!tempoCumprido || !penaTotal || tempoCumprido <= 0 || penaTotal <= 0) {
+                alert("Por favor, insira valores válidos.");
+                return;
+            }
+            
+            let fracoesNecessaria = regimeAtual === 'fechado' ? (1/6) : (1/6);
+            let tempoNecessario = penaTotal * fracoesNecessaria;
+            
+            let progressaoDisponivel = "";
+            let detalhes = "";
+            
+            if (regimeAtual === 'fechado' && tempoCumprido >= tempoNecessario) {
+                progressaoDisponivel = "SIM - Pode progredir para Semiaberto";
+                detalhes = `Cumpriu ${tempoCumprido.toFixed(2)} anos de ${tempoNecessario.toFixed(2)} necessários`;
+            } else if (regimeAtual === 'semiaberto') {
+                const penaRestante = penaTotal - tempoCumprido;
+                tempoNecessario = penaRestante > 0 ? penaRestante * (1/6) : 0;
+                if (tempoCumprido >= tempoNecessario && penaRestante > 0) {
+                    progressaoDisponivel = "SIM - Pode progredir para Aberto";
+                    detalhes = `Cumpriu tempo necessário para progressão`;
+                } else {
+                    progressaoDisponivel = "NÃO - Tempo insuficiente";
+                    detalhes = `Faltam ${(tempoNecessario - tempoCumprido).toFixed(2)} anos`;
+                }
+            } else {
+                progressaoDisponivel = "NÃO - Tempo insuficiente";
+                detalhes = `Faltam ${(tempoNecessario - tempoCumprido).toFixed(2)} anos`;
+            }
+            
+            document.getElementById('progressaoResultado').textContent = progressaoDisponivel;
+            document.getElementById('tempoNecessario').textContent = detalhes;
+            document.getElementById('resultProgressao').style.display = 'block';
+        }
+        
+        // Cálculo de Frações
+        function calcularFracao(denominador) {
+            let pena, resultadoId, fracaoNome;
+            
+            if (denominador === 6) {
+                pena = parseFloat(document.getElementById('penaFracao').value);
+                resultadoId = 'fracao16';
+                fracaoNome = '1/6';
+            } else if (denominador === 3) {
+                pena = parseFloat(document.getElementById('penaFracao2').value);
+                resultadoId = 'fracao13';
+                fracaoNome = '1/3';
+            } else {
+                pena = parseFloat(document.getElementById('penaFracao3').value);
+                resultadoId = 'fracao25';
+                fracaoNome = '2/5';
+                denominador = 5/2; // Para 2/5, calculamos 2/5 = 0.4
+            }
+            
+            if (!pena || pena <= 0) {
+                alert("Por favor, insira uma pena válida.");
+                return;
+            }
+            
+            const fracao = denominador === 5/2 ? pena * 0.4 : pena / denominador;
+            const meses = fracao * 12;
+            const dias = fracao * 365;
+            
+            const resultadoDiv = document.getElementById(resultadoId);
+            resultadoDiv.innerHTML = `
+                <strong>Fração ${fracaoNome} da pena:</strong><br>
+                ${fracao.toFixed(2)} anos<br>
+                ${meses.toFixed(1)} meses<br>
+                ${dias.toFixed(0)} dias<br>
+                <small>${fracaoNome} = ${(denominador === 5/2 ? 40 : 100/denominador).toFixed(1)}% da pena total</small>
+            `;
+            resultadoDiv.style.display = 'block';
+        }
+        
+        // Cálculo de Suspensão Condicional
+        function calcularSuspensao() {
+            const pena = parseFloat(document.getElementById('penaSuspensao').value);
+            const antecedentes = document.getElementById('antecedentes').value;
+            const culpabilidade = document.getElementById('culpabilidade').value;
+            
+            if (!pena || pena <= 0) {
+                alert("Por favor, insira uma pena válida.");
+                return;
+            }
+            
+            let elegivel = false;
+            let motivo = "";
+            let periodo = "2 a 4 anos";
+            
+            if (pena > 4) {
+                elegivel = false;
+                motivo = "Pena superior a 4 anos (Art. 77, CP)";
+            } else if (antecedentes === 'ruins') {
+                elegivel = false;
+                motivo = "Maus antecedentes criminais";
+            } else if (culpabilidade === 'alta') {
+                elegivel = false;
+                motivo = "Alta culpabilidade do agente";
+            } else {
+                elegivel = true;
+                motivo = "Atende todos os requisitos do Art. 77 do CP";
+                
+                if (pena <= 1) periodo = "1 ano";
+                else if (pena <= 2) periodo = "1 a 3 anos";
+                else periodo = "2 a 4 anos";
+            }
+            
+            document.getElementById('elegibilidadeResultado').innerHTML = `
+                ${elegivel ? '✅ SIM' : '❌ NÃO'}<br>
+                <small>${motivo}</small>
+            `;
+            document.getElementById('periodoProva').textContent = elegivel ? `Período de prova: ${periodo}` : "Não se aplica";
+            document.getElementById('resultSuspensao').style.display = 'block';
+        }
+        
+        // Cálculo de Detração Penal
+        function calcularDetracao() {
+            const pena = parseFloat(document.getElementById('penaDefinitiva').value);
+            const prisaoDias = parseInt(document.getElementById('prisaoProvisoria').value);
+            const regime = document.getElementById('regimeDetracao').value;
+            
+            if (!pena || !prisaoDias || pena <= 0 || prisaoDias <= 0) {
+                alert("Por favor, insira valores válidos.");
+                return;
+            }
+            
+            const prisaoAnos = prisaoDias / 365;
+            
+            // Cálculo com desconto integral (Súmula 716 STF)
+            let penaRestante = pena - prisaoAnos;
+            if (penaRestante < 0) penaRestante = 0;
+            
+            // Ajuste conforme regime
+            let eficiencia = regime === 'fechado' ? 1.0 : 0.8;
+            const tempoEfetivo = prisaoAnos * eficiencia;
+            
+            document.getElementById('penaRestante').innerHTML = `
+                <strong>${penaRestante.toFixed(2)} anos</strong><br>
+                <small>(${(penaRestante * 12).toFixed(1)} meses / ${(penaRestante * 365).toFixed(0)} dias)</small>
+            `;
+            
+            document.getElementById('tempoDescontado').innerHTML = `
+                <strong>${prisaoAnos.toFixed(2)} anos</strong><br>
+                <small>${prisaoDias} dias de prisão provisória</small>
+            `;
+            
+            document.getElementById('resultDetracao').style.display = 'block';
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Exemplo de preenchimento automático para demonstração
+            document.getElementById('penaTotal').value = 4.5;
+            document.getElementById('penaFracao').value = 6;
+            document.getElementById('penaFracao2').value = 6;
+            document.getElementById('penaFracao3').value = 6;
+            document.getElementById('penaSuspensao').value = 3;
+            document.getElementById('penaDefinitiva').value = 8;
+            document.getElementById('prisaoProvisoria').value = 180;
+        });
+    </script>
+</body>
+</html>
