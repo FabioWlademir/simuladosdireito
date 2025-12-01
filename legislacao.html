@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚖️ Legislação - Simulados de Direito</title>
+    <meta name="description" content="Consulta completa de legislação brasileira. Códigos, leis especiais, jurisprudência e recursos para estudo do direito.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+            color: #333;
+        }
+        
+        .header {
+            background: #003366;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .nav-bar {
+            background: #002244;
+            padding: 12px 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-bar a:hover {
+            background: #0055aa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb {
+            background: #e9ecef;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .breadcrumb a {
+            color: #0055aa;
+            text-decoration: none;
+        }
+        
+        .search-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .search-box button {
+            background: #0055aa;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .search-filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .search-filters select {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            min-width: 200px;
+        }
+        
+        .legislation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .legislation-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .legislation-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: #003366;
+            color: white;
+            padding: 20px;
+        }
+        
+        .card-header h3 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .card-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #0055aa;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #0055aa;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #003d7a;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .legislation-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .category-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .category-box h3 {
+            color: #003366;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0055aa;
+        }
+        
+        .category-box ul {
+            list-style: none;
+        }
+        
+        .category-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-box li:last-child {
+            border-bottom: none;
+        }
+        
+        .category-box a {
+            color: #0055aa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .category-box a:hover {
+            color: #003366;
+            text-decoration: underline;
+        }
+        
+        .legislation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .legislation-table th,
+        .legislation-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .legislation-table th {
+            background: #003366;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .legislation-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-active {
+            background: #28a745;
+        }
+        
+        .status-revoked {
+            background: #dc3545;
+        }
+        
+        .status-modified {
+            background: #ffc107;
+        }
+        
+        .quick-access {
+            background: #e7f3ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .quick-access h2 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+        
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .quick-links a {
+            display: block;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #0055aa;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .quick-links a:hover {
+            background: #0055aa;
+            color: white;
+            border-color: #0055aa;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            margin-top: 50px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .footer a {
+            color: #0055aa;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .legislation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-filters {
+                flex-direction: column;
+            }
+            
+            .search-filters select {
+                min-width: 100%;
+            }
+            
+            .legislation-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚖️ Legislação Brasileira</h1>
+        <p>Consulta completa de códigos, leis e recursos jurídicos</p>
+    </div>
+    
+    <nav class="nav-bar">
+        <a href="index.html">🏠 Início</a>
+        <a href="estatisticas.html">📊 Estatísticas</a>
+        <a href="legislacao.html" style="background: #0055aa;">⚖️ Legislação</a>
+        <a href="calculadora_media.html">🧮 Calculadora</a>
+        <a href="#simulados">📝 Simulados</a>
+    </nav>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Início</a> > <span>Legislação</span>
+        </div>
+        
+        <div class="search-section">
+            <h2 style="color: #003366; margin-bottom: 20px;">🔍 Busca Avançada na Legislação</h2>
+            
+            <div class="search-box">
+                <input type="text" id="searchLaw" placeholder="Buscar por número da lei, palavra-chave ou conteúdo...">
+                <button onclick="searchLegislation()">🔍 Buscar</button>
+            </div>
+            
+            <div class="search-filters">
+                <select id="lawType">
+                    <option value="">Tipo de Legislação</option>
+                    <option value="codigo">Código</option>
+                    <option value="lei">Lei Ordinária</option>
+                    <option value="lei_complementar">Lei Complementar</option>
+                    <option value="decreto">Decreto</option>
+                    <option value="medida_provisoria">Medida Provisória</option>
+                    <option value="constituicao">Constituição</option>
+                </select>
+                
+                <select id="lawArea">
+                    <option value="">Área do Direito</option>
+                    <option value="penal">Penal</option>
+                    <option value="civil">Civil</option>
+                    <option value="constitucional">Constitucional</option>
+                    <option value="trabalhista">Trabalhista</option>
+                    <option value="tributario">Tributário</option>
+                    <option value="administrativo">Administrativo</option>
+                    <option value="digital">Digital</option>
+                </select>
+                
+                <select id="lawYear">
+                    <option value="">Ano</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="antigas">Anteriores a 2018</option>
+                </select>
+            </div>
+            
+            <div id="searchResults" style="margin-top: 20px;"></div>
+        </div>
+        
+        <div class="quick-access">
+            <h2>⚡ Acesso Rápido às Principais Legislações</h2>
+            <div class="quick-links">
+                <a href="http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank">
+                    📄 Constituição Federal
+                </a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/2002/l10406.htm" target="_blank">
+                    📚 Código Civil
+                </a>
+                <a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del2848.htm" target="_blank">
+                    ⚖️ Código Penal
+                </a>
+                <a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm" target="_blank">
+                    👨‍💼 CLT
+                </a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l8078.htm" target="_blank">
+                    🛒 CDC
+                </a>
+                <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">
+                    🔒 LGPD
+                </a>
+            </div>
+        </div>
+        
+        <h2 style="color: #003366; margin: 40px 0 20px 0;">📚 Códigos Principais</h2>
+        <div class="legislation-grid">
+            <div class="legislation-card">
+                <div class="card-header">
+                    <h3>Código Civil</h3>
+                    <span class="card-badge">Lei 10.406/2002</span>
+                </div>
+                <div class="card-content">
+                    <p>Código que rege as relações privadas no Brasil. Divide-se em Parte Geral e Parte Especial.</p>
+                    <div class="card-meta">
+                        <span>📅 Vigor: 11/01/2003</span>
+                        <span>📖 2.046 artigos</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="http://www.planalto.gov.br/ccivil_03/leis/2002/l10406.htm" target="_blank" class="btn btn-primary">Ver Completo</a>
+                        <a href="#" class="btn btn-secondary">📥 Download PDF</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="legislation-card">
+                <div class="card-header">
+                    <h3>Código Penal</h3>
+                    <span class="card-badge">Decreto-Lei 2.848/1940</span>
+                </div>
+                <div class="card-content">
+                    <p>Define os crimes e as penas aplicáveis no Brasil. Divide-se em Parte Geral e Parte Especial.</p>
+                    <div class="card-meta">
+                        <span>📅 Vigor: 07/12/1940</span>
+                        <span>📖 361 artigos</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del2848.htm" target="_blank" class="btn btn-primary">Ver Completo</a>
+                        <a href="#" class="btn btn-secondary">📥 Download PDF</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="legislation-card">
+                <div class="card-header">
+                    <h3>Código de Processo Civil</h3>
+                    <span class="card-badge">Lei 13.105/2015</span>
+                </div>
+                <div class="card-content">
+                    <p>Regula o processo civil brasileiro, estabelecendo normas para tramitação de processos judiciais.</p>
+                    <div class="card-meta">
+                        <span>📅 Vigor: 18/03/2016</span>
+                        <span>📖 1.072 artigos</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm" target="_blank" class="btn btn-primary">Ver Completo</a>
+                        <a href="#" class="btn btn-secondary">📥 Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="color: #003366; margin: 40px 0 20px 0;">🏛️ Legislação por Categoria</h2>
+        <div class="legislation-categories">
+            <div class="category-box">
+                <h3>⚖️ Direito Penal</h3>
+                <ul>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del2848.htm" target="_blank">Código Penal</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank">Código de Processo Penal</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l8069.htm" target="_blank">Estatuto da Criança e Adolescente</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank">Lei Maria da Penha</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13764.htm" target="_blank">Lei de Abuso de Autoridade</a></li>
+                </ul>
+            </div>
+            
+            <div class="category-box">
+                <h3>📄 Direito Civil</h3>
+                <ul>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/2002/l10406.htm" target="_blank">Código Civil</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l8078.htm" target="_blank">Código de Defesa do Consumidor</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l9494.htm" target="_blank">Lei de Registros Públicos</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l6015.htm" target="_blank">Lei de Registros Públicos (antiga)</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l9514.htm" target="_blank">Lei da Ação Civil Pública</a></li>
+                </ul>
+            </div>
+            
+            <div class="category-box">
+                <h3>👨‍💼 Direito do Trabalho</h3>
+                <ul>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm" target="_blank">CLT - Consolidação das Leis do Trabalho</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l8036.htm" target="_blank">Lei do FGTS</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l8213cons.htm" target="_blank">Lei de Benefícios da Previdência</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l5889.htm" target="_blank">Lei do Trabalho Rural</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l6051.htm" target="_blank">Lei do Estágio</a></li>
+                </ul>
+            </div>
+            
+            <div class="category-box">
+                <h3>💼 Direito Empresarial</h3>
+                <ul>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l6404compilado.htm" target="_blank">Lei das S/A</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l10406compilada.htm" target="_blank">Código Civil (Parte Empresarial)</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l8930.htm" target="_blank">Lei de Falências</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l8078.htm" target="_blank">CDC (aplicável)</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/l8245.htm" target="_blank">Lei do Inquilinato</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2 style="color: #003366; margin: 40px 0 20px 0;">📋 Leis Especiais e Estatutos</h2>
+        <table class="legislation-table">
+            <thead>
+                <tr>
+                    <th>Legislação</th>
+                    <th>Número/Ano</th>
+                    <th>Status</th>
+                    <th>Área</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lei Geral de Proteção de Dados</td>
+                    <td>Lei 13.709/2018</td>
+                    <td><span class="status-indicator status-active"></span> Vigente</td>
+                    <td>Digital</td>
+                    <td>
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" class="btn btn-primary" style="padding: 5px 10px; font-size: 0.9em;">Ver</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Estatuto da Criança e Adolescente</td>
+                    <td>Lei 8.069/1990</td>
+                    <td><span class="status-indicator status-active"></span> Vigente</td>
+                    <td>Social</td>
+                    <td>
+                        <a href="http://www.planalto.gov.br/ccivil_03/leis/l8069.htm" target="_blank" class="btn btn-primary" style="padding: 5px 10px; font-size: 0.9em;">Ver</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lei Maria da Penha</td>
+                    <td>Lei 11.340/2006</td>
+                    <td><span class="status-indicator status-active"></span> Vigente</td>
+                    <td>Penal/Social</td>
+                    <td>
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" class="btn btn-primary" style="padding: 5px 10px; font-size: 0.9em;">Ver</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Estatuto da Pessoa com Deficiência</td>
+                    <td>Lei 13.146/2015</td>
+                    <td><span class="status-indicator status-active"></span> Vigente</td>
+                    <td>Social</td>
+                    <td>
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm" target="_blank" class="btn btn-primary" style="padding: 5px 10px; font-size: 0.9em;">Ver</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Estatuto do Idoso</td>
+                    <td>Lei 10.741/2003</td>
+                    <td><span class="status-indicator status-active"></span> Vigente</td>
+                    <td>Social</td>
+                    <td>
+                        <a href="http://www.planalto.gov.br/ccivil_03/leis/2003/l10741.htm" target="_blank" class="btn btn-primary" style="padding: 5px 10px; font-size: 0.9em;">Ver</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lei de Improbidade Administrativa</td>
+                    <td>Lei 8.429/1992</td>
+                    <td><span class="status-indicator status-modified"></span> Modificada</td>
+                    <td>Administrativo</td>
+                    <td>
+                        <a href="http://www.planalto.gov.br/ccivil_03/leis/l8429.htm" target="_blank" class="btn btn-primary" style="padding: 5px 10px; font-size: 0.9em;">Ver</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lei de Licitações</td>
+                    <td>Lei 14.133/2021</td>
+                    <td><span class="status-indicator status-active"></span> Vigente</td>
+                    <td>Administrativo</td>
+                    <td>
+                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm" target="_blank" class="btn btn-primary" style="padding: 5px 10px; font-size: 0.9em;">Ver</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 30px;">
+            <h3 style="color: #003366; margin-bottom: 15px;">📝 Como usar esta página:</h3>
+            <ul style="list-style: none; line-height: 1.8;">
+                <li>✅ <strong>Busque legislação</strong> por número, nome ou palavra-chave</li>
+                <li>✅ <strong>Filtre por tipo</strong> (código, lei, decreto) e área do direito</li>
+                <li>✅ <strong>Acesse rapidamente</strong> as principais leis nos cards e tabelas</li>
+                <li>✅ <strong>Verifique o status</strong> de vigência de cada legislação</li>
+                <li>✅ <strong>Baixe em PDF</strong> para estudo offline (em breve)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>⚖️ Legislação atualizada em conformidade com o Planalto.gov.br</p>
+        <p>📅 Última atualização: Junho 2024 | Fonte oficial: Presidência da República</p>
+        <p><a href="index.html">← Voltar para a página inicial</a></p>
+    </div>
+    
+    <script>
+        // Dados de legislação para busca
+        const legislationData = [
+            {
+                id: 1,
+                name: "Constituição Federal",
+                number: "CF/1988",
+                year: 1988,
+                type: "constituicao",
+                area: "constitucional",
+                status: "active",
+                description: "Lei fundamental do Brasil, estabelece direitos e deveres dos cidadãos e a organização do Estado.",
+                link: "http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+            },
+            {
+                id: 2,
+                name: "Código Civil",
+                number: "Lei 10.406/2002",
+                year: 2002,
+                type: "codigo",
+                area: "civil",
+                status: "active",
+                description: "Regula as relações privadas no Brasil, incluindo pessoas, bens e obrigações.",
+                link: "http://www.planalto.gov.br/ccivil_03/leis/2002/l10406.htm"
+            },
+            {
+                id: 3,
+                name: "Código Penal",
+                number: "Decreto-Lei 2.848/1940",
+                year: 1940,
+                type: "codigo",
+                area: "penal",
+                status: "active",
+                description: "Define crimes e estabelece penas aplicáveis no ordenamento jurídico brasileiro.",
+                link: "http://www.planalto.gov.br/ccivil_03/decreto-lei/del2848.htm"
+            },
+            {
+                id: 4,
+                name: "CLT",
+                number: "Decreto-Lei 5.452/1943",
+                year: 1943,
+                type: "codigo",
+                area: "trabalhista",
+                status: "active",
+                description: "Consolidação das Leis do Trabalho, rege as relações de trabalho no Brasil.",
+                link: "http://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm"
+            },
+            {
+                id: 5,
+                name: "LGPD - Lei Geral de Proteção de Dados",
+                number: "Lei 13.709/2018",
+                year: 2018,
+                type: "lei",
+                area: "digital",
+                status: "active",
+                description: "Estabelece regras sobre coleta, armazenamento e tratamento de dados pessoais.",
+                link: "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+            },
+            {
+                id: 6,
+                name: "Lei Maria da Penha",
+                number: "Lei 11.340/2006",
+                year: 2006,
+                type: "lei",
+                area: "penal",
+                status: "active",
+                description: "Cria mecanismos para coibir a violência doméstica e familiar contra a mulher.",
+                link: "http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+            },
+            {
+                id: 7,
+                name: "Estatuto da Criança e Adolescente",
+                number: "Lei 8.069/1990",
+                year: 1990,
+                type: "lei",
+                area: "social",
+                status: "active",
+                description: "Dispõe sobre a proteção integral à criança e ao adolescente.",
+                link: "http://www.planalto.gov.br/ccivil_03/leis/l8069.htm"
+            }
+        ];
+        
+        // Função de busca
+        function searchLegislation() {
+            const searchTerm = document.getElementById('searchLaw').value.toLowerCase();
+            const lawType = document.getElementById('lawType').value;
+            const lawArea = document.getElementById('lawArea').value;
+            const lawYear = document.getElementById('lawYear').value;
+            
+            const resultsContainer = document.getElementById('searchResults');
+            
+            // Filtrar dados
+            let results = legislationData.filter(law => {
+                const matchesSearch = !searchTerm || 
+                    law.name.toLowerCase().includes(searchTerm) ||
+                    law.number.toLowerCase().includes(searchTerm) ||
+                    law.description.toLowerCase().includes(searchTerm);
+                
+                const matchesType = !lawType || law.type === lawType;
+                const matchesArea = !lawArea || law.area === lawArea;
+                const matchesYear = !lawYear || 
+                    (lawYear === 'antigas' ? law.year < 2018 : law.year.toString() === lawYear);
+                
+                return matchesSearch && matchesType && matchesArea && matchesYear;
+            });
+            
+            // Exibir resultados
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeaa7;">
+                        <p style="margin: 0; color: #856404;">⚠️ Nenhuma legislação encontrada com os critérios informados.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let resultsHTML = `
+                <div style="background: #d4edda; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb; margin-bottom: 15px;">
+                    <p style="margin: 0; color: #155724;">🔍 ${results.length} resultado${results.length > 1 ? 's' : ''} encontrado${results.length > 1 ? 's' : ''}</p>
+                </div>
+            `;
+            
+            results.forEach(law => {
+                const statusColor = law.status === 'active' ? '#28a745' : 
+                                  law.status === 'modified' ? '#ffc107' : '#dc3545';
+                const statusText = law.status === 'active' ? 'Vigente' : 
+                                 law.status === 'modified' ? 'Modificada' : 'Revogada';
+                
+                resultsHTML += `
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h3 style="margin-top: 0; color: #003366;">${law.name}</h3>
+                        <p><strong>Número:</strong> ${law.number} | <strong>Ano:</strong> ${law.year}</p>
+                        <p>${law.description}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+                            <div>
+                                <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: ${statusColor}; margin-right: 8px;"></span>
+                                <span>${statusText}</span>
+                            </div>
+                            <a href="${law.link}" target="_blank" style="background: #0055aa; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Ver Legislação</a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML = resultsHTML;
+        }
+        
+        // Permitir busca com Enter
+        document.getElementById('searchLaw').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchLegislation();
+            }
+        });
+        
+        // Função para download simulada
+        document.querySelectorAll('.btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('📥 A funcionalidade de download será implementada em breve!');
+            });
+        });
+        
+        // Inicializar busca com legislações recentes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar algumas legislações populares inicialmente
+            const popularLaws = legislationData.slice(0, 3);
+            let initialHTML = '<h3 style="margin-top: 20px; color: #003366;">⚡ Legislações Populares:</h3>';
+            
+            popularLaws.forEach(law => {
+                initialHTML += `
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #0055aa;">
+                        <strong>${law.name}</strong> (${law.number})<br>
+                        <small>${law.description.substring(0, 80)}...</small>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('searchResults').innerHTML = initialHTML;
+        });
+    </script>
+</body>
+</html>

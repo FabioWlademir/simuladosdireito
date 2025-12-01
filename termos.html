@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Uso - Simulados de Direito</title>
+    <meta name="description" content="Termos de uso da plataforma Simulados de Direito. Leia atentamente antes de utilizar nossos recursos e simulados gratuitos.">
+    <meta name="keywords" content="termos de uso, condições de uso, simulados direito, política de utilização">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        :root[data-theme="dark"] {
+            --primary-color: #0a1929;
+            --secondary-color: #001e3c;
+            --accent-color: #1976d2;
+            --text-light: #e0e0e0;
+            --text-dark: #f5f5f5;
+            --background-light: #121212;
+            --card-bg: #1e1e1e;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            background: var(--primary-color);
+            padding: 25px 20px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .section {
+            background: var(--card-bg);
+            margin: 25px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .section h3 {
+            color: var(--accent-color);
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .section p, .section ul {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .section ul {
+            padding-left: 20px;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.95em;
+            color: #444;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .nav-bar { gap: 10px; }
+            .nav-bar a { padding: 8px 12px; font-size: 0.9em; }
+            .section { padding: 20px; margin: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="header">
+        <h1>⚖️ Termos de Uso</h1>
+        <p>Condições para utilização da plataforma Simulados de Direito</p>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html">🏠 Início</a>
+        <a href="privacidade.html">🔒 Privacidade</a>
+        <a href="contato.html">📞 Contato</a>
+        <a href="faq.html">❓ FAQ</a>
+    </nav>
+
+    <div class="section">
+        <div class="highlight-box">
+            <p><strong>📅 Última atualização:</strong> 1º de Dezembro de 2025</p>
+            <p><strong>📖 Versão:</strong> 1.0</p>
+        </div>
+
+        <h2>📋 Termos e Condições de Uso</h2>
+        
+        <p>Ao acessar e utilizar a plataforma <strong>Simulados de Direito</strong>, você concorda integralmente com os termos e condições estabelecidos neste documento. Caso não concorde com qualquer parte destes termos, por favor, não utilize nossos serviços.</p>
+
+        <h3>1. 🌐 Aceitação dos Termos</h3>
+        <p>Estes Termos de Uso regulamentam a utilização do site <strong>Simulados de Direito</strong>, disponível em <a href="https://fabiowlademir.github.io/simuladosdireito/">https://fabiowlademir.github.io/simuladosdireito/</a>.</p>
+        <p>Ao navegar, acessar ou utilizar este site, você automaticamente aceita e concorda em cumprir todos os termos aqui estabelecidos.</p>
+
+        <h3>2. 📚 Finalidade do Site</h3>
+        <ul>
+            <li>✅ Fornecer simulados educacionais gratuitos na área do Direito</li>
+            <li>✅ Disponibilizar recursos jurídicos para estudantes e profissionais</li>
+            <li>✅ Oferecer ferramentas de estudo e calculadoras acadêmicas</li>
+            <li>✅ Compartilhar bibliografia e material de apoio gratuito</li>
+        </ul>
+        <p><strong>⚠️ Atenção:</strong> Este site não substitui consultas com profissionais qualificados nem constitui orientação jurídica formal.</p>
+
+        <h3>3. 🎓 Uso Educacional</h3>
+        <p>Todo o conteúdo disponibilizado é destinado exclusivamente para fins:</p>
+        <ul>
+            <li>🎯 Educacionais e de estudo pessoal</li>
+            <li>📖 Preparação para provas e exames</li>
+            <li>🧠 Revisão e fixação de conteúdo jurídico</li>
+            <li>🔍 Pesquisa acadêmica não comercial</li>
+        </ul>
+
+        <h3>4. ⚖️ Propriedade Intelectual</h3>
+        <p>Todo o conteúdo original do site (simulados, organização, interface) é de propriedade intelectual de <strong>Fábio Wlademir</strong>.</p>
+        <p>Os recursos externos (legislação, jurisprudência, livros) são disponibilizados conforme permitido pelos respectivos detentores de direitos ou sob licenças de uso público.</p>
+        <p><strong>É permitido:</strong></p>
+        <ul>
+            <li>✅ Usar para estudo pessoal</li>
+            <li>✅ Compartilhar links do site</li>
+            <li>✅ Citar trechos com atribuição</li>
+        </ul>
+        <p><strong>Não é permitido:</strong></p>
+        <ul>
+            <li>❌ Copiar e republicar conteúdo sem autorização</li>
+            <li>❌ Usar para fins comerciais</li>
+            <li>❌ Modificar e redistribuir como próprio</li>
+        </ul>
+
+        <h3>5. 🔒 Privacidade e Dados</h3>
+        <p>Nosso site respeita integralmente a LGPD (Lei Geral de Proteção de Dados):</p>
+        <ul>
+            <li>📊 <strong>Não coletamos dados pessoais</strong></li>
+            <li>💾 Armazenamento apenas local (seu navegador)</li>
+            <li>👁️ Contador de visitas anônimo</li>
+            <li>🍪 Não utilizamos cookies de rastreamento</li>
+        </ul>
+        <p>Consulte nossa <a href="privacidade.html">Política de Privacidade completa</a>.</p>
+
+        <h3>6. ⚠️ Limitação de Responsabilidade</h3>
+        <p>O site é fornecido "no estado em que se encontra", sem garantias de qualquer tipo:</p>
+        <ul>
+            <li>⚠️ Não garantimos atualização constante do conteúdo</li>
+            <li>⚠️ Não nos responsabilizamos por erros em simulados</li>
+            <li>⚠️ O uso é por conta e risco do usuário</li>
+            <li>⚠️ Não substitui orientação profissional</li>
+        </ul>
+
+        <h3>7. 🔗 Links Externos</h3>
+        <p>Nosso site contém links para sites externos. Não temos controle sobre:</p>
+        <ul>
+            <li>🌐 Conteúdo de sites vinculados</li>
+            <li>🔒 Políticas de privacidade de terceiros</li>
+            <li>🔄 Disponibilidade de recursos externos</li>
+        </ul>
+        <p>A inclusão de qualquer link não implica endosso ao site vinculado.</p>
+
+        <h3>8. 📝 Modificações nos Termos</h3>
+        <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. As alterações entram em vigor imediatamente após sua publicação no site.</p>
+        <p>É responsabilidade do usuário revisar periodicamente os termos.</p>
+
+        <h3>9. 🏛️ Legislação Aplicável</h3>
+        <p>Estes termos são regidos pelas leis brasileiras. Qualquer disputa será resolvida no foro da comarca de Porto Alegre/RS.</p>
+
+        <h3>10. 📞 Contato</h3>
+        <p>Para questões sobre estes Termos de Uso:</p>
+        <ul>
+            <li>📧 Email: <a href="mailto:f2sites@gmail.com">f2sites@gmail.com</a></li>
+            <li>📱 WhatsApp: <a href="https://wa.me/5551998883187">(51) 99888-3187</a></li>
+            <li>👨‍💼 Desenvolvedor: Fábio Wlademir</li>
+        </ul>
+
+        <div class="highlight-box">
+            <p><strong>✅ Ao utilizar este site, você declara que:</strong></p>
+            <ol>
+                <li>Leu e compreendeu estes Termos de Uso</li>
+                <li>Concorda em cumpri-los integralmente</li>
+                <li>Reconhece a finalidade educacional do site</li>
+                <li>Aceita a limitação de responsabilidade</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="index.html" style="display: inline-block; padding: 12px 24px; background: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                ⚖️ Voltar para Simulados de Direito
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Simulados de Direito. Desenvolvido por Fábio Wlademir.</p>
+        <p>Este site não possui vínculo institucional com a UNISINOS.</p>
+        <p>
+            <a href="termos.html">📄 Termos de Uso</a> • 
+            <a href="privacidade.html">🔒 Privacidade</a> • 
+            <a href="contato.html">📞 Contato</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>

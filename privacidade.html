@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Simulados de Direito</title>
+    <meta name="description" content="Política de Privacidade da plataforma Simulados de Direito. Conforme a LGPD, não coletamos dados pessoais dos usuários.">
+    <meta name="keywords" content="privacidade, lgpd, proteção de dados, simulados direito, política de privacidade">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        :root[data-theme="dark"] {
+            --primary-color: #0a1929;
+            --secondary-color: #001e3c;
+            --accent-color: #1976d2;
+            --text-light: #e0e0e0;
+            --text-dark: #f5f5f5;
+            --background-light: #121212;
+            --card-bg: #1e1e1e;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            background: var(--primary-color);
+            padding: 25px 20px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .section {
+            background: var(--card-bg);
+            margin: 25px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .section h3 {
+            color: var(--accent-color);
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .privacy-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 10px 5px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .lgpd-rights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .right-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+        
+        .right-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.95em;
+            color: #444;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .nav-bar { gap: 10px; }
+            .nav-bar a { padding: 8px 12px; font-size: 0.9em; }
+            .section { padding: 20px; margin: 15px; }
+            .lgpd-rights { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="header">
+        <h1>🔒 Política de Privacidade</h1>
+        <p>Conforme a LGPD - Lei Geral de Proteção de Dados Pessoais</p>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html">🏠 Início</a>
+        <a href="termos.html">📄 Termos de Uso</a>
+        <a href="contato.html">📞 Contato</a>
+        <a href="faq.html">❓ FAQ</a>
+    </nav>
+
+    <div class="section">
+        <div class="highlight-box">
+            <h3 style="margin-top: 0; color: #4CAF50;">✅ NÃO COLETAMOS DADOS PESSOAIS</h3>
+            <p>Esta plataforma foi desenvolvida com foco total na privacidade do usuário. Conforme a LGPD (Lei 13.709/2018), não coletamos, armazenamos ou processamos dados pessoais identificáveis.</p>
+        </div>
+
+        <h2>📋 Nossa Política de Privacidade</h2>
+        
+        <p><strong>📅 Última atualização:</strong> 1º de Dezembro de 2025</p>
+        <p><strong>🔒 Compromisso:</strong> Total transparência e respeito à sua privacidade.</p>
+
+        <h3>1. 📊 Quais Dados Coletamos?</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Tipo de Dado</th>
+                    <th>Coletamos?</th>
+                    <th>Finalidade</th>
+                    <th>Armazenamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Nome, email, telefone</strong></td>
+                    <td><span class="privacy-badge">NÃO</span></td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>Localização/IP</strong></td>
+                    <td><span class="privacy-badge">NÃO</span></td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>Cookies de rastreamento</strong></td>
+                    <td><span class="privacy-badge">NÃO</span></td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>Dados de navegação</strong></td>
+                    <td><span class="privacy-badge">NÃO</span></td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>Preferências locais</strong></td>
+                    <td><span class="privacy-badge" style="background: #2196F3;">SIM*</span></td>
+                    <td>Funcionalidade do site (tema, favoritos)</td>
+                    <td>Seu navegador (localStorage)</td>
+                </tr>
+                <tr>
+                    <td><strong>Contador de visitas</strong></td>
+                    <td><span class="privacy-badge" style="background: #2196F3;">SIM*</span></td>
+                    <td>Estatísticas anônimas</td>
+                    <td>Seu navegador (localStorage)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><small>* Armazenados apenas localmente, nunca enviados para servidores.</small></p>
+
+        <h3>2. 💾 Armazenamento Local (localStorage)</h3>
+        <p>Utilizamos o localStorage do seu navegador para:</p>
+        <ul>
+            <li>🎨 <strong>Preferência de tema:</strong> Escuro ou claro</li>
+            <li>⭐ <strong>Favoritos:</strong> Links que você marcou como favoritos</li>
+            <li>📊 <strong>Contador de visitas:</strong> Número total de acessos ao site</li>
+            <li>📈 <strong>Estatísticas pessoais:</strong> Seu progresso nos simulados</li>
+        </ul>
+        <p><strong>⚠️ Importante:</strong> Esses dados ficam APENAS no seu computador/celular. Se você limpar os dados do navegador, essas informações serão perdidas.</p>
+
+        <h3>3. 🍪 Uso de Cookies</h3>
+        <p><strong>Não utilizamos cookies de terceiros ou de rastreamento.</strong></p>
+        <p>O site pode utilizar cookies técnicos essenciais para funcionamento, mas:</p>
+        <ul>
+            <li>✅ Não coletam informações pessoais</li>
+            <li>✅ Não são usados para marketing</li>
+            <li>✅ Não compartilham dados com terceiros</li>
+        </ul>
+
+        <h3>4. 🔗 Links Externos</h3>
+        <p>Nosso site contém links para sites de terceiros (legislação, tribunais, recursos jurídicos).</p>
+        <p><strong>Atenção:</strong> Não controlamos as políticas de privacidade desses sites. Ao clicar em um link externo, você estará sujeito à política de privacidade do site de destino.</p>
+
+        <h3>5. 🛡️ Seus Direitos LGPD</h3>
+        <div class="lgpd-rights">
+            <div class="right-card">
+                <h4>👁️ Confirmação</h4>
+                <p>Confirmar que processamos seus dados</p>
+            </div>
+            <div class="right-card">
+                <h4>📋 Acesso</h4>
+                <p>Acessar seus dados pessoais</p>
+            </div>
+            <div class="right-card">
+                <h4>✏️ Correção</h4>
+                <p>Corrigir dados incompletos ou errados</p>
+            </div>
+            <div class="right-card">
+                <h4>🚫 Anonimização</h4>
+                <p>Bloquear ou eliminar dados desnecessários</p>
+            </div>
+            <div class="right-card">
+                <h4>📤 Portabilidade</h4>
+                <p>Solicitar transferência de dados</p>
+            </div>
+            <div class="right-card">
+                <h4>🗑️ Eliminação</h4>
+                <p>Excluir dados processados com consentimento</p>
+            </div>
+        </div>
+
+        <h3>6. 🔄 Como Exercer Seus Direitos</h3>
+        <p>Como não coletamos dados pessoais, o exercício dos direitos LGPD é simplificado:</p>
+        <ol>
+            <li><strong>Para excluir dados locais:</strong> Limpe o localStorage do seu navegador</li>
+            <li><strong>Para remover favoritos:</strong> Use o botão ⭐ em cada link</li>
+            <li><strong>Para redefinir estatísticas:</strong> Limpe os dados do site no navegador</li>
+        </ol>
+
+        <h3>7. 🚫 Compartilhamento de Dados</h3>
+        <p><strong>Não compartilhamos dados com terceiros</strong>, pois não coletamos dados pessoais.</p>
+        <p>Não vendemos, alugamos ou comercializamos informações de usuários.</p>
+
+        <h3>8. 🔒 Segurança</h3>
+        <p>Implementamos medidas de segurança para proteger as informações armazenadas localmente:</p>
+        <ul>
+            <li>🔐 HTTPS em todas as páginas</li>
+            <li>🛡️ Proteção contra scripts maliciosos</li>
+            <li>📱 Navegação segura em todos os dispositivos</li>
+        </ul>
+
+        <h3>9. 📞 Contato do Encarregado</h3>
+        <p>Para questões sobre proteção de dados:</p>
+        <ul>
+            <li>📧 Email: <a href="mailto:f2sites@gmail.com">f2sites@gmail.com</a></li>
+            <li>📱 WhatsApp: <a href="https://wa.me/5551998883187">(51) 99888-3187</a></li>
+            <li>👨‍💼 Encarregado: Fábio Wlademir</li>
+        </ul>
+
+        <h3>10. 📝 Alterações nesta Política</h3>
+        <p>Podemos atualizar esta política periodicamente. A data da última atualização será sempre indicada no topo desta página.</p>
+
+        <div class="highlight-box">
+            <h4>✅ Resumo da Nossa Política</h4>
+            <ul>
+                <li>🔒 <strong>Não coletamos dados pessoais</strong></li>
+                <li>💾 <strong>Armazenamento apenas local</strong> (seu navegador)</li>
+                <li>👁️ <strong>Total transparência</strong> sobre o que fazemos</li>
+                <li>🛡️ <strong>Total respeito</strong> à LGPD e sua privacidade</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="index.html" style="display: inline-block; padding: 12px 24px; background: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 5px;">
+                ⚖️ Voltar para Simulados
+            </a>
+            <a href="termos.html" style="display: inline-block; padding: 12px 24px; background: #6c757d; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 5px;">
+                📄 Ler Termos de Uso
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Simulados de Direito. Desenvolvido por Fábio Wlademir.</p>
+        <p>Respeitamos integralmente a LGPD (Lei 13.709/2018).</p>
+        <p>
+            <a href="termos.html">📄 Termos de Uso</a> • 
+            <a href="privacidade.html">🔒 Privacidade</a> • 
+            <a href="contato.html">📞 Contato</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas Frequentes - Simulados de Direito</title>
+    <meta name="description" content="Perguntas frequentes sobre a plataforma Simulados de Direito. Tire suas dúvidas sobre uso, conteúdo, recursos e muito mais.">
+    <meta name="keywords" content="FAQ, perguntas frequentes, dúvidas, simulados direito, como usar, ajuda">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        :root[data-theme="dark"] {
+            --primary-color: #0a1929;
+            --secondary-color: #001e3c;
+            --accent-color: #1976d2;
+            --text-light: #e0e0e0;
+            --text-dark: #f5f5f5;
+            --background-light: #121212;
+            --card-bg: #1e1e1e;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            background: var(--primary-color);
+            padding: 25px 20px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .section {
+            background: var(--card-bg);
+            margin: 25px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .faq-category {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .faq-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+        
+        details {
+            margin-bottom: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        details:hover {
+            border-color: var(--accent-color);
+        }
+        
+        summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #f8f9fa;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        summary::after {
+            content: "➕";
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+        
+        details[open] summary::after {
+            content: "➖";
+        }
+        
+        details[open] summary {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .faq-answer p {
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer ul, .faq-answer ol {
+            margin: 10px 0 10px 20px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 5px;
+        }
+        
+        .search-faq {
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .search-faq input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .search-faq button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .faq-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 15px;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.95em;
+            color: #444;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .nav-bar { gap: 10px; }
+            .nav-bar a { padding: 8px 12px; font-size: 0.9em; }
+            .section { padding: 20px; margin: 15px; }
+            .stat-item { min-width: 100%; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="header">
+        <h1>❓ Perguntas Frequentes</h1>
+        <p>Tire suas dúvidas sobre a plataforma Simulados de Direito</p>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html">🏠 Início</a>
+        <a href="ajuda.html">🆘 Ajuda</a>
+        <a href="contato.html">📞 Contato</a>
+        <a href="termos.html">📄 Termos</a>
+        <a href="privacidade.html">🔒 Privacidade</a>
+    </nav>
+
+    <div class="section">
+        <div class="search-faq">
+            <input type="text" id="faqSearch" placeholder="🔍 Pesquisar nas perguntas frequentes..." onkeyup="searchFAQ()">
+            <button onclick="searchFAQ()">Buscar</button>
+        </div>
+
+        <div class="faq-stats">
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div>Perguntas respondidas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12.000+</div>
+                <div>Usuários satisfeitos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24h</div>
+                <div>Tempo de resposta</div>
+            </div>
+        </div>
+
+        <h2>📚 Perguntas Frequentes - FAQ</h2>
+
+        <div class="faq-category">
+            <h3>🎓 Sobre a Plataforma</h3>
+            
+            <details>
+                <summary>O que é o Simulados de Direito?</summary>
+                <div class="faq-answer">
+                    <p>O <strong>Simulados de Direito</strong> é uma plataforma educacional gratuita desenvolvida para estudantes e profissionais do Direito. Oferecemos:</p>
+                    <ul>
+                        <li>📝 Simulados por disciplina e nível de dificuldade</li>
+                        <li>🔗 Recursos jurídicos atualizados</li>
+                        <li>📚 E-books gratuitos</li>
+                        <li>🧮 Ferramentas de estudo (calculadora de média)</li>
+                        <li>🎯 Sistema de favoritos e progresso pessoal</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>É realmente gratuito?</summary>
+                <div class="faq-answer">
+                    <p><strong>Sim, 100% gratuito!</strong> Acreditamos que o conhecimento jurídico deve ser acessível a todos. Não há:</p>
+                    <ul>
+                        <li>✅ Mensalidades</li>
+                        <li>✅ Anúncios intrusivos</li>
+                        <li>✅ Limite de uso</li>
+                        <li>✅ Cadastro obrigatório</li>
+                    </ul>
+                    <p>O projeto é mantido por paixão pelo Direito e tecnologia.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Tem vínculo com a UNISINOS?</summary>
+                <div class="faq-answer">
+                    <p><strong>Não.</strong> Este é um projeto independente desenvolvido por um estudante de Direito. Embora o conteúdo seja baseado no currículo da UNISINOS e outras instituições, não há vínculo oficial.</p>
+                    <p>Os simulados são criados com base em:</p>
+                    <ul>
+                        <li>📖 Doutrina jurídica reconhecida</li>
+                        <li>⚖️ Legislação atualizada</li>
+                        <li>🎓 Conteúdo de diversas faculdades</li>
+                        <li>🧠 Experiência prática</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-category">
+            <h3>📝 Sobre os Simulados</h3>
+            
+            <details>
+                <summary>Quantos simulados estão disponíveis?</summary>
+                <div class="faq-answer">
+                    <p>Atualmente temos <strong>mais de 50 simulados</strong> organizados por:</p>
+                    <ul>
+                        <li><strong>Área:</strong> Penal, Civil, Constitucional, Trabalho, Digital</li>
+                        <li><strong>Nível:</strong> Básico, Intermediário, Avançado</li>
+                        <li><strong>Disciplina:</strong> Mais de 15 disciplinas diferentes</li>
+                    </ul>
+                    <p>Estamos constantemente adicionando novos simulados com base no feedback dos usuários.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Os simulados são atualizados?</summary>
+                <div class="faq-answer">
+                    <p><strong>Sim!</strong> Mantemos os simulados atualizados com:</p>
+                    <ul>
+                        <li>📅 Legislação vigente</li>
+                        <li>⚖️ Jurisprudência recente</li>
+                        <li>📚 Doutrina contemporânea</li>
+                        <li>🎯 Tendências de provas e concursos</li>
+                    </ul>
+                    <p>A versão atual é: <strong>2025.1</strong></p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Posso sugerir novos simulados?</summary>
+                <div class="faq-answer">
+                    <p><strong>Claro! Suas sugestões são muito importantes.</strong></p>
+                    <p>Para sugerir novos simulados:</p>
+                    <ol>
+                        <li>Entre em contato pelo email: <a href="mailto:f2sites@gmail.com">f2sites@gmail.com</a></li>
+                        <li>Ou pelo WhatsApp: <a href="https://wa.me/5551998883187">(51) 99888-3187</a></li>
+                        <li>Mencione: disciplina, tópico e nível desejado</li>
+                    </ol>
+                    <p>As sugestões mais votadas são implementadas primeiro!</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-category">
+            <h3>💻 Uso Técnico</h3>
+            
+            <details>
+                <summary>Funciona no celular?</summary>
+                <div class="faq-answer">
+                    <p><strong>Sim, perfeitamente!</strong> O site é 100% responsivo e otimizado para:</p>
+                    <ul>
+                        <li>📱 Smartphones (Android e iOS)</li>
+                        <li>💻 Tablets</li>
+                        <li>🖥️ Computadores</li>
+                        <li>💻 Notebooks</li>
+                    </ul>
+                    <p><strong>Recomendamos:</strong> Chrome, Firefox ou Safari atualizados.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Meu progresso é salvo?</summary>
+                <div class="faq-answer">
+                    <p><strong>Sim, mas apenas localmente!</strong></p>
+                    <p>Seu progresso é salvo no <strong>seu navegador</strong> através do localStorage:</p>
+                    <ul>
+                        <li>⭐ Favoritos que você marcou</li>
+                        <li>🎨 Preferência de tema (claro/escuro)</li>
+                        <li>📊 Estatísticas de uso</li>
+                        <li>⏱️ Tempo de estudo estimado</li>
+                    </ul>
+                    <p><strong>⚠️ Atenção:</strong> Se você limpar os dados do navegador, perderá essas informações.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Preciso criar conta?</summary>
+                <div class="faq-answer">
+                    <p><strong>Não!</strong> Não há sistema de cadastro. O site funciona imediatamente:</p>
+                    <ul>
+                        <li>✅ Acesse e use imediatamente</li>
+                        <li>✅ Sem login ou senha</li>
+                        <li>✅ Sem confirmação de email</li>
+                        <li>✅ Total privacidade</li>
+                    </ul>
+                    <p>Isso garante máxima acessibilidade e respeito à sua privacidade.</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-category">
+            <h3>🔧 Funcionalidades</h3>
+            
+            <details>
+                <summary>Como usar a Calculadora de Média?</summary>
+                <div class="faq-answer">
+                    <p>A calculadora está disponível em: <a href="calculadora_media.html">Calculadora de Média UNISINOS</a></p>
+                    <p><strong>Como usar:</strong></p>
+                    <ol>
+                        <li>Digite suas notas nas disciplinas</li>
+                        <li>Informe os pesos (se aplicável)</li>
+                        <li>Clique em "Calcular"</li>
+                        <li>Veja sua média e situação</li>
+                    </ol>
+                    <p>A calculadora considera o sistema de avaliação da UNISINOS, mas pode ser adaptada para outras instituições.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Como funcionam os Favoritos?</summary>
+                <div class="faq-answer">
+                    <p>O sistema de favoritos permite salvar links importantes:</p>
+                    <ul>
+                        <li>⭐ Clique na estrela em qualquer link</li>
+                        <li>🔴 A estrela fica vermelha quando favoritada</li>
+                        <li>💾 Salvo automaticamente no seu navegador</li>
+                        <li>📊 Aparece nas suas estatísticas</li>
+                    </ul>
+                    <p><strong>Para remover:</strong> Clique novamente na estrela.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Como usar o Modo Escuro?</summary>
+                <div class="faq-answer">
+                    <p>Para alternar entre temas:</p>
+                    <ol>
+                        <li>Clique no botão 🌓 no canto superior direito</li>
+                        <li>Ou use o atalho de teclado (em breve)</li>
+                        <li>Sua preferência é salva automaticamente</li>
+                    </ol>
+                    <p><strong>Benefícios do modo escuro:</strong></p>
+                    <ul>
+                        <li>👁️ Reduz cansaço visual</li>
+                        <li>🔋 Economiza bateria (em dispositivos OLED)</li>
+                        <li>🎨 Experiência mais confortável à noite</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-category">
+            <h3>⚖️ Questões Jurídicas</h3>
+            
+            <details>
+                <summary>Os simulados são baseados em que?</summary>
+                <div class="faq-answer">
+                    <p>Nossos simulados são baseados em:</p>
+                    <ul>
+                        <li>📚 <strong>Doutrina:</strong> Autores consagrados e contemporâneos</li>
+                        <li>⚖️ <strong>Legislação:</strong> Códigos e leis atualizados</li>
+                        <li>🏛️ <strong>Jurisprudência:</strong> Decisões dos tribunais superiores</li>
+                        <li>🎓 <strong>Conteúdo acadêmico:</strong> De diversas faculdades</li>
+                        <li>📝 <strong>Provas anteriores:</strong> OAB, concursos, vestibulares</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>Encontrei um erro em algum simulado</summary>
+                <div class="faq-answer">
+                    <p><strong>Por favor, nos avise!</strong> A precisão é nossa prioridade.</p>
+                    <p>Para reportar erros:</p>
+                    <ol>
+                        <li>Anote o simulado e questão</li>
+                        <li>Descreva o erro encontrado</li>
+                        <li>Envie para: <a href="mailto:f2sites@gmail.com">f2sites@gmail.com</a></li>
+                        <li>Ou use nosso <a href="contato.html">formulário de contato</a></li>
+                    </ol>
+                    <p><strong>Recompensa:</strong> Colaboradores frequentes são destacados na página de agradecimentos!</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Posso usar para estudar para a OAB?</summary>
+                <div class="faq-answer">
+                    <p><strong>Sim, com certeza!</strong> Nossos simulados são excelentes para:</p>
+                    <ul>
+                        <li>🎯 <strong>1ª Fase da OAB:</strong> Questões objetivas</li>
+                        <li>📚 <strong>Revisão de conteúdo:</strong> Todas as matérias</li>
+                        <li>⏱️ <strong>Treino de tempo:</strong> Simulados cronometrados</li>
+                        <li>📊 <strong>Acompanhamento:</strong> Verifique seu progresso</li>
+                    </ul>
+                    <p><strong>Dica:</strong> Use os filtros para buscar por "OAB" ou matérias específicas do exame.</p>
+                </div>
+            </details>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <h3>💬 Não encontrou sua dúvida?</h3>
+            <p>Entre em contato conosco! Respondemos em até 24 horas.</p>
+            <div style="margin-top: 20px;">
+                <a href="contato.html" style="display: inline-block; padding: 12px 24px; background: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 5px;">
+                    📞 Entrar em Contato
+                </a>
+                <a href="ajuda.html" style="display: inline-block; padding: 12px 24px; background: #6c757d; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 5px;">
+                    🆘 Ver Guia de Ajuda
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Simulados de Direito. Desenvolvido por Fábio Wlademir.</p>
+        <p>
+            <a href="faq.html">❓ FAQ</a> • 
+            <a href="ajuda.html">🆘 Ajuda</a> • 
+            <a href="contato.html">📞 Contato</a> • 
+            <a href="termos.html">📄 Termos</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        function searchFAQ() {
+            const searchTerm = document.getElementById('faqSearch').value.toLowerCase();
+            const details = document.querySelectorAll('details');
+            let found = false;
+            
+            details.forEach(detail => {
+                const text = detail.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    detail.open = true;
+                    detail.style.borderColor = 'var(--accent-color)';
+                    detail.style.boxShadow = '0 0 0 2px rgba(0, 85, 170, 0.2)';
+                    if (!found) {
+                        detail.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        found = true;
+                    }
+                } else {
+                    detail.style.borderColor = '';
+                    detail.style.boxShadow = '';
+                }
+            });
+            
+            if (!found && searchTerm) {
+                alert('Nenhuma pergunta encontrada com esse termo. Tente outras palavras-chave.');
+            }
+        }
+        
+        // Abrir primeira pergunta de cada categoria
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.faq-category').forEach(category => {
+                const firstQuestion = category.querySelector('details');
+                if (firstQuestion) {
+                    firstQuestion.open = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

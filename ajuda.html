@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Usar - Simulados de Direito</title>
+    <meta name="description" content="Guia completo de como usar a plataforma Simulados de Direito. Aprenda a navegar, usar simulados, ferramentas e recursos.">
+    <meta name="keywords" content="como usar, tutorial, guia, ajuda, simulados direito, navegação, funcionalidades">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        :root[data-theme="dark"] {
+            --primary-color: #0a1929;
+            --secondary-color: #001e3c;
+            --accent-color: #1976d2;
+            --text-light: #e0e0e0;
+            --text-dark: #f5f5f5;
+            --background-light: #121212;
+            --card-bg: #1e1e1e;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            background: var(--primary-color);
+            padding: 25px 20px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .section {
+            background: var(--card-bg);
+            margin: 25px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .tutorial-steps {
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            position: relative;
+        }
+        
+        .step-number {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .step-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .step-content li {
+            margin-bottom: 5px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .tip-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .tip-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .quick-link {
+            padding: 10px 20px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.95em;
+            color: #444;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .nav-bar { gap: 10px; }
+            .nav-bar a { padding: 8px 12px; font-size: 0.9em; }
+            .section { padding: 20px; margin: 15px; }
+            .step { flex-direction: column; text-align: center; }
+            .step-number { margin-right: 0; margin-bottom: 15px; align-self: center; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="header">
+        <h1>🆘 Como Usar a Plataforma</h1>
+        <p>Guia completo para aproveitar ao máximo os Simulados de Direito</p>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html">🏠 Início</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="contato.html">📞 Contato</a>
+        <a href="parcerias.html">🤝 Parcerias</a>
+        <a href="termos.html">📄 Termos</a>
+    </nav>
+
+    <div class="section">
+        <h2>🎯 Tutorial Passo a Passo</h2>
+        
+        <div class="tutorial-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>🏠 Navegue pelo Site</h3>
+                    <p>Explore as principais seções:</p>
+                    <ul>
+                        <li><strong>📝 Simulados:</strong> Organizados por disciplina e nível</li>
+                        <li><strong>🔗 Recursos Jurídicos:</strong> Legislação, jurisprudência, tribunais</li>
+                        <li><strong>📚 E-books:</strong> Biblioteca virtual gratuita</li>
+                        <li><strong>🧮 Ferramentas:</strong> Calculadora e utilitários</li>
+                    </ul>
+                    <p><strong>Dica:</strong> Use o menu de navegação principal para acessar rapidamente qualquer seção.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>🔍 Encontre o Conteúdo Desejado</h3>
+                    <p>Use nossas ferramentas de busca:</p>
+                    <ul>
+                        <li><strong>Barra de pesquisa:</strong> Digite termos como "penal", "civil", "OAB"</li>
+                        <li><strong>Filtros:</strong> Selecione área do direito e nível de dificuldade</li>
+                        <li><strong>Categorias:</strong> Navegue pelas seções organizadas</li>
+                    </ul>
+                    <p><strong>Exemplo:</strong> Para encontrar simulados de Direito Penal básico, use o filtro "Direito Penal" + "Básico".</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>📝 Realize os Simulados</h3>
+                    <p>Quando encontrar um simulado:</p>
+                    <ul>
+                        <li><strong>Clique no link</strong> do simulado desejado</li>
+                        <li><strong>Leia atentamente</strong> cada questão</li>
+                        <li><strong>Selecione a alternativa</strong> que considera correta</li>
+                        <li><strong>Verifique suas respostas</strong> ao final</li>
+                    </ul>
+                    <p><strong>Dica:</strong> Anote as questões que errou para revisar depois.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>⭐ Use os Recursos Avançados</h3>
+                    <p>Aproveite todas as funcionalidades:</p>
+                    <ul>
+                        <li><strong>Favoritos:</strong> Clique na estrela ⭐ para salvar links importantes</li>
+                        <li><strong>Modo Escuro:</strong> Botão 🌓 no canto superior direito</li>
+                        <li><strong>Progresso:</strong> Veja suas estatísticas no rodapé</li>
+                        <li><strong>Calculadora:</strong> Acesse em <a href="calculadora_media.html">Calculadora de Média</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>📚 Explore Recursos Adicionais</h3>
+                    <p>Não se limite aos simulados:</p>
+                    <ul>
+                        <li><strong>Legislação:</strong> Códigos completos e atualizados</li>
+                        <li><strong>Jurisprudência:</strong> Links para tribunais e decisões</li>
+                        <li><strong>E-books:</strong> Centenas de livros gratuitos</li>
+                        <li><strong>Notícias:</strong> Fontes jurídicas atualizadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h4>Busca Inteligente</h4>
+                <p>Encontre qualquer conteúdo em segundos usando palavras-chave ou filtros</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h4>Sistema de Favoritos</h4>
+                <p>Salve simulados e recursos importantes para acesso rápido</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌓</div>
+                <h4>Modo Escuro</h4>
+                <p>Estude confortavelmente à noite sem cansar a vista</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4>Estatísticas Pessoais</h4>
+                <p>Acompanhe seu progresso e tempo de estudo</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <h4>💡 Dicas para Estudo Eficiente</h4>
+            <ul>
+                <li><strong>Estabeleça uma rotina:</strong> Dedique 30 minutos por dia aos simulados</li>
+                <li><strong>Revise os erros:</strong> As questões que você erra são as mais importantes</li>
+                <li><strong>Use os recursos:</strong> Complemente os simulados com a legislação e e-books</li>
+                <li><strong>Faça pausas:</strong> Estude em blocos de 25 minutos com pausas de 5 minutos</li>
+                <li><strong>Compartilhe:</strong> Estude em grupo e discuta as questões</li>
+            </ul>
+        </div>
+
+        <h3>🎓 Dicas Específicas por Finalidade</h3>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h4>Para a OAB</h4>
+                <p>Foque em Direito Civil, Penal, Constitucional e Ética. Use filtro "OAB"</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h4>Para Faculdade</h4>
+                <p>Use por disciplina. Complemente com e-books da biblioteca</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h4>Para Concursos</h4>
+                <p>Treine com questões de diferentes níveis. Cronometre seu tempo</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h4>Para Revisão</h4>
+                <p>Use os favoritos para criar suas próprias listas de revisão</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <h3>🚀 Pronto para Começar?</h3>
+            <div class="quick-links">
+                <a href="index.html#simulados" class="quick-link">📝 Ver Todos os Simulados</a>
+                <a href="calculadora_media.html" class="quick-link">🧮 Usar Calculadora</a>
+                <a href="faq.html" class="quick-link">❓ Ver Perguntas Frequentes</a>
+                <a href="contato.html" class="quick-link">📞 Pedir Ajuda</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <h4>❓ Ainda com Dúvidas?</h4>
+            <p>Consulte nosso <a href="faq.html">FAQ completo</a> ou entre em <a href="contato.html">contato conosco</a>. Estamos aqui para ajudar!</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Simulados de Direito. Desenvolvido por Fábio Wlademir.</p>
+        <p>
+            <a href="ajuda.html">🆘 Ajuda</a> • 
+            <a href="faq.html">❓ FAQ</a> • 
+            <a href="contato.html">📞 Contato</a> • 
+            <a href="termos.html">📄 Termos</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>

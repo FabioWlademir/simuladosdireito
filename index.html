@@ -13,13 +13,13 @@
     <meta name="keywords" content="simulados direito, questões direito, OAB, direito penal, direito civil, direito constitucional, direito trabalhista, legislação brasileira">
     <meta name="author" content="Fábio Wlademir">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://simuladosdireito.netlify.app/">
+    <link rel="canonical" href="https://fabiowlademir.github.io/simuladosdireito/">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Simulados de Direito - A Fonte Completa do Direito Brasileiro">
     <meta property="og:description" content="Simulados completos de Direito para estudantes e profissionais. Questões atualizadas sobre todas as áreas do direito.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://simuladosdireito.netlify.app/">
+    <meta property="og:url" content="https://fabiowlademir.github.io/simuladosdireito/">
     
     <!-- Schema.org markup -->
     <script type="application/ld+json">
@@ -28,7 +28,7 @@
         "@type": "WebSite",
         "name": "Simulados de Direito",
         "description": "A Fonte Completa do Direito Brasileiro",
-        "url": "https://simuladosdireito.netlify.app/",
+        "url": "https://fabiowlademir.github.io/simuladosdireito/",
         "author": {
             "@type": "Person",
             "name": "Fábio Wlademir"
@@ -128,6 +128,102 @@
             height: 20px;
             width: 20px;
             margin-right: 8px;
+        }
+        
+        /* ===== DROPDOWN STYLES ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: relative;
+            padding-right: 35px !important;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7em;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 280px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            padding: 10px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #333 !important;
+            text-decoration: none;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            border-left-color: #8B0000;
+            color: #8B0000 !important;
+            padding-left: 25px;
+        }
+
+        /* Estilos específicos para cada área do direito */
+        .dropdown-item:nth-child(1) { border-left-color: #4CAF50; } /* Resumo */
+        .dropdown-item:nth-child(2) { border-left-color: #2196F3; } /* Redes Sociais */
+        .dropdown-item:nth-child(3) { border-left-color: #FF9800; } /* Família */
+        .dropdown-item:nth-child(4) { border-left-color: #9C27B0; } /* Previdenciário */
+        .dropdown-item:nth-child(5) { border-left-color: #3F51B5; } /* Trabalhista */
+        .dropdown-item:nth-child(6) { border-left-color: #009688; } /* Cível */
+        .dropdown-item:nth-child(7) { border-left-color: #FF5722; } /* Consumidor */
+        .dropdown-item:nth-child(8) { border-left-color: #795548; } /* Criminal */
+        .dropdown-item:nth-child(9) { border-left-color: #607D8B; } /* Digital */
+
+        /* Para tema escuro */
+        :root[data-theme="dark"] .dropdown-menu {
+            background: #2c2c2c;
+            border-color: #444;
+        }
+
+        :root[data-theme="dark"] .dropdown-item {
+            color: #e0e0e0 !important;
+            background: transparent;
+        }
+
+        :root[data-theme="dark"] .dropdown-item:hover {
+            background: #3a3a3a;
+            color: white !important;
         }
         
         /* Navigation */
@@ -536,7 +632,57 @@
         }
         
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
+            .dropdown-menu {
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .dropdown {
+                width: 100%;
+            }
+            
+            .dropdown-toggle {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                width: 100%;
+                display: none;
+            }
+            
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-item {
+                padding: 10px 15px;
+                border-left: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                color: var(--text-light) !important;
+                background: rgba(255, 255, 255, 0.05);
+            }
+            
+            .dropdown-item:hover {
+                background: rgba(255, 255, 255, 0.1);
+                padding-left: 20px;
+                border-left: none;
+                color: white !important;
+            }
+            
+            .dropdown-arrow {
+                right: 15px;
+            }
+            
             .header h1 {
                 font-size: 2em;
             }
@@ -582,7 +728,60 @@
             }
         }
         
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .nav-bar {
+                gap: 8px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 10px 12px;
+                font-size: 0.85em;
+            }
+            
+            .dropdown-toggle {
+                padding-right: 30px !important;
+            }
+            
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+        }
+
         @media (max-width: 480px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                text-align: center;
+                padding: 12px;
+                font-size: 0.9em;
+                border-radius: 6px;
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .dropdown-toggle {
+                order: 2; /* Posiciona o dropdown em uma posição estratégica */
+            }
+            
+            .dropdown-menu {
+                position: relative;
+                margin-top: 5px;
+                border-radius: 6px;
+            }
+            
+            .dropdown-item {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+            
             .header h1 {
                 font-size: 1.7em;
             }
@@ -638,7 +837,7 @@
         <h1>⚖️ Simulados de Direito</h1>
         <p>A Fonte Completa do Direito Brasileiro</p>
 
-        <p><a href="index.html" style="color:white;text-decoration:none; font-weight:bold">Design by Fábio Wlademir</a></p>
+        <p><a href="https://fabiowlademir.github.io/simuladosdireito/" style="color:white;text-decoration:none; font-weight:bold">Design by Fábio Wlademir</a></p>
 
         <div class="social" aria-label="Redes sociais">
             <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
@@ -663,17 +862,64 @@
     </div>
 
     <nav class="nav-bar" aria-label="Navegação principal">
-        <a href="index.html">🏠 Início</a>
-        <a href="calculadora_media.html">🧮 Calculadora</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">🏠 Início</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora</a>
+        
+        <!-- Dropdown Advocacia Vera Catarina -->
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" style="background: #8B0000;">
+                🏛️ Advocacia Vera Catarina
+                <span class="dropdown-arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=resumo" target="_blank" class="dropdown-item">
+                    📋 Resumo de Serviços
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/2025/06/crimes-nas-redes-sociais-como-se.html" target="_blank" class="dropdown-item">
+                    📱 Crimes nas Redes Sociais
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=fam%C3%ADlia" target="_blank" class="dropdown-item">
+                    👨‍👩‍👧‍👦 Direito de Família
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=Previdenci%C3%A1rias" target="_blank" class="dropdown-item">
+                    👵 Direito Previdenciário
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=Trabalhista" target="_blank" class="dropdown-item">
+                    👷 Direito Trabalhista
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=civil" target="_blank" class="dropdown-item">
+                    📄 Direito Cível
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=Consumidor" target="_blank" class="dropdown-item">
+                    🛒 Direito do Consumidor
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=Direito+Criminal" target="_blank" class="dropdown-item">
+                    ⚖️ Direito Criminal
+                </a>
+                <a href="https://advocaciasapucaia.blogspot.com/search?q=Direito+Digital" target="_blank" class="dropdown-item">
+                    💻 Direito Digital
+                </a>
+            </div>
+        </div>
+        
         <a href="https://uiclap.bio/wlademir" target="_blank">ℹ️ Sobre o Autor</a>
         <a href="#simulados">📝 Simulados</a>
         <a href="#links-uteis">🔗 Recursos Jurídicos</a>
         <a href="#ebooks">📚 E-books Gratuitos</a>
+        <!-- Novos links adicionados -->
+        <a href="https://fabiowlademir.github.io/simuladosdireito/faq.html">❓ FAQ</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/ajuda.html">🆘 Ajuda</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/contato.html">📞 Contato</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/parcerias.html">🤝 Parcerias</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/blog.html">📰 Blog</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/sitemap.html">🗺️ Mapa</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/estatisticas.html">📊 Estatísticas</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/legislacao.html">⚖️ Legislação</a>
     </nav>
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="Navegação estrutural">
-        <a href="index.html">Início</a> > 
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">Início</a> > 
         <span>Simulados de Direito</span>
     </nav>
 
@@ -723,7 +969,7 @@
             
             <div class="category-title">🧮 FERRAMENTAS E CALCULADORAS</div>
             <div class="links">
-                <a href="calculadora_media.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">
                     CALCULADORA DE MÉDIA UNISINOS
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
@@ -731,55 +977,55 @@
             
             <div class="category-title">📚 DIREITO BÁSICO E INTRODUTÓRIO</div>
             <div class="links">
-                <a href="simulado_basico.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_basico.html">
                     CONHECENDO O DIREITO - BÁSICO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_intermediario.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_intermediario.html">
                     CONHECENDO O DIREITO - INTERMEDIÁRIO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_avancado.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_avancado.html">
                     CONHECENDO O DIREITO - AVANÇADO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_historia_direito.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_historia_direito.html">
                     HISTÓRIA DO DIREITO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_norma_juridica.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_norma_juridica.html">
                     CONCEITO DE NORMA JURÍDICA
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_direito_subjetivo.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_direito_subjetivo.html">
                     DIREITO SUBJETIVO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_direito_natural.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_direito_natural.html">
                     DIREITO NATURAL
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_direito_publico.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_direito_publico.html">
                     DIREITO PÚBLICO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_direito_privado.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_direito_privado.html">
                     DIREITO PRIVADO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_norma_juridica.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_norma_juridica.html">
                     POSITIVISMO JURÍDICO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_norma_juridica.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_norma_juridica.html">
                     HIERARQUIA NORMAS JURÍDICAS
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a> 
-                <a href="simulado_norma_juridica.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_norma_juridica.html">
                     DIREITOS HUMANOS
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_norma_juridica.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_norma_juridica.html">
                     TEORIA DO DIREITO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>  
@@ -788,11 +1034,11 @@
             <!-- NOVA CATEGORIA ADICIONADA AQUI -->
             <div class="category-title">🚀 DIREITO DIGITAL E TECNOLOGIA</div>
             <div class="links">
-                <a href="simulado_direito_digital.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_direito_digital.html">
                     DIREITO DIGITAL
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_lgpd.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_lgpd.html">
                     LGPD - LEI GERAL DE PROTEÇÃO DE DADOS
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
@@ -808,15 +1054,15 @@
 
             <div class="category-title">⚖️ DIREITO PENAL</div>
             <div class="links">
-                <a href="simulado_penal_basico.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_penal_basico.html">
                     DIREITO PENAL - BÁSICO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_penal_intermediario.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_penal_intermediario.html">
                     DIREITO PENAL - INTERMEDIÁRIO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_penal_avancado.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_penal_avancado.html">
                     DIREITO PENAL - AVANÇADO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
@@ -824,15 +1070,15 @@
 
             <div class="category-title">📄 DIREITO PRIVADO</div>
             <div class="links">
-                <a href="simulado_privado_basico.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_privado_basico.html">
                     DIREITO PRIVADO - BÁSICO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_privado_intermediario.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_privado_intermediario.html">
                     DIREITO PRIVADO - INTERMEDIÁRIO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_privado_avancado.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_privado_avancado.html">
                     DIREITO PRIVADO - AVANÇADO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
@@ -840,15 +1086,15 @@
 
             <div class="category-title">🏛️ DIREITO CONSTITUCIONAL</div>
             <div class="links">
-                <a href="simulado_constituicao_basico.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_constituicao_basico.html">
                     CONSTITUIÇÃO E ESTADO - BÁSICO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_constituicao_intermediario.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_constituicao_intermediario.html">
                     CONSTITUIÇÃO E ESTADO - INTERMEDIÁRIO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
-                <a href="simulado_constituicao_avancado.html">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/simulado_constituicao_avancado.html">
                     CONSTITUIÇÃO E ESTADO - AVANÇADO
                     <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
                 </a>
@@ -981,8 +1227,32 @@
         <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
         <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
 
+        <!-- Links rápidos no rodapé -->
+        <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+            <strong>📋 Links Importantes:</strong>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px;">
+                <a href="https://fabiowlademir.github.io/simuladosdireito/termos.html" style="font-size: 0.9em;">📄 Termos de Uso</a>
+                <a href="https://fabiowlademir.github.io/simuladosdireito/privacidade.html" style="font-size: 0.9em;">🔒 Política de Privacidade</a>
+                <a href="https://fabiowlademir.github.io/simuladosdireito/faq.html" style="font-size: 0.9em;">❓ FAQ</a>
+                <a href="https://fabiowlademir.github.io/simuladosdireito/ajuda.html" style="font-size: 0.9em;">🆘 Ajuda</a>
+                <a href="https://fabiowlademir.github.io/simuladosdireito/contato.html" style="font-size: 0.9em;">📞 Contato</a>
+                <a href="https://fabiowlademir.github.io/simuladosdireito/parcerias.html" style="font-size: 0.9em;">🤝 Parcerias</a>
+            </div>
+        </div>
+
+        <!-- Parcerias no rodapé -->
+        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+            <p>
+                <strong>🏛️ Parcerias:</strong>
+                <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: #8B0000; font-weight: bold;">
+                    Advocacia Vera Catarina
+                </a>
+                • Especialista em Direito Civil e Criminal
+            </p>
+        </div>
+
         <div class="visitor-counter">
-            <span>👁️ Total de visitas: <span class="count" id="visitCount">12.683</span></span>
+            <span>👁️ Total de visitas: <span class="count" id="visitCount">25.683</span></span>
         </div>
 
         <div class="social" aria-label="Redes sociais no rodapé">
@@ -1025,7 +1295,7 @@
             let visitCount = localStorage.getItem('siteVisitCount');
             
             if (!visitCount) {
-                visitCount = 12683; // Começar com 12683 visitas
+                visitCount = 25683; // Começar com 25.683 visitas (atualizado)
             } else {
                 visitCount = parseInt(visitCount) + 1; // Incrementar a cada visita
             }
@@ -1169,6 +1439,61 @@
             
             document.getElementById('userStats').innerHTML = statsHTML;
         }
+
+        // ===== DROPDOWN MOBILE FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (window.innerWidth <= 992) {
+                // Toggle dropdown no mobile
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpen = dropdownMenu.style.display === 'block';
+                    
+                    // Fecha todos os dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    
+                    // Abre/fecha o atual
+                    if (!isOpen) {
+                        dropdownMenu.style.display = 'block';
+                        dropdownToggle.style.background = '#600000'; // Cor mais escura quando aberto
+                    } else {
+                        dropdownMenu.style.display = 'none';
+                        dropdownToggle.style.background = '#8B0000';
+                    }
+                });
+                
+                // Fecha dropdown ao clicar fora
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.dropdown')) {
+                        dropdownMenu.style.display = 'none';
+                        dropdownToggle.style.background = '#8B0000';
+                    }
+                });
+                
+                // Fecha dropdown ao clicar em um item
+                dropdownMenu.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A') {
+                        dropdownMenu.style.display = 'none';
+                        dropdownToggle.style.background = '#8B0000';
+                    }
+                });
+            }
+            
+            // Ajusta comportamento ao redimensionar a janela
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 992) {
+                    dropdownMenu.style.display = '';
+                    dropdownToggle.style.background = '#8B0000';
+                }
+            });
+        });
 
         // ===== INICIALIZAÇÃO =====
         document.addEventListener('DOMContentLoaded', function() {

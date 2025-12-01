@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa do Site - Simulados de Direito</title>
+    <meta name="description" content="Mapa completo do site Simulados de Direito. Encontre todas as páginas, simulados e recursos organizados por categoria.">
+    <meta name="keywords" content="mapa do site, navegação, todos os links, simulados direito, sitemap">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        :root[data-theme="dark"] {
+            --primary-color: #0a1929;
+            --secondary-color: #001e3c;
+            --accent-color: #1976d2;
+            --text-light: #e0e0e0;
+            --text-dark: #f5f5f5;
+            --background-light: #121212;
+            --card-bg: #1e1e1e;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            background: var(--primary-color);
+            padding: 25px 20px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .section {
+            background: var(--card-bg);
+            margin: 25px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 1000px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .sitemap-category {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .sitemap-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.4em;
+        }
+        
+        .sitemap-links {
+            list-style: none;
+        }
+        
+        .sitemap-links li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .sitemap-links li:hover {
+            border-left-color: var(--accent-color);
+            padding-left: 15px;
+        }
+        
+        .sitemap-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sitemap-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .stats-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .search-sitemap {
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .search-sitemap input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .search-sitemap button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.95em;
+            color: #444;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .nav-bar { gap: 10px; }
+            .nav-bar a { padding: 8px 12px; font-size: 0.9em; }
+            .section { padding: 20px; margin: 15px; }
+            .sitemap-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="header">
+        <h1>🗺️ Mapa do Site</h1>
+        <p>Encontre todos os recursos e páginas do Simulados de Direito</p>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html">🏠 Início</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="ajuda.html">🆘 Ajuda</a>
+        <a href="contato.html">📞 Contato</a>
+        <a href="parcerias.html">🤝 Parcerias</a>
+    </nav>
+
+    <div class="section">
+        <div class="search-sitemap">
+            <input type="text" id="searchSitemap" placeholder="🔍 Pesquisar no mapa do site..." onkeyup="searchSitemap()">
+            <button onclick="searchSitemap()">Buscar</button>
+        </div>
+
+        <div class="stats-box">
+            <h3>📊 Estatísticas do Site</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">30+</div>
+                    <div>Páginas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">80+</div>
+                    <div>Simulados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25.000+</div>
+                    <div>Visitas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div>Gratuito</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>📋 Navegação Completa</h2>
+        
+        <div class="sitemap-grid">
+            <!-- Páginas Principais -->
+            <div class="sitemap-category">
+                <h3>🏠 Páginas Principais</h3>
+                <ul class="sitemap-links">
+                    <li><a href="index.html">🏠 Página Inicial</a></li>
+                    <li><a href="faq.html">❓ Perguntas Frequentes</a></li>
+                    <li><a href="ajuda.html">🆘 Como Usar / Ajuda</a></li>
+                    <li><a href="contato.html">📞 Contato</a></li>
+                    <li><a href="parcerias.html">🤝 Parcerias</a></li>
+                    <li><a href="termos.html">📄 Termos de Uso</a></li>
+                    <li><a href="privacidade.html">🔒 Política de Privacidade</a></li>
+                    <li><a href="sitemap.html">🗺️ Mapa do Site (esta página)</a></li>
+                </ul>
+            </div>
+
+            <!-- Ferramentas -->
+            <div class="sitemap-category">
+                <h3>🧮 Ferramentas</h3>
+                <ul class="sitemap-links">
+                    <li><a href="calculadora_media.html">🧮 Calculadora de Média UNISINOS</a></li>
+                    <li><a href="index.html#simulados">🔍 Pesquisa Avançada</a></li>
+                    <li><a href="index.html#simulados">⚙️ Filtros de Conteúdo</a></li>
+                </ul>
+            </div>
+
+            <!-- Simulados -->
+            <div class="sitemap-category">
+                <h3>📝 Simulados por Disciplina</h3>
+                <ul class="sitemap-links">
+                    <li><a href="simulado_basico.html">📚 Direito Básico - Básico</a></li>
+                    <li><a href="simulado_intermediario.html">📚 Direito Básico - Intermediário</a></li>
+                    <li><a href="simulado_avancado.html">📚 Direito Básico - Avançado</a></li>
+                    <li><a href="simulado_penal_basico.html">⚖️ Direito Penal - Básico</a></li>
+                    <li><a href="simulado_penal_intermediario.html">⚖️ Direito Penal - Intermediário</a></li>
+                    <li><a href="simulado_penal_avancado.html">⚖️ Direito Penal - Avançado</a></li>
+                    <li><a href="simulado_privado_basico.html">📄 Direito Privado - Básico</a></li>
+                    <li><a href="simulado_privado_intermediario.html">📄 Direito Privado - Intermediário</a></li>
+                    <li><a href="simulado_privado_avancado.html">📄 Direito Privado - Avançado</a></li>
+                    <li><a href="simulado_constituicao_basico.html">🏛️ Direito Constitucional - Básico</a></li>
+                    <li><a href="simulado_constituicao_intermediario.html">🏛️ Direito Constitucional - Intermediário</a></li>
+                    <li><a href="simulado_constituicao_avancado.html">🏛️ Direito Constitucional - Avançado</a></li>
+                    <li><a href="simulado_direito_digital.html">🚀 Direito Digital</a></li>
+                    <li><a href="simulado_lgpd.html">🔒 LGPD - Proteção de Dados</a></li>
+                    <li><a href="simulado_historia_direito.html">📜 História do Direito</a></li>
+                </ul>
+            </div>
+
+            <!-- Recursos Jurídicos -->
+            <div class="sitemap-category">
+                <h3>🔗 Recursos Jurídicos</h3>
+                <ul class="sitemap-links">
+                    <li><a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/757308/Vade_mecum_Senado_Federal_2ed.pdf" target="_blank">📚 Vade Mecum Senado Federal</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank">📄 Constituição Federal</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del2848.htm" target="_blank">📄 Código Penal</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/leis/2002/l10406.htm" target="_blank">📄 Código Civil</a></li>
+                    <li><a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm" target="_blank">👨‍💼 CLT</a></li>
+                    <li><a href="https://www.stf.jus.br/" target="_blank">⚖️ STF - Supremo Tribunal Federal</a></li>
+                    <li><a href="https://www.stj.jus.br/" target="_blank">⚖️ STJ - Superior Tribunal de Justiça</a></li>
+                    <li><a href="https://www.oab.org.br/" target="_blank">🎓 OAB - Ordem dos Advogados</a></li>
+                </ul>
+            </div>
+
+            <!-- E-books -->
+            <div class="sitemap-category">
+                <h3>📚 E-books Gratuitos</h3>
+                <ul class="sitemap-links">
+                    <li><a href="https://drive.google.com/drive/folders/1kYtzBIYDRblok5Onp6KHVWTdVEPHp7Xx" target="_blank">🚀 Biblioteca Jurídica Completa (Drive 1)</a></li>
+                    <li><a href="https://drive.google.com/drive/folders/0Bz4aEiCzc4bhZXJpVEVkbFdiVDg" target="_blank">🚀 Coletânea de Doutrina (Drive 2)</a></li>
+                    <li><a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/656403/ECA_em_miudos_2ed.pdf" target="_blank">👦 ECA em Miúdos</a></li>
+                    <li><a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/651228/Estatuto_igualdade_racial_miudos_2ed.pdf" target="_blank">✊🏽 Estatuto Igualdade Racial em Miúdos</a></li>
+                </ul>
+            </div>
+
+            <!-- Parcerias -->
+            <div class="sitemap-category">
+                <h3>🤝 Parcerias e Colaboradores</h3>
+                <ul class="sitemap-links">
+                    <li><a href="https://advocaciasapucaia.blogspot.com/" target="_blank">🏛️ Advocacia Vera Catarina</a></li>
+                    <li><a href="https://www.linkedin.com/in/marcio-santos-179175360/" target="_blank">🙏 Marcio Santos (Testador)</a></li>
+                    <li><a href="parcerias.html">👥 Comunidade UNISINOS</a></li>
+                    <li><a href="https://github.com/fabiowlademir/simuladosdireito" target="_blank">💻 Colaboradores no GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 25px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+            <h3>🔍 Não encontrou o que procurava?</h3>
+            <p>Use nossa barra de pesquisa na página inicial ou entre em contato conosco.</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="display: inline-block; padding: 12px 24px; background: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 5px;">
+                    🏠 Voltar para Início
+                </a>
+                <a href="contato.html" style="display: inline-block; padding: 12px 24px; background: #6c757d; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin: 5px;">
+                    📞 Pedir Ajuda
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Simulados de Direito. Desenvolvido por Fábio Wlademir.</p>
+        <p>
+            <a href="sitemap.html">🗺️ Mapa do Site</a> • 
+            <a href="faq.html">❓ FAQ</a> • 
+            <a href="contato.html">📞 Contato</a> • 
+            <a href="termos.html">📄 Termos</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        function searchSitemap() {
+            const searchTerm = document.getElementById('searchSitemap').value.toLowerCase();
+            const links = document.querySelectorAll('.sitemap-links a');
+            let found = false;
+            
+            // Remove destaque anterior
+            links.forEach(link => {
+                link.style.backgroundColor = '';
+                link.style.fontWeight = '';
+            });
+            
+            // Destaca resultados
+            links.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(searchTerm) && searchTerm.trim() !== '') {
+                    link.style.backgroundColor = '#ffffcc';
+                    link.style.fontWeight = 'bold';
+                    if (!found) {
+                        link.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        found = true;
+                    }
+                }
+            });
+            
+            if (!found && searchTerm.trim() !== '') {
+                alert('Nenhum link encontrado com esse termo. Tente outras palavras.');
+            }
+        }
+    </script>
+</body>
+</html>
