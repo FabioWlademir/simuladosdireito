@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Tributária Empresarial | Simulados de Direito</title>
+    <meta name="description" content="Calculadora tributária empresarial completa: Simples Nacional, Lucro Presumido, IRPJ, CSLL, PIS, COFINS, DAS e mais.">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --tax-color: #1565C0;
+            --warning-color: #ffc107;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .header .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .header .social a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header .social a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .header .social img {
+            height: 16px;
+            width: 16px;
+            margin-right: 6px;
+        }
+        
+        .alert-test {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .legal-advice {
+            background: #e7f3ff;
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .legal-advice a {
+            color: #8B0000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .legal-advice a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-size: 0.9em;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 5px solid var(--tax-color);
+        }
+        
+        .card h2 {
+            color: var(--tax-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--tax-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 {
+            color: var(--tax-color);
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--tax-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .btn {
+            background: var(--tax-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #0D47A1;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--accent-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #003d7a;
+        }
+        
+        .btn-warning {
+            background: var(--warning-color);
+            color: #000;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        
+        .results {
+            background: #E3F2FD;
+            border: 1px solid var(--tax-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .results h3 {
+            color: var(--tax-color);
+            margin-top: 0;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .result-item {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            border-left: 4px solid var(--tax-color);
+        }
+        
+        .result-item strong {
+            color: var(--tax-color);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--tax-color);
+        }
+        
+        .result-value.negative {
+            color: #dc3545;
+        }
+        
+        .calculation-explanation {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .calculation-explanation h4 {
+            color: var(--tax-color);
+            margin-top: 0;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .legislation-ref {
+            background: #f8f9fa;
+            border-left: 4px solid var(--tax-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .tab:hover {
+            color: var(--tax-color);
+        }
+        
+        .tab.active {
+            color: var(--tax-color);
+            border-bottom-color: var(--tax-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .anexo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        
+        .anexo-table th {
+            background: var(--tax-color);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .anexo-table td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .anexo-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .footer .social a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            background: rgba(0, 51, 102, 0.1);
+        }
+        
+        .footer .social a:hover {
+            background: rgba(0, 51, 102, 0.2);
+            text-decoration: none;
+        }
+        
+        .footer .social img {
+            height: 16px;
+            width: 16px;
+            margin-right: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: left;
+                padding: 10px 15px;
+            }
+            
+            .header .social a,
+            .footer .social a {
+                font-size: 0.8em;
+                padding: 5px 8px;
+            }
+        }
+        
+        .icon {
+            font-size: 1.2em;
+        }
+        
+        .currency {
+            font-size: 1.4em;
+            color: var(--tax-color);
+            font-weight: bold;
+        }
+        
+        .tax-badge {
+            display: inline-block;
+            background: var(--tax-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏢 Calculadora Tributária Empresarial</h1>
+        <p>Cálculos de impostos empresariais: Simples Nacional, Lucro Presumido, IRPJ, CSLL, PIS, COFINS</p>
+        
+        <div class="social">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram
+            </a>
+        </div>
+    </div>
+
+    <div class="alert-test">
+        <strong>⚠️ VERSÃO EM TESTES</strong><br>
+        Esta calculadora está em fase de desenvolvimento. Os cálculos são aproximados e para fins educacionais.
+    </div>
+
+    <div class="legal-advice">
+        <strong>⚖️ PARA CÁLCULOS TRIBUTÁRIOS PRECISOS E CONSULTORIA FISCAL:</strong><br>
+        Recomendamos consultar a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank">Advocacia Vera Catarina</a><br>
+        E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">🏠 Início</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_previdenciaria.html">👵 Calculadora Previdenciária</a>
+        <a href="#simples">📊 Simples Nacional</a>
+        <a href="#lucro">💰 Lucro Presumido</a>
+        <a href="#pis">📈 PIS/COFINS</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'simples')">📊 Simples Nacional</button>
+                <button class="tab" onclick="openTab(event, 'lucro')">💰 Lucro Presumido</button>
+                <button class="tab" onclick="openTab(event, 'irpj')">🏛️ IRPJ/CSLL</button>
+                <button class="tab" onclick="openTab(event, 'pis')">📈 PIS/COFINS</button>
+                <button class="tab" onclick="openTab(event, 'comparativo')">📊 Comparativo</button>
+            </div>
+            
+            <!-- Tab 1: Simples Nacional -->
+            <div id="simples" class="tab-content active">
+                <h2>📊 Cálculo do Simples Nacional</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="faturamentoSimples">Faturamento Bruto Mensal (R$):</label>
+                        <input type="number" id="faturamentoSimples" step="0.01" placeholder="Ex: 15000.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="anexoSimples">Anexo do Simples Nacional:</label>
+                        <select id="anexoSimples">
+                            <option value="1">Anexo I - Comércio</option>
+                            <option value="2">Anexo II - Indústria</option>
+                            <option value="3">Anexo III - Serviços</option>
+                            <option value="4">Anexo IV - Serviços</option>
+                            <option value="5">Anexo V - Serviços</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="faixaSimples">Faixa de Faturamento:</label>
+                        <select id="faixaSimples">
+                            <option value="1">1ª Faixa: Até R$ 180.000,00/ano</option>
+                            <option value="2">2ª Faixa: Até R$ 360.000,00/ano</option>
+                            <option value="3">3ª Faixa: Até R$ 720.000,00/ano</option>
+                            <option value="4">4ª Faixa: Até R$ 1.800.000,00/ano</option>
+                            <option value="5">5ª Faixa: Até R$ 3.600.000,00/ano</option>
+                            <option value="6">6ª Faixa: Até R$ 4.800.000,00/ano</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="temISS">Tem ISS (Serviços)?</label>
+                        <select id="temISS">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calcularSimplesNacional()">Calcular DAS</button>
+                
+                <div class="results" id="resultSimples">
+                    <h3>Resultado do Cálculo - Simples Nacional</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Faturamento Anual Estimado:</strong>
+                            <div class="result-value" id="faturamentoAnual">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Alíquota Efetiva:</strong>
+                            <div class="result-value" id="aliquotaEfetiva">0,00%</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor do DAS Mensal:</strong>
+                            <div class="result-value" id="valorDAS">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Impostos Incluídos:</strong>
+                            <div id="impostosIncluidos">IRPJ, CSLL, PIS, COFINS, IPI, ICMS, ISS</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é calculado o Simples Nacional:</h4>
+                        <p><strong>Fórmula do DAS (Documento de Arrecadação do Simples):</strong></p>
+                        <ol>
+                            <li><strong>Determinar faixa:</strong> Com base no faturamento acumulado dos últimos 12 meses</li>
+                            <li><strong>Calcular alíquota:</strong> Aplicar fórmula: [(RBT12 × ALÍQ) - PD] ÷ RBT12</li>
+                            <li><strong>Onde:</strong>
+                                <ul>
+                                    <li>RBT12 = Receita Bruta Total últimos 12 meses</li>
+                                    <li>ALÍQ = Alíquota nominal da faixa</li>
+                                    <li>PD = Parcela a deduzir da faixa</li>
+                                </ul>
+                            </li>
+                            <li><strong>Calcular DAS:</strong> Faturamento mensal × Alíquota efetiva</li>
+                        </ol>
+                        
+                        <p><strong>Exemplo Anexo I (Comércio) - 3ª Faixa:</strong></p>
+                        <ul>
+                            <li>Faturamento mensal: R$ 50.000,00</li>
+                            <li>RBT12: R$ 600.000,00</li>
+                            <li>Alíquota nominal: 10,70%</li>
+                            <li>Parcela a deduzir: R$ 22.500,00</li>
+                            <li>Cálculo: [(600.000 × 10,70%) - 22.500] ÷ 600.000 = 6,95%</li>
+                            <li>DAS: R$ 50.000 × 6,95% = R$ 3.475,00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Simples Nacional:</strong><br>
+                        • <strong>Lei Complementar 123/2006:</strong> Estatuto Nacional da Microempresa e Empresa de Pequeno Porte<br>
+                        • <strong>Lei Complementar 155/2016:</strong> Altera as alíquotas do Simples Nacional<br>
+                        • <strong>Anexos I a V da LC 123/2006:</strong> Tabelas de alíquotas<br>
+                        • <strong>Resolução CGSN 140/2018:</strong> Define cálculo do DAS<br>
+                        • <strong>Decreto 8.580/2015:</strong> Regulamenta o Simples Nacional
+                    </div>
+                    
+                    <h4>📋 Tabela de Alíquotas - Anexo I (Comércio) - 2024</h4>
+                    <table class="anexo-table">
+                        <thead>
+                            <tr>
+                                <th>Faixa</th>
+                                <th>Faturamento Anual</th>
+                                <th>Alíquota</th>
+                                <th>Parcela a Deduzir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1ª</td>
+                                <td>Até R$ 180.000</td>
+                                <td>4,00%</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>2ª</td>
+                                <td>Até R$ 360.000</td>
+                                <td>7,30%</td>
+                                <td>R$ 5.940,00</td>
+                            </tr>
+                            <tr>
+                                <td>3ª</td>
+                                <td>Até R$ 720.000</td>
+                                <td>9,50%</td>
+                                <td>R$ 13.860,00</td>
+                            </tr>
+                            <tr>
+                                <td>4ª</td>
+                                <td>Até R$ 1.800.000</td>
+                                <td>10,70%</td>
+                                <td>R$ 22.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>5ª</td>
+                                <td>Até R$ 3.600.000</td>
+                                <td>14,30%</td>
+                                <td>R$ 87.300,00</td>
+                            </tr>
+                            <tr>
+                                <td>6ª</td>
+                                <td>Até R$ 4.800.000</td>
+                                <td>19,00%</td>
+                                <td>R$ 378.000,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Lucro Presumido -->
+            <div id="lucro" class="tab-content">
+                <h2>💰 Cálculo do Lucro Presumido</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="faturamentoPresumido">Faturamento Bruto Trimestral (R$):</label>
+                        <input type="number" id="faturamentoPresumido" step="0.01" placeholder="Ex: 100000.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="atividadePresumido">Atividade da Empresa:</label>
+                        <select id="atividadePresumido">
+                            <option value="comercio">Comércio</option>
+                            <option value="industria">Indústria</option>
+                            <option value="servicos">Serviços em Geral</option>
+                            <option value="servicosProfissionais">Serviços Profissionais</option>
+                            <option value="transporte">Transporte de Carga</option>
+                            <option value="hospitalar">Atividade Hospitalar</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="regimePIS">Regime PIS/COFINS:</label>
+                        <select id="regimePIS">
+                            <option value="cumulativo">Cumulativo (0,65% + 3%)</option>
+                            <option value="naoCumulativo">Não Cumulativo (1,65% + 7,6%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="temFuncionarios">Tem Funcionários?</label>
+                        <select id="temFuncionarios">
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calcularLucroPresumido()">Calcular Impostos</button>
+                
+                <div class="results" id="resultLucro">
+                    <h3>Resultado do Cálculo - Lucro Presumido</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Base de Cálculo IRPJ (8%):</strong>
+                            <div class="result-value" id="baseIRPJ">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>IRPJ (15% + 10%):</strong>
+                            <div class="result-value" id="valorIRPJ">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>CSLL (12%):</strong>
+                            <div class="result-value" id="valorCSLL">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>PIS/COFINS:</strong>
+                            <div class="result-value" id="valorPISCOFINS">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Total Impostos Trimestral:</strong>
+                            <div class="result-value" id="totalTrimestral">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Impostos Mensais:</strong>
+                            <div class="result-value" id="impostosMensais">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Carga Tributária:</strong>
+                            <div class="result-value" id="cargaTributaria">0,00%</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Lucro Presumido:</strong>
+                            <div class="result-value" id="lucroPresumido">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é calculado o Lucro Presumido:</h4>
+                        <p><strong>Fórmulas principais:</strong></p>
+                        <ol>
+                            <li><strong>Base de Cálculo (Presunção):</strong> Faturamento × Percentual de presunção
+                                <ul>
+                                    <li>Comércio: 8% do faturamento</li>
+                                    <li>Indústria: 8% do faturamento</li>
+                                    <li>Serviços: 32% do faturamento (varia conforme atividade)</li>
+                                    <li>Serviços Profissionais: 32% do faturamento</li>
+                                </ul>
+                            </li>
+                            <li><strong>IRPJ:</strong> Base × 15% + (Base - R$ 60.000 ÷ 3) × 10% (adicional)</li>
+                            <li><strong>CSLL:</strong> Base × 12% (taxa básica)</li>
+                            <li><strong>PIS/COFINS Cumulativo:</strong> Faturamento × 0,65% + Faturamento × 3%</li>
+                            <li><strong>PIS/COFINS Não Cumulativo:</strong> Faturamento × 1,65% + Faturamento × 7,6%</li>
+                        </ol>
+                        
+                        <p><strong>Exemplo para comércio com faturamento trimestral de R$ 100.000:</strong></p>
+                        <ul>
+                            <li>Base IRPJ/CSLL: R$ 100.000 × 8% = R$ 8.000</li>
+                            <li>IRPJ (15%): R$ 8.000 × 15% = R$ 1.200</li>
+                            <li>IRPJ adicional (10%): Não há (base menor que R$ 20.000/mês)</li>
+                            <li>CSLL: R$ 8.000 × 12% = R$ 960</li>
+                            <li>PIS/COFINS cumulativo: R$ 100.000 × 3,65% = R$ 3.650</li>
+                            <li>Total: R$ 1.200 + R$ 960 + R$ 3.650 = R$ 5.810 trimestral</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Lucro Presumido:</strong><br>
+                        • <strong>Lei 9.249/1995:</strong> Institui o lucro presumido<br>
+                        • <strong>Lei 9.430/1996:</strong> Altera regras do lucro presumido<br>
+                        • <strong>Art. 15, Lei 9.249/95:</strong> Percentuais de presunção<br>
+                        • <strong>Instrução Normativa RFB 1.700/2017:</strong> Procedimentos fiscais<br>
+                        • <strong>Lei 12.973/2014:</strong> Altera alíquotas CSLL<br>
+                        • <strong>Decreto 9.580/2018:</strong> Atualiza percentuais
+                    </div>
+                    
+                    <h4>📋 Percentuais de Presunção do Lucro</h4>
+                    <table class="anexo-table">
+                        <thead>
+                            <tr>
+                                <th>Atividade</th>
+                                <th>Percentual IRPJ</th>
+                                <th>Percentual CSLL</th>
+                                <th>Base Legal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Comércio</td>
+                                <td>8%</td>
+                                <td>12%</td>
+                                <td>Art. 15, §1º</td>
+                            </tr>
+                            <tr>
+                                <td>Indústria</td>
+                                <td>8%</td>
+                                <td>12%</td>
+                                <td>Art. 15, §1º</td>
+                            </tr>
+                            <tr>
+                                <td>Serviços em Geral</td>
+                                <td>32%</td>
+                                <td>32%</td>
+                                <td>Art. 15, §2º</td>
+                            </tr>
+                            <tr>
+                                <td>Serviços Profissionais</td>
+                                <td>32%</td>
+                                <td>32%</td>
+                                <td>Art. 15, §4º</td>
+                            </tr>
+                            <tr>
+                                <td>Transporte de Carga</td>
+                                <td>16%</td>
+                                <td>12%</td>
+                                <td>Art. 15, §5º</td>
+                            </tr>
+                            <tr>
+                                <td>Atividade Hospitalar</td>
+                                <td>8%</td>
+                                <td>12%</td>
+                                <td>Art. 15, §9º</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Tab 3: IRPJ/CSLL -->
+            <div id="irpj" class="tab-content">
+                <h2>🏛️ Cálculo de IRPJ e CSLL</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="lucroContabil">Lucro Contábil (R$):</label>
+                        <input type="number" id="lucroContabil" step="0.01" placeholder="Ex: 50000.00">
+                        <small>Lucro antes do IRPJ e CSLL</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regimeIRPJ">Regime de Tributação:</label>
+                        <select id="regimeIRPJ">
+                            <option value="presumido">Lucro Presumido</option>
+                            <option value="real">Lucro Real</option>
+                            <option value="simples">Simples Nacional</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="adicionalIRPJ">Aplicar Adicional IRPJ?</label>
+                        <select id="adicionalIRPJ">
+                            <option value="sim">Sim (lucro > R$ 20.000/mês)</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="compensacoes">Compensações de Prejuízos (R$):</label>
+                        <input type="number" id="compensacoes" step="0.01" placeholder="Ex: 10000.00" value="0">
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    📊 <strong>Alíquotas Vigentes (2024):</strong><br>
+                    • <strong>IRPJ:</strong> 15% sobre o lucro + 10% adicional sobre o que exceder R$ 20.000/mês<br>
+                    • <strong>CSLL:</strong> 9% para maioria das empresas (algumas atividades têm 15% ou 20%)<br>
+                    • <strong>Período:</strong> Trimestral (Parcelas) ou Anual (Lucro Real)
+                </div>
+                
+                <button class="btn" onclick="calcularIRPJCSLL()">Calcular IRPJ/CSLL</button>
+                
+                <div class="results" id="resultIRPJ">
+                    <h3>Resultado do Cálculo - IRPJ e CSLL</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Base de Cálculo IRPJ:</strong>
+                            <div class="result-value" id="baseIRPJCalculo">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>IRPJ (15%):</strong>
+                            <div class="result-value" id="irpjBase">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Adicional IRPJ (10%):</strong>
+                            <div class="result-value" id="irpjAdicional">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>CSLL (9%):</strong>
+                            <div class="result-value" id="csllValor">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Total IRPJ:</strong>
+                            <div class="result-value" id="totalIRPJ">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total Tributos:</strong>
+                            <div class="result-value" id="totalTributosIR">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Carga Tributária Efetiva:</strong>
+                            <div class="result-value" id="cargaEfetivaIR">0,00%</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Lucro após Impostos:</strong>
+                            <div class="result-value" id="lucroLiquido">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como são calculados IRPJ e CSLL:</h4>
+                        <p><strong>Fórmulas para Lucro Real:</strong></p>
+                        <ol>
+                            <li><strong>Base de cálculo IRPJ:</strong> Lucro contábil +/- ajustes fiscais - compensações</li>
+                            <li><strong>IRPJ (15%):</strong> Base × 15%</li>
+                            <li><strong>IRPJ Adicional (10%):</strong> (Base - R$ 60.000 trimestral) × 10%</li>
+                            <li><strong>Base CSLL:</strong> Lucro ajustado conforme legislação específica</li>
+                            <li><strong>CSLL (9%):</strong> Base CSLL × 9% (varia conforme atividade)</li>
+                        </ol>
+                        
+                        <p><strong>Exemplo para lucro trimestral de R$ 80.000:</strong></p>
+                        <ul>
+                            <li>Base IRPJ: R$ 80.000</li>
+                            <li>IRPJ 15%: R$ 80.000 × 15% = R$ 12.000</li>
+                            <li>Excedente adicional: R$ 80.000 - R$ 60.000 = R$ 20.000</li>
+                            <li>IRPJ adicional: R$ 20.000 × 10% = R$ 2.000</li>
+                            <li>Total IRPJ: R$ 12.000 + R$ 2.000 = R$ 14.000</li>
+                            <li>CSLL: R$ 80.000 × 9% = R$ 7.200</li>
+                            <li>Total tributos: R$ 14.000 + R$ 7.200 = R$ 21.200</li>
+                            <li>Carga tributária: R$ 21.200 ÷ R$ 80.000 = 26,5%</li>
+                        </ul>
+                        
+                        <p><strong>Compensação de Prejuízos Fiscais:</strong> Até 30% do lucro fiscal pode ser compensado com prejuízos acumulados de períodos anteriores.</p>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - IRPJ e CSLL:</strong><br>
+                        • <strong>Lei 8.212/1991:</strong> Contribuição Social sobre o Lucro Líquido (CSLL)<br>
+                        • <strong>Lei 9.249/1995:</strong> Altera legislação do IRPJ<br>
+                        • <strong>Lei 9.532/1997:</strong> Disciplina o IRPJ<br>
+                        • <strong>Lei 12.973/2014:</strong> Alíquota CSLL de 9%<br>
+                        • <strong>Instrução Normativa RFB 1.700/2017:</strong> Procedimentos de apuração<br>
+                        • <strong>Lei 13.259/2016:</strong> Permite compensação de prejuízos
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 4: PIS/COFINS -->
+            <div id="pis" class="tab-content">
+                <h2>📈 Cálculo de PIS e COFINS</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="faturamentoPIS">Faturamento Bruto Mensal (R$):</label>
+                        <input type="number" id="faturamentoPIS" step="0.01" placeholder="Ex: 50000.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regimePISCOFINS">Regime de Apuração:</label>
+                        <select id="regimePISCOFINS">
+                            <option value="cumulativo">Cumulativo (0,65% + 3%)</option>
+                            <option value="naocumulativo">Não Cumulativo (1,65% + 7,6%)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="creditosPIS">Créditos a Recuperar (R$):</label>
+                        <input type="number" id="creditosPIS" step="0.01" placeholder="Ex: 5000.00" value="0">
+                        <small>Apenas para regime não cumulativo</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="despesasDedutiveis">Despesas Dedutíveis (R$):</label>
+                        <input type="number" id="despesasDedutiveis" step="0.01" placeholder="Ex: 20000.00" value="0">
+                        <small>Matérias-primas, energia, etc.</small>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    💡 <strong>Diferença entre Regimes:</strong><br>
+                    • <strong>Cumulativo:</strong> Sem direito a créditos. Alíquotas: PIS 0,65% + COFINS 3%<br>
+                    • <strong>Não Cumulativo:</strong> Com direito a créditos. Alíquotas: PIS 1,65% + COFINS 7,6%
+                </div>
+                
+                <button class="btn" onclick="calcularPISCOFINS()">Calcular PIS/COFINS</button>
+                
+                <div class="results" id="resultPIS">
+                    <h3>Resultado do Cálculo - PIS e COFINS</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Base de Cálculo:</strong>
+                            <div class="result-value" id="basePIS">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>PIS (0,65% ou 1,65%):</strong>
+                            <div class="result-value" id="valorPIS">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>COFINS (3% ou 7,6%):</strong>
+                            <div class="result-value" id="valorCOFINS">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total PIS/COFINS:</strong>
+                            <div class="result-value" id="totalPISCOFINS">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Créditos a Utilizar:</strong>
+                            <div class="result-value" id="creditosUtilizados">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor a Pagar:</strong>
+                            <div class="result-value" id="valorPagarPIS">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Alíquota Efetiva:</strong>
+                            <div class="result-value" id="aliquotaEfetivaPIS">0,00%</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Saldo Créditos:</strong>
+                            <div class="result-value" id="saldoCreditos">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como são calculados PIS e COFINS:</h4>
+                        <p><strong>Regime Cumulativo (0,65% + 3%):</strong></p>
+                        <ol>
+                            <li>PIS: Faturamento × 0,65%</li>
+                            <li>COFINS: Faturamento × 3%</li>
+                            <li>Total: Faturamento × 3,65%</li>
+                            <li>Não há direito a créditos</li>
+                        </ol>
+                        
+                        <p><strong>Regime Não Cumulativo (1,65% + 7,6%):</strong></p>
+                        <ol>
+                            <li>PIS devido: Faturamento × 1,65%</li>
+                            <li>COFINS devido: Faturamento × 7,6%</li>
+                            <li>Créditos: Despesas dedutíveis × alíquotas específicas</li>
+                            <li>PIS a pagar: PIS devido - Créditos PIS</li>
+                            <li>COFINS a pagar: COFINS devido - Créditos COFINS</li>
+                        </ol>
+                        
+                        <p><strong>Exemplo Regime Não Cumulativo:</strong></p>
+                        <ul>
+                            <li>Faturamento: R$ 100.000</li>
+                            <li>PIS devido: R$ 100.000 × 1,65% = R$ 1.650</li>
+                            <li>COFINS devido: R$ 100.000 × 7,6% = R$ 7.600</li>
+                            <li>Despesas dedutíveis: R$ 40.000</li>
+                            <li>Créditos PIS: R$ 40.000 × 1,65% = R$ 660</li>
+                            <li>Créditos COFINS: R$ 40.000 × 7,6% = R$ 3.040</li>
+                            <li>PIS a pagar: R$ 1.650 - R$ 660 = R$ 990</li>
+                            <li>COFINS a pagar: R$ 7.600 - R$ 3.040 = R$ 4.560</li>
+                            <li>Total a pagar: R$ 990 + R$ 4.560 = R$ 5.550</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - PIS e COFINS:</strong><br>
+                        • <strong>Lei 10.637/2002:</strong> PIS Não Cumulativo<br>
+                        • <strong>Lei 10.833/2003:</strong> COFINS Não Cumulativa<br>
+                        • <strong>Lei 10.865/2004:</strong> Altera alíquotas PIS/COFINS<br>
+                        • <strong>Lei 12.546/2011:</strong> Unificação PIS/COFINS<br>
+                        • <strong>Instrução Normativa RFB 1.700/2017:</strong> Procedimentos de apuração<br>
+                        • <strong>Decreto 8.426/2015:</strong> Regulamenta créditos
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 5: Comparativo -->
+            <div id="comparativo" class="tab-content">
+                <h2>📊 Comparativo de Regimes Tributários</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="faturamentoComparativo">Faturamento Anual (R$):</label>
+                        <input type="number" id="faturamentoComparativo" step="0.01" placeholder="Ex: 600000.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="atividadeComparativo">Atividade Principal:</label>
+                        <select id="atividadeComparativo">
+                            <option value="comercio">Comércio</option>
+                            <option value="industria">Indústria</option>
+                            <option value="servicos">Serviços</option>
+                            <option value="servicosProfissionais">Serviços Profissionais</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="custoMercadorias">Custo Mercadorias/Matéria-Prima (%):</label>
+                        <input type="number" id="custoMercadorias" min="0" max="100" value="60" placeholder="Ex: 60">
+                        <small>Percentual do faturamento</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="despesasOperacionais">Despesas Operacionais (%):</label>
+                        <input type="number" id="despesasOperacionais" min="0" max="100" value="20" placeholder="Ex: 20">
+                        <small>Percentual do faturamento</small>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calcularComparativo()">Comparar Regimes</button>
+                
+                <div class="results" id="resultComparativo">
+                    <h3>Comparativo de Carga Tributária</h3>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Simples Nacional:</strong>
+                            <div class="result-value" id="simplesResultado">R$ 0,00</div>
+                            <small id="simplesPercentual">0,00%</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>Lucro Presumido:</strong>
+                            <div class="result-value" id="presumidoResultado">R$ 0,00</div>
+                            <small id="presumidoPercentual">0,00%</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>Lucro Real:</strong>
+                            <div class="result-value" id="realResultado">R$ 0,00</div>
+                            <small id="realPercentual">0,00%</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>Melhor Opção:</strong>
+                            <div class="result-value" id="melhorOpcaoTrib">-</div>
+                            <small id="economiaOpcao">Economia: R$ 0,00</small>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Análise Comparativa dos Regimes:</h4>
+                        <p><strong>Simples Nacional:</strong></p>
+                        <ul>
+                            <li><strong>Vantagens:</strong> Pagamento único (DAS), menos burocracia, alíquotas progressivas</li>
+                            <li><strong>Desvantagens:</strong> Limite de faturamento (R$ 4,8 milhões/ano), não permite créditos de alguns impostos</li>
+                            <li><strong>Ideal para:</strong> MEIs, micro e pequenas empresas</li>
+                        </ul>
+                        
+                        <p><strong>Lucro Presumido:</strong></p>
+                        <ul>
+                            <li><strong>Vantagens:</strong> Previsibilidade nos custos, menos complexo que Lucro Real</li>
+                            <li><strong>Desvantagens:</strong> Pode ser mais caro para empresas com baixa margem, não considera despesas reais</li>
+                            <li><strong>Ideal para:</strong> Empresas com faturamento até R$ 78 milhões/ano e margem acima da presunção</li>
+                        </ul>
+                        
+                        <p><strong>Lucro Real:</strong></p>
+                        <ul>
+                            <li><strong>Vantagens:</strong> Considera lucro real, permite mais deduções, obrigatório para grandes empresas</li>
+                            <li><strong>Desvantagens:</strong> Mais complexo, requer contabilidade completa, maior custo de compliance</li>
+                            <li><strong>Ideal para:</strong> Grandes empresas, empresas com prejuízo ou baixa margem</li>
+                        </ul>
+                        
+                        <p><strong>Fatores a considerar na escolha:</strong></p>
+                        <ol>
+                            <li>Faturamento anual</li>
+                            <li>Margem de lucro real</li>
+                            <li>Quantidade de despesas dedutíveis</li>
+                            <li>Custo da contabilidade</li>
+                            <li>Possibilidade de créditos fiscais</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Critérios Legais para Escolha do Regime:</strong><br>
+                        • <strong>Limites de Faturamento:</strong> Simples (R$ 4,8M), Presumido (R$ 78M), Real (sem limite)<br>
+                        • <strong>Obrigatoriedades:</strong> Bancos e seguradoras devem usar Lucro Real<br>
+                        • <strong>Mudança de Regime:</strong> Só pode mudar no início do ano-calendário<br>
+                        • <strong>Exclusões:</strong> Algumas atividades não podem optar pelo Simples Nacional<br>
+                        • <strong>Consulta:</strong> SEMPRE consulte um contador antes de escolher o regime
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>🏢 <strong>Calculadora Tributária Empresarial</strong></p>
+        <p>⚠️ <strong>VERSÃO EM TESTES</strong> - Para cálculos precisos e consultoria tributária profissional:</p>
+        <p>Consulte a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: #8B0000; font-weight: bold;">Advocacia Vera Catarina</a></p>
+        <p>E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a></p>
+        
+        <div class="social">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram
+            </a>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+            <strong>Outras Calculadoras Jurídicas:</strong><br>
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_previdenciaria.html">👵 Calculadora Previdenciária</a>
+        </p>
+        
+        <p style="margin-top: 15px; font-size: 0.85em; color: #777;">
+            Referências: Lei Complementar 123/2006 (Simples Nacional), Lei 9.249/1995 (Lucro Presumido), Lei 8.212/1991 (CSLL), Lei 10.637/2002 (PIS)
+        </p>
+        <p><a href="https://fabiowlademir.github.io/simuladosdireito/">Voltar para Simulados de Direito</a></p>
+    </footer>
+
+    <script>
+        // Sistema de Tabs
+        function openTab(evt, tabName) {
+            const tabcontents = document.querySelectorAll('.tab-content');
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabcontents.forEach(tab => tab.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // 1. Cálculo do Simples Nacional
+        function calcularSimplesNacional() {
+            const faturamentoMensal = parseFloat(document.getElementById('faturamentoSimples').value);
+            const anexo = parseInt(document.getElementById('anexoSimples').value);
+            const faixa = parseInt(document.getElementById('faixaSimples').value);
+            const temISS = document.getElementById('temISS').value;
+            
+            if (!faturamentoMensal || faturamentoMensal <= 0) {
+                alert("Por favor, informe o faturamento mensal.");
+                return;
+            }
+            
+            // Tabelas de alíquotas (Anexo I como exemplo)
+            const tabelas = {
+                1: { // Anexo I - Comércio
+                    faixas: [
+                        { limite: 180000, aliquota: 0.04, deducao: 0 },
+                        { limite: 360000, aliquota: 0.073, deducao: 5940 },
+                        { limite: 720000, aliquota: 0.095, deducao: 13860 },
+                        { limite: 1800000, aliquota: 0.107, deducao: 22500 },
+                        { limite: 3600000, aliquota: 0.143, deducao: 87300 },
+                        { limite: 4800000, aliquota: 0.19, deducao: 378000 }
+                    ]
+                },
+                2: { // Anexo II - Indústria
+                    faixas: [
+                        { limite: 180000, aliquota: 0.045, deducao: 0 },
+                        { limite: 360000, aliquota: 0.078, deducao: 5940 },
+                        { limite: 720000, aliquota: 0.10, deducao: 13860 },
+                        { limite: 1800000, aliquota: 0.112, deducao: 22500 },
+                        { limite: 3600000, aliquota: 0.147, deducao: 85500 },
+                        { limite: 4800000, aliquota: 0.30, deducao: 720000 }
+                    ]
+                }
+            };
+            
+            // Calcular RBT12 (faturamento anual estimado)
+            const rbt12 = faturamentoMensal * 12;
+            
+            // Encontrar faixa aplicável
+            const tabela = tabelas[anexo] || tabelas[1];
+            let faixaAplicavel = tabela.faixas[faixa - 1] || tabela.faixas[2]; // Default 3ª faixa
+            
+            // Calcular alíquota efetiva
+            const aliquotaEfetiva = ((rbt12 * faixaAplicavel.aliquota) - faixaAplicavel.deducao) / rbt12;
+            
+            // Calcular DAS
+            let das = faturamentoMensal * aliquotaEfetiva;
+            
+            // Ajuste para ISS (se aplicável)
+            if (temISS === 'sim') {
+                das *= 1.05; // Aproximação 5% a mais para serviços
+            }
+            
+            // Exibir resultados
+            document.getElementById('faturamentoAnual').textContent = `R$ ${rbt12.toFixed(2)}`;
+            document.getElementById('aliquotaEfetiva').textContent = `${(aliquotaEfetiva * 100).toFixed(2)}%`;
+            document.getElementById('valorDAS').textContent = `R$ ${das.toFixed(2)}`;
+            
+            // Definir impostos incluídos
+            const impostos = anexo <= 2 ? 
+                "IRPJ, CSLL, PIS, COFINS, IPI, ICMS" + (temISS === 'sim' ? ", ISS" : "") :
+                "IRPJ, CSLL, PIS, COFINS, ISS";
+            document.getElementById('impostosIncluidos').textContent = impostos;
+            
+            document.getElementById('resultSimples').style.display = 'block';
+        }
+        
+        // 2. Cálculo do Lucro Presumido
+        function calcularLucroPresumido() {
+            const faturamentoTrimestral = parseFloat(document.getElementById('faturamentoPresumido').value);
+            const atividade = document.getElementById('atividadePresumido').value;
+            const regimePIS = document.getElementById('regimePIS').value;
+            const temFuncionarios = document.getElementById('temFuncionarios').value;
+            
+            if (!faturamentoTrimestral || faturamentoTrimestral <= 0) {
+                alert("Por favor, informe o faturamento trimestral.");
+                return;
+            }
+            
+            // Percentuais de presunção por atividade
+            const presuncoes = {
+                comercio: 0.08,
+                industria: 0.08,
+                servicos: 0.32,
+                servicosProfissionais: 0.32,
+                transporte: 0.16,
+                hospitalar: 0.08
+            };
+            
+            const percentual = presuncoes[atividade] || 0.08;
+            
+            // Calcular base IRPJ/CSLL
+            const base = faturamentoTrimestral * percentual;
+            
+            // Calcular IRPJ (15% + adicional se > 20k/mês)
+            let irpj = base * 0.15;
+            
+            // Adicional de 10% sobre excedente (trimestral: 60.000)
+            if (base > 60000) {
+                const adicional = (base - 60000) * 0.10;
+                irpj += adicional;
+            }
+            
+            // Calcular CSLL (12%)
+            const csll = base * 0.12;
+            
+            // Calcular PIS/COFINS
+            let pisCofins = 0;
+            if (regimePIS === 'cumulativo') {
+                pisCofins = faturamentoTrimestral * 0.0365; // 0.65% + 3%
+            } else {
+                pisCofins = faturamentoTrimestral * 0.0925; // 1.65% + 7.6%
+            }
+            
+            // Calcular totais
+            const totalTrimestral = irpj + csll + pisCofins;
+            const impostosMensais = totalTrimestral / 3;
+            const cargaTributaria = (totalTrimestral / faturamentoTrimestral) * 100;
+            const lucroPresumidoCalc = base;
+            
+            // Exibir resultados
+            document.getElementById('baseIRPJ').textContent = `R$ ${base.toFixed(2)}`;
+            document.getElementById('valorIRPJ').textContent = `R$ ${irpj.toFixed(2)}`;
+            document.getElementById('valorCSLL').textContent = `R$ ${csll.toFixed(2)}`;
+            document.getElementById('valorPISCOFINS').textContent = `R$ ${pisCofins.toFixed(2)}`;
+            document.getElementById('totalTrimestral').textContent = `R$ ${totalTrimestral.toFixed(2)}`;
+            document.getElementById('impostosMensais').textContent = `R$ ${impostosMensais.toFixed(2)}`;
+            document.getElementById('cargaTributaria').textContent = `${cargaTributaria.toFixed(2)}%`;
+            document.getElementById('lucroPresumido').textContent = `R$ ${lucroPresumidoCalc.toFixed(2)}`;
+            
+            document.getElementById('resultLucro').style.display = 'block';
+        }
+        
+        // 3. Cálculo de IRPJ e CSLL
+        function calcularIRPJCSLL() {
+            const lucroContabil = parseFloat(document.getElementById('lucroContabil').value);
+            const regime = document.getElementById('regimeIRPJ').value;
+            const adicional = document.getElementById('adicionalIRPJ').value;
+            const compensacoes = parseFloat(document.getElementById('compensacoes').value) || 0;
+            
+            if (!lucroContabil || lucroContabil <= 0) {
+                alert("Por favor, informe o lucro contábil.");
+                return;
+            }
+            
+            // Ajustar base com compensações (máximo 30%)
+            const compensacaoMaxima = lucroContabil * 0.3;
+            const compensacaoEfetiva = Math.min(compensacoes, compensacaoMaxima);
+            const baseIRPJ = lucroContabil - compensacaoEfetiva;
+            
+            // Calcular IRPJ base (15%)
+            const irpjBase = baseIRPJ * 0.15;
+            
+            // Calcular adicional (10% sobre excedente de 20k/mês = 60k/trimestre)
+            let irpjAdicional = 0;
+            if (adicional === 'sim' && baseIRPJ > 60000) {
+                irpjAdicional = (baseIRPJ - 60000) * 0.10;
+            }
+            
+            // Calcular CSLL (9%)
+            const csll = baseIRPJ * 0.09;
+            
+            // Calcular totais
+            const totalIRPJ = irpjBase + irpjAdicional;
+            const totalTributos = totalIRPJ + csll;
+            const cargaEfetiva = (totalTributos / lucroContabil) * 100;
+            const lucroLiquido = lucroContabil - totalTributos;
+            
+            // Exibir resultados
+            document.getElementById('baseIRPJCalculo').textContent = `R$ ${baseIRPJ.toFixed(2)}`;
+            document.getElementById('irpjBase').textContent = `R$ ${irpjBase.toFixed(2)}`;
+            document.getElementById('irpjAdicional').textContent = `R$ ${irpjAdicional.toFixed(2)}`;
+            document.getElementById('csllValor').textContent = `R$ ${csll.toFixed(2)}`;
+            document.getElementById('totalIRPJ').textContent = `R$ ${totalIRPJ.toFixed(2)}`;
+            document.getElementById('totalTributosIR').textContent = `R$ ${totalTributos.toFixed(2)}`;
+            document.getElementById('cargaEfetivaIR').textContent = `${cargaEfetiva.toFixed(2)}%`;
+            document.getElementById('lucroLiquido').textContent = `R$ ${lucroLiquido.toFixed(2)}`;
+            
+            document.getElementById('resultIRPJ').style.display = 'block';
+        }
+        
+        // 4. Cálculo de PIS e COFINS
+        function calcularPISCOFINS() {
+            const faturamento = parseFloat(document.getElementById('faturamentoPIS').value);
+            const regime = document.getElementById('regimePISCOFINS').value;
+            const creditos = parseFloat(document.getElementById('creditosPIS').value) || 0;
+            const despesas = parseFloat(document.getElementById('despesasDedutiveis').value) || 0;
+            
+            if (!faturamento || faturamento <= 0) {
+                alert("Por favor, informe o faturamento.");
+                return;
+            }
+            
+            let valorPIS = 0;
+            let valorCOFINS = 0;
+            let creditosUtilizados = 0;
+            let aliquotaEfetiva = 0;
+            
+            if (regime === 'cumulativo') {
+                // Cumulativo: 0,65% + 3%
+                valorPIS = faturamento * 0.0065;
+                valorCOFINS = faturamento * 0.03;
+                aliquotaEfetiva = 3.65; // 0,65 + 3
+            } else {
+                // Não cumulativo: 1,65% + 7,6%
+                valorPIS = faturamento * 0.0165;
+                valorCOFINS = faturamento * 0.076;
+                aliquotaEfetiva = 9.25; // 1,65 + 7,6
+                
+                // Calcular créditos (aproximação: 50% das despesas geram créditos)
+                const creditosPIS = despesas * 0.0165 * 0.5;
+                const creditosCOFINS = despesas * 0.076 * 0.5;
+                creditosUtilizados = creditosPIS + creditosCOFINS;
+                
+                // Aplicar créditos disponíveis
+                const creditosDisponiveis = Math.min(creditos, creditosUtilizados);
+                valorPIS -= creditosPIS;
+                valorCOFINS -= creditosCOFINS;
+            }
+            
+            // Garantir valores não negativos
+            valorPIS = Math.max(0, valorPIS);
+            valorCOFINS = Math.max(0, valorCOFINS);
+            
+            const totalPISCOFINS = valorPIS + valorCOFINS;
+            const valorPagar = totalPISCOFINS;
+            const saldoCreditos = regime === 'cumulativo' ? 0 : Math.max(0, creditos - creditosUtilizados);
+            
+            // Calcular alíquota efetiva
+            const aliquotaEfetivaCalc = (totalPISCOFINS / faturamento) * 100;
+            
+            // Exibir resultados
+            document.getElementById('basePIS').textContent = `R$ ${faturamento.toFixed(2)}`;
+            document.getElementById('valorPIS').textContent = `R$ ${valorPIS.toFixed(2)}`;
+            document.getElementById('valorCOFINS').textContent = `R$ ${valorCOFINS.toFixed(2)}`;
+            document.getElementById('totalPISCOFINS').textContent = `R$ ${totalPISCOFINS.toFixed(2)}`;
+            document.getElementById('creditosUtilizados').textContent = `R$ ${creditosUtilizados.toFixed(2)}`;
+            document.getElementById('valorPagarPIS').textContent = `R$ ${valorPagar.toFixed(2)}`;
+            document.getElementById('aliquotaEfetivaPIS').textContent = `${aliquotaEfetivaCalc.toFixed(2)}%`;
+            document.getElementById('saldoCreditos').textContent = `R$ ${saldoCreditos.toFixed(2)}`;
+            
+            document.getElementById('resultPIS').style.display = 'block';
+        }
+        
+        // 5. Comparativo de Regimes
+        function calcularComparativo() {
+            const faturamentoAnual = parseFloat(document.getElementById('faturamentoComparativo').value);
+            const atividade = document.getElementById('atividadeComparativo').value;
+            const custoMercadorias = parseFloat(document.getElementById('custoMercadorias').value) / 100;
+            const despesasOperacionais = parseFloat(document.getElementById('despesasOperacionais').value) / 100;
+            
+            if (!faturamentoAnual || faturamentoAnual <= 0) {
+                alert("Por favor, informe o faturamento anual.");
+                return;
+            }
+            
+            const faturamentoMensal = faturamentoAnual / 12;
+            const faturamentoTrimestral = faturamentoAnual / 4;
+            
+            // 1. Simples Nacional (aproximação)
+            let simples = 0;
+            if (faturamentoAnual <= 4800000) {
+                // Alíquota média estimada (8% para exemplo)
+                const aliquotaMedia = 0.08;
+                simples = faturamentoAnual * aliquotaMedia;
+            }
+            
+            // 2. Lucro Presumido
+            const presuncoes = {
+                comercio: 0.08,
+                industria: 0.08,
+                servicos: 0.32,
+                servicosProfissionais: 0.32
+            };
+            const percentual = presuncoes[atividade] || 0.08;
+            const basePresumida = faturamentoAnual * percentual;
+            
+            // IRPJ
+            let irpjPresumido = basePresumida * 0.15;
+            if (basePresumida > 240000) { // 60k trimestral × 4
+                irpjPresumido += (basePresumida - 240000) * 0.10;
+            }
+            
+            // CSLL
+            const csllPresumido = basePresumida * 0.12;
+            
+            // PIS/COFINS não cumulativo
+            const pisCofinsPresumido = faturamentoAnual * 0.0925;
+            
+            const presumido = irpjPresumido + csllPresumido + pisCofinsPresumido;
+            
+            // 3. Lucro Real
+            const custos = faturamentoAnual * custoMercadorias;
+            const despesas = faturamentoAnual * despesasOperacionais;
+            const lucroReal = faturamentoAnual - custos - despesas;
+            
+            // IRPJ Real
+            let irpjReal = lucroReal * 0.15;
+            if (lucroReal > 240000) {
+                irpjReal += (lucroReal - 240000) * 0.10;
+            }
+            
+            // CSLL Real
+            const csllReal = lucroReal * 0.09;
+            
+            // PIS/COFINS não cumulativo com créditos
+            const pisCofinsDevido = faturamentoAnual * 0.0925;
+            const creditos = (custoMercadorias * faturamentoAnual) * 0.0925 * 0.5; // 50% dos custos geram créditos
+            const pisCofinsReal = Math.max(0, pisCofinsDevido - creditos);
+            
+            const real = irpjReal + csllReal + pisCofinsReal;
+            
+            // Calcular percentuais
+            const percentualSimples = (simples / faturamentoAnual) * 100;
+            const percentualPresumido = (presumido / faturamentoAnual) * 100;
+            const percentualReal = (real / faturamentoAnual) * 100;
+            
+            // Determinar melhor opção
+            let melhorOpcao = "";
+            let economia = 0;
+            
+            if (simples > 0) {
+                if (simples <= presumido && simples <= real) {
+                    melhorOpcao = "Simples Nacional";
+                    economia = Math.min(presumido, real) - simples;
+                } else if (presumido <= simples && presumido <= real) {
+                    melhorOpcao = "Lucro Presumido";
+                    economia = Math.min(simples, real) - presumido;
+                } else {
+                    melhorOpcao = "Lucro Real";
+                    economia = Math.min(simples, presumido) - real;
+                }
+            } else {
+                melhorOpcao = presumido <= real ? "Lucro Presumido" : "Lucro Real";
+                economia = Math.abs(presumido - real);
+            }
+            
+            // Exibir resultados
+            document.getElementById('simplesResultado').textContent = `R$ ${simples.toFixed(2)}`;
+            document.getElementById('simplesPercentual').textContent = `${percentualSimples.toFixed(2)}%`;
+            
+            document.getElementById('presumidoResultado').textContent = `R$ ${presumido.toFixed(2)}`;
+            document.getElementById('presumidoPercentual').textContent = `${percentualPresumido.toFixed(2)}%`;
+            
+            document.getElementById('realResultado').textContent = `R$ ${real.toFixed(2)}`;
+            document.getElementById('realPercentual').textContent = `${percentualReal.toFixed(2)}%`;
+            
+            document.getElementById('melhorOpcaoTrib').textContent = melhorOpcao;
+            document.getElementById('economiaOpcao').textContent = `Economia anual: R$ ${economia.toFixed(2)}`;
+            
+            document.getElementById('resultComparativo').style.display = 'block';
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preencher campos com exemplos
+            document.getElementById('faturamentoSimples').value = 15000.00;
+            document.getElementById('faturamentoPresumido').value = 100000.00;
+            document.getElementById('lucroContabil').value = 50000.00;
+            document.getElementById('faturamentoPIS').value = 50000.00;
+            document.getElementById('faturamentoComparativo').value = 600000.00;
+        });
+    </script>
+</body>
+</html>

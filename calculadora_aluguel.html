@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Aluguel e Locação | Simulados de Direito</title>
+    <meta name="description" content="Calculadora de aluguel completa: reajuste por índices, caução, multas, benfeitorias, despejo e direitos do locatário/locador.">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --rent-color: #8B4513;
+            --warning-color: #ffc107;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .header .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .header .social a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header .social a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .header .social img {
+            height: 16px;
+            width: 16px;
+            margin-right: 6px;
+        }
+        
+        .alert-test {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .legal-advice {
+            background: #e7f3ff;
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .legal-advice a {
+            color: #8B0000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .legal-advice a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-size: 0.9em;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 5px solid var(--rent-color);
+        }
+        
+        .card h2 {
+            color: var(--rent-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--rent-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 {
+            color: var(--rent-color);
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--rent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.2);
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .btn {
+            background: var(--rent-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #6B2C0F;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--accent-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #003d7a;
+        }
+        
+        .results {
+            background: #F5F5DC;
+            border: 1px solid var(--rent-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .results h3 {
+            color: var(--rent-color);
+            margin-top: 0;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .result-item {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            border-left: 4px solid var(--rent-color);
+        }
+        
+        .result-item strong {
+            color: var(--rent-color);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--rent-color);
+        }
+        
+        .result-value.negative {
+            color: #dc3545;
+        }
+        
+        .calculation-explanation {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .calculation-explanation h4 {
+            color: var(--rent-color);
+            margin-top: 0;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .legislation-ref {
+            background: #f8f9fa;
+            border-left: 4px solid var(--rent-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .tab:hover {
+            color: var(--rent-color);
+        }
+        
+        .tab.active {
+            color: var(--rent-color);
+            border-bottom-color: var(--rent-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .index-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        
+        .index-table th {
+            background: var(--rent-color);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .index-table td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .index-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .timeline {
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--rent-color);
+        }
+        
+        .timeline-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--rent-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--rent-color);
+        }
+        
+        .timeline-content {
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .footer .social a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            background: rgba(0, 51, 102, 0.1);
+        }
+        
+        .footer .social a:hover {
+            background: rgba(0, 51, 102, 0.2);
+            text-decoration: none;
+        }
+        
+        .footer .social img {
+            height: 16px;
+            width: 16px;
+            margin-right: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: left;
+                padding: 10px 15px;
+            }
+            
+            .header .social a,
+            .footer .social a {
+                font-size: 0.8em;
+                padding: 5px 8px;
+            }
+        }
+        
+        .icon {
+            font-size: 1.2em;
+        }
+        
+        .currency {
+            font-size: 1.4em;
+            color: var(--rent-color);
+            font-weight: bold;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--rent-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+        
+        .highlight {
+            background-color: #FFF8DC;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid var(--warning-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏠 Calculadora de Aluguel e Locação</h1>
+        <p>Cálculos de reajuste, caução, multas, benfeitorias e direitos locatícios</p>
+        
+        <div class="social">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram
+            </a>
+        </div>
+    </div>
+
+    <div class="alert-test">
+        <strong>⚠️ VERSÃO EM TESTES</strong><br>
+        Esta calculadora está em fase de desenvolvimento. Os cálculos são aproximados e para fins educacionais.
+    </div>
+
+    <div class="legal-advice">
+        <strong>⚖️ PARA ASSESSORIA JURÍDICA EM CONTRATOS DE LOCAÇÃO:</strong><br>
+        Recomendamos consultar a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank">Advocacia Vera Catarina</a><br>
+        E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">🏠 Início</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_previdenciaria.html">👵 Calculadora Previdenciária</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_tributaria.html">🏢 Calculadora Tributária</a>
+        <a href="#reajuste">📈 Reajuste</a>
+        <a href="#multas">⚖️ Multas</a>
+        <a href="#benfeitorias">🔨 Benfeitorias</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'reajuste')">📈 Reajuste de Aluguel</button>
+                <button class="tab" onclick="openTab(event, 'multas')">⚖️ Multas e Rescisão</button>
+                <button class="tab" onclick="openTab(event, 'benfeitorias')">🔨 Benfeitorias</button>
+                <button class="tab" onclick="openTab(event, 'caucao')">💰 Caução e Garantias</button>
+                <button class="tab" onclick="openTab(event, 'despejo')">🚨 Despejo e Retomada</button>
+            </div>
+            
+            <!-- Tab 1: Reajuste de Aluguel -->
+            <div id="reajuste" class="tab-content active">
+                <h2>📈 Cálculo de Reajuste de Aluguel</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="valorAluguel">Valor Atual do Aluguel (R$):</label>
+                        <input type="number" id="valorAluguel" step="0.01" placeholder="Ex: 1500.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataContrato">Data do Contrato/Último Reajuste:</label>
+                        <input type="date" id="dataContrato">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="indiceReajuste">Índice de Reajuste:</label>
+                        <select id="indiceReajuste">
+                            <option value="igpm">IGP-M (FGV)</option>
+                            <option value="incc">INCC (FGV)</option>
+                            <option value="ipca">IPCA (IBGE)</option>
+                            <option value="12meses">12 Meses (Lei do Inquilinato)</option>
+                            <option value="percentual">Percentual Fixo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="percentualFixo">Percentual Fixo (%):</label>
+                        <input type="number" id="percentualFixo" min="0" max="100" value="10" step="0.1" disabled>
+                        <small>Somente se selecionar "Percentual Fixo"</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipoContrato">Tipo de Contrato:</label>
+                    <select id="tipoContrato">
+                        <option value="residencial">Residencial (Lei 8.245/91)</option>
+                        <option value="comercial">Comercial</option>
+                        <option value="rural">Rural</option>
+                        <option value="temporada">Temporada/Season</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="calcularReajuste()">Calcular Reajuste</button>
+                
+                <div class="results" id="resultReajuste">
+                    <h3>Resultado do Reajuste</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Aluguel Atual:</strong>
+                            <div class="result-value" id="aluguelAtual">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Novo Valor do Aluguel:</strong>
+                            <div class="result-value" id="novoAluguel">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor do Reajuste:</strong>
+                            <div class="result-value" id="valorReajuste">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Percentual Aplicado:</strong>
+                            <div class="result-value" id="percentualAplicado">0,00%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="dataAnterior">--/--/----</div>
+                            <div class="timeline-content">Valor anterior: <strong id="valorAnterior">R$ 0,00</strong></div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="dataAtual">--/--/----</div>
+                            <div class="timeline-content">Novo valor: <strong id="valorNovo">R$ 0,00</strong></div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Próximo reajuste</div>
+                            <div class="timeline-content">Data prevista: <strong id="proximoReajuste">--/--/----</strong></div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é calculado o reajuste de aluguel:</h4>
+                        <p><strong>Para contratos residenciais (Lei do Inquilinato):</strong></p>
+                        <ol>
+                            <li><strong>Prazo mínimo:</strong> Reajuste só após 12 meses de vigência do contrato</li>
+                            <li><strong>Índice oficial:</strong> IGP-M ou outro convencionado no contrato</li>
+                            <li><strong>Notificação:</strong> Locador deve notificar locatário com 30 dias de antecedência</li>
+                            <li><strong>Fórmula:</strong> Novo valor = Valor atual × (1 + Variação do índice)</li>
+                        </ol>
+                        
+                        <p><strong>Exemplo com IGP-M:</strong></p>
+                        <ul>
+                            <li>Aluguel atual: R$ 1.500,00</li>
+                            <li>IGP-M acumulado 12 meses: 8,45%</li>
+                            <li>Cálculo: R$ 1.500 × 1,0845 = R$ 1.626,75</li>
+                            <li>Aumento: R$ 126,75 (8,45%)</li>
+                        </ul>
+                        
+                        <p><strong>Para contratos comerciais:</strong></p>
+                        <ul>
+                            <li>Pode ter reajuste em períodos menores (ex: semestral)</li>
+                            <li>Índices comuns: IGP-M, INCC, IPCA</li>
+                            <li>Pode ter cláusula de reajuste por percentual fixo</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Reajuste de Aluguel:</strong><br>
+                        • <strong>Lei 8.245/1991 (Lei do Inquilinato):</strong> Art. 7º - Reajuste anual<br>
+                        • <strong>Art. 7º, §1º:</strong> "O reajustamento será efetuado com base no índice..."<br>
+                        • <strong>Art. 7º, §2º:</strong> Prazo mínimo de 12 meses para primeiro reajuste<br>
+                        • <strong>Art. 22:</strong> Notificação com antecedência mínima de 30 dias<br>
+                        • <strong>Art. 46:</strong> Contratos comerciais - regras específicas<br>
+                        • <strong>Súmula 142 do STJ:</strong> Aplicação do IGP-M como índice padrão
+                    </div>
+                    
+                    <h4>📊 Índices de Reajuste Mais Comuns (2024)</h4>
+                    <table class="index-table">
+                        <thead>
+                            <tr>
+                                <th>Índice</th>
+                                <th>Instituição</th>
+                                <th>Finalidade</th>
+                                <th>Acumulado 12 meses*</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IGP-M</td>
+                                <td>FGV</td>
+                                <td>Aluguéis em geral</td>
+                                <td>4,15%</td>
+                            </tr>
+                            <tr>
+                                <td>INCC</td>
+                                <td>FGV</td>
+                                <td>Contratos com obra</td>
+                                <td>3,92%</td>
+                            </tr>
+                            <tr>
+                                <td>IPCA</td>
+                                <td>IBGE</td>
+                                <td>Índice oficial inflação</td>
+                                <td>4,50%</td>
+                            </tr>
+                            <tr>
+                                <td>IGP-DI</td>
+                                <td>FGV</td>
+                                <td>Contratos antigos</td>
+                                <td>4,05%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <small>* Valores aproximados para demonstração</small>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Multas e Rescisão -->
+            <div id="multas" class="tab-content">
+                <h2>⚖️ Cálculo de Multas e Rescisão</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="aluguelMulta">Valor do Aluguel (R$):</label>
+                        <input type="number" id="aluguelMulta" step="0.01" placeholder="Ex: 1500.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tempoContrato">Tempo de Contrato (meses):</label>
+                        <input type="number" id="tempoContrato" min="1" placeholder="Ex: 30">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="tempoDecorrido">Tempo Decorrido (meses):</label>
+                        <input type="number" id="tempoDecorrido" min="0" placeholder="Ex: 15">
+                        <small>Quanto tempo já passou do contrato</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quemRescinde">Quem está Rescindindo:</label>
+                        <select id="quemRescinde">
+                            <option value="locatario">Locatário (inquilino)</option>
+                            <option value="locador">Locador (proprietário)</option>
+                            <option value="comumAcordo">Acordo Comum</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="motivoRescisao">Motivo da Rescisão:</label>
+                    <select id="motivoRescisao">
+                        <option value="pedido">Pedido de Rescisão</option>
+                        <option value="justaCausa">Justa Causa</option>
+                        <option value="necessidade">Necessidade Própria</option>
+                        <option value="reforma">Reforma/Reconstrução</option>
+                    </select>
+                </div>
+                
+                <div class="info-box">
+                    ⚠️ <strong>Multas Rescisórias (Lei do Inquilinato):</strong><br>
+                    • <strong>Locatário:</strong> 3 meses de aluguel se rescindir antes de 1/3 do prazo<br>
+                    • <strong>Locador:</strong> 1/3 do aluguel por ano restante (necessidade própria)<br>
+                    • <strong>Justa Causa:</strong> Sem multa para parte inocente
+                </div>
+                
+                <button class="btn" onclick="calcularMultas()">Calcular Multas</button>
+                
+                <div class="results" id="resultMultas">
+                    <h3>Resultado do Cálculo de Multas</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Multa Rescisória:</strong>
+                            <div class="result-value" id="multaRescisoria">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Aluguéis em Aberto:</strong>
+                            <div class="result-value" id="alugueisAberto">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Condominação Proporcional:</strong>
+                            <div class="result-value" id="condominio">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total a Pagar/Receber:</strong>
+                            <div class="result-value" id="totalRescisao">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight">
+                        <strong>📅 Cronograma de Pagamento:</strong>
+                        <div id="cronograma" style="margin-top: 10px;">
+                            • Multa: A ser paga até a desocupação<br>
+                            • Aluguéis vencidos: Imediatamente<br>
+                            • Caução: Devolução em 30 dias<br>
+                            • Contas pendentes: Conforme vencimento
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como são calculadas as multas rescisórias:</h4>
+                        <p><strong>Para locatário que pede rescisão (Art. 9º da Lei 8.245/91):</strong></p>
+                        <ol>
+                            <li><strong>Se antes de 1/3 do prazo:</strong> Multa de 3 meses de aluguel</li>
+                            <li><strong>Se entre 1/3 e 2/3 do prazo:</strong> Multa de 2 meses de aluguel</li>
+                            <li><strong>Se após 2/3 do prazo:</strong> Multa de 1 mês de aluguel</li>
+                            <li><strong>Prazo indeterminado:</strong> Multa de 1/3 do aluguel (30 dias de aviso)</li>
+                        </ol>
+                        
+                        <p><strong>Para locador que pede rescisão por necessidade própria (Art. 9º-A):</strong></p>
+                        <ul>
+                            <li><strong>Multa:</strong> 1/3 do aluguel por cada ano restante do contrato</li>
+                            <li><strong>Prazo:</strong> Notificação com 30 dias de antecedência</li>
+                            <li><strong>Restrição:</strong> Não pode realugar por 6 meses</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo - Locatário rescinde com 15 meses de 36:</strong></p>
+                        <ul>
+                            <li>Prazo total: 36 meses</li>
+                            <li>Decorrido: 15 meses (41,7%)</li>
+                            <li>Situação: Entre 1/3 (12 meses) e 2/3 (24 meses)</li>
+                            <li>Multa: 2 meses de aluguel</li>
+                            <li>Aluguel: R$ 1.500 × 2 = R$ 3.000,00</li>
+                        </ul>
+                        
+                        <p><strong>Justa Causa (sem multa):</strong></p>
+                        <ul>
+                            <li>Não pagamento por mais de 3 meses</li>
+                            <li>Destinação indevida do imóvel</li>
+                            <li>Alteração estrutural sem autorização</li>
+                            <li>Subarrendamento não autorizado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Multas Rescisórias:</strong><br>
+                        • <strong>Lei 8.245/91, Art. 9º:</strong> Rescisão por parte do locatário<br>
+                        • <strong>Art. 9º-A:</strong> Rescisão por necessidade do locador<br>
+                        • <strong>Art. 9º, §1º:</strong> Multa de 3 meses (antes de 1/3 do prazo)<br>
+                        • <strong>Art. 9º, §2º:</strong> Multa de 2 meses (entre 1/3 e 2/3)<br>
+                        • <strong>Art. 9º, §3º:</strong> Multa de 1 mês (após 2/3 do prazo)<br>
+                        • <strong>Art. 4º, II:</strong> Justa causa por inadimplemento<br>
+                        • <strong>Súmula 120 do STJ:</strong> Interpretação do prazo contratual
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 3: Benfeitorias -->
+            <div id="benfeitorias" class="tab-content">
+                <h2>🔨 Cálculo de Benfeitorias e Melhorias</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="tipoBenfeitoria">Tipo de Benfeitoria:</label>
+                        <select id="tipoBenfeitoria">
+                            <option value="necessarias">Necessárias</option>
+                            <option value="uteis">Úteis</option>
+                            <option value="voluptuarias">Voluptuárias (Suntuosas)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="valorBenfeitoria">Valor da Benfeitoria (R$):</label>
+                        <input type="number" id="valorBenfeitoria" step="0.01" placeholder="Ex: 8000.00">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="tempoUso">Tempo de Uso (meses):</label>
+                        <input type="number" id="tempoUso" min="1" placeholder="Ex: 24">
+                        <small>Quanto tempo o locatário usufruiu</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="autorizacao">Houve Autorização do Locador?</label>
+                        <select id="autorizacao">
+                            <option value="sim">Sim, por escrito</option>
+                            <option value="nao">Não</option>
+                            <option value="tacita">Tácita (sabia e não se opôs)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricaoBenfeitoria">Descrição da Benfeitoria:</label>
+                    <textarea id="descricaoBenfeitoria" rows="3" placeholder="Ex: Instalação de piso cerâmico na sala, pintura interna, troca de fiação elétrica..."></textarea>
+                </div>
+                
+                <div class="info-box">
+                    🏗️ <strong>Classificação das Benfeitorias (Código Civil):</strong><br>
+                    • <strong>Necessárias:</strong> Conservam o imóvel (ex: telhado, encanamento)<br>
+                    • <strong>Úteis:</strong> Aumentam comodidade (ex: piso, pintura)<br>
+                    • <strong>Voluptuárias:</strong> Apenas embelezam (ex: piscina, sauna)
+                </div>
+                
+                <button class="btn" onclick="calcularBenfeitorias()">Calcular Indenização</button>
+                
+                <div class="results" id="resultBenfeitorias">
+                    <h3>Resultado do Cálculo de Benfeitorias</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Classificação:</strong>
+                            <div class="result-value" id="classificacao">-</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor Original:</strong>
+                            <div class="result-value" id="valorOriginal">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Depreciação:</strong>
+                            <div class="result-value" id="depreciacao">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor a Indenizar:</strong>
+                            <div class="result-value" id="valorIndenizar">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1 / -1;">
+                            <strong>Direito à Indenização:</strong>
+                            <div id="direitoIndenizacao" style="font-size: 1.2em; margin-top: 5px;">-</div>
+                            <div id="fundamentoIndenizacao" style="margin-top: 10px; font-size: 0.9em;">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como são calculadas as benfeitorias:</h4>
+                        <p><strong>Regras do Código Civil (Arts. 96 a 98):</strong></p>
+                        <ol>
+                            <li><strong>Benfeitorias Necessárias:</strong>
+                                <ul>
+                                    <li>Indenização integral do valor atual (com depreciação)</li>
+                                    <li>Direito mesmo sem autorização</li>
+                                    <li>Exemplos: reforma do telhado, reparo de infiltração</li>
+                                </ul>
+                            </li>
+                            <li><strong>Benfeitorias Úteis:</strong>
+                                <ul>
+                                    <li>Indenização do valor atual (com depreciação)</li>
+                                    <li>Precisa de autorização expressa ou tácita</li>
+                                    <li>Exemplos: instalação de piso, pintura, cercas</li>
+                                </ul>
+                            </li>
+                            <li><strong>Benfeitorias Voluptuárias:</strong>
+                                <ul>
+                                    <li>Sem direito à indenização</li>
+                                    <li>Pode retirar se não causar dano</li>
+                                    <li>Exemplos: piscina, sauna, decoração luxuosa</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <p><strong>Cálculo da Depreciação:</strong></p>
+                        <ul>
+                            <li><strong>Edificações:</strong> 4% ao ano (0,33% ao mês)</li>
+                            <li><strong>Instalações:</strong> 10% ao ano (0,83% ao mês)</li>
+                            <li><strong>Revestimentos:</strong> 8% ao ano (0,67% ao mês)</li>
+                            <li><strong>Pintura:</strong> 20% ao ano (1,67% ao mês)</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo - Benfeitoria útil com autorização:</strong></p>
+                        <ul>
+                            <li>Valor: R$ 8.000,00 (piso cerâmico)</li>
+                            <li>Tempo de uso: 24 meses</li>
+                            <li>Depreciação: 8% ao ano = 16% total</li>
+                            <li>Valor depreciado: R$ 8.000 × 0,84 = R$ 6.720,00</li>
+                            <li>Direito: Indenização de R$ 6.720,00</li>
+                        </ul>
+                        
+                        <p><strong>Retenção pelo Locador:</strong> Pode reter até o valor das benfeitorias necessárias não indenizadas.</p>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Benfeitorias:</strong><br>
+                        • <strong>Código Civil, Art. 96:</strong> Conceito de benfeitorias<br>
+                        • <strong>Art. 97:</strong> Indenização das benfeitorias necessárias e úteis<br>
+                        • <strong>Art. 98:</strong> Ausência de indenização para voluptuárias<br>
+                        • <strong>Lei 8.245/91, Art. 35:</strong> Retenção por benfeitorias necessárias<br>
+                        • <strong>Art. 36:</strong> Direito de retirar benfeitorias voluptuárias<br>
+                        • <strong>Súmula 121 do STJ:</strong> Autorização tácita do locador<br>
+                        • <strong>IN 25/2001 (SRF):</strong> Tabela de depreciação de bens
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 4: Caução e Garantias -->
+            <div id="caucao" class="tab-content">
+                <h2>💰 Cálculo de Caução e Garantias</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="aluguelCaucao">Valor do Aluguel (R$):</label>
+                        <input type="number" id="aluguelCaucao" step="0.01" placeholder="Ex: 1500.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tipoGarantia">Tipo de Garantia:</label>
+                        <select id="tipoGarantia">
+                            <option value="caucao">Caução em Dinheiro</option>
+                            <option value="fianca">Fiança</option>
+                            <option value="seguro">Seguro Fiança</option>
+                            <option value="titulo">Título de Capitalização</option>
+                            <option value="cessao">Cessão de Crédito</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="valorCaucao">Valor da Caução (R$):</label>
+                        <input type="number" id="valorCaucao" step="0.01" placeholder="Ex: 4500.00">
+                        <small>Deixe em branco para cálculo automático</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taxaJuros">Taxa de Juros (% ao mês):</label>
+                        <input type="number" id="taxaJuros" step="0.01" value="0.5" min="0">
+                        <small>Para caução em dinheiro (poupança)</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempoLocacao">Tempo de Locação (meses):</label>
+                    <input type="number" id="tempoLocacao" min="1" placeholder="Ex: 30">
+                </div>
+                
+                <div class="info-box">
+                    🛡️ <strong>Limites Legais da Caução (Lei do Inquilinato):</strong><br>
+                    • <strong>Máximo:</strong> 3 meses de aluguel como caução<br>
+                    • <strong>Juros:</strong> Devem ser pagos ao locatário (poupança ou contrato)<br>
+                    • <strong>Devolução:</strong> Em 30 dias, descontados débitos<br>
+                    • <strong>Retenção:</strong> Só para débitos comprovados
+                </div>
+                
+                <button class="btn" onclick="calcularCaucao()">Calcular Caução</button>
+                
+                <div class="results" id="resultCaucao">
+                    <h3>Resultado do Cálculo de Caução</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Caução Calculada:</strong>
+                            <div class="result-value" id="caucaoCalculada">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Juros Acumulados:</strong>
+                            <div class="result-value" id="jurosAcumulados">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor Total a Devolver:</strong>
+                            <div class="result-value" id="totalDevolver">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Prazo de Devolução:</strong>
+                            <div class="result-value" id="prazoDevolucao">30 dias</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1 / -1;">
+                            <strong>Possíveis Descontos:</strong>
+                            <div id="descontos" style="margin-top: 10px;">
+                                <div>• Aluguéis em atraso: <span id="aluguelAtraso">R$ 0,00</span></div>
+                                <div>• Condomínio devido: <span id="condominoDevido">R$ 0,00</span></div>
+                                <div>• Contas pendentes: <span id="contasPendentes">R$ 0,00</span></div>
+                                <div>• Danos ao imóvel: <span id="danosImovel">R$ 0,00</span></div>
+                                <div style="margin-top: 10px; font-weight: bold;">• Valor líquido a receber: <span id="valorLiquido" class="currency">R$ 0,00</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como funciona a caução locatícia:</h4>
+                        <p><strong>Limites legais (Art. 37 da Lei 8.245/91):</strong></p>
+                        <ol>
+                            <li><strong>Valor máximo:</strong> 3 meses de aluguel como caução</li>
+                            <li><strong>Juros:</strong> Devem ser pagos conforme contrato ou poupança</li>
+                            <li><strong>Depósito:</strong> Em conta específica, não pode misturar</li>
+                            <li><strong>Devolução:</strong> Em 30 dias após desocupação</li>
+                            <li><strong>Descontos:</strong> Apenas débitos comprovados</li>
+                        </ol>
+                        
+                        <p><strong>Cálculo dos juros da caução:</strong></p>
+                        <ul>
+                            <li><strong>Se contratado:</strong> Taxa do contrato (ex: 0,5% ao mês)</li>
+                            <li><strong>Se não contratado:</strong> Taxa da poupança (varia)</li>
+                            <li><strong>Fórmula:</strong> Juros = Caução × (1 + taxa)ⁿ - Caução</li>
+                            <li><strong>Onde n =</strong> número de meses do depósito</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo - Caução de 3 meses:</strong></p>
+                        <ul>
+                            <li>Aluguel: R$ 1.500,00</li>
+                            <li>Caução: R$ 1.500 × 3 = R$ 4.500,00</li>
+                            <li>Tempo: 30 meses</li>
+                            <li>Juros (0,5% ao mês): R$ 4.500 × (1,005)³⁰ - R$ 4.500 = R$ 728,67</li>
+                            <li>Total a devolver: R$ 4.500 + R$ 728,67 = R$ 5.228,67</li>
+                        </ul>
+                        
+                        <p><strong>Seguro Fiança vs Fiança Tradicional:</strong></p>
+                        <ul>
+                            <li><strong>Seguro Fiança:</strong> Pago ao banco/seguradora (1-3 meses de prêmio)</li>
+                            <li><strong>Fiança:</strong> Fiador com bens livres e desimpedidos</li>
+                            <li><strong>Vantagem Seguro:</strong> Não precisa de fiador, mais rápido</li>
+                            <li><strong>Desvantagem:</strong> Custo adicional (prêmio do seguro)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Caução e Garantias:</strong><br>
+                        • <strong>Lei 8.245/91, Art. 37:</strong> Limite de 3 meses para caução<br>
+                        • <strong>Art. 37, §1º:</strong> Juros devem ser pagos ao locatário<br>
+                        • <strong>Art. 37, §2º:</strong> Devolução em 30 dias da desocupação<br>
+                        • <strong>Art. 38:</strong> Fiança - requisitos do fiador<br>
+                        • <strong>Art. 39:</strong> Seguro-fiança<br>
+                        • <strong>Código Civil, Art. 822:</strong> Direito de retenção da caução<br>
+                        • <strong>Súmula 77 do STJ:</strong> Juros da caução correm da data do depósito
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 5: Despejo e Retomada -->
+            <div id="despejo" class="tab-content">
+                <h2>🚨 Cálculo de Despejo e Retomada</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="aluguelDespejo">Aluguel em Atraso (R$):</label>
+                        <input type="number" id="aluguelDespejo" step="0.01" placeholder="Ex: 4500.00">
+                        <small>Soma dos aluguéis não pagos</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mesesAtraso">Meses em Atraso:</label>
+                        <input type="number" id="mesesAtraso" min="1" placeholder="Ex: 3">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="valorContas">Contas em Aberto (R$):</label>
+                        <input type="number" id="valorContas" step="0.01" placeholder="Ex: 800.00" value="0">
+                        <small>Condomínio, água, luz, gás</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tipoDespejo">Tipo de Ação de Despejo:</label>
+                        <select id="tipoDespejo">
+                            <option value="inadimplemento">Por Inadimplemento</option>
+                            <option value="denuncia">Por Denúncia Vazia</option>
+                            <option value="justaCausa">Por Justa Causa</option>
+                            <option value="necessidade">Por Necessidade do Locador</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tribunalLocal">Tribunal Local:</label>
+                    <select id="tribunalLocal">
+                        <option value="tjrs">TJRS (Rio Grande do Sul)</option>
+                        <option value="tjsp">TJSP (São Paulo)</option>
+                        <option value="tjrj">TJRJ (Rio de Janeiro)</option>
+                        <option value="tjmg">TJMG (Minas Gerais)</option>
+                        <option value="tjpr">TJPR (Paraná)</option>
+                    </select>
+                </div>
+                
+                <div class="info-box">
+                    ⚖️ <strong>Prazos Processuais - Despejo por Inadimplemento:</strong><br>
+                    • <strong>Notificação extrajudicial:</strong> 30 dias para pagamento<br>
+                    • <strong>Ação de despejo:</strong> 15 dias para contestação<br>
+                    • <strong>Sentença:</strong> Pode sair em 2-6 meses<br>
+                    • <strong>Recursos:</strong> Podem prolongar por 1-2 anos
+                </div>
+                
+                <button class="btn" onclick="calcularDespejo()">Calcular Custos de Despejo</button>
+                
+                <div class="results" id="resultDespejo">
+                    <h3>Resultado do Cálculo - Ação de Despejo</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Débito Total:</strong>
+                            <div class="result-value" id="debitoTotal">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Honorários Advocatícios:</strong>
+                            <div class="result-value" id="honorarios">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Custas Processuais:</strong>
+                            <div class="result-value" id="custas">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Tempo Estimado:</strong>
+                            <div class="result-value" id="tempoEstimado">0 meses</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dia 1</div>
+                            <div class="timeline-content">Notificação extrajudicial (30 dias para pagamento)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dia 31</div>
+                            <div class="timeline-content">Ação de despejo protocolada</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dia 45</div>
+                            <div class="timeline-content">Contestação (se houver)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dia 90</div>
+                            <div class="timeline-content">Audiência de conciliação</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="dataSentenca">Dia 150</div>
+                            <div class="timeline-content">Sentença (estimativa)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="dataExecucao">Dia 180</div>
+                            <div class="timeline-content">Cumprimento de sentença/retirada</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como funciona uma ação de despejo:</h4>
+                        <p><strong>Despejo por Inadimplemento (Arts. 9º e 59 da Lei 8.245/91):</strong></p>
+                        <ol>
+                            <li><strong>Notificação Extrajudicial:</strong> Comunicado formal dando 30 dias para pagamento</li>
+                            <li><strong>Não Pagamento:</strong> Após 30 dias, pode ingressar com ação</li>
+                            <li><strong>Ação de Despejo:</strong> Rito sumaríssimo (mais rápido)</li>
+                            <li><strong>Pagamento em Juízo:</strong> Locatário pode pagar em até 15 dias da citação</li>
+                            <li><strong>Sentença:</strong> Determina desocupação em 30 dias</li>
+                            <li><strong>Cumprimento:</strong> Oficial de justiça acompanha desocupação</li>
+                        </ol>
+                        
+                        <p><strong>Custos aproximados da ação:</strong></p>
+                        <ul>
+                            <li><strong>Custas iniciais:</strong> 1% a 3% do valor da causa</li>
+                            <li><strong>Honorários advocatícios:</strong> 10% a 20% do valor recuperado</li>
+                            <li><strong>Perito (se necessário):</strong> R$ 1.000 a R$ 3.000</li>
+                            <li><strong>Oficial de justiça:</strong> R$ 200 a R$ 500 por diligência</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo - Débito de R$ 4.500:</strong></p>
+                        <ul>
+                            <li>Custas (2%): R$ 4.500 × 2% = R$ 90,00</li>
+                            <li>Honorários (15%): R$ 4.500 × 15% = R$ 675,00</li>
+                            <li>Outros custos: R$ 300,00</li>
+                            <li>Total custos: R$ 1.065,00</li>
+                            <li>Líquido a receber: R$ 4.500 - R$ 1.065 = R$ 3.435,00</li>
+                        </ul>
+                        
+                        <p><strong>Despejo por Denúncia Vazia (Art. 9º-A):</strong></p>
+                        <ul>
+                            <li>Notificação com 30 dias de antecedência</li>
+                            <li>Multa de 1/3 do aluguel por ano restante</li>
+                            <li>Locador não pode realugar por 6 meses</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Despejo:</strong><br>
+                        • <strong>Lei 8.245/91, Art. 9º:</strong> Despejo por inadimplemento<br>
+                        • <strong>Art. 59:</strong> Rito processual do despejo<br>
+                        • <strong>Art. 9º-A:</strong> Despejo por denúncia vazia<br>
+                        • <strong>Art. 4º, II:</strong> Justa causa para rescisão<br>
+                        • <strong>CPC, Arts. 59 a 71:</strong> Procedimento sumaríssimo<br>
+                        • <strong>Lei 11.232/2005:</strong> Cumprimento de sentença<br>
+                        • <strong>Lei 13.105/2015 (CPC):</strong> Novo rito processual civil
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>🏠 <strong>Calculadora de Aluguel e Locação</strong></p>
+        <p>⚠️ <strong>VERSÃO EM TESTES</strong> - Para assessoria jurídica em contratos de locação:</p>
+        <p>Consulte a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: #8B0000; font-weight: bold;">Advocacia Vera Catarina</a></p>
+        <p>E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a></p>
+        
+        <div class="social">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram
+            </a>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+            <strong>Outras Calculadoras Jurídicas:</strong><br>
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_previdenciaria.html">👵 Calculadora Previdenciária</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_tributaria.html">🏢 Calculadora Tributária</a>
+        </p>
+        
+        <p style="margin-top: 15px; font-size: 0.85em; color: #777;">
+            Referências: Lei 8.245/1991 (Lei do Inquilinato), Código Civil (Arts. 565 a 578), Lei 13.105/2015 (CPC)
+        </p>
+        <p><a href="https://fabiowlademir.github.io/simuladosdireito/">Voltar para Simulados de Direito</a></p>
+    </footer>
+
+    <script>
+        // Sistema de Tabs
+        function openTab(evt, tabName) {
+            const tabcontents = document.querySelectorAll('.tab-content');
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabcontents.forEach(tab => tab.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // Habilitar/desabilitar percentual fixo
+        document.getElementById('indiceReajuste').addEventListener('change', function() {
+            const percentualInput = document.getElementById('percentualFixo');
+            percentualInput.disabled = this.value !== 'percentual';
+        });
+        
+        // 1. Cálculo de Reajuste de Aluguel
+        function calcularReajuste() {
+            const valorAluguel = parseFloat(document.getElementById('valorAluguel').value);
+            const dataContratoStr = document.getElementById('dataContrato').value;
+            const indice = document.getElementById('indiceReajuste').value;
+            const percentualFixo = parseFloat(document.getElementById('percentualFixo').value) / 100;
+            const tipoContrato = document.getElementById('tipoContrato').value;
+            
+            if (!valorAluguel || valorAluguel <= 0 || !dataContratoStr) {
+                alert("Por favor, preencha o valor do aluguel e a data do contrato.");
+                return;
+            }
+            
+            const dataContrato = new Date(dataContratoStr);
+            const hoje = new Date();
+            
+            // Calcular diferença em meses
+            const diffMeses = (hoje.getFullYear() - dataContrato.getFullYear()) * 12 + 
+                            (hoje.getMonth() - dataContrato.getMonth());
+            
+            // Verificar se passou 12 meses (mínimo para reajuste residencial)
+            const podeReajustar = tipoContrato !== 'residencial' || diffMeses >= 12;
+            
+            // Calcular percentual de reajuste
+            let percentual = 0;
+            let indiceNome = '';
+            
+            switch(indice) {
+                case 'igpm':
+                    percentual = 0.0415; // 4,15% IGP-M 2024
+                    indiceNome = 'IGP-M';
+                    break;
+                case 'incc':
+                    percentual = 0.0392; // 3,92% INCC 2024
+                    indiceNome = 'INCC';
+                    break;
+                case 'ipca':
+                    percentual = 0.045; // 4,50% IPCA 2024
+                    indiceNome = 'IPCA';
+                    break;
+                case '12meses':
+                    percentual = 0.10; // 10% - taxa comum para 12 meses
+                    indiceNome = '12 Meses';
+                    break;
+                case 'percentual':
+                    percentual = percentualFixo;
+                    indiceNome = 'Percentual Fixo';
+                    break;
+            }
+            
+            // Ajustar para contratos comerciais (pode ser semestral)
+            if (tipoContrato === 'comercial' && diffMeses >= 6) {
+                percentual = percentual / 2; // Aproximação para semestral
+            }
+            
+            // Calcular novo valor
+            const valorReajuste = valorAluguel * percentual;
+            const novoAluguel = valorAluguel + valorReajuste;
+            
+            // Calcular datas
+            const dataAnterior = new Date(dataContrato);
+            const dataAtual = new Date();
+            const proximoReajuste = new Date(dataAtual);
+            proximoReajuste.setMonth(dataAtual.getMonth() + (tipoContrato === 'comercial' ? 6 : 12));
+            
+            // Exibir resultados
+            document.getElementById('aluguelAtual').textContent = `R$ ${valorAluguel.toFixed(2)}`;
+            document.getElementById('novoAluguel').textContent = `R$ ${novoAluguel.toFixed(2)}`;
+            document.getElementById('valorReajuste').textContent = `R$ ${valorReajuste.toFixed(2)}`;
+            document.getElementById('percentualAplicado').textContent = `${(percentual * 100).toFixed(2)}%`;
+            
+            document.getElementById('dataAnterior').textContent = dataAnterior.toLocaleDateString('pt-BR');
+            document.getElementById('valorAnterior').textContent = `R$ ${valorAluguel.toFixed(2)}`;
+            document.getElementById('dataAtual').textContent = dataAtual.toLocaleDateString('pt-BR');
+            document.getElementById('valorNovo').textContent = `R$ ${novoAluguel.toFixed(2)}`;
+            document.getElementById('proximoReajuste').textContent = proximoReajuste.toLocaleDateString('pt-BR');
+            
+            // Mensagem se não pode reajustar
+            if (!podeReajustar && tipoContrato === 'residencial') {
+                document.getElementById('novoAluguel').textContent = 'Não pode reajustar ainda';
+                document.getElementById('novoAluguel').classList.add('negative');
+                document.getElementById('valorReajuste').textContent = 'Aguarde 12 meses';
+                document.getElementById('percentualAplicado').textContent = '0,00%';
+                document.getElementById('valorNovo').textContent = 'Aguarde 12 meses';
+            }
+            
+            document.getElementById('resultReajuste').style.display = 'block';
+        }
+        
+        // 2. Cálculo de Multas e Rescisão
+        function calcularMultas() {
+            const aluguel = parseFloat(document.getElementById('aluguelMulta').value);
+            const tempoContrato = parseInt(document.getElementById('tempoContrato').value);
+            const tempoDecorrido = parseInt(document.getElementById('tempoDecorrido').value);
+            const quemRescinde = document.getElementById('quemRescinde').value;
+            const motivo = document.getElementById('motivoRescisao').value;
+            
+            if (!aluguel || !tempoContrato || !tempoDecorrido || aluguel <= 0 || tempoDecorrido > tempoContrato) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+            
+            let multa = 0;
+            let mensagem = '';
+            
+            // Calcular frações
+            const umTerco = tempoContrato / 3;
+            const doisTercos = (tempoContrato * 2) / 3;
+            
+            // Calcular multa conforme quem rescinde e motivo
+            if (motivo === 'justaCausa') {
+                if (quemRescinde === 'locatario') {
+                    multa = 0; // Sem multa se locatário tiver justa causa
+                    mensagem = 'Sem multa (justa causa do locador)';
+                } else {
+                    multa = 0; // Sem multa se locador tiver justa causa
+                    mensagem = 'Sem multa (justa causa do locatário)';
+                }
+            } else if (quemRescinde === 'locatario') {
+                // Locatário pede rescisão
+                if (tempoDecorrido < umTerco) {
+                    multa = aluguel * 3;
+                    mensagem = 'Multa de 3 meses (antes de 1/3 do prazo)';
+                } else if (tempoDecorrido < doisTercos) {
+                    multa = aluguel * 2;
+                    mensagem = 'Multa de 2 meses (entre 1/3 e 2/3 do prazo)';
+                } else {
+                    multa = aluguel;
+                    mensagem = 'Multa de 1 mês (após 2/3 do prazo)';
+                }
+            } else if (quemRescinde === 'locador' && motivo === 'necessidade') {
+                // Locador por necessidade própria
+                const anosRestantes = Math.ceil((tempoContrato - tempoDecorrido) / 12);
+                multa = (aluguel / 3) * anosRestantes;
+                mensagem = `Multa de 1/3 do aluguel por ${anosRestantes} ano(s) restante(s)`;
+            } else if (quemRescinde === 'comumAcordo') {
+                multa = aluguel;
+                mensagem = 'Multa negociada de 1 mês (acordo comum)';
+            }
+            
+            // Calcular outros valores
+            const mesesRestantes = tempoContrato - tempoDecorrido;
+            const alugueisAberto = aluguel * Math.min(3, mesesRestantes); // Máximo 3 meses
+            const condominio = aluguel * 0.3; // Estimativa 30% do aluguel
+            const totalRescisao = multa + alugueisAberto + condominio;
+            
+            // Exibir resultados
+            document.getElementById('multaRescisoria').textContent = `R$ ${multa.toFixed(2)}`;
+            document.getElementById('alugueisAberto').textContent = `R$ ${alugueisAberto.toFixed(2)}`;
+            document.getElementById('condominio').textContent = `R$ ${condominio.toFixed(2)}`;
+            document.getElementById('totalRescisao').textContent = `R$ ${totalRescisao.toFixed(2)}`;
+            
+            // Atualizar cronograma
+            document.getElementById('cronograma').innerHTML = `
+                • Multa (${mensagem}): R$ ${multa.toFixed(2)}<br>
+                • Aluguéis em aberto (${Math.min(3, mesesRestantes)} meses): R$ ${alugueisAberto.toFixed(2)}<br>
+                • Condomínio proporcional: R$ ${condominio.toFixed(2)}<br>
+                • Contas pendentes: Conforme vencimento<br>
+                • <strong>Total: R$ ${totalRescisao.toFixed(2)}</strong>
+            `;
+            
+            document.getElementById('resultMultas').style.display = 'block';
+        }
+        
+        // 3. Cálculo de Benfeitorias
+        function calcularBenfeitorias() {
+            const tipo = document.getElementById('tipoBenfeitoria').value;
+            const valor = parseFloat(document.getElementById('valorBenfeitoria').value);
+            const tempoUso = parseInt(document.getElementById('tempoUso').value);
+            const autorizacao = document.getElementById('autorizacao').value;
+            
+            if (!valor || valor <= 0 || !tempoUso || tempoUso <= 0) {
+                alert("Por favor, preencha o valor e tempo de uso da benfeitoria.");
+                return;
+            }
+            
+            // Classificação
+            let classificacao = '';
+            let direitoIndenizacao = '';
+            let fundamento = '';
+            let taxaDepreciacao = 0;
+            
+            switch(tipo) {
+                case 'necessarias':
+                    classificacao = 'Necessárias';
+                    direitoIndenizacao = 'SIM - Indenização integral';
+                    fundamento = 'Art. 97 do Código Civil';
+                    taxaDepreciacao = 0.0033; // 4% ao ano = 0,33% ao mês
+                    break;
+                case 'uteis':
+                    classificacao = 'Úteis';
+                    if (autorizacao === 'sim' || autorizacao === 'tacita') {
+                        direitoIndenizacao = 'SIM - Com autorização';
+                        fundamento = 'Art. 97 do Código Civil';
+                    } else {
+                        direitoIndenizacao = 'NÃO - Sem autorização';
+                        fundamento = 'Art. 98 do Código Civil';
+                    }
+                    taxaDepreciacao = 0.0067; // 8% ao ano = 0,67% ao mês
+                    break;
+                case 'voluptuarias':
+                    classificacao = 'Voluptuárias';
+                    direitoIndenizacao = 'NÃO - Sem direito à indenização';
+                    fundamento = 'Art. 98 do Código Civil';
+                    taxaDepreciacao = 0.0167; // 20% ao ano = 1,67% ao mês
+                    break;
+            }
+            
+            // Calcular depreciação
+            const depreciacao = valor * taxaDepreciacao * tempoUso;
+            const valorAtual = Math.max(0, valor - depreciacao);
+            
+            // Calcular valor a indenizar
+            let valorIndenizar = 0;
+            if (tipo === 'necessarias') {
+                valorIndenizar = valorAtual;
+            } else if (tipo === 'uteis' && (autorizacao === 'sim' || autorizacao === 'tacita')) {
+                valorIndenizar = valorAtual;
+            }
+            
+            // Exibir resultados
+            document.getElementById('classificacao').textContent = classificacao;
+            document.getElementById('valorOriginal').textContent = `R$ ${valor.toFixed(2)}`;
+            document.getElementById('depreciacao').textContent = `R$ ${depreciacao.toFixed(2)}`;
+            document.getElementById('valorIndenizar').textContent = `R$ ${valorIndenizar.toFixed(2)}`;
+            document.getElementById('direitoIndenizacao').textContent = direitoIndenizacao;
+            document.getElementById('fundamentoIndenizacao').textContent = fundamento;
+            
+            document.getElementById('resultBenfeitorias').style.display = 'block';
+        }
+        
+        // 4. Cálculo de Caução
+        function calcularCaucao() {
+            const aluguel = parseFloat(document.getElementById('aluguelCaucao').value);
+            const tipoGarantia = document.getElementById('tipoGarantia').value;
+            let valorCaucao = parseFloat(document.getElementById('valorCaucao').value);
+            const taxaJuros = parseFloat(document.getElementById('taxaJuros').value) / 100;
+            const tempoLocacao = parseInt(document.getElementById('tempoLocacao').value);
+            
+            if (!aluguel || aluguel <= 0 || !tempoLocacao || tempoLocacao <= 0) {
+                alert("Por favor, preencha o valor do aluguel e tempo de locação.");
+                return;
+            }
+            
+            // Calcular caução se não informada
+            if (!valorCaucao || valorCaucao <= 0) {
+                valorCaucao = aluguel * 3; // Padrão: 3 meses
+            }
+            
+            // Limitar a 3 meses (Lei do Inquilinato)
+            const maxCaucao = aluguel * 3;
+            if (valorCaucao > maxCaucao && tipoGarantia === 'caucao') {
+                valorCaucao = maxCaucao;
+                alert(`Caução limitada a 3 meses de aluguel (R$ ${maxCaucao.toFixed(2)}) conforme Lei 8.245/91`);
+            }
+            
+            // Calcular juros
+            const jurosAcumulados = valorCaucao * (Math.pow(1 + taxaJuros, tempoLocacao) - 1);
+            const totalDevolver = valorCaucao + jurosAcumulados;
+            
+            // Calcular possíveis descontos
+            const aluguelAtraso = aluguel * 2; // Estimativa: 2 meses atrasados
+            const condominoDevido = aluguel * 0.3 * 2; // 30% do aluguel por 2 meses
+            const contasPendentes = 200; // Estimativa fixa
+            const danosImovel = 500; // Estimativa fixa
+            const totalDescontos = aluguelAtraso + condominoDevido + contasPendentes + danosImovel;
+            const valorLiquido = Math.max(0, totalDevolver - totalDescontos);
+            
+            // Exibir resultados
+            document.getElementById('caucaoCalculada').textContent = `R$ ${valorCaucao.toFixed(2)}`;
+            document.getElementById('jurosAcumulados').textContent = `R$ ${jurosAcumulados.toFixed(2)}`;
+            document.getElementById('totalDevolver').textContent = `R$ ${totalDevolver.toFixed(2)}`;
+            document.getElementById('prazoDevolucao').textContent = '30 dias (após desocupação)';
+            
+            document.getElementById('aluguelAtraso').textContent = `R$ ${aluguelAtraso.toFixed(2)}`;
+            document.getElementById('condominoDevido').textContent = `R$ ${condominoDevido.toFixed(2)}`;
+            document.getElementById('contasPendentes').textContent = `R$ ${contasPendentes.toFixed(2)}`;
+            document.getElementById('danosImovel').textContent = `R$ ${danosImovel.toFixed(2)}`;
+            document.getElementById('valorLiquido').textContent = `R$ ${valorLiquido.toFixed(2)}`;
+            
+            document.getElementById('resultCaucao').style.display = 'block';
+        }
+        
+        // 5. Cálculo de Despejo
+        function calcularDespejo() {
+            const aluguelAtraso = parseFloat(document.getElementById('aluguelDespejo').value);
+            const mesesAtraso = parseInt(document.getElementById('mesesAtraso').value);
+            const valorContas = parseFloat(document.getElementById('valorContas').value) || 0;
+            const tipoDespejo = document.getElementById('tipoDespejo').value;
+            const tribunal = document.getElementById('tribunalLocal').value;
+            
+            if (!aluguelAtraso || aluguelAtraso <= 0 || !mesesAtraso || mesesAtraso <= 0) {
+                alert("Por favor, preencha o valor e meses de atraso do aluguel.");
+                return;
+            }
+            
+            // Calcular débito total
+            const debitoTotal = aluguelAtraso + valorContas;
+            
+            // Calcular custas processuais (1-3% do valor)
+            const percentualCustas = 0.02; // 2%
+            const custas = debitoTotal * percentualCustas;
+            
+            // Calcular honorários (10-20% do valor)
+            const percentualHonorarios = 0.15; // 15%
+            const honorarios = debitoTotal * percentualHonorarios;
+            
+            // Calcular tempo estimado
+            let tempoEstimado = 6; // meses base
+            const temposTribunal = {
+                'tjrs': 5,
+                'tjsp': 8,
+                'tjrj': 7,
+                'tjmg': 6,
+                'tjpr': 5
+            };
+            tempoEstimado = temposTribunal[tribunal] || 6;
+            
+            // Ajustar por tipo de despejo
+            if (tipoDespejo === 'justaCausa') tempoEstimado -= 1;
+            if (tipoDespejo === 'denuncia') tempoEstimado += 2;
+            
+            // Calcular datas
+            const hoje = new Date();
+            const dataSentenca = new Date(hoje);
+            dataSentenca.setMonth(hoje.getMonth() + Math.floor(tempoEstimado * 0.7));
+            
+            const dataExecucao = new Date(dataSentenca);
+            dataExecucao.setMonth(dataSentenca.getMonth() + 1);
+            
+            // Exibir resultados
+            document.getElementById('debitoTotal').textContent = `R$ ${debitoTotal.toFixed(2)}`;
+            document.getElementById('honorarios').textContent = `R$ ${honorarios.toFixed(2)}`;
+            document.getElementById('custas').textContent = `R$ ${custas.toFixed(2)}`;
+            document.getElementById('tempoEstimado').textContent = `${tempoEstimado} meses`;
+            
+            document.getElementById('dataSentenca').textContent = dataSentenca.toLocaleDateString('pt-BR');
+            document.getElementById('dataExecucao').textContent = dataExecucao.toLocaleDateString('pt-BR');
+            
+            document.getElementById('resultDespejo').style.display = 'block';
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preencher campos com exemplos
+            const hoje = new Date();
+            const dataAnterior = new Date(hoje);
+            dataAnterior.setFullYear(hoje.getFullYear() - 1);
+            
+            document.getElementById('valorAluguel').value = 1500.00;
+            document.getElementById('dataContrato').value = dataAnterior.toISOString().split('T')[0];
+            
+            document.getElementById('aluguelMulta').value = 1500.00;
+            document.getElementById('tempoContrato').value = 36;
+            document.getElementById('tempoDecorrido').value = 15;
+            
+            document.getElementById('valorBenfeitoria').value = 8000.00;
+            document.getElementById('tempoUso').value = 24;
+            
+            document.getElementById('aluguelCaucao').value = 1500.00;
+            document.getElementById('valorCaucao').value = 4500.00;
+            document.getElementById('tempoLocacao').value = 30;
+            
+            document.getElementById('aluguelDespejo').value = 4500.00;
+            document.getElementById('mesesAtraso').value = 3;
+            document.getElementById('valorContas').value = 800.00;
+        });
+    </script>
+</body>
+</html>
