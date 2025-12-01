@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Previdenciária | Simulados de Direito</title>
+    <meta name="description" content="Calculadora previdenciária completa: tempo de contribuição, benefícios, aposentadoria por idade/tempo, salário-maternidade, auxílio-doença e mais.">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --pension-color: #2E7D32;
+            --warning-color: #ffc107;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .alert-test {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .legal-advice {
+            background: #e7f3ff;
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .legal-advice a {
+            color: #8B0000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .legal-advice a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 5px solid var(--pension-color);
+        }
+        
+        .card h2 {
+            color: var(--pension-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--pension-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 {
+            color: var(--pension-color);
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--pension-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .btn {
+            background: var(--pension-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--accent-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #003d7a;
+        }
+        
+        .results {
+            background: #e8f5e9;
+            border: 1px solid var(--pension-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .results h3 {
+            color: var(--pension-color);
+            margin-top: 0;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .result-item {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            border-left: 4px solid var(--pension-color);
+        }
+        
+        .result-item strong {
+            color: var(--pension-color);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--pension-color);
+        }
+        
+        .calculation-explanation {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .calculation-explanation h4 {
+            color: var(--pension-color);
+            margin-top: 0;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .legislation-ref {
+            background: #f8f9fa;
+            border-left: 4px solid var(--pension-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .tab:hover {
+            color: var(--pension-color);
+        }
+        
+        .tab.active {
+            color: var(--pension-color);
+            border-bottom-color: var(--pension-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: left;
+                padding: 10px 15px;
+            }
+        }
+        
+        .icon {
+            font-size: 1.2em;
+        }
+        
+        .currency {
+            font-size: 1.4em;
+            color: var(--pension-color);
+            font-weight: bold;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress {
+            background: var(--pension-color);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-bar span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👵 Calculadora Previdenciária</h1>
+        <p>Cálculos de aposentadoria, benefícios e tempo de contribuição do INSS</p>
+    </div>
+
+    <div class="alert-test">
+        <strong>⚠️ VERSÃO EM TESTES</strong><br>
+        Esta calculadora está em fase de desenvolvimento. Os cálculos são aproximados e para fins educacionais.
+    </div>
+
+    <div class="legal-advice">
+        <strong>⚖️ PARA CÁLCULOS PRECISOS E ORIENTAÇÃO PREVIDENCIÁRIA:</strong><br>
+        Recomendamos consultar a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank">Advocacia Vera Catarina</a><br>
+        E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">🏠 Início</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'tempoContribuicao')">📅 Tempo de Contribuição</button>
+                <button class="tab" onclick="openTab(event, 'aposentadoriaIdade')">👵 Aposentadoria por Idade</button>
+                <button class="tab" onclick="openTab(event, 'aposentadoriaTempo')">⏱️ Aposentadoria por Tempo</button>
+                <button class="tab" onclick="openTab(event, 'beneficios')">💰 Cálculo de Benefícios</button>
+                <button class="tab" onclick="openTab(event, 'regrasTransicao')">🔄 Regras de Transição</button>
+            </div>
+            
+            <!-- Tab 1: Tempo de Contribuição -->
+            <div id="tempoContribuicao" class="tab-content active">
+                <h2>📅 Cálculo de Tempo de Contribuição</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="dataInicio">Data de Início da Contribuição:</label>
+                        <input type="date" id="dataInicio">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataFim">Data de Término/Fim:</label>
+                        <input type="date" id="dataFim" value="<?php echo date('Y-m-d'); ?>">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="periodosEspeciais">Períodos Especiais (meses):</label>
+                        <input type="number" id="periodosEspeciais" min="0" placeholder="Ex: 24 (2 anos)">
+                        <small>Tempo como professor, rural, insalubre/periculoso</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="conversaoEspecial">Conversão de Tempo Especial:</label>
+                        <select id="conversaoEspecial">
+                            <option value="1.0">Não há tempo especial</option>
+                            <option value="1.4">Professor (40% a mais)</option>
+                            <option value="1.2">Rural (20% a mais)</option>
+                            <option value="1.5">Insalubre/Periculoso (50% a mais)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calcularTempoContribuicao()">Calcular Tempo</button>
+                
+                <div class="results" id="resultTempo">
+                    <h3>Resultado do Tempo de Contribuição</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Tempo Total Calculado:</strong>
+                            <div class="result-value" id="tempoTotal">0 anos 0 meses</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Tempo Comum:</strong>
+                            <div class="result-value" id="tempoComum">0 anos 0 meses</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Tempo Especial (convertido):</strong>
+                            <div class="result-value" id="tempoEspecial">0 anos 0 meses</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total para Aposentadoria:</strong>
+                            <div class="result-value" id="tempoAposentadoria">0 anos 0 meses</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress" id="progressTempo" style="width: 0%"></div>
+                        <span id="progressText">0% do tempo necessário</span>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é feito o cálculo:</h4>
+                        <p><strong>Fórmula do tempo de contribuição:</strong></p>
+                        <ol>
+                            <li><strong>Tempo comum:</strong> Data fim - Data início (em anos/meses)</li>
+                            <li><strong>Tempo especial:</strong> Meses especiais × Fator de conversão</li>
+                            <li><strong>Total:</strong> Tempo comum + Tempo especial convertido</li>
+                        </ol>
+                        <p><strong>Fatores de conversão (Redução de idade/tempo):</strong></p>
+                        <ul>
+                            <li><strong>Professores:</strong> 40% (1,4) - 25 anos mulheres, 30 anos homens</li>
+                            <li><strong>Trabalhadores rurais:</strong> 20% (1,2) - 15 anos contribuição</li>
+                            <li><strong>Insalubridade/Periculosidade:</strong> 50% (1,5) - tempo varia</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Previdência Social:</strong><br>
+                        • <strong>Art. 201, CF/88:</strong> Regime Geral de Previdência Social<br>
+                        • <strong>Lei 8.213/1991:</strong> Planos de Benefícios da Previdência Social<br>
+                        • <strong>Art. 57, §2º, Lei 8.213/91:</strong> Conversão tempo especial<br>
+                        • <strong>Lei 9.876/1999:</strong> Fator previdenciário (cálculo do benefício)<br>
+                        • <strong>EC 103/2019 (Reforma):</strong> Novas regras idade mínima e pontos
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Aposentadoria por Idade -->
+            <div id="aposentadoriaIdade" class="tab-content">
+                <h2>👵 Aposentadoria por Idade</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="idadeAtual">Idade Atual:</label>
+                        <input type="number" id="idadeAtual" min="0" max="120" placeholder="Ex: 58">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sexo">Sexo:</label>
+                        <select id="sexo">
+                            <option value="F">Feminino</option>
+                            <option value="M">Masculino</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="tempoContribIdade">Tempo de Contribuição (anos):</label>
+                        <input type="number" id="tempoContribIdade" step="0.1" min="0" placeholder="Ex: 25">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regraAplicavel">Regra Aplicável:</label>
+                        <select id="regraAplicavel">
+                            <option value="antiga">Regra Antiga (até 12/11/2019)</option>
+                            <option value="transicao">Regra de Transição</option>
+                            <option value="nova">Nova Regra (Reforma)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    ⏰ <strong>Idades Mínimas Atuais (Reforma 2019):</strong><br>
+                    • <strong>Mulheres:</strong> 62 anos (idade) + 15 anos contribuição<br>
+                    • <strong>Homens:</strong> 65 anos (idade) + 20 anos contribuição<br>
+                    • <strong>Transição:</strong> Pontuação (86/96, 105 pontos) ou idade progressiva
+                </div>
+                
+                <button class="btn" onclick="calcularAposentadoriaIdade()">Verificar Direito</button>
+                
+                <div class="results" id="resultIdade">
+                    <h3>Resultado da Análise</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Direito à Aposentadoria:</strong>
+                            <div class="result-value" id="direitoAposentadoria">Não</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Idade Mínima Requerida:</strong>
+                            <div class="result-value" id="idadeMinima">0 anos</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Tempo Restante:</strong>
+                            <div class="result-value" id="tempoRestanteIdade">0 anos</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Data Prevista:</strong>
+                            <div class="result-value" id="dataPrevista">--/--/----</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Regras da Aposentadoria por Idade:</h4>
+                        <p><strong>Regra Antiga (até 12/11/2019):</strong></p>
+                        <ul>
+                            <li><strong>Mulheres:</strong> 60 anos + 15 anos contribuição</li>
+                            <li><strong>Homens:</strong> 65 anos + 15 anos contribuição</li>
+                        </ul>
+                        
+                        <p><strong>Nova Regra (Reforma 2019):</strong></p>
+                        <ul>
+                            <li><strong>Mulheres:</strong> 62 anos + 15 anos contribuição</li>
+                            <li><strong>Homens:</strong> 65 anos + 20 anos contribuição</li>
+                            <li>Idade progressiva até 2027</li>
+                        </ul>
+                        
+                        <p><strong>Regras de Transição:</strong></p>
+                        <ul>
+                            <li><strong>86/96 pontos:</strong> Soma idade + tempo contribuição</li>
+                            <li><strong>Idade progressiva:</strong> +6 meses por ano até 2027</li>
+                            <li><strong>Pedágio 50%:</strong> Para quem estava perto de se aposentar</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais:</strong><br>
+                        • <strong>Art. 48, Lei 8.213/91:</strong> Aposentadoria por idade (regra antiga)<br>
+                        • <strong>EC 103/2019, Art. 15:</strong> Nova idade mínima<br>
+                        • <strong>Art. 3º, EC 103/2019:</strong> Regras de transição<br>
+                        • <strong>Portaria 149/2020 (INSS):</strong> Procedimentos administrativos<br>
+                        • <strong>Lei 14.331/2022:</strong> Ajustes pós-reforma
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 3: Aposentadoria por Tempo de Contribuição -->
+            <div id="aposentadoriaTempo" class="tab-content">
+                <h2>⏱️ Aposentadoria por Tempo de Contribuição</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="tempoContribTotal">Tempo Total de Contribuição (anos):</label>
+                        <input type="number" id="tempoContribTotal" step="0.1" min="0" placeholder="Ex: 30.5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sexoTempo">Sexo:</label>
+                        <select id="sexoTempo">
+                            <option value="F">Feminino</option>
+                            <option value="M">Masculino</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="idadeAtualTempo">Idade Atual:</label>
+                        <input type="number" id="idadeAtualTempo" min="0" placeholder="Ex: 55">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regraTempo">Regra Aplicável:</label>
+                        <select id="regraTempo">
+                            <option value="antiga">Regra Antiga (35/30 anos)</option>
+                            <option value="pontos86">86/96 Pontos (transição)</option>
+                            <option value="pontos105">105 Pontos (professores)</option>
+                            <option value="pedagio">Pedágio 50%/100%</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    📊 <strong>Tempos de Contribuição:</strong><br>
+                    • <strong>Regra Antiga:</strong> 35 anos (H) / 30 anos (M)<br>
+                    • <strong>86/96 Pontos:</strong> Soma idade + tempo contribuição<br>
+                    • <strong>Pedágio 50%:</strong> Quem tinha direito até 13/11/2019<br>
+                    • <strong>Pedágio 100%:</strong> Para os demais casos
+                </div>
+                
+                <button class="btn" onclick="calcularAposentadoriaTempo()">Calcular Direito</button>
+                
+                <div class="results" id="resultTempoContrib">
+                    <h3>Resultado da Análise</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Direito à Aposentadoria:</strong>
+                            <div class="result-value" id="direitoTempo">Não</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Tempo Necessário:</strong>
+                            <div class="result-value" id="tempoNecessario">0 anos</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Pontuação Atual:</strong>
+                            <div class="result-value" id="pontuacaoAtual">0 pontos</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Pontuação Necessária:</strong>
+                            <div class="result-value" id="pontuacaoNecessaria">0 pontos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Regras de Tempo de Contribuição:</h4>
+                        <p><strong>Regra Antiga (extinta):</strong></p>
+                        <ul>
+                            <li><strong>Homens:</strong> 35 anos de contribuição</li>
+                            <li><strong>Mulheres:</strong> 30 anos de contribuição</li>
+                            <li><strong>Professores:</strong> 25 anos (M) / 30 anos (H)</li>
+                        </ul>
+                        
+                        <p><strong>Regras de Transição (86/96 pontos):</strong></p>
+                        <ul>
+                            <li><strong>Mulheres:</strong> 86 pontos (idade + tempo)</li>
+                            <li><strong>Homens:</strong> 96 pontos (idade + tempo)</li>
+                            <li>Aumento de 1 ponto por ano até 2023</li>
+                        </ul>
+                        
+                        <p><strong>Regra dos 105 pontos (professores):</strong></p>
+                        <ul>
+                            <li>105 pontos (idade + tempo)</li>
+                            <li>Tempo mínimo: 25 anos (M) / 30 anos (H)</li>
+                            <li>Idade mínima: 55 anos (M) / 60 anos (H)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais:</strong><br>
+                        • <strong>Art. 50, Lei 8.213/91:</strong> Aposentadoria por tempo de contribuição<br>
+                        • <strong>EC 103/2019, Art. 12:</strong> Extinção da aposentadoria por tempo<br>
+                        • <strong>Art. 2º, EC 103/2019:</strong> Regras de transição (pontos)<br>
+                        • <strong>Lei 13.183/2015:</strong> Regra 85/95 progressiva<br>
+                        • <strong>IN 77/2015 (INSS):</strong> Procedimentos para pedágio 50%
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 4: Cálculo de Benefícios -->
+            <div id="beneficios" class="tab-content">
+                <h2>💰 Cálculo do Valor do Benefício</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="salariosContribuicao">Salários de Contribuição (R$):</label>
+                        <textarea id="salariosContribuicao" rows="3" placeholder="Digite os 80% maiores salários, separados por vírgula ou linha. Ex: 2200, 2400, 2500, 2300"></textarea>
+                        <small>Insira os 80% maiores salários desde julho/1994</small>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="tipoBeneficio">Tipo de Benefício:</label>
+                        <select id="tipoBeneficio">
+                            <option value="aposentadoria">Aposentadoria</option>
+                            <option value="auxilioDoenca">Auxílio-Doença</option>
+                            <option value="aposentadoriaInvalidez">Aposentadoria por Invalidez</option>
+                            <option value="salarioMaternidade">Salário-Maternidade</option>
+                            <option value="pensaoMorte">Pensão por Morte</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fatorPrevidenciario">Aplicar Fator Previdenciário?</label>
+                        <select id="fatorPrevidenciario">
+                            <option value="nao">Não (Reforma 2019)</option>
+                            <option value="sim">Sim (regras antigas)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calcularBeneficio()">Calcular Benefício</button>
+                
+                <div class="results" id="resultBeneficio">
+                    <h3>Valor do Benefício Previdenciário</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Média dos Salários:</strong>
+                            <div class="result-value" id="mediaSalarios">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Salário de Benefício:</strong>
+                            <div class="result-value" id="salarioBeneficio">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Renda Mensal Inicial:</strong>
+                            <div class="result-value" id="rendaMensal">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor do Benefício:</strong>
+                            <div class="result-value" id="valorBeneficio">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é calculado o benefício:</h4>
+                        <p><strong>Fórmula (Reforma 2019):</strong></p>
+                        <ol>
+                            <li><strong>Selecionar 80% maiores salários:</strong> Desde julho/1994 até mês anterior ao benefício</li>
+                            <li><strong>Calcular média:</strong> Soma dos 80% maiores ÷ quantidade de meses</li>
+                            <li><strong>Salário de benefício:</strong> 60% da média + 2% por ano que exceder:
+                                <ul>
+                                    <li>Mulheres: 15 anos contribuição</li>
+                                    <li>Homens: 20 anos contribuição</li>
+                                </ul>
+                            </li>
+                            <li><strong>Máximo:</strong> Teto do INSS (R$ 7.507,49 em 2024)</li>
+                            <li><strong>Mínimo:</strong> Salário mínimo (R$ 1.412,00 em 2024)</li>
+                        </ol>
+                        
+                        <p><strong>Percentuais por tipo de benefício:</strong></p>
+                        <ul>
+                            <li><strong>Aposentadoria:</strong> 60% a 100% da média</li>
+                            <li><strong>Auxílio-doença:</strong> 91% do salário de benefício</li>
+                            <li><strong>Aposentadoria por invalidez:</strong> 100% do salário de benefício</li>
+                            <li><strong>Salário-maternidade:</strong> 100% do último salário</li>
+                            <li><strong>Pensão por morte:</strong> 100% do benefício (cônjuge) + 10% por dependente</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais:</strong><br>
+                        • <strong>Art. 29, Lei 8.213/91:</strong> Salário de benefício e renda mensal<br>
+                        • <strong>Art. 201, §2º, CF/88:</strong> Cálculo da aposentadoria<br>
+                        • <strong>Lei 9.876/1999:</strong> Fator previdenciário e média<br>
+                        • <strong>EC 103/2019, Art. 17:</strong> Nova fórmula de cálculo<br>
+                        • <strong>Portaria 671/2021 (INSS):</strong> Tabela de tetos e mínimos
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 5: Regras de Transição -->
+            <div id="regrasTransicao" class="tab-content">
+                <h2>🔄 Simulador de Regras de Transição</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="idadeTransicao">Idade Atual:</label>
+                        <input type="number" id="idadeTransicao" min="0" placeholder="Ex: 57">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tempoTransicao">Tempo de Contribuição (anos):</label>
+                        <input type="number" id="tempoTransicao" step="0.1" min="0" placeholder="Ex: 28">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="sexoTransicao">Sexo:</label>
+                        <select id="sexoTransicao">
+                            <option value="F">Feminino</option>
+                            <option value="M">Masculino</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataNascimento">Data de Nascimento:</label>
+                        <input type="date" id="dataNascimento">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="professorTransicao">É Professor?</label>
+                    <select id="professorTransicao">
+                        <option value="nao">Não</option>
+                        <option value="sim">Sim</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="simularRegrasTransicao()">Simular Todas as Regras</button>
+                
+                <div class="results" id="resultTransicao">
+                    <h3>Comparativo das Regras de Transição</h3>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Pontuação 86/96:</strong>
+                            <div class="result-value" id="pontuacao8696">Não atingido</div>
+                            <small id="detalhe8696">-</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>Idade Progressiva:</strong>
+                            <div class="result-value" id="idadeProgressiva">Não</div>
+                            <small id="detalheProgressiva">-</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>Pedágio 50%:</strong>
+                            <div class="result-value" id="pedagio50">Não se aplica</div>
+                            <small id="detalhePedagio50">-</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>Pedágio 100%:</strong>
+                            <div class="result-value" id="pedagio100">Não se aplica</div>
+                            <small id="detalhePedagio100">-</small>
+                        </div>
+                    </div>
+                    
+                    <div class="result-item" style="grid-column: 1 / -1; margin-top: 15px;">
+                        <strong>🏆 Melhor Opção para Você:</strong>
+                        <div id="melhorOpcao" style="font-size: 1.2em; color: var(--pension-color); font-weight: bold; margin-top: 5px;">
+                            Aguardando cálculo...
+                        </div>
+                        <div id="detalheMelhorOpcao" style="margin-top: 10px; font-size: 0.9em;">
+                            - 
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Regras de Transição da Reforma 2019:</h4>
+                        <p><strong>1. Sistema de Pontos (86/96):</strong></p>
+                        <ul>
+                            <li><strong>Mulheres:</strong> 86 pontos (idade + tempo) em 2019</li>
+                            <li><strong>Homens:</strong> 96 pontos (idade + tempo) em 2019</li>
+                            <li>Aumenta 1 ponto por ano até 2023</li>
+                            <li>Em 2023: 91/101 pontos</li>
+                        </ul>
+                        
+                        <p><strong>2. Idade Progressiva:</strong></p>
+                        <ul>
+                            <li>Aumento de 6 meses por ano até 2027</li>
+                            <li><strong>Mulheres:</strong> 60 anos (2020) → 62 anos (2023)</li>
+                            <li><strong>Homens:</strong> 65 anos (2020) → 65 anos (2023)</li>
+                        </ul>
+                        
+                        <p><strong>3. Pedágio 50%:</strong></p>
+                        <ul>
+                            <li>Para quem tinha direito até 13/11/2019</li>
+                            <li>Acrescentar 50% do tempo que faltava</li>
+                            <li>Mínimo: 1 ano adicional</li>
+                        </ul>
+                        
+                        <p><strong>4. Pedágio 100%:</strong></p>
+                        <ul>
+                            <li>Para quem não se enquadra no pedágio 50%</li>
+                            <li>Acrescentar 100% do tempo que faltava</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>👵 <strong>Calculadora Previdenciária - INSS</strong></p>
+        <p>⚠️ <strong>VERSÃO EM TESTES</strong> - Para cálculos precisos e orientação previdenciária:</p>
+        <p>Consulte a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: #8B0000; font-weight: bold;">Advocacia Vera Catarina</a></p>
+        <p>E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a></p>
+        <p>Referências: Constituição Federal, Lei 8.213/91 (Planos de Benefícios), EC 103/2019 (Reforma)</p>
+        <p><a href="https://fabiowlademir.github.io/simuladosdireito/">Voltar para Simulados de Direito</a></p>
+    </footer>
+
+    <script>
+        // Sistema de Tabs
+        function openTab(evt, tabName) {
+            const tabcontents = document.querySelectorAll('.tab-content');
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabcontents.forEach(tab => tab.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // 1. Cálculo de Tempo de Contribuição
+        function calcularTempoContribuicao() {
+            const dataInicio = new Date(document.getElementById('dataInicio').value);
+            const dataFim = new Date(document.getElementById('dataFim').value);
+            const periodosEspeciais = parseInt(document.getElementById('periodosEspeciais').value) || 0;
+            const conversaoEspecial = parseFloat(document.getElementById('conversaoEspecial').value);
+            
+            if (!dataInicio || !dataFim || dataInicio > dataFim) {
+                alert("Por favor, preencha as datas corretamente.");
+                return;
+            }
+            
+            // Cálculo do tempo comum
+            const diffMs = dataFim - dataInicio;
+            const diffAnos = diffMs / (1000 * 60 * 60 * 24 * 365.25);
+            
+            const anosComuns = Math.floor(diffAnos);
+            const mesesComuns = Math.floor((diffAnos - anosComuns) * 12);
+            
+            // Cálculo do tempo especial
+            const mesesEspeciaisConvertidos = periodosEspeciais * conversaoEspecial;
+            const anosEspeciais = Math.floor(mesesEspeciaisConvertidos / 12);
+            const mesesEspeciais = Math.floor(mesesEspeciaisConvertidos % 12);
+            
+            // Total
+            const totalAnos = anosComuns + anosEspeciais;
+            const totalMeses = mesesComuns + mesesEspeciais;
+            
+            // Ajuste para meses > 12
+            const anosFinais = totalAnos + Math.floor(totalMeses / 12);
+            const mesesFinais = totalMeses % 12;
+            
+            // Para aposentadoria
+            const tempoAposentadoriaAnos = anosFinais + (conversaoEspecial > 1 ? anosEspeciais * (conversaoEspecial - 1) : 0);
+            
+            // Progresso (considerando 35 anos para homens como exemplo)
+            const progresso = Math.min((tempoAposentadoriaAnos / 35) * 100, 100);
+            
+            // Exibir resultados
+            document.getElementById('tempoComum').textContent = `${anosComuns} anos ${mesesComuns} meses`;
+            document.getElementById('tempoEspecial').textContent = `${anosEspeciais} anos ${mesesEspeciais} meses`;
+            document.getElementById('tempoTotal').textContent = `${anosFinais} anos ${mesesFinais} meses`;
+            document.getElementById('tempoAposentadoria').textContent = `${tempoAposentadoriaAnos.toFixed(1)} anos`;
+            
+            document.getElementById('progressTempo').style.width = `${progresso}%`;
+            document.getElementById('progressText').textContent = `${progresso.toFixed(1)}% do tempo necessário`;
+            
+            document.getElementById('resultTempo').style.display = 'block';
+        }
+        
+        // 2. Cálculo de Aposentadoria por Idade
+        function calcularAposentadoriaIdade() {
+            const idade = parseInt(document.getElementById('idadeAtual').value);
+            const sexo = document.getElementById('sexo').value;
+            const tempoContrib = parseFloat(document.getElementById('tempoContribIdade').value);
+            const regra = document.getElementById('regraAplicavel').value;
+            
+            if (!idade || !tempoContrib) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+            
+            let idadeMinima = 0;
+            let tempoMinimo = 0;
+            let direito = false;
+            let tempoRestante = 0;
+            
+            // Definir requisitos conforme regra
+            if (regra === 'antiga') {
+                idadeMinima = sexo === 'F' ? 60 : 65;
+                tempoMinimo = 15;
+            } else if (regra === 'nova') {
+                idadeMinima = sexo === 'F' ? 62 : 65;
+                tempoMinimo = sexo === 'F' ? 15 : 20;
+            } else {
+                // Transição - pontos ou idade progressiva
+                idadeMinima = sexo === 'F' ? 60 : 65; // Varia por ano
+                tempoMinimo = 15;
+            }
+            
+            // Verificar direito
+            direito = idade >= idadeMinima && tempoContrib >= tempoMinimo;
+            
+            // Calcular tempo restante
+            const faltaIdade = Math.max(0, idadeMinima - idade);
+            const faltaTempo = Math.max(0, tempoMinimo - tempoContrib);
+            tempoRestante = Math.max(faltaIdade, faltaTempo);
+            
+            // Data prevista
+            const hoje = new Date();
+            const dataPrevista = new Date(hoje);
+            dataPrevista.setFullYear(hoje.getFullYear() + Math.ceil(tempoRestante));
+            
+            // Exibir resultados
+            document.getElementById('direitoAposentadoria').textContent = direito ? '✅ SIM' : '❌ NÃO';
+            document.getElementById('direitoAposentadoria').style.color = direito ? '#2E7D32' : '#dc3545';
+            
+            document.getElementById('idadeMinima').textContent = `${idadeMinima} anos`;
+            document.getElementById('tempoRestanteIdade').textContent = `${tempoRestante.toFixed(1)} anos`;
+            document.getElementById('dataPrevista').textContent = direito ? 'Já tem direito!' : dataPrevista.toLocaleDateString('pt-BR');
+            
+            document.getElementById('resultIdade').style.display = 'block';
+        }
+        
+        // 3. Cálculo de Aposentadoria por Tempo de Contribuição
+        function calcularAposentadoriaTempo() {
+            const tempoContrib = parseFloat(document.getElementById('tempoContribTotal').value);
+            const sexo = document.getElementById('sexoTempo').value;
+            const idade = parseInt(document.getElementById('idadeAtualTempo').value) || 0;
+            const regra = document.getElementById('regraTempo').value;
+            
+            if (!tempoContrib) {
+                alert("Por favor, informe o tempo de contribuição.");
+                return;
+            }
+            
+            let tempoNecessario = 0;
+            let pontuacaoAtual = 0;
+            let pontuacaoNecessaria = 0;
+            let direito = false;
+            
+            if (regra === 'antiga') {
+                tempoNecessario = sexo === 'F' ? 30 : 35;
+                direito = tempoContrib >= tempoNecessario;
+            } else if (regra === 'pontos86') {
+                pontuacaoAtual = idade + tempoContrib;
+                pontuacaoNecessaria = sexo === 'F' ? 86 : 96;
+                // Ajuste progressivo (até 2023)
+                const anosApos2019 = Math.min(4, new Date().getFullYear() - 2019);
+                pontuacaoNecessaria += anosApos2019;
+                direito = pontuacaoAtual >= pontuacaoNecessaria;
+                tempoNecessario = sexo === 'F' ? 30 : 35;
+            } else if (regra === 'pontos105') {
+                pontuacaoAtual = idade + tempoContrib;
+                pontuacaoNecessaria = 105;
+                direito = pontuacaoAtual >= pontuacaoNecessaria && 
+                         ((sexo === 'F' && tempoContrib >= 25) || (sexo === 'M' && tempoContrib >= 30));
+                tempoNecessario = sexo === 'F' ? 25 : 30;
+            } else if (regra === 'pedagio') {
+                tempoNecessario = sexo === 'F' ? 30 : 35;
+                const tempoFaltante = tempoNecessario - tempoContrib;
+                const pedagio = tempoFaltante > 0 ? tempoFaltante * 0.5 : 0;
+                const totalNecessario = tempoContrib + Math.max(pedagio, 1);
+                direito = tempoContrib >= totalNecessario;
+                tempoNecessario = totalNecessario;
+            }
+            
+            // Exibir resultados
+            document.getElementById('direitoTempo').textContent = direito ? '✅ SIM' : '❌ NÃO';
+            document.getElementById('direitoTempo').style.color = direito ? '#2E7D32' : '#dc3545';
+            
+            document.getElementById('tempoNecessario').textContent = `${tempoNecessario.toFixed(1)} anos`;
+            document.getElementById('pontuacaoAtual').textContent = `${pontuacaoAtual.toFixed(1)} pontos`;
+            document.getElementById('pontuacaoNecessaria').textContent = `${pontuacaoNecessaria} pontos`;
+            
+            document.getElementById('resultTempoContrib').style.display = 'block';
+        }
+        
+        // 4. Cálculo do Valor do Benefício
+        function calcularBeneficio() {
+            const salariosText = document.getElementById('salariosContribuicao').value;
+            const tipoBeneficio = document.getElementById('tipoBeneficio').value;
+            const aplicarFator = document.getElementById('fatorPrevidenciario').value;
+            
+            if (!salariosText.trim()) {
+                alert("Por favor, informe os salários de contribuição.");
+                return;
+            }
+            
+            // Processar salários
+            const salarios = salariosText
+                .split(/[,;\n]/)
+                .map(s => parseFloat(s.trim()))
+                .filter(s => !isNaN(s) && s > 0);
+            
+            if (salarios.length === 0) {
+                alert("Nenhum salário válido encontrado.");
+                return;
+            }
+            
+            // Ordenar e pegar 80% maiores
+            salarios.sort((a, b) => b - a);
+            const qtd80Porcento = Math.floor(salarios.length * 0.8);
+            const maioresSalarios = salarios.slice(0, qtd80Porcento);
+            
+            // Calcular média
+            const soma = maioresSalarios.reduce((a, b) => a + b, 0);
+            const media = soma / maioresSalarios.length;
+            
+            // Calcular salário de benefício (60% + 2% por ano excedente)
+            let percentual = 0.6; // 60% base
+            // Simulação: assumindo 5 anos acima do mínimo
+            percentual += 5 * 0.02; // +10% = 70% total
+            
+            let salarioBeneficio = media * percentual;
+            
+            // Aplicar fator previdenciário (se selecionado)
+            if (aplicarFator === 'sim') {
+                // Fator simplificado (idade 60, tempo 35)
+                const fator = 0.7; // Exemplo simplificado
+                salarioBeneficio *= fator;
+            }
+            
+            // Aplicar teto do INSS (2024)
+            const tetoINSS = 7507.49;
+            const minimoINSS = 1412.00;
+            
+            salarioBeneficio = Math.min(salarioBeneficio, tetoINSS);
+            salarioBeneficio = Math.max(salarioBeneficio, minimoINSS);
+            
+            // Calcular valor final conforme tipo de benefício
+            let valorBeneficio = salarioBeneficio;
+            
+            switch(tipoBeneficio) {
+                case 'auxilioDoenca':
+                    valorBeneficio *= 0.91; // 91%
+                    break;
+                case 'aposentadoria':
+                    // Já calculado acima
+                    break;
+                case 'aposentadoriaInvalidez':
+                    valorBeneficio *= 1.00; // 100%
+                    break;
+                case 'salarioMaternidade':
+                    valorBeneficio = maioresSalarios[0]; // Último salário
+                    break;
+                case 'pensaoMorte':
+                    valorBeneficio *= 1.00; // 100% para cônjuge
+                    // +10% por dependente (simulação: 1 dependente)
+                    valorBeneficio *= 1.10;
+                    break;
+            }
+            
+            // Garantir mínimo e teto novamente
+            valorBeneficio = Math.min(valorBeneficio, tetoINSS);
+            valorBeneficio = Math.max(valorBeneficio, minimoINSS);
+            
+            // Exibir resultados
+            document.getElementById('mediaSalarios').textContent = `R$ ${media.toFixed(2)}`;
+            document.getElementById('salarioBeneficio').textContent = `R$ ${salarioBeneficio.toFixed(2)}`;
+            document.getElementById('rendaMensal').textContent = `R$ ${salarioBeneficio.toFixed(2)}`;
+            document.getElementById('valorBeneficio').textContent = `R$ ${valorBeneficio.toFixed(2)}`;
+            
+            document.getElementById('resultBeneficio').style.display = 'block';
+        }
+        
+        // 5. Simulação de Regras de Transição
+        function simularRegrasTransicao() {
+            const idade = parseInt(document.getElementById('idadeTransicao').value);
+            const tempoContrib = parseFloat(document.getElementById('tempoTransicao').value);
+            const sexo = document.getElementById('sexoTransicao').value;
+            const professor = document.getElementById('professorTransicao').value;
+            
+            if (!idade || !tempoContrib) {
+                alert("Por favor, preencha idade e tempo de contribuição.");
+                return;
+            }
+            
+            // Pontuação 86/96
+            const pontuacaoAtual = idade + tempoContrib;
+            const pontuacaoNecessaria = sexo === 'F' ? 86 : 96;
+            const anosApos2019 = Math.min(4, new Date().getFullYear() - 2019);
+            const pontuacaoAjustada = pontuacaoNecessaria + anosApos2019;
+            
+            const direito8696 = pontuacaoAtual >= pontuacaoAjustada;
+            
+            // Idade Progressiva
+            const idadeMinimaProgressiva = sexo === 'F' ? 60 + (anosApos2019 * 0.5) : 65;
+            const direitoProgressiva = idade >= idadeMinimaProgressiva && tempoContrib >= 15;
+            
+            // Pedágio 50%
+            const tempoNecessarioAntigo = sexo === 'F' ? 30 : 35;
+            const tempoFaltante = tempoNecessarioAntigo - tempoContrib;
+            const direitoPedagio50 = tempoFaltante <= 2 && tempoFaltante > 0; // Quem faltava até 2 anos
+            
+            // Pedágio 100%
+            const direitoPedagio100 = tempoFaltante > 2 && tempoFaltante <= 10;
+            
+            // Melhor opção
+            let melhorOpcao = "Nenhuma regra se aplica";
+            let detalheMelhor = "Continue contribuindo";
+            
+            if (direito8696) {
+                melhorOpcao = "Regra 86/96 Pontos";
+                detalheMelhor = `Você tem ${pontuacaoAtual} pontos, precisa de ${pontuacaoAjustada}`;
+            } else if (direitoProgressiva) {
+                melhorOpcao = "Idade Progressiva";
+                detalheMelhor = `Idade: ${idade} anos (mínima: ${idadeMinimaProgressiva})`;
+            } else if (direitoPedagio50) {
+                melhorOpcao = "Pedágio 50%";
+                detalheMelhor = `Falta(m) ${tempoFaltante.toFixed(1)} ano(s) + 50%`;
+            } else if (direitoPedagio100) {
+                melhorOpcao = "Pedágio 100%";
+                detalheMelhor = `Falta(m) ${tempoFaltante.toFixed(1)} ano(s) + 100%`;
+            }
+            
+            // Exibir resultados
+            document.getElementById('pontuacao8696').textContent = direito8696 ? '✅ Atingido' : '❌ Não atingido';
+            document.getElementById('pontuacao8696').style.color = direito8696 ? '#2E7D32' : '#dc3545';
+            document.getElementById('detalhe8696').textContent = `${pontuacaoAtual} / ${pontuacaoAjustada} pontos`;
+            
+            document.getElementById('idadeProgressiva').textContent = direitoProgressiva ? '✅ Sim' : '❌ Não';
+            document.getElementById('idadeProgressiva').style.color = direitoProgressiva ? '#2E7D32' : '#dc3545';
+            document.getElementById('detalheProgressiva').textContent = `Idade mínima: ${idadeMinimaProgressiva} anos`;
+            
+            document.getElementById('pedagio50').textContent = direitoPedagio50 ? '✅ Aplicável' : '❌ Não aplicável';
+            document.getElementById('pedagio50').style.color = direitoPedagio50 ? '#2E7D32' : '#6c757d';
+            document.getElementById('detalhePedagio50').textContent = direitoPedagio50 ? `Faltam ${tempoFaltante} ano(s)` : 'Não se enquadra';
+            
+            document.getElementById('pedagio100').textContent = direitoPedagio100 ? '✅ Aplicável' : '❌ Não aplicável';
+            document.getElementById('pedagio100').style.color = direitoPedagio100 ? '#2E7D32' : '#6c757d';
+            document.getElementById('detalhePedagio100').textContent = direitoPedagio100 ? `Faltam ${tempoFaltante} ano(s)` : 'Não se enquadra';
+            
+            document.getElementById('melhorOpcao').textContent = melhorOpcao;
+            document.getElementById('detalheMelhorOpcao').textContent = detalheMelhor;
+            
+            document.getElementById('resultTransicao').style.display = 'block';
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Data padrão para dataFim (hoje)
+            const hoje = new Date();
+            const dataInicio = new Date();
+            dataInicio.setFullYear(hoje.getFullYear() - 20); // 20 anos atrás
+            
+            document.getElementById('dataInicio').value = dataInicio.toISOString().split('T')[0];
+            document.getElementById('dataFim').value = hoje.toISOString().split('T')[0];
+            
+            // Exemplo de salários para benefício
+            document.getElementById('salariosContribuicao').value = "2200, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500";
+            
+            // Data de nascimento exemplo
+            const dataNascimento = new Date();
+            dataNascimento.setFullYear(hoje.getFullYear() - 58);
+            document.getElementById('dataNascimento').value = dataNascimento.toISOString().split('T')[0];
+            
+            // Preencher outros campos de exemplo
+            document.getElementById('idadeAtual').value = 58;
+            document.getElementById('tempoContribIdade').value = 25;
+            document.getElementById('idadeAtualTempo').value = 55;
+            document.getElementById('tempoContribTotal').value = 28;
+            document.getElementById('idadeTransicao').value = 57;
+            document.getElementById('tempoTransicao').value = 28;
+            document.getElementById('periodosEspeciais').value = 24;
+        });
+    </script>
+</body>
+</html>
