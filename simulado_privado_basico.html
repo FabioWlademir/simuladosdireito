@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Simulado — Nível Básico - Fundamentos do Direito Privado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ body{font-family:Arial,sans-serif;margin:0;background:#f5f7fa;color:#222;}
+ header, footer{background:#fff;padding:15px;text-align:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+ .container{max-width:900px;margin:20px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+ a{color:#005bbb;text-decoration:none;font-weight:bold;}
+ .btn-back{display:inline-block;margin:15px 0;padding:10px 15px;background:#005bbb;color:#fff;border-radius:8px;text-decoration:none;}
+ .question{border:1px solid #e0e0e0;padding:15px;margin:15px 0;border-radius:8px;}
+ .option{display:block;padding:8px;margin:5px 0;cursor:pointer;}
+ .correct{background:#e8f5e8;border:1px solid #4caf50;}
+ .incorrect{background:#ffebee;border:1px solid #f44336;}
+ .result{padding:15px;background:#fff9c4;border-radius:8px;margin:15px 0;}
+ .controls{display:flex;gap:10px;margin:15px 0;}
+ .controls button{padding:10px 15px;border:none;border-radius:5px;cursor:pointer;}
+ .btn-submit{background:#005bbb;color:#fff;}
+ .btn-reset{background:#666;color:#fff;}
+ .btn-show{background:#ff9800;color:#fff;}
+ .social a { margin: 0 6px; }
+ .level-badge{display:inline-block;padding:6px 12px;background:#e9f2ff;color:#044a88;border-radius:6px;font-weight:700;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto;">
+    <div>
+      <h2>Simulado — Nível Básico - Fundamentos do Direito Privado</h2>
+      <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a>
+    </div>
+    <a class="btn-back" href="index.html">⬅ Voltar</a>
+  </div>
+  
+  <div class="social" style="margin-top: 15px;">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+</header>
+
+<div class="container">
+  <h3>Simulado - Nível Básico</h3>
+  <div class="level-badge">BÁSICO - 15 QUESTÕES</div>
+  <p>Responda às questões abaixo sobre Fundamentos do Direito Privado</p>
+  
+  <div class="controls">
+    <button class="btn-submit" onclick="submitQuiz()">Corrigir Prova</button>
+    <button class="btn-reset" onclick="resetQuiz()">Reiniciar</button>
+    <button class="btn-show" onclick="showAnswers()">Mostrar Gabarito</button>
+  </div>
+  
+  <div id="quiz-container"></div>
+  <div id="result" class="result" style="display:none;"></div>
+  
+  <a class="btn-back" href="index.html">⬅ Voltar à Página Inicial</a>
+</div>
+
+<footer>
+  <div style="margin-bottom: 15px;">
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a> | 
+    <a href="mailto:f2sites@gmail.com">Feedback: f2sites@gmail.com</a>
+  </div>
+  
+  <div class="social">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+  
+  <div style="margin-top: 15px; font-size: 14px; color: #555;">
+    <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+    <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+    <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+  </div>
+</footer>
+
+<script>
+// Banco de questões para nível básico - DIREITO PRIVADO
+const questions = [
+  {
+    q: "Qual a principal função do Direito na sociedade?",
+    opts: [
+      "Regular as relações sociais com coercitividade",
+      "Criar conflitos entre as pessoas",
+      "Substituir completamente a moral",
+      "Eliminar a necessidade de acordos"
+    ],
+    ans: 0
+  },
+  {
+    q: "A estrutura da norma jurídica é composta por:",
+    opts: [
+      "Hipótese normativa e consequência jurídica",
+      "Sujeito e predicado gramatical",
+      "Artigo e parágrafo",
+      "Premissa e conclusão lógica"
+    ],
+    ans: 0
+  },
+  {
+    q: "Quais são os elementos da relação jurídica?",
+    opts: [
+      "Sujeitos, conteúdo, vínculo e objeto",
+      "Apenas autor e réu",
+      "Norma e sanção",
+      "Contrato e cláusulas"
+    ],
+    ans: 0
+  },
+  {
+    q: "O fenômeno da juridicização refere-se a:",
+    opts: [
+      "Transformação do fato social em fato jurídico",
+      "Criação de novas leis pelo Congresso",
+      "Publicação de jurisprudência",
+      "Registro de documentos em cartório"
+    ],
+    ans: 0
+  },
+  {
+    q: "Prescrição e decadência são institutos que tratam:",
+    opts: [
+      "Da perda de direitos pelo decurso do tempo",
+      "Da criação de novos direitos",
+      "Da validade dos contratos",
+      "Da capacidade das pessoas"
+    ],
+    ans: 0
+  },
+  {
+    q: "Os três planos do mundo jurídico são:",
+    opts: [
+      "Existência, validade e eficácia",
+      "Público, privado e misto",
+      "Federal, estadual e municipal",
+      "Material, processual e penal"
+    ],
+    ans: 0
+  },
+  {
+    q: "Os elementos essenciais do negócio jurídico são:",
+    opts: [
+      "Agente capaz, objeto lícito e forma prescrita",
+      "Apenas a vontade das partes",
+      "Condição, termo e encargo",
+      "Registro público obrigatório"
+    ],
+    ans: 0
+  },
+  {
+    q: "A principal diferença entre Direito Público e Privado está:",
+    opts: [
+      "Na presença do Estado como parte e no interesse predominante",
+      "No valor das multas aplicadas",
+      "Na complexidade das normas",
+      "No tribunal competente"
+    ],
+    ans: 0
+  },
+  {
+    q: "A constitucionalização do Direito Privado significa:",
+    opts: [
+      "Influência dos princípios constitucionais nas relações privadas",
+      "Extinção do Código Civil",
+      "Transferência para tribunais superiores",
+      "Eliminação da autonomia privada"
+    ],
+    ans: 0
+  },
+  {
+    q: "A capacidade de direito (de gozo) refere-se a:",
+    opts: [
+      "Aptidão para ser titular de direitos e deveres",
+      "Capacidade de exercer pessoalmente atos civis",
+      "Capacidade de contratar empréstimos",
+      "Maioridade civil"
+    ],
+    ans: 0
+  },
+  {
+    q: "Os direitos de personalidade são caracterizados por:",
+    opts: [
+      "Intransmissibilidade, irrenunciabilidade e imprescritibilidade",
+      "Transmissibilidade aos herdeiros",
+      "Renunciabilidade absoluta",
+      "Prescritibilidade em 10 anos"
+    ],
+    ans: 0
+  },
+  {
+    q: "A pessoa jurídica é definida como:",
+    opts: [
+      "Entidade com personalidade própria distinta de seus membros",
+      "Apenas empresas multinacionais",
+      "Sinônimo de pessoa natural",
+      "Somente órgãos públicos"
+    ],
+    ans: 0
+  },
+  {
+    q: "O Estatuto da Pessoa com Deficiência estabeleceu que:",
+    opts: [
+      "A deficiência não afeta a plena capacidade civil",
+      "Toda pessoa com deficiência é incapaz",
+      "Deficiência impede a prática de atos civis",
+      "Curatela é obrigatória"
+    ],
+    ans: 0
+  },
+  {
+    q: "A discriminação racial no direito privado é:",
+    opts: [
+      "Vedada pela Constituição e legislação especial",
+      "Permitida pela autonomia privada",
+      "Aceita em contratos particulares",
+      "Sem relevância jurídica"
+    ],
+    ans: 0
+  },
+  {
+    q: "Os direitos dos povos indígenas incluem:",
+    opts: [
+      "Reconhecimento de organização social, costumes e terras",
+      "Obrigatoriedade de assimilação cultural",
+      "Proibição de uso de línguas indígenas",
+      "Negação de direitos territoriais"
+    ],
+    ans: 0
+  },
+  {
+    q: "A função social da propriedade significa que:",
+    opts: [
+      "O exercício do direito deve atender finalidades sociais",
+      "A propriedade deve ser estatizada",
+      "Uso ilimitado sem restrições",
+      "Proibição de propriedade privada"
+    ],
+    ans: 0
+  },
+  {
+    q: "A teoria da realidade sobre pessoa jurídica defende que:",
+    opts: [
+      "A personalidade é criação técnica do direito",
+      "A pessoa jurídica existe naturalmente",
+      "É mera ficção sem realidade",
+      "Não tem utilidade prática"
+    ],
+    ans: 0
+  },
+  {
+    q: "A desconsideração da personalidade jurídica permite:",
+    opts: [
+      "Atingir patrimônio de sócios em casos de abuso",
+      "Extinguir automaticamente a empresa",
+      "Criar nova pessoa jurídica",
+      "Aumentar o capital social"
+    ],
+    ans: 0
+  },
+  {
+    q: "A Lei de Cotas (12.711/2012) estabelece:",
+    opts: [
+      "Reserva de vagas para estudantes de escolas públicas, negros, pardos e indígenas",
+      "Proibição de acesso ao ensino superior",
+      "Igualdade apenas formal",
+      "Exclusão de critérios raciais"
+    ],
+    ans: 0
+  },
+  {
+    q: "A coercitividade das normas jurídicas significa:",
+    opts: [
+      "Possibilidade de imposição forçada pelo Estado",
+      "Cumprimento sempre voluntário",
+      "Ausência de sanções",
+      "Mera sugestão de conduta"
+    ],
+    ans: 0
+  }
+];
+
+// Embaralhar questões e opções
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Embaralhar questões e opções de cada questão
+const shuffledQuestions = shuffleArray([...questions]).slice(0, 15);
+shuffledQuestions.forEach(q => {
+  // Salvar a resposta correta original
+  const originalQuestion = questions.find(original => original.q === q.q);
+  const correctAnswerText = originalQuestion.opts[originalQuestion.ans];
+  
+  // Embaralhar opções
+  q.opts = shuffleArray([...q.opts]);
+  
+  // Encontrar nova posição da resposta correta
+  q.ans = q.opts.indexOf(correctAnswerText);
+});
+
+// Renderizar quiz
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  
+  shuffledQuestions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+    questionDiv.id = `q${index}`;
+    
+    let optionsHTML = '';
+    question.opts.forEach((option, optIndex) => {
+      const letter = String.fromCharCode(65 + optIndex);
+      optionsHTML += `
+        <label class="option" id="q${index}opt${optIndex}">
+          <input type="radio" name="q${index}" value="${optIndex}">
+          <strong>${letter})</strong> ${option}
+        </label>
+      `;
+    });
+    
+    questionDiv.innerHTML = `
+      <div><strong>Questão ${index + 1}:</strong> ${question.q}</div>
+      <div style="margin-top:10px">${optionsHTML}</div>
+      <div id="q${index}fb" style="margin-top:8px; display:none;"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+}
+
+// Submeter quiz
+function submitQuiz() {
+  let score = 0;
+  const total = shuffledQuestions.length;
+  
+  shuffledQuestions.forEach((question, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    
+    if (selected) {
+      const selectedValue = parseInt(selected.value);
+      const selectedOpt = document.getElementById(`q${index}opt${selectedValue}`);
+      
+      if (selectedValue === question.ans) {
+        score++;
+        selectedOpt.classList.add('correct');
+        feedback.innerHTML = '<span style="color:green">✓ Resposta correta</span>';
+      } else {
+        selectedOpt.classList.add('incorrect');
+        correctOpt.classList.add('correct');
+        feedback.innerHTML = `<span style="color:red">✗ Resposta incorreta. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+      }
+    } else {
+      correctOpt.classList.add('correct');
+      feedback.innerHTML = `<span style="color:orange">Não respondida. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+    }
+  });
+  
+  const percent = ((score / total) * 100).toFixed(1);
+  const finalGrade = ((score / total) * 10).toFixed(1);
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <strong>RESULTADO</strong><br>
+    Acertos: ${score} / ${total}<br>
+    Nota: ${finalGrade}<br>
+    Percentual: ${percent}%
+  `;
+}
+
+// Reiniciar quiz
+function resetQuiz() {
+  shuffledQuestions.forEach((_, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    if (feedback) {
+      feedback.style.display = 'none';
+      feedback.innerHTML = '';
+    }
+    
+    for (let i = 0; i < 4; i++) {
+      const opt = document.getElementById(`q${index}opt${i}`);
+      if (opt) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const radios = document.querySelectorAll(`input[name="q${index}"]`);
+    radios.forEach(radio => radio.checked = false);
+  });
+  
+  document.getElementById('result').style.display = 'none';
+}
+
+// Mostrar gabarito
+function showAnswers() {
+  shuffledQuestions.forEach((question, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    feedback.innerHTML = `<span style="color:blue">Gabarito: ${String.fromCharCode(65 + question.ans)})</span>`;
+    correctOpt.classList.add('correct');
+    
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected && parseInt(selected.value) !== question.ans) {
+      const selectedOpt = document.getElementById(`q${index}opt${selected.value}`);
+      selectedOpt.classList.add('incorrect');
+    }
+  });
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = '<strong>GABARITO MOSTRADO</strong>';
+}
+
+// Inicializar quiz
+renderQuiz();
+</script>
+</body>
+</html>

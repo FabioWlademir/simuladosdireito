@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média UNISINOS | Calcule Sua Média Facilmente</title>
+    <meta name="description" content="Calculadora de média UNISINOS - Calcule sua média automaticamente usando a fórmula oficial da universidade. Entenda passo a passo como funciona o cálculo das notas.">
+    <meta name="keywords" content="calculadora média UNISINOS, cálculo notas, grau A grau B, fórmula média, aprovação UNISINOS">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Média UNISINOS">
+    <meta property="og:description" content="Calcule sua média automaticamente usando a fórmula oficial da UNISINOS">
+    <meta property="og:type" content="website">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Média UNISINOS",
+        "description": "Calculadora para calcular médias usando a fórmula oficial da UNISINOS",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "author": {
+            "@type": "Person",
+            "name": "Fábio Wlademir"
+        }
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --success-color: #2e7d32;
+            --warning-color: #f57c00;
+            --error-color: #c62828;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: var(--primary-color);
+            padding: 25px 20px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .header .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .header .social a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .header .social a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header .social img {
+            height: 20px;
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        /* Navigation */
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover,
+        .nav-bar a:focus {
+            background: var(--accent-color);
+            outline: none;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section {
+            background: var(--card-bg);
+            margin: 25px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        /* Calculator Styles */
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .calculator h1 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+        
+        .input-group input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 85, 170, 0.2);
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .btn:hover {
+            background: #003d7a;
+            transform: translateY(-2px);
+        }
+        
+        .btn:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        .result {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .approved {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .recovery {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .formula-box {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .explanation {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .explanation h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #dee2e6;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .step-content {
+            padding-left: 20px;
+        }
+        
+        .example {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border-left: 3px solid var(--success-color);
+        }
+        
+        .alert {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .arredondamento-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 0.95em;
+            color: #444;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer .social a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .footer .social a:hover {
+            background: rgba(0, 51, 102, 0.1);
+            text-decoration: none;
+        }
+        
+        .footer .social img {
+            height: 20px;
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .visitor-counter {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .visitor-counter .count {
+            font-size: 1.3em;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        /* Skip to main content for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header .social {
+                gap: 10px;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            
+            .section {
+                padding: 20px;
+                margin: 15px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.7em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .section h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <div class="header" role="banner">
+        <h1>🧮 Calculadora de Média UNISINOS</h1>
+        <p>Calcule sua média automaticamente usando a fórmula oficial da universidade</p>
+
+        <p><a href="https://f2suporte.blogspot.com/" target="_blank" style="color:white;text-decoration:none; font-weight:bold">Design by Fábio Wlademir</a></p>
+
+        <div class="social" aria-label="Redes sociais">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20" height="20"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="20" height="20"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" width="20" height="20"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="20" height="20"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="20" height="20"> Instagram
+            </a>
+        </div>
+    </div>
+
+    <nav class="nav-bar" aria-label="Navegação principal">
+        <a href="index.html">🏠 Início</a>
+        <a href="https://uiclap.bio/wlademir" target="_blank">ℹ️ Sobre o Autor</a>
+        <a href="#calculadora">🧮 Calculadora</a>
+        <a href="#explicacao">📖 Como Calcular</a>
+        <a href="#duvidas">❓ Dúvidas</a>
+    </nav>
+
+    <div class="container">
+        <main id="main-content">
+            <div class="alert">
+                <strong>💡 Devido a muitas dúvidas sobre como funciona o cálculo, estamos explicando passo a passo e tentamos explicar da melhor forma.</strong>
+            </div>
+
+            <div class="section" id="calculadora">
+                <h2>🧮 Calculadora de Média</h2>
+                
+                <div class="calculator">
+                    <div class="formula-box">
+                        <strong>Fórmula da Média UNISINOS:</strong><br>
+                        Média = (Nota Grau A + Nota Grau B × 2) ÷ 3
+                    </div>
+
+                    <div class="input-group">
+                        <label for="grauA">Nota Grau A:</label>
+                        <input type="number" id="grauA" step="0.1" min="0" max="10" placeholder="Ex: 7,9">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="grauB">Nota Grau B:</label>
+                        <input type="number" id="grauB" step="0.1" min="0" max="10" placeholder="Ex: 7,0">
+                    </div>
+
+                    <button class="btn" onclick="calcularMedia()">Calcular Média</button>
+
+                    <div id="resultado" class="result"></div>
+
+                    <div class="arredondamento-info">
+                        <strong>📊 Sobre o Arredondamento:</strong><br>
+                        As médias são arredondadas para <strong>1 casa decimal</strong> seguindo as regras matemáticas padrão.
+                        Exemplo: 6,67 → 6,7 | 6,64 → 6,6
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="explicacao">
+                <h2>📖 Entendendo o Cálculo da Média</h2>
+                
+                <div class="explanation">
+                    <h3>Como funciona o cálculo da média na UNISINOS?</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">1. Fórmula Básica</div>
+                        <div class="step-content">
+                            <p>A UNISINOS utiliza uma fórmula específica para calcular a média final dos alunos:</p>
+                            <div class="formula-box">
+                                Média = (Nota Grau A + Nota Grau B × 2) ÷ 3
+                            </div>
+                            <p>Note que a <strong>Nota Grau B tem peso 2</strong> na fórmula, enquanto a <strong>Nota Grau A tem peso 1</strong>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">2. Por que o Grau B tem peso maior?</div>
+                        <div class="step-content">
+                            <p>O Grau B geralmente corresponde a avaliações mais complexas ou finais, como provas finais, trabalhos de conclusão ou exames abrangentes. Por isso, tem maior peso no cálculo da média.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">3. Exemplo Prático</div>
+                        <div class="step-content">
+                            <p>Vamos calcular com as notas do exemplo:</p>
+                            <div class="example">
+                                <p><strong>Nota Grau A:</strong> 7,0</p>
+                                <p><strong>Nota Grau B:</strong> 6,5</p>
+                                <p><strong>Cálculo:</strong></p>
+                                <p>Média = (7,0 + 6,5 × 2) ÷ 3</p>
+                                <p>Média = (7,0 + 13,0) ÷ 3</p>
+                                <p>Média = 20,0 ÷ 3</p>
+                                <p>Média = 6,666... → <strong>6,7</strong> (arredondado)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">4. Critério de Aprovação</div>
+                        <div class="step-content">
+                            <p>Para ser aprovado diretamente, o aluno precisa atingir média igual ou superior a 6,0:</p>
+                            <ul>
+                                <li><strong>Média ≥ 6,0</strong> → <span style="color: green; font-weight: bold;">APROVADO</span></li>
+                                <li><strong>Média < 6,0</strong> → <span style="color: red; font-weight: bold;">RECUPERAÇÃO GRAU C</span></li>
+                            </ul>
+                            <p>No nosso exemplo, a média foi 6,7, portanto o aluno está <strong>APROVADO</strong>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">5. Dica Importante</div>
+                        <div class="step-content">
+                            <p>Como o Grau B tem peso maior, é fundamental dedicar atenção especial a essa avaliação. Uma boa nota no Grau B pode compensar uma nota mais baixa no Grau A.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="duvidas">
+                <h2>❓ Dúvidas Frequentes</h2>
+                
+                <div class="explanation">
+                    <div class="step">
+                        <div class="step-title">Por que 6,67 aparece como 6,7?</div>
+                        <div class="step-content">
+                            <p>Utilizamos <strong>arredondamento para 1 casa decimal</strong> seguindo as regras matemáticas:</p>
+                            <ul>
+                                <li>Se o segundo decimal for <strong>5 ou mais</strong>: arredonda para cima</li>
+                                <li>Se o segundo decimal for <strong>menos que 5</strong>: arredonda para baixo</li>
+                            </ul>
+                            <p>Exemplo: 6,67 → segundo decimal é 7 → arredonda para 6,7</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">O que acontece se eu ficar em recuperação?</div>
+                        <div class="step-content">
+                            <p>Se sua média for inferior a 6,0, você terá direito ao Grau C (prova de recuperação). A nota do Grau C substituirá a menor nota entre Grau A e Grau B, e a média será recalculada.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Posso usar a calculadora para qualquer disciplina?</div>
+                        <div class="step-content">
+                            <p>Sim, a fórmula é padrão para a maioria das disciplinas da UNISINOS. No entanto, verifique sempre com seu professor se há alguma variação específica para sua disciplina.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">As notas podem ser inseridas com vírgula ou ponto?</div>
+                        <div class="step-content">
+                            <p>Sim, a calculadora aceita ambos os formatos. Você pode digitar "7,9" ou "7.9" que o sistema entenderá corretamente.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="alert">
+                        <strong>📧 Ainda com dúvidas?</strong><br>
+                        Entre em contato conosco: <a href="mailto:f2sites@gmail.com">f2sites@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+        <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+        <p>Esta calculadora foi desenvolvida com base na fórmula oficial da UNISINOS.</p>
+        <p>Este recurso não possui vínculo institucional com a UNISINOS. É um material independente criado para auxiliar os estudantes.</p>
+        <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+
+        <div class="visitor-counter">
+            <span>👁️ Total de visitas: <span class="count" id="visitCount">12.683</span></span>
+        </div>
+
+        <div class="social" aria-label="Redes sociais no rodapé">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20" height="20"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" rel="noopener" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="20" height="20"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" rel="noopener" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" width="20" height="20"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" rel="noopener" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="20" height="20"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" rel="noopener" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="20" height="20"> Instagram
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Contador de visitas
+        function updateVisitorCount() {
+            // Valor inicial: 12683 visitas
+            let visitCount = localStorage.getItem('siteVisitCount');
+            
+            if (!visitCount) {
+                visitCount = 12683; // Começar com 12683 visitas
+            } else {
+                visitCount = parseInt(visitCount) + 1; // Incrementar a cada visita
+            }
+            
+            localStorage.setItem('siteVisitCount', visitCount);
+            document.getElementById('visitCount').textContent = visitCount.toLocaleString('pt-BR');
+        }
+
+        // Chamar a função quando a página carregar
+        document.addEventListener('DOMContentLoaded', updateVisitorCount);
+
+        function calcularMedia() {
+            // Obter os valores dos inputs
+            const grauA = parseFloat(document.getElementById('grauA').value.replace(',', '.'));
+            const grauB = parseFloat(document.getElementById('grauB').value.replace(',', '.'));
+            
+            // Validar os inputs
+            if (isNaN(grauA) || isNaN(grauB)) {
+                alert('Por favor, insira notas válidas para ambos os graus.');
+                return;
+            }
+            
+            if (grauA < 0 || grauA > 10 || grauB < 0 || grauB > 10) {
+                alert('As notas devem estar entre 0 e 10.');
+                return;
+            }
+            
+            // Calcular a média
+            const media = (grauA + (grauB * 2)) / 3;
+            
+            // Arredondar para 1 casa decimal (alterado de 2 para 1 casa)
+            const mediaArredondada = Math.round(media * 10) / 10;
+            
+            // Determinar a situação
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.style.display = 'block';
+            
+            if (mediaArredondada >= 6.0) {
+                resultadoDiv.className = 'result approved';
+                resultadoDiv.innerHTML = `
+                    <h3>🎓 Resultado</h3>
+                    Média: <strong>${mediaArredondada.toString().replace('.', ',')}</strong><br>
+                    Situação: <strong>APROVADO</strong>
+                    <p style="margin-top: 10px; font-size: 0.9em; font-weight: normal;">Parabéns! Você atingiu a média necessária para aprovação.</p>
+                `;
+            } else {
+                resultadoDiv.className = 'result recovery';
+                resultadoDiv.innerHTML = `
+                    <h3>🎓 Resultado</h3>
+                    Média: <strong>${mediaArredondada.toString().replace('.', ',')}</strong><br>
+                    Situação: <strong>RECUPERAÇÃO GRAU C</strong>
+                    <p style="margin-top: 10px; font-size: 0.9em; font-weight: normal;">Você terá direito à prova de recuperação (Grau C).</p>
+                `;
+            }
+            
+            // Rolagem suave para o resultado
+            resultadoDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // Permitir Enter para calcular
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calcularMedia();
+            }
+        });
+    </script>
+</body>
+</html>

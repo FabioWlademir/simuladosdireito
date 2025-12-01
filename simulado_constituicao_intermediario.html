@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Simulado — Nível Intermediário - Constituição e Estado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ body{font-family:Arial,sans-serif;margin:0;background:#f5f7fa;color:#222;}
+ header, footer{background:#fff;padding:15px;text-align:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+ .container{max-width:900px;margin:20px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+ a{color:#005bbb;text-decoration:none;font-weight:bold;}
+ .btn-back{display:inline-block;margin:15px 0;padding:10px 15px;background:#005bbb;color:#fff;border-radius:8px;text-decoration:none;}
+ .question{border:1px solid #e0e0e0;padding:15px;margin:15px 0;border-radius:8px;}
+ .option{display:block;padding:8px;margin:5px 0;cursor:pointer;}
+ .correct{background:#e8f5e8;border:1px solid #4caf50;}
+ .incorrect{background:#ffebee;border:1px solid #f44336;}
+ .result{padding:15px;background:#fff9c4;border-radius:8px;margin:15px 0;}
+ .controls{display:flex;gap:10px;margin:15px 0;}
+ .controls button{padding:10px 15px;border:none;border-radius:5px;cursor:pointer;}
+ .btn-submit{background:#005bbb;color:#fff;}
+ .btn-reset{background:#666;color:#fff;}
+ .btn-show{background:#ff9800;color:#fff;}
+ .social a { margin: 0 6px; }
+ .level-badge{display:inline-block;padding:6px 12px;background:#ffeaa0;color:#885504;border-radius:6px;font-weight:700;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto;">
+    <div>
+      <h2>Simulado — Nível Intermediário - Constituição e Estado</h2>
+      <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a>
+    </div>
+    <a class="btn-back" href="index.html">⬅ Voltar</a>
+  </div>
+  
+  <div class="social" style="margin-top: 15px;">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+</header>
+
+<div class="container">
+  <h3>Simulado - Nível Intermediário</h3>
+  <div class="level-badge">INTERMEDIÁRIO - 15 QUESTÕES</div>
+  <p>Responda às questões abaixo sobre Constituição e Estado</p>
+  
+  <div class="controls">
+    <button class="btn-submit" onclick="submitQuiz()">Corrigir Prova</button>
+    <button class="btn-reset" onclick="resetQuiz()">Reiniciar</button>
+    <button class="btn-show" onclick="showAnswers()">Mostrar Gabarito</button>
+  </div>
+  
+  <div id="quiz-container"></div>
+  <div id="result" class="result" style="display:none;"></div>
+  
+  <a class="btn-back" href="index.html">⬅ Voltar à Página Inicial</a>
+</div>
+
+<footer>
+  <div style="margin-bottom: 15px;">
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a> | 
+    <a href="mailto:f2sites@gmail.com">Feedback: f2sites@gmail.com</a>
+  </div>
+  
+  <div class="social">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+  
+  <div style="margin-top: 15px; font-size: 14px; color: #555;">
+    <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+    <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+    <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+  </div>
+</footer>
+
+<script>
+// Banco de questões para nível intermediário - CONSTITUIÇÃO E ESTADO
+const questions = [
+  {
+    q: "Qual a diferença entre Poder Constituinte Originário e Derivado?",
+    opts: [
+      "Originário é inicial e ilimitado; Derivado é de reforma e limitado",
+      "Ambos têm a mesma natureza e limites",
+      "Originário só existe em monarquias",
+      "Derivado pode criar nova Constituição"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que caracteriza o controle difuso de constitucionalidade?",
+    opts: [
+      "Pode ser exercido por qualquer juiz em caso concreto",
+      "Só pode ser exercido pelo STF",
+      "Necessita de lei específica para ser aplicado",
+      "É preventivo e não repressivo"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a principal característica da rigidez constitucional?",
+    opts: [
+      "Processo mais dificultoso para alteração do texto constitucional",
+      "Impossibilidade de qualquer emenda",
+      "Facilidade para modificar a Constituição",
+      "Igualdade de procedimento com leis ordinárias"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que significa eficácia horizontal dos direitos fundamentais?",
+    opts: [
+      "Aplicação nas relações entre particulares",
+      "Aplicação apenas contra o Estado",
+      "Eficácia limitada aos direitos políticos",
+      "Aplicação somente em âmbito internacional"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a diferença entre supremacia formal e material da Constituição?",
+    opts: [
+      "Formal refere-se ao processo; material ao conteúdo",
+      "São conceitos sinônimos",
+      "Material trata apenas da forma de governo",
+      "Formal diz respeito apenas aos direitos fundamentais"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que são cláusulas pétreas na Constituição?",
+    opts: [
+      "Matérias que não podem ser abolidas por emenda constitucional",
+      "Disposições transitórias da Constituição",
+      "Normas que podem ser alteradas por lei ordinária",
+      "Preceitos que perderam eficácia"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a natureza jurídica do preâmbulo constitucional?",
+    opts: [
+      "Introdução sem força normativa direta, mas com valor interpretativo",
+      "Norma de eficácia plena e aplicabilidade imediata",
+      "Anexo sem qualquer relevância jurídica",
+      "Disposição com hierarquia superior aos demais artigos"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que caracteriza o federalismo cooperativo?",
+    opts: [
+      "Colaboração entre os entes federados para realização de políticas públicas",
+      "Independência absoluta entre União, Estados e Municípios",
+      "Subordinação dos Estados à União",
+      "Ausência de autonomia dos entes federados"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a diferença entre sistema parlamentarista e presidencialista?",
+    opts: [
+      "No parlamentarismo há separação entre Chefe de Estado e Governo",
+      "No presidencialismo o Presidente é eleito indiretamente",
+      "No parlamentarismo o Executivo não responde ao Legislativo",
+      "No presidencialismo o Primeiro-Ministro comanda o governo"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que é mutação constitucional?",
+    opts: [
+      "Alteração informal do sentido da norma sem modificar o texto",
+      "Modificação formal do texto constitucional",
+      "Revogação tácita de dispositivo constitucional",
+      "Criação de nova Constituição"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a função principal do princípio da proporcionalidade?",
+    opts: [
+      "Limitar a atuação estatal para proteger direitos fundamentais",
+      "Ampliar os poderes do Estado indiscriminadamente",
+      "Eliminar a necessidade de fundamentação das decisões",
+      "Substituir o devido processo legal"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que diferencia o controle concentrado do difuso?",
+    opts: [
+      "No concentrado há decisão com eficácia erga omnes",
+      "No difuso só o STF pode julgar",
+      "No concentrado qualquer juiz pode decidir",
+      "No difuso a decisão vale para todos os casos"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual o significado da reserva do possível?",
+    opts: [
+      "Limitação dos direitos sociais pela disponibilidade orçamentária",
+      "Possibilidade ilimitada de criação de direitos",
+      "Reserva de vagas em concursos públicos",
+      "Direito do Estado de não cumprir suas obrigações"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que caracteriza o Estado Laico?",
+    opts: [
+      "Neutralidade religiosa e não confissionalidade estatal",
+      "Preferência por determinada religião",
+      "Proibição de qualquer manifestação religiosa",
+      "Subordinação do Estado a dogmas religiosos"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a diferença entre direitos individuais e coletivos?",
+    opts: [
+      "Individuais são exercidos singularmente; coletivos por grupo",
+      "São categorias idênticas",
+      "Coletivos só existem em ditaduras",
+      "Individuais não são protegidos constitucionalmente"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que significa o princípio da simetria na federação?",
+    opts: [
+      "Organização similar entre os entes federados",
+      "Desigualdade intencional entre estados",
+      "Centralização do poder na União",
+      "Ausência de autonomia municipal"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a natureza do mandado de injunção?",
+    opts: [
+      "Remédio constitucional para regulamentação de direito",
+      "Ação para anular lei inconstitucional",
+      "Medida para proteger direito líquido e certo",
+      "Instrumento para controle de constitucionalidade"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que caracteriza o ativismo judicial?",
+    opts: [
+      "Intervenção mais ampla do Judiciário em políticas públicas",
+      "Ausência de controle de constitucionalidade",
+      "Submissão total do Judiciário ao Executivo",
+      "Interpretação literal restritiva da Constituição"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a diferença entre emenda e revisão constitucional?",
+    opts: [
+      "Revisão tem procedimento próprio e prazo determinado",
+      "São instrumentos idênticos",
+      "Emenda só pode modificar cláusulas pétreas",
+      "Revisão é mais dificultosa que emenda"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que significa o princípio da máxima efetividade na interpretação constitucional?",
+    opts: [
+      "Dar maior eficácia possível às normas constitucionais",
+      "Restringir ao máximo os direitos fundamentais",
+      "Interpretar a Constituição de forma limitada",
+      "Priorizar a vontade do legislador ordinário"
+    ],
+    ans: 0
+  }
+];
+
+// Embaralhar questões e opções
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Embaralhar questões e opções de cada questão
+const shuffledQuestions = shuffleArray([...questions]).slice(0, 15);
+shuffledQuestions.forEach(q => {
+  // Salvar a resposta correta original
+  const originalQuestion = questions.find(original => original.q === q.q);
+  const correctAnswerText = originalQuestion.opts[originalQuestion.ans];
+  
+  // Embaralhar opções
+  q.opts = shuffleArray([...q.opts]);
+  
+  // Encontrar nova posição da resposta correta
+  q.ans = q.opts.indexOf(correctAnswerText);
+});
+
+// Renderizar quiz
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  
+  shuffledQuestions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+    questionDiv.id = `q${index}`;
+    
+    let optionsHTML = '';
+    question.opts.forEach((option, optIndex) => {
+      const letter = String.fromCharCode(65 + optIndex);
+      optionsHTML += `
+        <label class="option" id="q${index}opt${optIndex}">
+          <input type="radio" name="q${index}" value="${optIndex}">
+          <strong>${letter})</strong> ${option}
+        </label>
+      `;
+    });
+    
+    questionDiv.innerHTML = `
+      <div><strong>Questão ${index + 1}:</strong> ${question.q}</div>
+      <div style="margin-top:10px">${optionsHTML}</div>
+      <div id="q${index}fb" style="margin-top:8px; display:none;"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+}
+
+// Submeter quiz
+function submitQuiz() {
+  let score = 0;
+  const total = shuffledQuestions.length;
+  
+  shuffledQuestions.forEach((question, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    
+    if (selected) {
+      const selectedValue = parseInt(selected.value);
+      const selectedOpt = document.getElementById(`q${index}opt${selectedValue}`);
+      
+      if (selectedValue === question.ans) {
+        score++;
+        selectedOpt.classList.add('correct');
+        feedback.innerHTML = '<span style="color:green">✓ Resposta correta</span>';
+      } else {
+        selectedOpt.classList.add('incorrect');
+        correctOpt.classList.add('correct');
+        feedback.innerHTML = `<span style="color:red">✗ Resposta incorreta. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+      }
+    } else {
+      correctOpt.classList.add('correct');
+      feedback.innerHTML = `<span style="color:orange">Não respondida. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+    }
+  });
+  
+  const percent = ((score / total) * 100).toFixed(1);
+  const finalGrade = ((score / total) * 10).toFixed(1);
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <strong>RESULTADO</strong><br>
+    Acertos: ${score} / ${total}<br>
+    Nota: ${finalGrade}<br>
+    Percentual: ${percent}%
+  `;
+}
+
+// Reiniciar quiz
+function resetQuiz() {
+  shuffledQuestions.forEach((_, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    if (feedback) {
+      feedback.style.display = 'none';
+      feedback.innerHTML = '';
+    }
+    
+    for (let i = 0; i < 4; i++) {
+      const opt = document.getElementById(`q${index}opt${i}`);
+      if (opt) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const radios = document.querySelectorAll(`input[name="q${index}"]`);
+    radios.forEach(radio => radio.checked = false);
+  });
+  
+  document.getElementById('result').style.display = 'none';
+}
+
+// Mostrar gabarito
+function showAnswers() {
+  shuffledQuestions.forEach((question, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    feedback.innerHTML = `<span style="color:blue">Gabarito: ${String.fromCharCode(65 + question.ans)})</span>`;
+    correctOpt.classList.add('correct');
+    
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected && parseInt(selected.value) !== question.ans) {
+      const selectedOpt = document.getElementById(`q${index}opt${selected.value}`);
+      selectedOpt.classList.add('incorrect');
+    }
+  });
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = '<strong>GABARITO MOSTRADO</strong>';
+}
+
+// Inicializar quiz
+renderQuiz();
+</script>
+</body>
+</html>

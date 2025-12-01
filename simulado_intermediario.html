@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Simulado – Intermediário (Conhecendo o Direito)</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f3f5f7;margin:0;padding:0}
+  .wrap{max-width:980px;margin:28px auto;background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+  header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e6e9ee;padding-bottom:12px}
+  header h1{font-size:20px;color:#042f66;margin:0}
+  .contacts a{color:#0b61a8;text-decoration:none}
+  .level-badge{display:inline-block;padding:6px 10px;background:#ffeaa0;color:#885504;border-radius:6px;margin-bottom:8px;font-weight:700}
+  .controls{margin:14px 0}
+  button{background:#0066cc;color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+  button.secondary{background:#28a745}
+  .question{border:1px solid #eef3fb;padding:12px;margin:12px 0;border-radius:8px;background:#fcfeff}
+  label{display:block;margin:8px 0;padding:8px;border-radius:6px;cursor:pointer}
+  .correct{background:#e6ffea;border:1px solid #2d9b4a}
+  .incorrect{background:#ffeef0;border:1px solid #d64545}
+  .result{padding:14px;background:#fffbe6;border:1px solid #ffe8a1;border-radius:8px;margin-top:12px}
+  .small{font-size:0.9rem;color:#556}
+  footer{margin-top:18px;padding-top:12px;border-top:1px solid #e6e9ee;color:#334}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Simulado – Conhecendo o Direito</h1>
+    <div class="small">Design by <strong>Fábio Wlademir</strong> – Analista de Suporte | NOC | Estudante de Direito - UNISINOS</div>
+  </div>
+  <div class="contacts small">
+    <div><a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank">WhatsApp</a> | <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">LinkedIn</a></div>
+    <div><a href="https://fabiowlademir.github.io/" target="_blank">GitHub</a> | <a href="https://f2suporte.blogspot.com/" target="_blank">Blog</a></div>
+    <div><a href="https://www.youtube.com/@fabiowlademirrs" target="_blank">YouTube</a> | <a href="https://www.instagram.com/fabiowlademirrs" target="_blank">Instagram</a></div>
+  </div>
+</header>
+
+<main>
+<h2 class="level-badge">INTERMEDIÁRIO – 15 questões</h2>
+<p class="small">Responda todas as questões e clique em <strong>Corrigir prova</strong>. O sistema mostrará sua nota de 0 a 10, evidenciará respostas corretas/erradas e exibirá o gabarito. <strong>As questões são aleatórias a cada acesso!</strong></p>
+
+<div class="controls">
+  <button id="btnSubmit">Corrigir prova</button>
+  <button id="btnReset" class="secondary">Reiniciar</button>
+  <button id="btnShow" style="background:#444;color:#fff;border-radius:8px">Mostrar gabarito</button>
+  <a href="index.html" style="margin-left:12px;color:#0066cc;font-weight:700;text-decoration:none">Voltar</a>
+</div>
+
+<form id="quizForm"></form>
+
+<div id="result" class="result" style="display:none"></div>
+
+<footer>
+  <div class="small">© Simulado – Conhecendo o Direito • Design by Fábio Wlademir</div>
+  <div class="small">Contato: <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank">WhatsApp</a> • <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">LinkedIn</a></div>
+  <div class="small" style="margin-top:8px">
+    <a href="mailto:f2sites@gmail.com" style="color:#0066cc">📧 Encontrou um erro? Comunique-nos!</a> • Colabore com a melhoria dos simulados!
+  </div>
+</footer>
+</div>
+
+<script>
+// Banco de questões INTERMEDIÁRIO (35 questões)
+const questionBank = [
+  {
+    q: "Para Kelsen, a grundnorm (norma fundamental) é:",
+    opts: [
+      "Uma norma sancionada pelo parlamento",
+      "Uma norma moral superior",
+      "Uma norma pressuposta que fundamenta a validade do sistema jurídico",
+      "Igual às normas primárias de Hart"
+    ],
+    correct: 2
+  },
+  {
+    q: "No sistema de Hart, as normas secundárias incluem:",
+    opts: [
+      "Regras de reconhecimento, mudança e adjudicação",
+      "Apenas normas penais",
+      "Normas morais",
+      "Costumes somente"
+    ],
+    correct: 0
+  },
+  {
+    q: "A principal diferença entre validade e eficácia é que:",
+    opts: [
+      "Validade depende da obediência social; eficácia depende do texto legal",
+      "Validade é conformidade com critérios do sistema; eficácia é obediência e aplicação real",
+      "Ambas são sinônimos",
+      "Eficácia é pressuposto lógico da norma"
+    ],
+    correct: 1
+  },
+  {
+    q: "A norma jurídica, segundo Kelsen, tem estrutura:",
+    opts: [
+      "Apenas descritiva",
+      "Hipotética: se A, então deve ser B (sanção)",
+      "Apenas moral",
+      "Exclusivamente consuetudinária"
+    ],
+    correct: 1
+  },
+  {
+    q: "O conceito de 'ponto de vista interno' desenvolvido por Hart refere-se:",
+    opts: [
+      "À perspectiva externa do observador",
+      "À atitude dos participantes que aceitam as regras como padrões de conduta",
+      "Apenas à coerção estatal",
+      "À visão do legislador"
+    ],
+    correct: 1
+  },
+  {
+    q: "Ross, no realismo escandinavo, enfatiza:",
+    opts: [
+      "Apenas conceitos lógicos abstratos",
+      "A predição do comportamento judicial e os fatos sociais",
+      "O direito natural divino",
+      "A separação total entre direito e sociedade"
+    ],
+    correct: 1
+  },
+  {
+    q: "Segundo Bobbio, os problemas do ordenamento jurídico incluem:",
+    opts: [
+      "Apenas a coerência",
+      "Lacunas, antinomias e incompletude",
+      "Somente a hierarquia",
+      "Exclusivamente a eficácia"
+    ],
+    correct: 1
+  },
+  {
+    q: "A técnica típica para solução de antinomias é:",
+    opts: [
+      "Analogia",
+      "Princípio da dignidade",
+      "Critérios hierárquico, cronológico e da especialidade",
+      "Teoria da relatividade normativa"
+    ],
+    correct: 2
+  },
+  {
+    q: "Lacunas no ordenamento jurídico podem ser supridas por:",
+    opts: [
+      "Analogia, costumes e princípios gerais do direito",
+      "Aplicação automática da norma mais antiga",
+      "Exclusão de qualquer solução",
+      "Consulta exclusiva ao legislador"
+    ],
+    correct: 0
+  },
+  {
+    q: "Fontes formais do direito incluem:",
+    opts: [
+      "Apenas a Constituição",
+      "Só o costume e a doutrina",
+      "Apenas atos administrativos",
+      "Lei, costume, jurisprudência, doutrina e princípios gerais"
+    ],
+    correct: 3
+  },
+  {
+    q: "A interpretação sistemática da norma jurídica significa:",
+    opts: [
+      "Analisar a norma isoladamente",
+      "Interpretar a norma em conexão com todo o ordenamento jurídico",
+      "Ignorar o contexto legal",
+      "Aplicar apenas a interpretação literal"
+    ],
+    correct: 1
+  },
+  {
+    q: "A interpretação teleológica busca:",
+    opts: [
+      "Apenas o sentido literal das palavras",
+      "A finalidade e o objetivo da norma",
+      "A origem histórica exclusivamente",
+      "Ignorar a intenção do legislador"
+    ],
+    correct: 1
+  },
+  {
+    q: "A hierarquia normativa no Brasil estabelece que:",
+    opts: [
+      "Todas as normas têm igual valor",
+      "A Constituição é a norma suprema, seguida por emendas, leis complementares, ordinárias, etc.",
+      "Os decretos estão acima da Constituição",
+      "Não existe hierarquia entre normas"
+    ],
+    correct: 1
+  },
+  {
+    q: "Lei complementar no Brasil exige para aprovação:",
+    opts: [
+      "Maioria simples",
+      "Unanimidade",
+      "Maioria absoluta (maioria do total dos membros)",
+      "Referendo popular obrigatório"
+    ],
+    correct: 2
+  },
+  {
+    q: "Medida provisória tem validade imediata. Seu prazo inicial é:",
+    opts: [
+      "60 dias (prorrogável por igual período)",
+      "30 dias sem prorrogação",
+      "120 dias imutáveis",
+      "15 dias renováveis indefinidamente"
+    ],
+    correct: 0
+  },
+  {
+    q: "A súmula vinculante no Brasil tem por objetivo:",
+    opts: [
+      "Criar novas leis",
+      "Uniformizar a interpretação do Judiciário e tornar obrigatório o entendimento",
+      "Substituir a Constituição",
+      "Ser apenas sugestiva e sem efeito prático"
+    ],
+    correct: 1
+  },
+  {
+    q: "Direitos humanos vs. direitos fundamentais: é correto afirmar que:",
+    opts: [
+      "São idênticos em tudo",
+      "Direitos humanos dependem de positivação para existir",
+      "Direitos humanos são universais; direitos fundamentais são positivados constitucionalmente",
+      "Direitos fundamentais não podem ser limitados"
+    ],
+    correct: 2
+  },
+  {
+    q: "O art. 5º da Constituição Federal trata de:",
+    opts: [
+      "Direitos e deveres individuais e coletivos",
+      "Organização do Estado",
+      "Poder Judiciário",
+      "Tributação"
+    ],
+    correct: 0
+  },
+  {
+    q: "O art. 6º da Constituição Federal trata de:",
+    opts: [
+      "Direitos sociais (educação, saúde, trabalho, etc.)",
+      "Direitos políticos",
+      "Direitos de propriedade exclusivamente",
+      "Normas de direito processual"
+    ],
+    correct: 0
+  },
+  {
+    q: "A dignidade da pessoa humana, como princípio constitucional, está prevista no:",
+    opts: [
+      "Art. 3º",
+      "Art. 5º",
+      "Art. 1º, inciso III",
+      "Art. 7º"
+    ],
+    correct: 2
+  },
+  {
+    q: "O princípio da proporcionalidade no direito significa:",
+    opts: [
+      "Todas as penas devem ser iguais",
+      "Adequação entre meios e fins, necessidade e proporcionalidade em sentido estrito",
+      "Não há limites para a atuação estatal",
+      "Apenas punições severas são válidas"
+    ],
+    correct: 1
+  },
+  {
+    q: "O controle de constitucionalidade tem por objetivo:",
+    opts: [
+      "Criar novas leis",
+      "Verificar a compatibilidade das leis com a Constituição",
+      "Abolir a Constituição",
+      "Ignorar normas constitucionais"
+    ],
+    correct: 1
+  },
+  {
+    q: "No sistema de controle concentrado brasileiro, a competência é:",
+    opts: [
+      "De qualquer juiz",
+      "Exclusiva do Supremo Tribunal Federal",
+      "Apenas do Poder Legislativo",
+      "Do Ministério Público exclusivamente"
+    ],
+    correct: 1
+  },
+  {
+    q: "A técnica da ponderação é utilizada quando:",
+    opts: [
+      "Não há conflito entre normas",
+      "Há colisão entre princípios constitucionais",
+      "Apenas em direito penal",
+      "Somente em casos simples"
+    ],
+    correct: 1
+  },
+  {
+    q: "O due process of law (devido processo legal) garante:",
+    opts: [
+      "Apenas rapidez processual",
+      "Contraditório, ampla defesa e juiz natural",
+      "Condenação sumária",
+      "Processo secreto"
+    ],
+    correct: 1
+  },
+  {
+    q: "O princípio da inafastabilidade da jurisdição significa:",
+    opts: [
+      "Nem toda lesão pode ser levada ao Judiciário",
+      "A lei não pode excluir da apreciação do Poder Judiciário lesão ou ameaça a direito",
+      "Apenas crimes podem ser julgados",
+      "O Judiciário não julga atos administrativos"
+    ],
+    correct: 1
+  },
+  {
+    q: "A presunção de inocência estabelece que:",
+    opts: [
+      "Todos são culpados até prova em contrário",
+      "Ninguém será considerado culpado até o trânsito em julgado de sentença penal condenatória",
+      "A prisão é sempre obrigatória",
+      "Não há necessidade de provas"
+    ],
+    correct: 1
+  },
+  {
+    q: "O habeas corpus protege:",
+    opts: [
+      "A propriedade",
+      "A liberdade de locomoção",
+      "Apenas a liberdade de expressão",
+      "Direitos políticos"
+    ],
+    correct: 1
+  },
+  {
+    q: "O mandado de segurança visa proteger:",
+    opts: [
+      "Apenas direitos sociais",
+      "Direito líquido e certo não amparado por habeas corpus ou habeas data",
+      "Somente patrimônio",
+      "Exclusivamente direitos trabalhistas"
+    ],
+    correct: 1
+  },
+  {
+    q: "A ação popular permite que:",
+    opts: [
+      "Apenas políticos entrem com ação",
+      "Qualquer cidadão anule ato lesivo ao patrimônio público ou à moralidade administrativa",
+      "Somente empresas ajuízem ações",
+      "Não existe no Brasil"
+    ],
+    correct: 1
+  },
+  {
+    q: "No Common Law, o precedente judicial:",
+    opts: [
+      "Não tem valor algum",
+      "Tem força vinculante (stare decisis)",
+      "É sempre ignorado",
+      "Vale apenas no caso concreto"
+    ],
+    correct: 1
+  },
+  {
+    q: "O writ of certiorari no sistema norte-americano refere-se:",
+    opts: [
+      "A um tipo de contrato",
+      "Ao poder discricionário da Suprema Corte de escolher casos a julgar",
+      "A uma pena criminal",
+      "A um imposto"
+    ],
+    correct: 1
+  },
+  {
+    q: "A equity no Common Law representa:",
+    opts: [
+      "Sistema de justiça paralelo mais flexível que o Common Law tradicional",
+      "Apenas direito penal",
+      "Um tipo de tributação",
+      "Direito romano"
+    ],
+    correct: 0
+  },
+  {
+    q: "A analogia legis difere da analogia juris porque:",
+    opts: [
+      "Analogia legis busca lei similar; analogia juris busca princípios gerais",
+      "São conceitos idênticos",
+      "Analogia juris não existe",
+      "Analogia legis é proibida"
+    ],
+    correct: 0
+  },
+  {
+    q: "O método de interpretação histórico busca:",
+    opts: [
+      "Ignorar o contexto de criação da norma",
+      "Compreender o contexto histórico e a intenção do legislador quando da elaboração da norma",
+      "Apenas o sentido atual",
+      "Abolir a norma"
+    ],
+    correct: 1
+  }
+];
+
+let selectedQuestions = [];
+
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function initQuiz() {
+  const shuffled = shuffle(questionBank);
+  selectedQuestions = shuffled.slice(0, 15);
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const form = document.getElementById('quizForm');
+  form.innerHTML = '';
+  
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = 'q' + qnum;
+    
+    let html = `<div><strong>Questão ${qnum}.</strong> ${item.q}</div><div style="margin-top:8px">`;
+    
+    item.opts.forEach((opt, optIdx) => {
+      const letter = String.fromCharCode(65 + optIdx);
+      html += `<label id="q${qnum}_opt${optIdx}">
+        <input type="radio" name="q${qnum}" value="${optIdx}"> 
+        <strong>${letter})</strong> ${opt}
+      </label>`;
+    });
+    
+    html += `</div><div id="q${qnum}_fb" style="display:none;margin-top:6px;font-weight:700"></div>`;
+    div.innerHTML = html;
+    form.appendChild(div);
+  });
+}
+
+document.getElementById('btnSubmit').addEventListener('click', function() {
+  let score = 0;
+  
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const radios = document.getElementsByName('q' + qnum);
+    let chosen = null;
+    
+    for(const r of radios) {
+      if(r.checked) chosen = parseInt(r.value);
+    }
+    
+    const fb = document.getElementById('q' + qnum + '_fb');
+    fb.style.display = 'block';
+    
+    for(let k = 0; k < 4; k++) {
+      const el = document.getElementById('q' + qnum + '_opt' + k);
+      if(el) {
+        el.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const correctAnswer = item.correct;
+    const correctLetter = String.fromCharCode(65 + correctAnswer);
+    
+    if(chosen === null) {
+      fb.innerHTML = '<span style="color:#666">Sem resposta – resposta correta: <strong>' + correctLetter + ')</strong></span>';
+    } else if(chosen === correctAnswer) {
+      score++;
+      document.getElementById('q' + qnum + '_opt' + chosen).classList.add('correct');
+      fb.innerHTML = '<span style="color:#2d9b4a">Correta ✓</span> – alternativa: <strong>' + correctLetter + ')</strong>';
+    } else {
+      document.getElementById('q' + qnum + '_opt' + chosen).classList.add('incorrect');
+      document.getElementById('q' + qnum + '_opt' + correctAnswer).classList.add('correct');
+      fb.innerHTML = '<span style="color:#d64545">Errada ✗</span> – alternativa correta: <strong>' + correctLetter + ')</strong>';
+    }
+  });
+  
+  const total = selectedQuestions.length;
+  const percent = Math.round((score / total) * 100);
+  const note = (score / total * 10).toFixed(2);
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+  res.innerHTML = '<strong>Resultado</strong><br>Acertos: ' + score + ' / ' + total + '<br>Nota final: <strong>' + note + '</strong> (' + percent + '%)';
+  document.getElementById('btnSubmit').disabled = true;
+});
+
+document.getElementById('btnReset').addEventListener('click', function() {
+  initQuiz();
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('btnSubmit').disabled = false;
+});
+
+document.getElementById('btnShow').addEventListener('click', function() {
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const fb = document.getElementById('q' + qnum + '_fb');
+    fb.style.display = 'block';
+    const correctLetter = String.fromCharCode(65 + item.correct);
+    fb.innerHTML = 'Resposta correta: <strong>' + correctLetter + ')</strong>';
+    
+    for(let k = 0; k < 4; k++) {
+      const el = document.getElementById('q' + qnum + '_opt' + k);
+      if(el) {
+        el.classList.remove('incorrect');
+        if(k === item.correct) el.classList.add('correct');
+      }
+    }
+  });
+  
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+  res.innerHTML = '<strong>Gabarito exibido.</strong>';
+  document.getElementById('btnSubmit').disabled = true;
+});
+
+initQuiz();
+</script>
+
+</body>
+</html>

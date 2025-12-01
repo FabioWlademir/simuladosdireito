@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Simulado — Nível Avançado - Direito Penal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ body{font-family:Arial,sans-serif;margin:0;background:#f5f7fa;color:#222;}
+ header, footer{background:#fff;padding:15px;text-align:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+ .container{max-width:900px;margin:20px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+ a{color:#005bbb;text-decoration:none;font-weight:bold;}
+ .btn-back{display:inline-block;margin:15px 0;padding:10px 15px;background:#005bbb;color:#fff;border-radius:8px;text-decoration:none;}
+ .question{border:1px solid #e0e0e0;padding:15px;margin:15px 0;border-radius:8px;}
+ .option{display:block;padding:8px;margin:5px 0;cursor:pointer;}
+ .correct{background:#e8f5e8;border:1px solid #4caf50;}
+ .incorrect{background:#ffebee;border:1px solid #f44336;}
+ .result{padding:15px;background:#fff9c4;border-radius:8px;margin:15px 0;}
+ .controls{display:flex;gap:10px;margin:15px 0;}
+ .controls button{padding:10px 15px;border:none;border-radius:5px;cursor:pointer;}
+ .btn-submit{background:#005bbb;color:#fff;}
+ .btn-reset{background:#666;color:#fff;}
+ .btn-show{background:#ff9800;color:#fff;}
+ .social a { margin: 0 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto;">
+    <div>
+      <h2>Simulado — Nível Avançado - Direito Penal</h2>
+      <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a>
+    </div>
+    <a class="btn-back" href="https://simuladosdireito.netlify.app/">⬅ Voltar</a>
+  </div>
+  
+  <div class="social" style="margin-top: 15px;">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+</header>
+
+<div class="container">
+  <h3>Simulado - Nível Avançado</h3>
+  <p>Responda às questões abaixo sobre Direito Penal (Parte Geral - Art. 1º a 28º do CP)</p>
+  
+  <div class="controls">
+    <button class="btn-submit" onclick="submitQuiz()">Corrigir Prova</button>
+    <button class="btn-reset" onclick="resetQuiz()">Reiniciar</button>
+    <button class="btn-show" onclick="showAnswers()">Mostrar Gabarito</button>
+  </div>
+  
+  <div id="quiz-container"></div>
+  <div id="result" class="result" style="display:none;"></div>
+  
+  <a class="btn-back" href="https://simuladosdireito.netlify.app/">⬅ Voltar à Página Inicial</a>
+</div>
+
+<footer>
+  <div style="margin-bottom: 15px;">
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a> | 
+    <a href="mailto:f2sites@gmail.com">Feedback: f2sites@gmail.com</a>
+  </div>
+  
+  <div class="social">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+  
+  <div style="margin-top: 15px; font-size: 14px; color: #555;">
+    <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+    <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+    <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+  </div>
+</footer>
+
+<script>
+// Banco de questões para nível avançado
+const questions = [
+  {
+    q: "O art. 21 do CP estabelece que o desconhecimento da lei:",
+    opts: [
+      "É inescusável",
+      "É escusável se o agente for analfabeto",
+      "É escusável para crimes culposos",
+      "É escusável para menores de 21 anos"
+    ],
+    ans: 0
+  },
+  {
+    q: "Pelo art. 22 do CP, se o fato é cometido sob coação irresistível:",
+    opts: [
+      "Só é punível o autor da coação",
+      "Ambos são puníveis",
+      "Ninguém é punível",
+      "Só o coator responde se houver dolo"
+    ],
+    ans: 0
+  },
+  {
+    q: "O art. 23 do CP estabelece as excludentes de ilicitude, EXCETO:",
+    opts: [
+      "Erro de tipo",
+      "Estado de necessidade",
+      "Legítima defesa",
+      "Estrito cumprimento do dever legal"
+    ],
+    ans: 0
+  },
+  {
+    q: "Segundo o art. 24 do CP, estado de necessidade exige:",
+    opts: [
+      "Perigo atual, não provocado voluntariamente",
+      "Perigo futuro e previsível",
+      "Proporcionalidade absoluta",
+      "Agressão injusta e atual"
+    ],
+    ans: 0
+  },
+  {
+    q: "Pelo art. 25 do CP, legítima defesa exige:",
+    opts: [
+      "Uso moderado dos meios necessários",
+      "Proporcionalidade absoluta dos meios",
+      "Comunicação prévia à autoridade",
+      "Agressão já consumada"
+    ],
+    ans: 0
+  },
+  {
+    q: "O art. 26 do CP estabelece que é isento de pena o agente que:",
+    opts: [
+      "Era inteiramente incapaz de entender o caráter ilícito do fato",
+      "Agia por emoção ou paixão",
+      "Estava embriagado voluntariamente",
+      "Cometeu crime culposo"
+    ],
+    ans: 0
+  },
+  {
+    q: "Pelo art. 27 do CP, os menores de 18 anos:",
+    opts: [
+      "São penalmente inimputáveis",
+      "São penalmente imputáveis",
+      "São imputáveis apenas para crimes graves",
+      "São imputáveis com autorização judicial"
+    ],
+    ans: 0
+  },
+  {
+    q: "O art. 28 do CP estabelece que não excluem a imputabilidade penal:",
+    opts: [
+      "A emoção ou a paixão",
+      "A doença mental",
+      "O desenvolvimento mental incompleto",
+      "A embriaguez acidental"
+    ],
+    ans: 0
+  },
+  {
+    q: "A Lei 7.716/89 considera crime de racismo a prática de:",
+    opts: [
+      "Impedir acesso a estabelecimento comercial baseado em raça",
+      "Ofender a honra de pessoa específica por sua raça",
+      "Discutir publicamente questões raciais",
+      "Criticar políticas de ação afirmativa"
+    ],
+    ans: 0
+  },
+  {
+    q: "O crime de injúria racial (art. 140, §3º CP) diferencia-se do racismo porque:",
+    opts: [
+      "Ofende a honra de pessoa determinada",
+      "É imprescritível e inafiançável",
+      "Atinge coletividade indeterminada",
+      "Não tem pena de reclusão"
+    ],
+    ans: 0
+  },
+  {
+    q: "A Constituição Federal assegura aos povos indígenas:",
+    opts: [
+      "O usufruto exclusivo das riquezas do solo de suas terras",
+      "A propriedade plena dos minérios em suas terras",
+      "O direito de veto sobre projetos em terras vizinhas",
+      "A isenção total de obrigações tributárias"
+    ],
+    ans: 0
+  },
+  {
+    q: "O Estatuto do Índio (Lei 6.001/73) classifica os índios como:",
+    opts: [
+      "Relativamente incapazes para certos atos civis",
+      "Absolutamente incapazes para todos os atos civis",
+      "Plenamente capazes sem restrições",
+      "Incapazes apenas para atos comerciais"
+    ],
+    ans: 0
+  },
+  {
+    q: "A Convenção 169 da OIT garante aos povos indígenas:",
+    opts: [
+      "Direito de consulta sobre medidas que os afetem",
+      "Direito de veto sobre legislação estadual",
+      "Isenção de leis nacionais",
+      "Direito de secessão territorial"
+    ],
+    ans: 0
+  },
+  {
+    q: "O crime de discriminação racial no trabalho pode acarretar:",
+    opts: [
+      "Responsabilidade civil, penal e administrativa",
+      "Apenas responsabilidade civil",
+      "Apenas responsabilidade administrativa",
+      "Apenas responsabilidade penal se houver violência"
+    ],
+    ans: 0
+  },
+  {
+    q: "O art. 5º, XLII da Constituição estabelece que:",
+    opts: [
+      "O racismo é crime inafiançável e imprescritível",
+      "O racismo é crime afiançável e prescritível",
+      "A injúria racial é crime inafiançável",
+      "A discriminação racial não é crime"
+    ],
+    ans: 0
+  },
+  {
+    q: "Pelo princípio da territorialidade temperada (art. 5º CP):",
+    opts: [
+      "Aplica-se a lei brasileira com exceções previstas",
+      "Aplica-se apenas lei brasileira sem exceções",
+      "Aplica-se preferencialmente lei estrangeira",
+      "Não se aplica a crimes em embarcações"
+    ],
+    ans: 0
+  },
+  {
+    q: "O art. 7º, §2º do CP estabelece condições para aplicação da lei brasileira a crimes no estrangeiro, EXCETO:",
+    opts: [
+      "O agente ser estrangeiro residente no Brasil",
+      "Entrar o agente no território nacional",
+      "Ser o fato punível também no país em que foi praticado",
+      "Não ter sido o agente absolvido no estrangeiro"
+    ],
+    ans: 0
+  },
+  {
+    q: "A teoria da ubiquidade (art. 6º CP) considera lugar do crime:",
+    opts: [
+      "Onde ocorreu a ação e onde se produziu o resultado",
+      "Apenas onde ocorreu a ação principal",
+      "Apenas onde ocorreu o resultado",
+      "O domicílio do agente"
+    ],
+    ans: 0
+  },
+  {
+    q: "Pelo art. 8º CP, a pena cumprida no estrangeiro pode ser:",
+    opts: [
+      "Computada ou atenuar a pena brasileira",
+      "Ignorada pela justiça brasileira",
+      "Somente atenuar a pena brasileira",
+      "Somente computada se idêntica"
+    ],
+    ans: 0
+  },
+  {
+    q: "O art. 9º CP permite a homologação de sentença estrangeira para:",
+    opts: [
+      "Efeitos civis e medidas de segurança",
+      "Execução direta da pena privativa de liberdade",
+      "Substituição integral do processo brasileiro",
+      "Revogação de sentença nacional"
+    ],
+    ans: 0
+  }
+];
+
+// Embaralhar questões e opções
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Embaralhar questões e opções de cada questão
+const shuffledQuestions = shuffleArray([...questions]);
+shuffledQuestions.forEach(q => {
+  // Salvar a resposta correta original
+  const originalQuestion = questions.find(original => original.q === q.q);
+  const correctAnswerText = originalQuestion.opts[originalQuestion.ans];
+  
+  // Embaralhar opções
+  q.opts = shuffleArray([...q.opts]);
+  
+  // Encontrar nova posição da resposta correta
+  q.ans = q.opts.indexOf(correctAnswerText);
+});
+
+// Renderizar quiz
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  
+  shuffledQuestions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+    questionDiv.id = `q${index}`;
+    
+    let optionsHTML = '';
+    question.opts.forEach((option, optIndex) => {
+      const letter = String.fromCharCode(65 + optIndex);
+      optionsHTML += `
+        <label class="option" id="q${index}opt${optIndex}">
+          <input type="radio" name="q${index}" value="${optIndex}">
+          <strong>${letter})</strong> ${option}
+        </label>
+      `;
+    });
+    
+    questionDiv.innerHTML = `
+      <div><strong>Questão ${index + 1}:</strong> ${question.q}</div>
+      <div style="margin-top:10px">${optionsHTML}</div>
+      <div id="q${index}fb" style="margin-top:8px; display:none;"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+}
+
+// Submeter quiz
+function submitQuiz() {
+  let score = 0;
+  const total = shuffledQuestions.length;
+  
+  shuffledQuestions.forEach((question, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    
+    if (selected) {
+      const selectedValue = parseInt(selected.value);
+      const selectedOpt = document.getElementById(`q${index}opt${selectedValue}`);
+      
+      if (selectedValue === question.ans) {
+        score++;
+        selectedOpt.classList.add('correct');
+        feedback.innerHTML = '<span style="color:green">✓ Resposta correta</span>';
+      } else {
+        selectedOpt.classList.add('incorrect');
+        correctOpt.classList.add('correct');
+        feedback.innerHTML = `<span style="color:red">✗ Resposta incorreta. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+      }
+    } else {
+      correctOpt.classList.add('correct');
+      feedback.innerHTML = `<span style="color:orange">Não respondida. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+    }
+  });
+  
+  const percent = ((score / total) * 100).toFixed(1);
+  const finalGrade = ((score / total) * 10).toFixed(1);
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <strong>RESULTADO</strong><br>
+    Acertos: ${score} / ${total}<br>
+    Nota: ${finalGrade}<br>
+    Percentual: ${percent}%
+  `;
+}
+
+// Reiniciar quiz
+function resetQuiz() {
+  shuffledQuestions.forEach((_, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    if (feedback) {
+      feedback.style.display = 'none';
+      feedback.innerHTML = '';
+    }
+    
+    for (let i = 0; i < 4; i++) {
+      const opt = document.getElementById(`q${index}opt${i}`);
+      if (opt) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const radios = document.querySelectorAll(`input[name="q${index}"]`);
+    radios.forEach(radio => radio.checked = false);
+  });
+  
+  document.getElementById('result').style.display = 'none';
+}
+
+// Mostrar gabarito
+function showAnswers() {
+  shuffledQuestions.forEach((question, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    feedback.innerHTML = `<span style="color:blue">Gabarito: ${String.fromCharCode(65 + question.ans)})</span>`;
+    correctOpt.classList.add('correct');
+    
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected && parseInt(selected.value) !== question.ans) {
+      const selectedOpt = document.getElementById(`q${index}opt${selected.value}`);
+      selectedOpt.classList.add('incorrect');
+    }
+  });
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = '<strong>GABARITO MOSTRADO</strong>';
+}
+
+// Inicializar quiz
+renderQuiz();
+</script>
+</body>
+</html>   

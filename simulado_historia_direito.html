@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz História do Direito - Correntes Jurídicas e Evolução do Pensamento Jurídico</title>
+    <meta name="description" content="Teste seus conhecimentos sobre História do Direito, Correntes Jurídicas Modernas, Direito Romano e Evolução do Pensamento Jurídico. Quiz completo para estudantes de direito.">
+    <meta name="keywords" content="história do direito, correntes jurídicas, direito romano, positivismo, jusnaturalismo, quiz direito, teste jurídico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #003366;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #e0e0e0;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .header .social a {
+            margin: 0 6px;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .header .social img {
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        /* Navigation Styles */
+        .nav-bar {
+            background: #002244;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-radius: 0 0 15px 15px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-bar a:hover {
+            background: #0055aa;
+        }
+
+        /* Quiz Container Styles */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .question-text {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            border-color: #3498db;
+            background-color: #f8f9fa;
+        }
+
+        .option input {
+            margin-right: 12px;
+        }
+
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .result {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            display: none;
+        }
+
+        .result h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #3498db;
+            margin: 20px 0;
+        }
+
+        .feedback {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            transition: width 0.3s ease;
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .time-remaining {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #444;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .footer .social a {
+            margin: 0 6px;
+            font-size: 18px;
+            color: #003366;
+            text-decoration: none;
+        }
+        
+        .footer .social img {
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        /* Simulados Section */
+        .simulados-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .simulados-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .simulados-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .simulados-links a {
+            display: block;
+            background: #f8f9fa;
+            color: #0055aa;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid #dee2e6;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .simulados-links a:hover {
+            background: #e9ecef;
+            border-color: #0055aa;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question {
+                padding: 15px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            
+            .simulados-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #3498db;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .difficulty-easy {
+            background: #27ae60;
+        }
+
+        .difficulty-medium {
+            background: #f39c12;
+        }
+
+        .difficulty-hard {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📜 Quiz História do Direito</h1>
+            <p>Teste seus conhecimentos sobre Correntes Jurídicas, Direito Romano e Evolução do Pensamento Jurídico</p>
+            <p><a href="https://f2suporte.blogspot.com/" target="_blank" style="color:white;text-decoration:none; font-weight:bold">Design by Fábio Wlademir</a></p>
+
+            <div class="social">
+                <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp</a>
+                <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn</a>
+                <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub</a>
+                <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog</a>
+                <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube"> YouTube</a>
+                <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram</a>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="index.html">🏠 Início</a>
+            <a href="https://uiclap.bio/wlademir" target="_blank">ℹ️ Sobre o Autor</a>
+            <a href="#simulados">📝 Simulados</a>
+            <a href="#links-uteis">🔗 Recursos Jurídicos</a>
+            <a href="#ebooks">📚 E-books Gratuitos</a>
+        </div>
+
+        <!-- Timer and Progress -->
+        <div class="timer">
+            ⏱️ Tempo restante: <span class="time-remaining" id="timeRemaining">30:00</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" id="quizProgress" style="width: 0%"></div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-container" id="quizContainer">
+            <!-- As questões serão inseridas aqui via JavaScript -->
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn btn-primary" onclick="submitQuiz()">
+                ✅ Finalizar Prova
+            </button>
+            <button class="btn btn-secondary" onclick="resetQuiz()">
+                🔄 Reiniciar Quiz
+            </button>
+            <button class="btn btn-success" onclick="showAnswers()">
+                📖 Mostrar Gabarito
+            </button>
+        </div>
+
+        <!-- Result Container -->
+        <div class="result" id="resultContainer">
+            <h2>🎓 Resultado do Quiz</h2>
+            <div class="score" id="finalScore">0/0</div>
+            <div class="feedback" id="resultFeedback"></div>
+            <button class="btn btn-primary" onclick="resetQuiz()">
+                🔄 Fazer Novamente
+            </button>
+        </div>
+
+        <!-- Simulados Section -->
+        <div class="simulados-section" id="simulados">
+            <h2>📝 Outros Simulados de Direito</h2>
+            <div class="simulados-links">
+                <a href="simulado_basico.html">CONHECENDO O DIREITO - BÁSICO</a>
+                <a href="simulado_intermediario.html">CONHECENDO O DIREITO - INTERMEDIÁRIO</a>
+                <a href="simulado_avancado.html">CONHECENDO O DIREITO - AVANÇADO</a>
+                <a href="simulado_penal_basico.html">DIREITO PENAL - BÁSICO</a>
+                <a href="simulado_penal_intermediario.html">DIREITO PENAL - INTERMEDIÁRIO</a>
+                <a href="simulado_penal_avancado.html">DIREITO PENAL - AVANÇADO</a>
+                <a href="simulado_privado_basico.html">DIREITO PRIVADO - BÁSICO</a>
+                <a href="simulado_privado_intermediario.html">DIREITO PRIVADO - INTERMEDIÁRIO</a>
+                <a href="simulado_privado_avancado.html">DIREITO PRIVADO - AVANÇADO</a>
+                <a href="simulado_constituicao_basico.html">CONSTITUIÇÃO E ESTADO - BÁSICO</a>
+                <a href="simulado_constituicao_intermediario.html">CONSTITUIÇÃO E ESTADO - INTERMEDIÁRIO</a>
+                <a href="simulado_constituicao_avancado.html">CONSTITUIÇÃO E ESTADO - AVANÇADO</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+            <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+            <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+
+            <div class="social">
+                <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp</a>
+                <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn</a>
+                <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub</a>
+                <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog</a>
+                <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube"> YouTube</a>
+                <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Banco de questões completo sobre História do Direito
+        const questions = [
+            {
+                question: "Qual era a principal característica da Escola da Exegese que surgiu após o Código Napoleônico de 1804?",
+                options: [
+                    "Interpretação literal da lei sem questionar sua justiça ou moralidade",
+                    "Análise histórica e cultural do direito",
+                    "Foco nos princípios morais universais",
+                    "Valorização dos costumes locais"
+                ],
+                correct: 0,
+                explanation: "A Escola da Exegese defendia a interpretação literal da lei, onde o juiz era visto como a 'boca que pronuncia as palavras da lei', sem considerar aspectos de justiça ou moralidade.",
+                difficulty: "medium"
+            },
+            {
+                question: "Segundo a Escola Histórica do Direito, representada por Savigny, de onde surge o direito?",
+                options: [
+                    "Da razão humana universal",
+                    "Do espírito do povo (Volksgeist) e da cultura",
+                    "Dos comandos do soberano",
+                    "Da vontade divina"
+                ],
+                correct: 1,
+                explanation: "A Escola Histórica, com Savigny, defendia que o direito nasce do espírito do povo (Volksgeist), sendo um fenômeno orgânico que surge da vida real e tradições do povo.",
+                difficulty: "medium"
+            },
+            {
+                question: "Qual a principal contribuição do Corpus Juris Civilis para o direito ocidental?",
+                options: [
+                    "Criou o primeiro código penal moderno",
+                    "Consolidou e organizou o direito romano clássico",
+                    "Estabeleceu a separação entre Igreja e Estado",
+                    "Introduziu o common law na Europa"
+                ],
+                correct: 1,
+                explanation: "O Corpus Juris Civilis, ordenado por Justiniano, consolidou o direito romano clássico em uma obra organizada (Código, Digesto, Institutas e Novelas), influenciando todo o direito ocidental.",
+                difficulty: "hard"
+            },
+            {
+                question: "O que caracterizava a Jurisprudentia Romana segundo os prudentes?",
+                options: [
+                    "Aplicação rígida e literal das leis",
+                    "Sabedoria prática baseada na experiência e casos concretos",
+                    "Submissão total à vontade do imperador",
+                    "Interpretação baseada apenas em filosofias gregas"
+                ],
+                correct: 1,
+                explanation: "A Jurisprudentia Romana era entendida como prudência ou sabedoria jurídica, onde os prudentes (juristas) aplicavam o direito baseado na experiência e na resolução de casos concretos.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual a diferença fundamental entre o positivismo jurídico e o jusnaturalismo?",
+                options: [
+                    "O positivismo separa direito e moral, enquanto o jusnaturalismo os une",
+                    "O positivismo defende direitos divinos, o jusnaturalismo direitos humanos",
+                    "O positivismo é histórico, o jusnaturalismo é racional",
+                    "O positivismo valoriza os costumes, o jusnaturalismo as leis escritas"
+                ],
+                correct: 0,
+                explanation: "O positivismo jurídico defende que direito e moral são separados (o que é legal não precisa ser moral), enquanto o jusnaturalismo acredita em princípios de justiça superiores à lei escrita.",
+                difficulty: "medium"
+            },
+            {
+                question: "Qual foi a principal inovação do Iluminismo para o direito moderno?",
+                options: [
+                    "A defesa do direito divino dos reis",
+                    "A fundamentação do direito na razão humana e nos direitos naturais",
+                    "A volta ao direito consuetudinário medieval",
+                    "A criação do sistema de castas jurídicas"
+                ],
+                correct: 1,
+                explanation: "O Iluminismo trouxe a fundamentação do direito na razão humana e nos direitos naturais, influenciando declarações de direitos e a codificação moderna.",
+                difficulty: "medium"
+            },
+            {
+                question: "O que significa o conceito de 'mutação constitucional' no direito contemporâneo?",
+                options: [
+                    "Alteração formal do texto constitucional",
+                    "Mudança informal no sentido da norma sem modificar o texto",
+                    "Revogação completa da constituição",
+                    "Criação de uma nova assembleia constituinte"
+                ],
+                correct: 1,
+                explanation: "Mutação constitucional é a alteração informal do sentido da norma constitucional sem modificar o texto, através da interpretação e evolução da sociedade.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual a principal crítica da Escola Histórica à Escola da Exegese?",
+                options: [
+                    "Excesso de valorização da lei escrita e ignorância da realidade social",
+                    "Falta de rigor científico nas interpretações",
+                    "Ausência de preocupação com a segurança jurídica",
+                    "Rejeição completa da codificação"
+                ],
+                correct: 0,
+                explanation: "A Escola Histórica criticava a Escola da Exegese por limitar o papel do intérprete e ignorar a realidade social, defendendo que o direito deve nascer da vida social e não apenas dos livros.",
+                difficulty: "medium"
+            },
+            {
+                question: "O que caracteriza o pós-positivismo na teoria do direito contemporânea?",
+                options: [
+                    "Equilíbrio entre legalidade e princípios constitucionais",
+                    "Retorno ao formalismo jurídico radical",
+                    "Rejeição completa de qualquer princípio moral",
+                    "Defesa da supremacia absoluta do legislador"
+                ],
+                correct: 0,
+                explanation: "O pós-positivismo busca o equilíbrio entre o respeito à norma escrita e a consideração de princípios e valores fundamentais como justiça, dignidade e igualdade.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual a importância das Leis das Doze Tábuas para o direito romano?",
+                options: [
+                    "Foram a primeira organização escrita das leis romanas",
+                    "Estabeleceram o império romano",
+                    "Criaram o sistema de common law",
+                    "Aboliram a escravidão em Roma"
+                ],
+                correct: 0,
+                explanation: "As Leis das Doze Tábuas (450 a.C.) representaram a primeira organização escrita das leis romanas, surgindo como resposta a conflitos sociais entre patrícios e plebeus.",
+                difficulty: "medium"
+            },
+            {
+                question: "Qual a contribuição de Hugo Grócio para o direito moderno?",
+                options: [
+                    "Defendeu que o direito natural existe independentemente da divindade",
+                    "Criou a primeira constituição escrita",
+                    "Estabeleceu a teoria do direito divino",
+                    "Fundou a Escola da Exegese"
+                ],
+                correct: 0,
+                explanation: "Hugo Grócio propôs que o direito natural é uma construção independente da divindade, estabelecendo uma fundação racional para a ética e o direito.",
+                difficulty: "hard"
+            },
+            {
+                question: "O que significa a 'eficácia horizontal dos direitos fundamentais'?",
+                options: [
+                    "Aplicação dos direitos fundamentais nas relações entre particulares",
+                    "Aplicação apenas contra o Estado",
+                    "Eficácia limitada aos direitos políticos",
+                    "Aplicação somente em âmbito internacional"
+                ],
+                correct: 0,
+                explanation: "A eficácia horizontal significa que os direitos fundamentais também se aplicam nas relações entre particulares, não apenas nas relações Estado-indivíduo.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual a principal característica do contratualismo de Rousseau?",
+                options: [
+                    "Defesa da Vontade Geral como fundamento do poder legítimo",
+                    "Criação de um Estado absoluto e indivisível",
+                    "Proteção absoluta da propriedade privada",
+                    "Submissão total ao soberano"
+                ],
+                correct: 0,
+                explanation: "Rousseau defendia que o poder legítimo deve refletir a Vontade Geral da comunidade, promovendo liberdade e igualdade entre os cidadãos.",
+                difficulty: "medium"
+            },
+            {
+                question: "O que diferencia o direito romano clássico do direito pós-clássico?",
+                options: [
+                    "No período clássico houve aprimoramento técnico, no pós-clássico codificação",
+                    "O direito clássico era oral, o pós-clássico escrito",
+                    "No clássico prevalecia o direito consuetudinário",
+                    "O pós-clássico eliminou toda influência grega"
+                ],
+                correct: 0,
+                explanation: "No período clássico houve grande aprimoramento técnico pelos juristas, enquanto o período pós-clássico foi marcado pela codificação, culminando no Corpus Juris Civilis.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual o significado da 'Paz de Westfália' para o direito moderno?",
+                options: [
+                    "Estabeleceu as bases do moderno sistema de Estados soberanos",
+                    "Criou o primeiro tribunal internacional",
+                    "Aboliu a tortura na Europa",
+                    "Unificou todos os sistemas jurídicos europeus"
+                ],
+                correct: 0,
+                explanation: "A Paz de Westfália (1648) estabeleceu o princípio 'cuius regio, eius religio' e as bases do moderno sistema de Estados soberanos, marcando importante passo na separação entre Estado e Igreja.",
+                difficulty: "medium"
+            }
+        ];
+
+        let currentQuestions = [];
+        let userAnswers = [];
+        let timeLeft = 1800; // 30 minutos em segundos
+        let timerInterval;
+
+        // Função para embaralhar array (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Inicializar quiz
+        function initializeQuiz() {
+            // Embaralhar questões e selecionar 10
+            currentQuestions = shuffleArray([...questions]).slice(0, 10);
+            userAnswers = new Array(currentQuestions.length).fill(null);
+            
+            renderQuiz();
+            startTimer();
+            updateProgress();
+        }
+
+        // Renderizar quiz
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '';
+
+            currentQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.id = `question-${index}`;
+
+                const difficultyBadge = `<span class="badge difficulty-${question.difficulty}">${question.difficulty}</span>`;
+
+                let optionsHTML = '';
+                question.options.forEach((option, optIndex) => {
+                    const isChecked = userAnswers[index] === optIndex ? 'checked' : '';
+                    optionsHTML += `
+                        <label class="option" id="q${index}opt${optIndex}">
+                            <input type="radio" name="q${index}" value="${optIndex}" ${isChecked} onchange="selectAnswer(${index}, ${optIndex})">
+                            ${String.fromCharCode(65 + optIndex)}) ${option}
+                        </label>
+                    `;
+                });
+
+                questionDiv.innerHTML = `
+                    <div class="question-text">
+                        ${index + 1}. ${question.question} ${difficultyBadge}
+                    </div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                    <div class="explanation" id="explanation-${index}">
+                        <strong>Explicação:</strong> ${question.explanation}
+                    </div>
+                `;
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        // Selecionar resposta
+        function selectAnswer(questionIndex, answerIndex) {
+            userAnswers[questionIndex] = answerIndex;
+            updateProgress();
+        }
+
+        // Atualizar barra de progresso
+        function updateProgress() {
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            const total = currentQuestions.length;
+            const progress = (answered / total) * 100;
+            
+            document.getElementById('quizProgress').style.width = `${progress}%`;
+        }
+
+        // Iniciar timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Atualizar display do timer
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timeRemaining').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Submeter quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+
+            let score = 0;
+            const total = currentQuestions.length;
+
+            currentQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const correctAnswer = question.correct;
+                const explanation = document.getElementById(`explanation-${index}`);
+
+                // Mostrar explicação
+                explanation.classList.add('show');
+
+                // Colorir opções
+                question.options.forEach((_, optIndex) => {
+                    const optionElement = document.getElementById(`q${index}opt${optIndex}`);
+                    if (optIndex === correctAnswer) {
+                        optionElement.classList.add('correct');
+                    } else if (optIndex === userAnswer && userAnswer !== correctAnswer) {
+                        optionElement.classList.add('incorrect');
+                    }
+                });
+
+                // Contar acertos
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+            });
+
+            showResults(score, total);
+        }
+
+        // Mostrar resultados
+        function showResults(score, total) {
+            const percentage = (score / total) * 100;
+            const resultContainer = document.getElementById('resultContainer');
+            const finalScore = document.getElementById('finalScore');
+            const feedback = document.getElementById('resultFeedback');
+
+            finalScore.textContent = `${score}/${total}`;
+
+            let feedbackText = '';
+            if (percentage >= 90) {
+                feedbackText = '🎉 Excelente! Você domina a História do Direito!';
+            } else if (percentage >= 70) {
+                feedbackText = '👍 Muito bom! Seu conhecimento é sólido!';
+            } else if (percentage >= 50) {
+                feedbackText = '💡 Bom trabalho! Continue estudando!';
+            } else {
+                feedbackText = '📚 Continue estudando! O conhecimento vem com prática!';
+            }
+
+            feedback.innerHTML = `
+                ${feedbackText}<br>
+                <strong>Pontuação:</strong> ${score} de ${total} questões<br>
+                <strong>Percentual:</strong> ${percentage.toFixed(1)}%
+            `;
+
+            resultContainer.style.display = 'block';
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reiniciar quiz
+        function resetQuiz() {
+            currentQuestions = [];
+            userAnswers = [];
+            timeLeft = 1800;
+            
+            document.getElementById('resultContainer').style.display = 'none';
+            initializeQuiz();
+        }
+
+        // Mostrar gabarito
+        function showAnswers() {
+            currentQuestions.forEach((question, index) => {
+                const correctAnswer = question.correct;
+                const explanation = document.getElementById(`explanation-${index}`);
+                
+                // Mostrar explicação
+                explanation.classList.add('show');
+
+                // Colorir apenas a resposta correta
+                question.options.forEach((_, optIndex) => {
+                    const optionElement = document.getElementById(`q${index}opt${optIndex}`);
+                    if (optIndex === correctAnswer) {
+                        optionElement.classList.add('correct');
+                    }
+                });
+            });
+
+            document.getElementById('resultContainer').style.display = 'block';
+            document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', initializeQuiz);
+    </script>
+</body>
+</html>

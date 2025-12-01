@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Simulado — Nível Avançado - Fundamentos do Direito Privado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ body{font-family:Arial,sans-serif;margin:0;background:#f5f7fa;color:#222;}
+ header, footer{background:#fff;padding:15px;text-align:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+ .container{max-width:900px;margin:20px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+ a{color:#005bbb;text-decoration:none;font-weight:bold;}
+ .btn-back{display:inline-block;margin:15px 0;padding:10px 15px;background:#005bbb;color:#fff;border-radius:8px;text-decoration:none;}
+ .question{border:1px solid #e0e0e0;padding:15px;margin:15px 0;border-radius:8px;}
+ .option{display:block;padding:8px;margin:5px 0;cursor:pointer;}
+ .correct{background:#e8f5e8;border:1px solid #4caf50;}
+ .incorrect{background:#ffebee;border:1px solid #f44336;}
+ .result{padding:15px;background:#fff9c4;border-radius:8px;margin:15px 0;}
+ .controls{display:flex;gap:10px;margin:15px 0;}
+ .controls button{padding:10px 15px;border:none;border-radius:5px;cursor:pointer;}
+ .btn-submit{background:#005bbb;color:#fff;}
+ .btn-reset{background:#666;color:#fff;}
+ .btn-show{background:#ff9800;color:#fff;}
+ .social a { margin: 0 6px; }
+ .level-badge{display:inline-block;padding:6px 12px;background:#ffcccc;color:#cc0000;border-radius:6px;font-weight:700;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto;">
+    <div>
+      <h2>Simulado — Nível Avançado - Fundamentos do Direito Privado</h2>
+      <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a>
+    </div>
+    <a class="btn-back" href="index.html">⬅ Voltar</a>
+  </div>
+  
+  <div class="social" style="margin-top: 15px;">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+</header>
+
+<div class="container">
+  <h3>Simulado - Nível Avançado</h3>
+  <div class="level-badge">AVANÇADO - 20 QUESTÕES</div>
+  <p>Responda às questões abaixo sobre Fundamentos do Direito Privado</p>
+  
+  <div class="controls">
+    <button class="btn-submit" onclick="submitQuiz()">Corrigir Prova</button>
+    <button class="btn-reset" onclick="resetQuiz()">Reiniciar</button>
+    <button class="btn-show" onclick="showAnswers()">Mostrar Gabarito</button>
+  </div>
+  
+  <div id="quiz-container"></div>
+  <div id="result" class="result" style="display:none;"></div>
+  
+  <a class="btn-back" href="index.html">⬅ Voltar à Página Inicial</a>
+</div>
+
+<footer>
+  <div style="margin-bottom: 15px;">
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a> | 
+    <a href="mailto:f2sites@gmail.com">Feedback: f2sites@gmail.com</a>
+  </div>
+  
+  <div class="social">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+  
+  <div style="margin-top: 15px; font-size: 14px; color: #555;">
+    <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+    <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+    <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+  </div>
+</footer>
+
+<script>
+// Banco de questões para nível avançado - DIREITO PRIVADO
+const questions = [
+  {
+    q: "Na estrutura da norma jurídica, a hipótese normativa representa:",
+    opts: [
+      "O suporte fático abstrato que deflagra a consequência jurídica",
+      "A sanção aplicada ao infrator",
+      "O resultado prático da aplicação da norma",
+      "A interpretação judicial da lei"
+    ],
+    ans: 0
+  },
+  {
+    q: "A eficácia legal de uma norma jurídica refere-se a:",
+    opts: [
+      "Aptidão da norma para produzir efeitos jurídicos",
+      "Apenas sua vigência temporal",
+      "Sua publicação oficial",
+      "Sua aprovação pelo Congresso"
+    ],
+    ans: 0
+  },
+  {
+    q: "A legitimação ad causam no direito processual relaciona-se com:",
+    opts: [
+      "Pertinência subjetiva para figurar em relação processual",
+      "Capacidade de fato",
+      "Maioridade civil",
+      "Patrimônio mínimo"
+    ],
+    ans: 0
+  },
+  {
+    q: "A teoria da aparência no direito civil permite:",
+    opts: [
+      "Proteção de terceiro de boa-fé que confia em situação aparente",
+      "Fraude contra credores",
+      "Simulação de negócios",
+      "Descumprimento de contratos"
+    ],
+    ans: 0
+  },
+  {
+    q: "O abuso de direito caracteriza-se pelo:",
+    opts: [
+      "Exercício irregular que excede limites da boa-fé e fins sociais",
+      "Qualquer exercício de direito subjetivo",
+      "Apenas violação expressa de lei",
+      "Impossibilidade de exercer direitos"
+    ],
+    ans: 0
+  },
+  {
+    q: "A função social do contrato implica que:",
+    opts: [
+      "Contratos devem respeitar interesses sociais além dos individuais",
+      "Intervenção estatal em todo contrato",
+      "Proibição de contratos entre particulares",
+      "Negação da autonomia privada"
+    ],
+    ans: 0
+  },
+  {
+    q: "A lesão como defeito do negócio jurídico ocorre quando:",
+    opts: [
+      "Há desproporção manifesta por necessidade ou inexperiência",
+      "Qualquer desequilíbrio contratual",
+      "Uma parte não cumpre o contrato",
+      "Há erro na declaração de vontade"
+    ],
+    ans: 0
+  },
+  {
+    q: "O estado de perigo como vício do negócio ocorre quando:",
+    opts: [
+      "Alguém assume obrigação excessiva para salvar-se de perigo grave",
+      "Há simples medo genérico",
+      "Uma parte ameaça a outra",
+      "Há erro sobre qualidade essencial"
+    ],
+    ans: 0
+  },
+  {
+    q: "O Estatuto da Igualdade Racial prevê:",
+    opts: [
+      "Políticas de ações afirmativas para reduzir desigualdades raciais",
+      "Tratamento absolutamente igual sem considerar diferenças",
+      "Proibição de políticas de cotas",
+      "Negação do racismo estrutural"
+    ],
+    ans: 0
+  },
+  {
+    q: "A cláusula geral de boa-fé objetiva gera deveres anexos como:",
+    opts: [
+      "Dever de informação, cooperação e proteção",
+      "Apenas cumprimento literal do contrato",
+      "Nenhum dever além do previsto",
+      "Somente obrigações patrimoniais"
+    ],
+    ans: 0
+  },
+  {
+    q: "Os direitos quilombolas incluem:",
+    opts: [
+      "Reconhecimento da propriedade definitiva das terras ocupadas",
+      "Mera tolerância de ocupação temporária",
+      "Obrigatoriedade de desocupação",
+      "Negação de titulação coletiva"
+    ],
+    ans: 0
+  },
+  {
+    q: "A Lei Brasileira de Inclusão estabeleceu que:",
+    opts: [
+      "A deficiência não afeta a plena capacidade civil da pessoa",
+      "Toda pessoa com deficiência é absolutamente incapaz",
+      "Deficiência impede contratos",
+      "Curatela é obrigatória para pessoas com deficiência"
+    ],
+    ans: 0
+  },
+  {
+    q: "O direito à imagem como direito de personalidade:",
+    opts: [
+      "Protege a representação física e gera indenização por uso indevido",
+      "Impede qualquer fotografia em locais públicos",
+      "Não se aplica a pessoas públicas",
+      "Pode ser renunciado definitivamente"
+    ],
+    ans: 0
+  },
+  {
+    q: "A curatela, após o Estatuto da Pessoa com Deficiência:",
+    opts: [
+      "É medida excepcional que afeta apenas atos patrimoniais",
+      "Retira totalmente a capacidade da pessoa",
+      "Impede casamento e trabalho",
+      "É aplicada automaticamente"
+    ],
+    ans: 0
+  },
+  {
+    q: "A desconsideração da personalidade jurídica pode ocorrer quando há:",
+    opts: [
+      "Abuso da personalidade, desvio de finalidade ou confusão patrimonial",
+      "Simples inadimplemento",
+      "Mudança de sócios",
+      "Aumento de capital"
+    ],
+    ans: 0
+  },
+  {
+    q: "Legitimidade e legitimação são conceitos relacionados a:",
+    opts: [
+      "Capacidade especial para determinados atos",
+      "Capacidade de direito geral",
+      "Personalidade jurídica",
+      "Maioridade civil"
+    ],
+    ans: 0
+  },
+  {
+    q: "A distinção entre direito patrimonial e extrapatrimonial está em:",
+    opts: [
+      "O primeiro é avaliável economicamente; o segundo não",
+      "Ambos são avaliáveis em dinheiro",
+      "O extrapatrimonial sempre gera lucro",
+      "Não há distinção relevante"
+    ],
+    ans: 0
+  },
+  {
+    q: "O princípio da autonomia privada significa:",
+    opts: [
+      "Liberdade de celebrar negócios nos limites da lei",
+      "Independência total do ordenamento jurídico",
+      "Intervenção estatal obrigatória",
+      "Proibição de contratos atípicos"
+    ],
+    ans: 0
+  },
+  {
+    q: "A desconsideração inversa da personalidade jurídica ocorre quando:",
+    opts: [
+      "Atinge-se patrimônio da pessoa jurídica para dívida do sócio",
+      "Atinge-se patrimônio do sócio para dívida da empresa",
+      "Dissolve-se a pessoa jurídica",
+      "Cria-se nova empresa"
+    ],
+    ans: 0
+  },
+  {
+    q: "A diferença entre associação e fundação está em:",
+    opts: [
+      "Associação é união de pessoas; fundação é patrimônio personalizado",
+      "Ambas são idênticas",
+      "Fundação sempre tem fins lucrativos",
+      "Associação sempre tem fins econômicos"
+    ],
+    ans: 0
+  },
+  {
+    q: "Os direitos de personalidade apresentam como características:",
+    opts: [
+      "Intransmissibilidade, irrenunciabilidade e imprescritibilidade",
+      "Transmissibilidade mortis causa",
+      "Renunciabilidade absoluta",
+      "Prescritibilidade em 10 anos"
+    ],
+    ans: 0
+  },
+  {
+    q: "A incapacidade absoluta, após o Estatuto da Pessoa com Deficiência, limita-se a:",
+    opts: [
+      "Menores de 16 anos",
+      "Menores de 18 anos",
+      "Pessoas com deficiência mental",
+      "Ébrios habituais"
+    ],
+    ans: 0
+  },
+  {
+    q: "A condição como elemento acidental do negócio jurídico é:",
+    opts: [
+      "Evento futuro e incerto que subordina a eficácia",
+      "Evento passado e certo",
+      "Prazo determinado",
+      "Obrigação imposta ao beneficiário"
+    ],
+    ans: 0
+  },
+  {
+    q: "O termo como elemento acidental caracteriza-se por ser:",
+    opts: [
+      "Evento futuro e certo que suspende ou resolve a eficácia",
+      "Evento futuro e incerto",
+      "Evento presente e duvidoso",
+      "Encargo imposto ao donatário"
+    ],
+    ans: 0
+  }
+];
+
+// Embaralhar questões e opções
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Embaralhar questões e opções de cada questão
+const shuffledQuestions = shuffleArray([...questions]).slice(0, 20);
+shuffledQuestions.forEach(q => {
+  // Salvar a resposta correta original
+  const originalQuestion = questions.find(original => original.q === q.q);
+  const correctAnswerText = originalQuestion.opts[originalQuestion.ans];
+  
+  // Embaralhar opções
+  q.opts = shuffleArray([...q.opts]);
+  
+  // Encontrar nova posição da resposta correta
+  q.ans = q.opts.indexOf(correctAnswerText);
+});
+
+// Renderizar quiz
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  
+  shuffledQuestions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+    questionDiv.id = `q${index}`;
+    
+    let optionsHTML = '';
+    question.opts.forEach((option, optIndex) => {
+      const letter = String.fromCharCode(65 + optIndex);
+      optionsHTML += `
+        <label class="option" id="q${index}opt${optIndex}">
+          <input type="radio" name="q${index}" value="${optIndex}">
+          <strong>${letter})</strong> ${option}
+        </label>
+      `;
+    });
+    
+    questionDiv.innerHTML = `
+      <div><strong>Questão ${index + 1}:</strong> ${question.q}</div>
+      <div style="margin-top:10px">${optionsHTML}</div>
+      <div id="q${index}fb" style="margin-top:8px; display:none;"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+}
+
+// Submeter quiz
+function submitQuiz() {
+  let score = 0;
+  const total = shuffledQuestions.length;
+  
+  shuffledQuestions.forEach((question, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    
+    if (selected) {
+      const selectedValue = parseInt(selected.value);
+      const selectedOpt = document.getElementById(`q${index}opt${selectedValue}`);
+      
+      if (selectedValue === question.ans) {
+        score++;
+        selectedOpt.classList.add('correct');
+        feedback.innerHTML = '<span style="color:green">✓ Resposta correta</span>';
+      } else {
+        selectedOpt.classList.add('incorrect');
+        correctOpt.classList.add('correct');
+        feedback.innerHTML = `<span style="color:red">✗ Resposta incorreta. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+      }
+    } else {
+      correctOpt.classList.add('correct');
+      feedback.innerHTML = `<span style="color:orange">Não respondida. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+    }
+  });
+  
+  const percent = ((score / total) * 100).toFixed(1);
+  const finalGrade = ((score / total) * 10).toFixed(1);
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <strong>RESULTADO</strong><br>
+    Acertos: ${score} / ${total}<br>
+    Nota: ${finalGrade}<br>
+    Percentual: ${percent}%
+  `;
+}
+
+// Reiniciar quiz
+function resetQuiz() {
+  shuffledQuestions.forEach((_, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    if (feedback) {
+      feedback.style.display = 'none';
+      feedback.innerHTML = '';
+    }
+    
+    for (let i = 0; i < 4; i++) {
+      const opt = document.getElementById(`q${index}opt${i}`);
+      if (opt) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const radios = document.querySelectorAll(`input[name="q${index}"]`);
+    radios.forEach(radio => radio.checked = false);
+  });
+  
+  document.getElementById('result').style.display = 'none';
+}
+
+// Mostrar gabarito
+function showAnswers() {
+  shuffledQuestions.forEach((question, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    feedback.innerHTML = `<span style="color:blue">Gabarito: ${String.fromCharCode(65 + question.ans)})</span>`;
+    correctOpt.classList.add('correct');
+    
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected && parseInt(selected.value) !== question.ans) {
+      const selectedOpt = document.getElementById(`q${index}opt${selected.value}`);
+      selectedOpt.classList.add('incorrect');
+    }
+  });
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = '<strong>GABARITO MOSTRADO</strong>';
+}
+
+// Inicializar quiz
+renderQuiz();
+</script>
+</body>
+</html>

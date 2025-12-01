@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Simulado – Básico (Conhecendo o Direito)</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f3f5f7;margin:0;padding:0}
+  .wrap{max-width:980px;margin:28px auto;background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+  header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e6e9ee;padding-bottom:12px}
+  header h1{font-size:20px;color:#042f66;margin:0}
+  .contacts a{color:#0b61a8;text-decoration:none}
+  .level-badge{display:inline-block;padding:6px 10px;background:#e9f2ff;color:#044a88;border-radius:6px;margin-bottom:8px;font-weight:700}
+  .controls{margin:14px 0}
+  button{background:#0066cc;color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+  button.secondary{background:#28a745}
+  .question{border:1px solid #eef3fb;padding:12px;margin:12px 0;border-radius:8px;background:#fcfeff}
+  label{display:block;margin:8px 0;padding:8px;border-radius:6px;cursor:pointer}
+  .correct{background:#e6ffea;border:1px solid #2d9b4a}
+  .incorrect{background:#ffeef0;border:1px solid #d64545}
+  .result{padding:14px;background:#fffbe6;border:1px solid #ffe8a1;border-radius:8px;margin-top:12px}
+  .small{font-size:0.9rem;color:#556}
+  footer{margin-top:18px;padding-top:12px;border-top:1px solid #e6e9ee;color:#334}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Simulado – Conhecendo o Direito</h1>
+    <div class="small">Design by <strong>Fábio Wlademir</strong> – Analista de Suporte | NOC | Estudante de Direito - UNISINOS</div>
+  </div>
+  <div class="contacts small">
+    <div><a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank">WhatsApp</a> | <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">LinkedIn</a></div>
+    <div><a href="https://fabiowlademir.github.io/" target="_blank">GitHub</a> | <a href="https://f2suporte.blogspot.com/" target="_blank">Blog</a></div>
+    <div><a href="https://www.youtube.com/@fabiowlademirrs" target="_blank">YouTube</a> | <a href="https://www.instagram.com/fabiowlademirrs" target="_blank">Instagram</a></div>
+  </div>
+</header>
+
+<main>
+<h2 class="level-badge">BÁSICO – 15 questões</h2>
+<p class="small">Responda todas as questões e clique em <strong>Corrigir prova</strong>. O sistema mostrará sua nota de 0 a 10, evidenciará respostas corretas/erradas e exibirá o gabarito. <strong>As questões são aleatórias a cada acesso!</strong></p>
+
+<div class="controls">
+  <button id="btnSubmit">Corrigir prova</button>
+  <button id="btnReset" class="secondary">Reiniciar</button>
+  <button id="btnShow" style="background:#444;color:#fff;border-radius:8px">Mostrar gabarito</button>
+  <a href="index.html" style="margin-left:12px;color:#0066cc;font-weight:700;text-decoration:none">Voltar</a>
+</div>
+
+<form id="quizForm"></form>
+
+<div id="result" class="result" style="display:none"></div>
+
+<footer>
+  <div class="small">© Simulado – Conhecendo o Direito • Design by Fábio Wlademir</div>
+  <div class="small">Contato: <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank">WhatsApp</a> • <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">LinkedIn</a></div>
+  <div class="small" style="margin-top:8px">
+    <a href="mailto:f2sites@gmail.com" style="color:#0066cc">📧 Encontrou um erro? Comunique-nos!</a> • Colabore com a melhoria dos simulados!
+  </div>
+</footer>
+</div>
+
+<script>
+// Banco de questões BÁSICO (35 questões baseadas no plano de ensino)
+const questionBank = [
+  {
+    q: "O Direito pode ser estudado sob diferentes perspectivas. Quando analisamos o Direito como um conjunto de normas que regulam a conduta social, estamos tratando-o como:",
+    opts: [
+      "Direito como Ciência",
+      "Direito como Fato Social",
+      "Direito como Norma",
+      "Direito como Faculdade"
+    ],
+    correct: 2
+  },
+  {
+    q: "A linguagem descritiva difere da linguagem prescritiva porque:",
+    opts: [
+      "Descreve fatos e realidades, enquanto a prescritiva estabelece comandos e deveres",
+      "Estabelece comandos, enquanto a descritiva descreve normas",
+      "Ambas descrevem a realidade social",
+      "Ambas prescrevem comportamentos"
+    ],
+    correct: 0
+  },
+  {
+    q: "A jurisprudentia romana, segundo Ulpiano, pode ser definida como:",
+    opts: [
+      "Divinarum atque humanarum rerum notitia, justi atque injusti scientia (conhecimento das coisas divinas e humanas, ciência do justo e do injusto)",
+      "Conjunto de decisões judiciais modernas",
+      "Código legislado pelo Senado",
+      "Doutrina dos glosadores"
+    ],
+    correct: 0
+  },
+  {
+    q: "Sobre a sociabilidade do ser humano e sua relação com o Direito, é correto afirmar:",
+    opts: [
+      "O Direito surge apenas em sociedades modernas",
+      "O ser humano é naturalmente social e o Direito emerge dessa convivência",
+      "O Direito independe da sociedade",
+      "A sociabilidade não influencia a formação jurídica"
+    ],
+    correct: 1
+  },
+  {
+    q: "A principal diferença entre obrigações morais e obrigações jurídicas está em:",
+    opts: [
+      "As morais são internas e não coercitivas; as jurídicas são externas e coercitivas",
+      "As morais são obrigatórias; as jurídicas são facultativas",
+      "Ambas têm a mesma natureza e fundamento",
+      "As jurídicas derivam sempre das morais"
+    ],
+    correct: 0
+  },
+  {
+    q: "Quando dizemos que o Direito é uma experiência normativa, queremos dizer que:",
+    opts: [
+      "O Direito apenas descreve comportamentos sociais",
+      "O Direito estabelece regras de conduta obrigatórias",
+      "O Direito não tem relação com normas",
+      "O Direito é opcional na sociedade"
+    ],
+    correct: 1
+  },
+  {
+    q: "A positivação do direito refere-se ao processo de:",
+    opts: [
+      "Transformar valores morais em normas jurídicas escritas",
+      "Eliminar o direito natural",
+      "Criar costumes sociais",
+      "Abolir a legislação"
+    ],
+    correct: 0
+  },
+  {
+    q: "A diferença entre legitimidade e legalidade é que:",
+    opts: [
+      "Legitimidade refere-se à conformidade com a lei; legalidade à aceitação social",
+      "Legalidade refere-se à conformidade com a lei; legitimidade à justificação moral/social",
+      "Ambos os conceitos são idênticos",
+      "Legitimidade é irrelevante para o Direito"
+    ],
+    correct: 1
+  },
+  {
+    q: "Justiça, validade e eficácia são conceitos distintos. A validade de uma norma refere-se:",
+    opts: [
+      "À sua aplicação prática na sociedade",
+      "À sua conformidade com o ordenamento jurídico",
+      "À sua aceitação moral pela população",
+      "Ao seu conteúdo justo"
+    ],
+    correct: 1
+  },
+  {
+    q: "O direito subjetivo pode ser definido como:",
+    opts: [
+      "O conjunto de normas jurídicas objetivas",
+      "A faculdade ou poder que o indivíduo tem de exigir determinado comportamento",
+      "As leis escritas no código civil",
+      "O direito natural inerente ao ser humano"
+    ],
+    correct: 1
+  },
+  {
+    q: "A dicotomia entre direito objetivo e direito subjetivo indica que:",
+    opts: [
+      "Direito objetivo é a norma; direito subjetivo é a faculdade individual",
+      "Ambos são sinônimos",
+      "Direito objetivo é individual; subjetivo é coletivo",
+      "Não existe diferença entre eles"
+    ],
+    correct: 0
+  },
+  {
+    q: "A diferença fundamental entre direito natural e direito positivo é:",
+    opts: [
+      "O direito natural é escrito; o positivo é consuetudinário",
+      "O direito natural é inerente à natureza humana; o positivo é posto pelo Estado",
+      "Ambos têm a mesma origem",
+      "O direito positivo é superior ao natural"
+    ],
+    correct: 1
+  },
+  {
+    q: "Quando falamos em 'O Direito e os direitos', estamos distinguindo:",
+    opts: [
+      "Direito objetivo (sistema normativo) e direitos subjetivos (faculdades individuais)",
+      "Direito público e direito privado",
+      "Direito civil e direito penal",
+      "Direito nacional e direito internacional"
+    ],
+    correct: 0
+  },
+  {
+    q: "A dicotomia entre direito público e direito privado baseia-se em:",
+    opts: [
+      "Diferenças cronológicas de criação das normas",
+      "Distinção entre interesses coletivos/estatais e interesses particulares",
+      "Diferenças entre direito escrito e costumeiro",
+      "Origem romana e germânica das normas"
+    ],
+    correct: 1
+  },
+  {
+    q: "É possível existir normas de natureza pública que protejam interesses privados?",
+    opts: [
+      "Não, pois são categorias absolutamente separadas",
+      "Sim, o direito público pode tutelar interesses privados (ex: direito do consumidor)",
+      "Apenas no direito internacional",
+      "Somente em regimes autoritários"
+    ],
+    correct: 1
+  },
+  {
+    q: "A formação histórica da Ciência do Direito está relacionada:",
+    opts: [
+      "Apenas ao período moderno",
+      "À sistematização do conhecimento jurídico ao longo da história",
+      "Exclusivamente ao direito romano",
+      "Somente às codificações napoleônicas"
+    ],
+    correct: 1
+  },
+  {
+    q: "O Digesto representa na história do direito:",
+    opts: [
+      "Uma compilação de pareceres de jurisconsultos romanos",
+      "O primeiro código civil moderno",
+      "Uma obra de filosofia grega",
+      "Um tratado medieval"
+    ],
+    correct: 0
+  },
+  {
+    q: "Os Glosadores medievais se caracterizavam por:",
+    opts: [
+      "Rejeitar completamente o direito romano",
+      "Fazer anotações e comentários nas margens dos textos romanos",
+      "Criar novos códigos",
+      "Abolir o direito canônico"
+    ],
+    correct: 1
+  },
+  {
+    q: "No jusnaturalismo antigo, Aristóteles defendia:",
+    opts: [
+      "A inexistência de uma justiça natural",
+      "A existência de uma justiça natural, imutável e universal",
+      "Apenas a justiça positiva",
+      "O relativismo moral absoluto"
+    ],
+    correct: 1
+  },
+  {
+    q: "Tomás de Aquino, no jusnaturalismo medieval, relacionava o direito natural com:",
+    opts: [
+      "A vontade exclusiva do monarca",
+      "A lei divina e a razão humana",
+      "Apenas o direito positivo",
+      "O direito costumeiro germânico"
+    ],
+    correct: 1
+  },
+  {
+    q: "Hobbes, no jusnaturalismo moderno, caracterizava o estado de natureza como:",
+    opts: [
+      "Um estado de paz e harmonia",
+      "Uma guerra de todos contra todos (bellum omnium contra omnes)",
+      "Um paraíso terrestre",
+      "Uma democracia natural"
+    ],
+    correct: 1
+  },
+  {
+    q: "Locke defendia no contrato social:",
+    opts: [
+      "A transferência total de direitos ao soberano",
+      "A preservação dos direitos naturais (vida, liberdade e propriedade)",
+      "A abolição da propriedade privada",
+      "O poder absoluto do Estado"
+    ],
+    correct: 1
+  },
+  {
+    q: "Rousseau desenvolveu o conceito de:",
+    opts: [
+      "Poder absoluto do monarca",
+      "Vontade geral e soberania popular",
+      "Direito natural divino",
+      "Positivismo jurídico"
+    ],
+    correct: 1
+  },
+  {
+    q: "A Escola Histórica do Direito, representada por Savigny, defendia:",
+    opts: [
+      "O direito como produto do espírito do povo (Volksgeist)",
+      "A codificação imediata de todas as leis",
+      "O direito natural universal",
+      "A supremacia do direito romano"
+    ],
+    correct: 0
+  },
+  {
+    q: "A Jurisprudência dos Conceitos (Begriffsjurisprudenz) é criticada por:",
+    opts: [
+      "Valorizar excessivamente a prática",
+      "Ser excessivamente formalista e lógica, distante da realidade social",
+      "Rejeitar a sistematização",
+      "Ser muito flexível"
+    ],
+    correct: 1
+  },
+  {
+    q: "O Código de Napoleão (1804) e a Escola da Exegese se caracterizam por:",
+    opts: [
+      "Interpretação livre e criativa",
+      "Interpretação literal e culto à lei escrita",
+      "Rejeição das codificações",
+      "Valorização dos costumes"
+    ],
+    correct: 1
+  },
+  {
+    q: "Hans Kelsen, no positivismo jurídico, desenvolveu:",
+    opts: [
+      "A Teoria Pura do Direito, separando direito e moral",
+      "A teoria do direito natural",
+      "A escola histórica",
+      "O realismo jurídico norte-americano"
+    ],
+    correct: 0
+  },
+  {
+    q: "Alf Ross representa:",
+    opts: [
+      "O jusnaturalismo",
+      "O realismo escandinavo, com ênfase em fatos sociais",
+      "A escola da exegese",
+      "O idealismo jurídico"
+    ],
+    correct: 1
+  },
+  {
+    q: "Hart, no positivismo, distinguiu entre:",
+    opts: [
+      "Direito público e privado",
+      "'Ter a obrigação' (aspecto interno/normativo) e 'ser obrigado a' (coação externa)",
+      "Direito e moral como idênticos",
+      "Lei e costume como opostos"
+    ],
+    correct: 1
+  },
+  {
+    q: "Os fins do Direito, segundo a doutrina clássica, incluem:",
+    opts: [
+      "Apenas a segurança jurídica",
+      "Justiça, liberdade e segurança",
+      "Somente a ordem social",
+      "Exclusivamente a paz"
+    ],
+    correct: 1
+  },
+  {
+    q: "A norma jurídica como objeto de conhecimento científico significa que:",
+    opts: [
+      "O Direito não pode ser estudado cientificamente",
+      "O Direito pode ser analisado de forma sistemática e metodológica",
+      "Apenas as ciências naturais são válidas",
+      "O Direito é apenas arte, não ciência"
+    ],
+    correct: 1
+  },
+  {
+    q: "A principal diferença entre Civil Law e Common Law está em:",
+    opts: [
+      "Civil Law baseia-se em códigos; Common Law em precedentes judiciais",
+      "São sistemas idênticos",
+      "Common Law não tem leis escritas",
+      "Civil Law não tem jurisprudência"
+    ],
+    correct: 0
+  },
+  {
+    q: "As fontes do Direito incluem:",
+    opts: [
+      "Apenas a lei",
+      "Lei, costume, jurisprudência, doutrina e fonte negocial",
+      "Somente a jurisprudência",
+      "Apenas o costume"
+    ],
+    correct: 1
+  },
+  {
+    q: "A dignidade da pessoa humana, no direito contemporâneo:",
+    opts: [
+      "É um conceito irrelevante",
+      "É fundamento do Estado Democrático de Direito e base dos direitos fundamentais",
+      "Aplica-se apenas ao direito penal",
+      "É exclusivo do direito internacional"
+    ],
+    correct: 1
+  },
+  {
+    q: "A diferença entre Direitos Humanos e Direitos Fundamentais é:",
+    opts: [
+      "São termos idênticos",
+      "Direitos Humanos são universais; Direitos Fundamentais são positivados nas constituições",
+      "Direitos Humanos são inferiores",
+      "Não existe diferença alguma"
+    ],
+    correct: 1
+  }
+];
+
+let selectedQuestions = [];
+let userAnswers = [];
+
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function initQuiz() {
+  const shuffled = shuffle(questionBank);
+  selectedQuestions = shuffled.slice(0, 15);
+  userAnswers = new Array(15).fill(null);
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const form = document.getElementById('quizForm');
+  form.innerHTML = '';
+  
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = 'q' + qnum;
+    
+    let html = `<div><strong>Questão ${qnum}.</strong> ${item.q}</div><div style="margin-top:8px">`;
+    
+    item.opts.forEach((opt, optIdx) => {
+      const letter = String.fromCharCode(65 + optIdx);
+      html += `<label id="q${qnum}_opt${optIdx}">
+        <input type="radio" name="q${qnum}" value="${optIdx}"> 
+        <strong>${letter})</strong> ${opt}
+      </label>`;
+    });
+    
+    html += `</div><div id="q${qnum}_fb" style="display:none;margin-top:6px;font-weight:700"></div>`;
+    div.innerHTML = html;
+    form.appendChild(div);
+  });
+}
+
+document.getElementById('btnSubmit').addEventListener('click', function() {
+  let score = 0;
+  
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const radios = document.getElementsByName('q' + qnum);
+    let chosen = null;
+    
+    for(const r of radios) {
+      if(r.checked) chosen = parseInt(r.value);
+    }
+    
+    const fb = document.getElementById('q' + qnum + '_fb');
+    fb.style.display = 'block';
+    
+    for(let k = 0; k < 4; k++) {
+      const el = document.getElementById('q' + qnum + '_opt' + k);
+      if(el) {
+        el.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const correctAnswer = item.correct;
+    const correctLetter = String.fromCharCode(65 + correctAnswer);
+    
+    if(chosen === null) {
+      fb.innerHTML = '<span style="color:#666">Sem resposta – resposta correta: <strong>' + correctLetter + ')</strong></span>';
+    } else if(chosen === correctAnswer) {
+      score++;
+      document.getElementById('q' + qnum + '_opt' + chosen).classList.add('correct');
+      fb.innerHTML = '<span style="color:#2d9b4a">Correta ✓</span> – alternativa: <strong>' + correctLetter + ')</strong>';
+    } else {
+      document.getElementById('q' + qnum + '_opt' + chosen).classList.add('incorrect');
+      document.getElementById('q' + qnum + '_opt' + correctAnswer).classList.add('correct');
+      fb.innerHTML = '<span style="color:#d64545">Errada ✗</span> – alternativa correta: <strong>' + correctLetter + ')</strong>';
+    }
+  });
+  
+  const total = selectedQuestions.length;
+  const percent = Math.round((score / total) * 100);
+  const note = (score / total * 10).toFixed(2);
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+  res.innerHTML = '<strong>Resultado</strong><br>Acertos: ' + score + ' / ' + total + '<br>Nota final: <strong>' + note + '</strong> (' + percent + '%)';
+  document.getElementById('btnSubmit').disabled = true;
+});
+
+document.getElementById('btnReset').addEventListener('click', function() {
+  initQuiz();
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('btnSubmit').disabled = false;
+});
+
+document.getElementById('btnShow').addEventListener('click', function() {
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const fb = document.getElementById('q' + qnum + '_fb');
+    fb.style.display = 'block';
+    const correctLetter = String.fromCharCode(65 + item.correct);
+    fb.innerHTML = 'Resposta correta: <strong>' + correctLetter + ')</strong>';
+    
+    for(let k = 0; k < 4; k++) {
+      const el = document.getElementById('q' + qnum + '_opt' + k);
+      if(el) {
+        el.classList.remove('incorrect');
+        if(k === item.correct) el.classList.add('correct');
+      }
+    }
+  });
+  
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+  res.innerHTML = '<strong>Gabarito exibido.</strong>';
+  document.getElementById('btnSubmit').disabled = true;
+});
+
+initQuiz();
+</script>
+
+</body>
+</html>

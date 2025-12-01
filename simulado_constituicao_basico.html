@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Simulado — Nível Básico - Constituição e Estado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ body{font-family:Arial,sans-serif;margin:0;background:#f5f7fa;color:#222;}
+ header, footer{background:#fff;padding:15px;text-align:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+ .container{max-width:900px;margin:20px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+ a{color:#005bbb;text-decoration:none;font-weight:bold;}
+ .btn-back{display:inline-block;margin:15px 0;padding:10px 15px;background:#005bbb;color:#fff;border-radius:8px;text-decoration:none;}
+ .question{border:1px solid #e0e0e0;padding:15px;margin:15px 0;border-radius:8px;}
+ .option{display:block;padding:8px;margin:5px 0;cursor:pointer;}
+ .correct{background:#e8f5e8;border:1px solid #4caf50;}
+ .incorrect{background:#ffebee;border:1px solid #f44336;}
+ .result{padding:15px;background:#fff9c4;border-radius:8px;margin:15px 0;}
+ .controls{display:flex;gap:10px;margin:15px 0;}
+ .controls button{padding:10px 15px;border:none;border-radius:5px;cursor:pointer;}
+ .btn-submit{background:#005bbb;color:#fff;}
+ .btn-reset{background:#666;color:#fff;}
+ .btn-show{background:#ff9800;color:#fff;}
+ .social a { margin: 0 6px; }
+ .level-badge{display:inline-block;padding:6px 12px;background:#e9f2ff;color:#044a88;border-radius:6px;font-weight:700;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto;">
+    <div>
+      <h2>Simulado — Nível Básico - Constituição e Estado</h2>
+      <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a>
+    </div>
+    <a class="btn-back" href="index.html">⬅ Voltar</a>
+  </div>
+  
+  <div class="social" style="margin-top: 15px;">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+</header>
+
+<div class="container">
+  <h3>Simulado - Nível Básico</h3>
+  <div class="level-badge">BÁSICO - 15 QUESTÕES</div>
+  <p>Responda às questões abaixo sobre Constituição e Estado</p>
+  
+  <div class="controls">
+    <button class="btn-submit" onclick="submitQuiz()">Corrigir Prova</button>
+    <button class="btn-reset" onclick="resetQuiz()">Reiniciar</button>
+    <button class="btn-show" onclick="showAnswers()">Mostrar Gabarito</button>
+  </div>
+  
+  <div id="quiz-container"></div>
+  <div id="result" class="result" style="display:none;"></div>
+  
+  <a class="btn-back" href="index.html">⬅ Voltar à Página Inicial</a>
+</div>
+
+<footer>
+  <div style="margin-bottom: 15px;">
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">Design by Fábio Wlademir</a> | 
+    <a href="mailto:f2sites@gmail.com">Feedback: f2sites@gmail.com</a>
+  </div>
+  
+  <div class="social">
+    <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:20px;vertical-align:middle;"> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="height:20px;vertical-align:middle;"> LinkedIn</a>
+    <a href="https://fabiowlademir.github.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="height:20px;vertical-align:middle;"> GitHub</a>
+    <a href="https://f2suporte.blogspot.com/" target="_blank"><img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" style="height:20px;vertical-align:middle;"> Blog</a>
+    <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style="height:18px;vertical-align:middle;"> YouTube</a>
+    <a href="https://www.instagram.com/fabiowlademirrs" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height:20px;vertical-align:middle;"> Instagram</a>
+  </div>
+  
+  <div style="margin-top: 15px; font-size: 14px; color: #555;">
+    <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+    <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+    <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+  </div>
+</footer>
+
+<script>
+// Banco de questões para nível básico - CONSTITUIÇÃO E ESTADO
+const questions = [
+  {
+    q: "Qual o conceito de Estado segundo a teoria política moderna?",
+    opts: [
+      "Comunidade política organizada com povo, território e governo soberano",
+      "Apenas o conjunto de órgãos públicos",
+      "Sinônimo de nação ou país",
+      "Grupo de pessoas sem organização política"
+    ],
+    ans: 0
+  },
+  {
+    q: "Quais são os elementos constitutivos do Estado?",
+    opts: [
+      "Povo, território e soberania",
+      "Apenas governo e leis",
+      "Presidente, Congresso e Judiciário",
+      "Constituição, leis e decretos"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que caracteriza o Estado Democrático de Direito?",
+    opts: [
+      "Submissão do Estado à lei e participação popular",
+      "Governo autoritário sem limites",
+      "Ausência de controle do poder estatal",
+      "Poder concentrado no Executivo"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a função principal de uma Constituição?",
+    opts: [
+      "Organizar o Estado e limitar o poder político",
+      "Apenas listar direitos individuais",
+      "Substituir todas as outras leis",
+      "Estabelecer apenas a forma de governo"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que é o Poder Constituinte Originário?",
+    opts: [
+      "Poder inicial que cria uma nova Constituição",
+      "Poder de modificar a Constituição vigente",
+      "Poder dos juízes interpretarem a Constituição",
+      "Poder do Presidente em casos de emergência"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a diferença entre forma de Estado e forma de Governo?",
+    opts: [
+      "Forma de Estado refere-se à estrutura; forma de Governo ao exercício do poder",
+      "São conceitos sinônimos",
+      "Forma de Estado trata do regime político",
+      "Forma de Governo define o território"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que significa a supremacia da Constituição?",
+    opts: [
+      "A Constituição está no topo da hierarquia normativa",
+      "A Constituição pode ser alterada por qualquer lei",
+      "As leis ordinárias prevalecem sobre a Constituição",
+      "A Constituição não precisa ser obedecida"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a principal característica do Estado Federal?",
+    opts: [
+      "Descentralização política com autonomia dos entes federados",
+      "Centralização do poder no governo nacional",
+      "Ausência de divisão territorial",
+      "Subordinação total dos estados à União"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que são direitos fundamentais?",
+    opts: [
+      "Direitos essenciais à dignidade humana garantidos constitucionalmente",
+      "Apenas direitos políticos e eleitorais",
+      "Direitos que podem ser suprimidos facilmente",
+      "Privilégios de determinados grupos"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a finalidade do controle de constitucionalidade?",
+    opts: [
+      "Garantir a supremacia da Constituição",
+      "Aumentar o poder do Judiciário",
+      "Impedir a criação de novas leis",
+      "Beneficiar o governo federal"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que caracteriza o Estado Social?",
+    opts: [
+      "Intervenção estatal para promover justiça social",
+      "Absoluta não-intervenção na economia",
+      "Eliminação de todos os direitos individuais",
+      "Estatização de toda propriedade privada"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a diferença entre democracia direta e representativa?",
+    opts: [
+      "Na direta o povo decide; na representativa escolhe representantes",
+      "São sistemas idênticos",
+      "Na representativa o povo vota em todas as leis",
+      "Na direta não há participação popular"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que é o preâmbulo da Constituição?",
+    opts: [
+      "Introdução que expõe os ideais e objetivos do texto constitucional",
+      "Parte que tem força normativa obrigatória",
+      "Disposição transitória da Constituição",
+      "Anexo sem importância jurídica"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a principal inovação da Constituição de 1988?",
+    opts: [
+      "Ampliação dos direitos fundamentais e sociais",
+      "Redução das garantias individuais",
+      "Centralização do poder no Executivo",
+      "Eliminação do federalismo"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que significa cidadania no Estado Democrático?",
+    opts: [
+      "Condição de titular de direitos e deveres políticos",
+      "Apenas o direito de votar",
+      "Nacionalidade brasileira",
+      "Residência em território nacional"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a função do Poder Legislativo?",
+    opts: [
+      "Elaborar leis e fiscalizar o Executivo",
+      "Aplicar as leis concretamente",
+      "Julgar conflitos conforme a lei",
+      "Administrar os serviços públicos"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que são normas programáticas na Constituição?",
+    opts: [
+      "Normas que estabelecem programas a serem implementados",
+      "Normas de aplicação imediata e direta",
+      "Normas sem qualquer eficácia jurídica",
+      "Normas que podem ser ignoradas"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual a importância da separação de poderes?",
+    opts: [
+      "Evitar a concentração e o abuso de poder",
+      "Aumentar a burocracia estatal",
+      "Dificultar o funcionamento do Estado",
+      "Beneficiar apenas um dos poderes"
+    ],
+    ans: 0
+  },
+  {
+    q: "O que caracteriza o presidencialismo como sistema de governo?",
+    opts: [
+      "Chefe de Estado e Chefe de Governo na mesma pessoa",
+      "Separação entre Chefe de Estado e Chefe de Governo",
+      "Eleição indireta do Presidente",
+      "Subordinação do Executivo ao Legislativo"
+    ],
+    ans: 0
+  },
+  {
+    q: "Qual o papel dos partidos políticos na democracia?",
+    opts: [
+      "Agregar interesses e formar a representação política",
+      "Apenas disputar eleições",
+      "Substituir a participação popular direta",
+      "Controlar todos os poderes do Estado"
+    ],
+    ans: 0
+  }
+];
+
+// Embaralhar questões e opções
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Embaralhar questões e opções de cada questão
+const shuffledQuestions = shuffleArray([...questions]).slice(0, 15);
+shuffledQuestions.forEach(q => {
+  // Salvar a resposta correta original
+  const originalQuestion = questions.find(original => original.q === q.q);
+  const correctAnswerText = originalQuestion.opts[originalQuestion.ans];
+  
+  // Embaralhar opções
+  q.opts = shuffleArray([...q.opts]);
+  
+  // Encontrar nova posição da resposta correta
+  q.ans = q.opts.indexOf(correctAnswerText);
+});
+
+// Renderizar quiz
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  
+  shuffledQuestions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+    questionDiv.id = `q${index}`;
+    
+    let optionsHTML = '';
+    question.opts.forEach((option, optIndex) => {
+      const letter = String.fromCharCode(65 + optIndex);
+      optionsHTML += `
+        <label class="option" id="q${index}opt${optIndex}">
+          <input type="radio" name="q${index}" value="${optIndex}">
+          <strong>${letter})</strong> ${option}
+        </label>
+      `;
+    });
+    
+    questionDiv.innerHTML = `
+      <div><strong>Questão ${index + 1}:</strong> ${question.q}</div>
+      <div style="margin-top:10px">${optionsHTML}</div>
+      <div id="q${index}fb" style="margin-top:8px; display:none;"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+}
+
+// Submeter quiz
+function submitQuiz() {
+  let score = 0;
+  const total = shuffledQuestions.length;
+  
+  shuffledQuestions.forEach((question, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    
+    if (selected) {
+      const selectedValue = parseInt(selected.value);
+      const selectedOpt = document.getElementById(`q${index}opt${selectedValue}`);
+      
+      if (selectedValue === question.ans) {
+        score++;
+        selectedOpt.classList.add('correct');
+        feedback.innerHTML = '<span style="color:green">✓ Resposta correta</span>';
+      } else {
+        selectedOpt.classList.add('incorrect');
+        correctOpt.classList.add('correct');
+        feedback.innerHTML = `<span style="color:red">✗ Resposta incorreta. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+      }
+    } else {
+      correctOpt.classList.add('correct');
+      feedback.innerHTML = `<span style="color:orange">Não respondida. Correta: ${String.fromCharCode(65 + question.ans)})</span>`;
+    }
+  });
+  
+  const percent = ((score / total) * 100).toFixed(1);
+  const finalGrade = ((score / total) * 10).toFixed(1);
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <strong>RESULTADO</strong><br>
+    Acertos: ${score} / ${total}<br>
+    Nota: ${finalGrade}<br>
+    Percentual: ${percent}%
+  `;
+}
+
+// Reiniciar quiz
+function resetQuiz() {
+  shuffledQuestions.forEach((_, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    if (feedback) {
+      feedback.style.display = 'none';
+      feedback.innerHTML = '';
+    }
+    
+    for (let i = 0; i < 4; i++) {
+      const opt = document.getElementById(`q${index}opt${i}`);
+      if (opt) {
+        opt.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const radios = document.querySelectorAll(`input[name="q${index}"]`);
+    radios.forEach(radio => radio.checked = false);
+  });
+  
+  document.getElementById('result').style.display = 'none';
+}
+
+// Mostrar gabarito
+function showAnswers() {
+  shuffledQuestions.forEach((question, index) => {
+    const feedback = document.getElementById(`q${index}fb`);
+    const correctOpt = document.getElementById(`q${index}opt${question.ans}`);
+    
+    feedback.style.display = 'block';
+    feedback.innerHTML = `<span style="color:blue">Gabarito: ${String.fromCharCode(65 + question.ans)})</span>`;
+    correctOpt.classList.add('correct');
+    
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected && parseInt(selected.value) !== question.ans) {
+      const selectedOpt = document.getElementById(`q${index}opt${selected.value}`);
+      selectedOpt.classList.add('incorrect');
+    }
+  });
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = '<strong>GABARITO MOSTRADO</strong>';
+}
+
+// Inicializar quiz
+renderQuiz();
+</script>
+</body>
+</html>

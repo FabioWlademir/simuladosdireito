@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Simulado – Avançado (Conhecendo o Direito)</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f3f5f7;margin:0;padding:0}
+  .wrap{max-width:980px;margin:28px auto;background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+  header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e6e9ee;padding-bottom:12px}
+  header h1{font-size:20px;color:#042f66;margin:0}
+  .contacts a{color:#0b61a8;text-decoration:none}
+  .level-badge{display:inline-block;padding:6px 10px;background:#ffcdd2;color:#880e0e;border-radius:6px;margin-bottom:8px;font-weight:700}
+  .controls{margin:14px 0}
+  button{background:#0066cc;color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+  button.secondary{background:#28a745}
+  .question{border:1px solid #eef3fb;padding:12px;margin:12px 0;border-radius:8px;background:#fcfeff}
+  label{display:block;margin:8px 0;padding:8px;border-radius:6px;cursor:pointer}
+  .correct{background:#e6ffea;border:1px solid #2d9b4a}
+  .incorrect{background:#ffeef0;border:1px solid #d64545}
+  .result{padding:14px;background:#fffbe6;border:1px solid #ffe8a1;border-radius:8px;margin-top:12px}
+  .small{font-size:0.9rem;color:#556}
+  footer{margin-top:18px;padding-top:12px;border-top:1px solid #e6e9ee;color:#334}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Simulado – Conhecendo o Direito</h1>
+    <div class="small">Design by <strong>Fábio Wlademir</strong> – Analista de Suporte | NOC | Estudante de Direito - UNISINOS</div>
+  </div>
+  <div class="contacts small">
+    <div><a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank">WhatsApp</a> | <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">LinkedIn</a></div>
+    <div><a href="https://fabiowlademir.github.io/" target="_blank">GitHub</a> | <a href="https://f2suporte.blogspot.com/" target="_blank">Blog</a></div>
+    <div><a href="https://www.youtube.com/@fabiowlademirrs" target="_blank">YouTube</a> | <a href="https://www.instagram.com/fabiowlademirrs" target="_blank">Instagram</a></div>
+  </div>
+</header>
+
+<main>
+<h2 class="level-badge">AVANÇADO – 20 questões</h2>
+<p class="small">Responda todas as questões e clique em <strong>Corrigir prova</strong>. O sistema mostrará sua nota de 0 a 10, evidenciará respostas corretas/erradas e exibirá o gabarito. <strong>As questões são aleatórias a cada acesso!</strong></p>
+
+<div class="controls">
+  <button id="btnSubmit">Corrigir prova</button>
+  <button id="btnReset" class="secondary">Reiniciar</button>
+  <button id="btnShow" style="background:#444;color:#fff;border-radius:8px">Mostrar gabarito</button>
+  <a href="index.html" style="margin-left:12px;color:#0066cc;font-weight:700;text-decoration:none">Voltar</a>
+</div>
+
+<form id="quizForm"></form>
+
+<div id="result" class="result" style="display:none"></div>
+
+<footer>
+  <div class="small">© Simulado – Conhecendo o Direito • Design by Fábio Wlademir</div>
+  <div class="small">Contato: <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank">WhatsApp</a> • <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank">LinkedIn</a></div>
+  <div class="small" style="margin-top:8px">
+    <a href="mailto:f2sites@gmail.com" style="color:#0066cc">📧 Encontrou um erro? Comunique-nos!</a> • Colabore com a melhoria dos simulados!
+  </div>
+</footer>
+</div>
+
+<script>
+// Banco de questões AVANÇADO (30 questões complexas)
+const questionBank = [
+  {
+    q: "A teoria pura do direito de Kelsen propõe uma ciência jurídica 'pura' porque:",
+    opts: [
+      "Elimina qualquer consideração política, sociológica ou moral, focando apenas na estrutura lógica do direito",
+      "Inclui elementos morais como fundamento do direito",
+      "Rejeita a ideia de sistema jurídico",
+      "Baseia-se exclusivamente em fatos sociais empíricos"
+    ],
+    correct: 0
+  },
+  {
+    q: "A grundnorm kelseniana é criticada por ser:",
+    opts: [
+      "Excessivamente empírica",
+      "Uma ficção lógica necessária mas não verificável empiricamente",
+      "Derivada do direito natural",
+      "Igual ao conceito de costume jurídico"
+    ],
+    correct: 1
+  },
+  {
+    q: "Hart, ao distinguir 'ter a obrigação' de 'ser obrigado a', enfatiza:",
+    opts: [
+      "Que ambos significam a mesma coisa",
+      "A diferença entre aceitar internamente uma regra (obrigação) e ser coagido externamente (ser obrigado)",
+      "Que apenas a coerção importa no direito",
+      "Que obrigações morais e jurídicas são idênticas"
+    ],
+    correct: 1
+  },
+  {
+    q: "A regra de reconhecimento de Hart serve para:",
+    opts: [
+      "Criar novas normas primárias",
+      "Identificar quais regras pertencem ao sistema jurídico",
+      "Abolir normas inválidas",
+      "Substituir a Constituição"
+    ],
+    correct: 1
+  },
+  {
+    q: "Ross, no realismo escandinavo, critica conceitos como 'direito subjetivo' e 'pessoa jurídica' por serem:",
+    opts: [
+      "Muito concretos",
+      "Conceitos metafísicos sem referente empírico real",
+      "Sempre válidos",
+      "Baseados em fatos sociais comprováveis"
+    ],
+    correct: 1
+  },
+  {
+    q: "A distinção entre 'contexto de descoberta' e 'contexto de justificação' na decisão judicial refere-se:",
+    opts: [
+      "Ao processo psicológico de chegar a uma decisão vs. a argumentação racional que a justifica",
+      "A diferentes tipos de tribunais",
+      "Apenas a questões processuais",
+      "A diferenças entre direito e moral"
+    ],
+    correct: 0
+  },
+  {
+    q: "O método dialético aplicado ao direito, inspirado em Hegel e Marx, sugere que:",
+    opts: [
+      "O direito é estático e imutável",
+      "O direito evolui através de contradições (tese, antítese, síntese) e reflete estruturas socioeconômicas",
+      "O direito independe da economia",
+      "Apenas a lógica formal importa"
+    ],
+    correct: 1
+  },
+  {
+    q: "A Escola Histórica de Savigny criticava as codificações porque:",
+    opts: [
+      "Defendia que o direito deve evoluir organicamente do espírito do povo, não ser imposto artificialmente",
+      "Acreditava apenas em leis escritas",
+      "Rejeitava qualquer direito não codificado",
+      "Era favorável ao direito natural universal"
+    ],
+    correct: 0
+  },
+  {
+    q: "A Jurisprudência dos Conceitos (Begriffsjurisprudenz) alemã do século XIX se caracterizava por:",
+    opts: [
+      "Pragmatismo e flexibilidade",
+      "Construção de um sistema jurídico dedutivo baseado em conceitos lógicos abstratos",
+      "Rejeição de qualquer sistematização",
+      "Ênfase exclusiva em fatos sociais"
+    ],
+    correct: 1
+  },
+  {
+    q: "A Jurisprudência dos Interesses (Interessenjurisprudenz) surge como reação à Jurisprudência dos Conceitos, propondo:",
+    opts: [
+      "Mais formalismo lógico",
+      "Considerar os interesses sociais concretos envolvidos nos casos jurídicos",
+      "Ignorar completamente os conceitos jurídicos",
+      "Basear-se apenas em textos legais"
+    ],
+    correct: 1
+  },
+  {
+    q: "O Movimento do Direito Livre (Freirechtsbewegung) defendia:",
+    opts: [
+      "Estrita vinculação à lei escrita",
+      "Maior liberdade interpretativa do juiz para adaptar o direito ao caso concreto",
+      "Abolição do Poder Judiciário",
+      "Aplicação apenas de costumes"
+    ],
+    correct: 1
+  },
+  {
+    q: "A distinção de Bobbio entre antinomias próprias e impróprias está em:",
+    opts: [
+      "Não existe tal distinção",
+      "Antinomias próprias são reais conflitos normativos; impróprias são aparentes",
+      "Ambas são idênticas",
+      "Apenas antinomias impróprias são relevantes"
+    ],
+    correct: 1
+  },
+  {
+    q: "O critério da especialidade para resolver antinomias estabelece que:",
+    opts: [
+      "A norma mais antiga prevalece",
+      "A norma especial prevalece sobre a norma geral",
+      "A norma hierarquicamente superior sempre vence",
+      "Todas as normas têm igual valor"
+    ],
+    correct: 1
+  },
+  {
+    q: "Quando há conflito entre os critérios de solução de antinomias (hierárquico, cronológico, especialidade), a doutrina majoritária considera que:",
+    opts: [
+      "Não há solução possível",
+      "O critério hierárquico geralmente prevalece sobre os demais",
+      "O critério cronológico é sempre superior",
+      "Aplica-se analogia"
+    ],
+    correct: 1
+  },
+  {
+    q: "A interpretação conforme a Constituição é uma técnica que:",
+    opts: [
+      "Ignora a Constituição",
+      "Busca interpretar leis ordinárias de modo compatível com a Constituição, evitando declará-las inconstitucionais",
+      "Sempre declara leis inconstitucionais",
+      "Substitui a Constituição"
+    ],
+    correct: 1
+  },
+  {
+    q: "A teoria da dupla dimensão dos direitos fundamentais reconhece que eles têm:",
+    opts: [
+      "Apenas dimensão subjetiva",
+      "Dimensão subjetiva (direito individual) e objetiva (valores que informam todo o ordenamento)",
+      "Apenas dimensão objetiva",
+      "Nenhuma dimensão relevante"
+    ],
+    correct: 1
+  },
+  {
+    q: "A eficácia horizontal dos direitos fundamentais significa:",
+    opts: [
+      "Aplicação apenas contra o Estado (vertical)",
+      "Aplicação também nas relações entre particulares",
+      "Inexistência de eficácia",
+      "Aplicação apenas no direito penal"
+    ],
+    correct: 1
+  },
+  {
+    q: "O princípio da máxima efetividade dos direitos fundamentais propõe:",
+    opts: [
+      "Interpretar restritivamente direitos fundamentais",
+      "Interpretar extensivamente, conferindo a maior eficácia possível aos direitos fundamentais",
+      "Ignorar direitos fundamentais",
+      "Aplicar apenas literalmente"
+    ],
+    correct: 1
+  },
+  {
+    q: "A reserva do possível como limite aos direitos sociais refere-se:",
+    opts: [
+      "À obrigação ilimitada do Estado",
+      "Às limitações fáticas (orçamentárias) e jurídicas para implementação de direitos que demandam prestações positivas",
+      "À impossibilidade de qualquer direito social",
+      "Apenas a direitos civis"
+    ],
+    correct: 1
+  },
+  {
+    q: "O mínimo existencial representa:",
+    opts: [
+      "O mínimo de luxo necessário",
+      "O núcleo essencial de direitos fundamentais necessários para uma vida digna, não sujeito à reserva do possível",
+      "Um conceito irrelevante",
+      "Apenas direitos políticos"
+    ],
+    correct: 1
+  },
+  {
+    q: "A teoria dos limites imanentes aos direitos fundamentais sustenta que:",
+    opts: [
+      "Direitos fundamentais não têm limites",
+      "Os limites decorrem da própria ordem constitucional e da necessidade de compatibilizar diferentes direitos",
+      "Apenas a lei pode limitar direitos",
+      "Limites são sempre arbitrários"
+    ],
+    correct: 1
+  },
+  {
+    q: "O postulado da proporcionalidade em sentido estrito (proporcionalidade stricto sensu) exige:",
+    opts: [
+      "Apenas adequação",
+      "Ponderação entre benefícios e prejuízos da medida restritiva",
+      "Apenas necessidade",
+      "Não considera custos e benefícios"
+    ],
+    correct: 1
+  },
+  {
+    q: "A teoria alexyana dos direitos fundamentais distingue regras de princípios. Princípios são:",
+    opts: [
+      "Aplicados no modo 'tudo ou nada' como regras",
+      "Mandamentos de otimização, realizáveis em diferentes graus",
+      "Idênticos às regras",
+      "Irrelevantes juridicamente"
+    ],
+    correct: 1
+  },
+  {
+    q: "O conceito de 'casos difíceis' (hard cases) de Dworkin refere-se a:",
+    opts: [
+      "Casos criminalmente graves",
+      "Situações onde as regras são insuficientes e é necessário recorrer a princípios",
+      "Apenas casos simples",
+      "Casos sem solução jurídica"
+    ],
+    correct: 1
+  },
+  {
+    q: "Dworkin critica o positivismo de Hart argumentando que:",
+    opts: [
+      "Hart está completamente correto",
+      "O direito não se resume a regras sociais, incluindo também princípios morais objetivos",
+      "Apenas regras importam",
+      "Moral e direito nunca se relacionam"
+    ],
+    correct: 1
+  },
+  {
+    q: "A resposta correta (right answer) de Dworkin sugere que:",
+    opts: [
+      "Não há resposta correta para casos jurídicos",
+      "Mesmo em casos difíceis, há uma resposta juridicamente correta a ser descoberta através de princípios",
+      "Apenas escolhas arbitrárias são possíveis",
+      "O juiz decide livremente sem critérios"
+    ],
+    correct: 1
+  },
+  {
+    q: "A noção de 'lex injusta non est lex' (lei injusta não é lei) está associada a:",
+    opts: [
+      "Positivismo kelseniano",
+      "Jusnaturalismo clássico (Agostinho, Tomás de Aquino)",
+      "Realismo jurídico",
+      "Escola histórica"
+    ],
+    correct: 1
+  },
+  {
+    q: "A fórmula de Radbruch estabelece que:",
+    opts: [
+      "Lei injusta sempre é válida",
+      "Quando a injustiça da lei positiva atinge um grau insuportável, a lei perde sua validade",
+      "Justiça é irrelevante para validade",
+      "Apenas a eficácia importa"
+    ],
+    correct: 1
+  },
+  {
+    q: "O debate entre jusnaturalismo e juspositivismo no pós-guerra (Julgamento de Nuremberg) centrou-se em:",
+    opts: [
+      "Questões tributárias",
+      "Se era possível punir crimes baseados em leis formalmente válidas mas moralmente intoleráveis do regime nazista",
+      "Apenas questões civis",
+      "Direito comercial"
+    ],
+    correct: 1
+  },
+  {
+    q: "A hermenêutica filosófica de Gadamer aplicada ao direito enfatiza:",
+    opts: [
+      "Interpretação puramente objetiva e atemporal",
+      "A interpretação como diálogo entre texto, intérprete e horizonte histórico (fusão de horizontes)",
+      "Que não há interpretação, apenas aplicação mecânica",
+      "Ignorar o contexto histórico"
+    ],
+    correct: 1
+  }
+];
+
+let selectedQuestions = [];
+
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function initQuiz() {
+  const shuffled = shuffle(questionBank);
+  selectedQuestions = shuffled.slice(0, 20);
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const form = document.getElementById('quizForm');
+  form.innerHTML = '';
+  
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = 'q' + qnum;
+    
+    let html = `<div><strong>Questão ${qnum}.</strong> ${item.q}</div><div style="margin-top:8px">`;
+    
+    item.opts.forEach((opt, optIdx) => {
+      const letter = String.fromCharCode(65 + optIdx);
+      html += `<label id="q${qnum}_opt${optIdx}">
+        <input type="radio" name="q${qnum}" value="${optIdx}"> 
+        <strong>${letter})</strong> ${opt}
+      </label>`;
+    });
+    
+    html += `</div><div id="q${qnum}_fb" style="display:none;margin-top:6px;font-weight:700"></div>`;
+    div.innerHTML = html;
+    form.appendChild(div);
+  });
+}
+
+document.getElementById('btnSubmit').addEventListener('click', function() {
+  let score = 0;
+  
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const radios = document.getElementsByName('q' + qnum);
+    let chosen = null;
+    
+    for(const r of radios) {
+      if(r.checked) chosen = parseInt(r.value);
+    }
+    
+    const fb = document.getElementById('q' + qnum + '_fb');
+    fb.style.display = 'block';
+    
+    for(let k = 0; k < 4; k++) {
+      const el = document.getElementById('q' + qnum + '_opt' + k);
+      if(el) {
+        el.classList.remove('correct', 'incorrect');
+      }
+    }
+    
+    const correctAnswer = item.correct;
+    const correctLetter = String.fromCharCode(65 + correctAnswer);
+    
+    if(chosen === null) {
+      fb.innerHTML = '<span style="color:#666">Sem resposta – resposta correta: <strong>' + correctLetter + ')</strong></span>';
+    } else if(chosen === correctAnswer) {
+      score++;
+      document.getElementById('q' + qnum + '_opt' + chosen).classList.add('correct');
+      fb.innerHTML = '<span style="color:#2d9b4a">Correta ✓</span> – alternativa: <strong>' + correctLetter + ')</strong>';
+    } else {
+      document.getElementById('q' + qnum + '_opt' + chosen).classList.add('incorrect');
+      document.getElementById('q' + qnum + '_opt' + correctAnswer).classList.add('correct');
+      fb.innerHTML = '<span style="color:#d64545">Errada ✗</span> – alternativa correta: <strong>' + correctLetter + ')</strong>';
+    }
+  });
+  
+  const total = selectedQuestions.length;
+  const percent = Math.round((score / total) * 100);
+  const note = (score / total * 10).toFixed(2);
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+  res.innerHTML = '<strong>Resultado</strong><br>Acertos: ' + score + ' / ' + total + '<br>Nota final: <strong>' + note + '</strong> (' + percent + '%)';
+  document.getElementById('btnSubmit').disabled = true;
+});
+
+document.getElementById('btnReset').addEventListener('click', function() {
+  initQuiz();
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('btnSubmit').disabled = false;
+});
+
+document.getElementById('btnShow').addEventListener('click', function() {
+  selectedQuestions.forEach((item, idx) => {
+    const qnum = idx + 1;
+    const fb = document.getElementById('q' + qnum + '_fb');
+    fb.style.display = 'block';
+    const correctLetter = String.fromCharCode(65 + item.correct);
+    fb.innerHTML = 'Resposta correta: <strong>' + correctLetter + ')</strong>';
+    
+    for(let k = 0; k < 4; k++) {
+      const el = document.getElementById('q' + qnum + '_opt' + k);
+      if(el) {
+        el.classList.remove('incorrect');
+        if(k === item.correct) el.classList.add('correct');
+      }
+    }
+  });
+  
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+  res.innerHTML = '<strong>Gabarito exibido.</strong>';
+  document.getElementById('btnSubmit').disabled = true;
+});
+
+initQuiz();
+</script>
+
+</body>
+</html>

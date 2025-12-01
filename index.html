@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="google-site-verification" content="XF3b2AlC_M4S5SDLQsvLYpZrWtGlB8MuwUKTxsmPWds" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulados de Direito - A Fonte Completa do Direito Brasileiro</title>
+    <meta name="description" content="Simulados completos de Direito para estudantes e profissionais. Questões atualizadas sobre Direito Penal, Civil, Constitucional, Trabalhista e mais. Recursos jurídicos gratuitos.">
+    <meta name="keywords" content="simulados direito, questões direito, OAB, direito penal, direito civil, direito constitucional, direito trabalhista, legislação brasileira">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://simuladosdireito.netlify.app/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Simulados de Direito - A Fonte Completa do Direito Brasileiro">
+    <meta property="og:description" content="Simulados completos de Direito para estudantes e profissionais. Questões atualizadas sobre todas as áreas do direito.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://simuladosdireito.netlify.app/">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Simulados de Direito",
+        "description": "A Fonte Completa do Direito Brasileiro",
+        "url": "https://simuladosdireito.netlify.app/",
+        "author": {
+            "@type": "Person",
+            "name": "Fábio Wlademir"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Simulados de Direito"
+        }
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        :root[data-theme="dark"] {
+            --primary-color: #0a1929;
+            --secondary-color: #001e3c;
+            --accent-color: #1976d2;
+            --text-light: #e0e0e0;
+            --text-dark: #f5f5f5;
+            --background-light: #121212;
+            --card-bg: #1e1e1e;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        /* Header Styles */
+        .header {
+            background: var(--primary-color);
+            padding: 25px 20px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .header .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .header .social a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .header .social a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header .social img {
+            height: 20px;
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        /* Navigation */
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover,
+        .nav-bar a:focus {
+            background: var(--accent-color);
+            outline: none;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 0.9em;
+        }
+        
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb span {
+            color: #6c757d;
+        }
+        
+        /* Search */
+        .search-container {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: var(--transition);
+        }
+        
+        .search-box input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 85, 170, 0.2);
+        }
+        
+        .search-box button {
+            background: var(--accent-color);
+            color: var(--text-light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .search-box button:hover {
+            background: #003d7a;
+            transform: translateY(-2px);
+        }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filters select {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            font-size: 0.9em;
+        }
+        
+        /* Search Feedback */
+        .search-feedback {
+            background: #e7f3ff;
+            border: 1px solid #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px auto;
+            max-width: 600px;
+            display: none;
+        }
+        
+        .highlight {
+            background-color: yellow;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Alert */
+        .alert-test {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        /* Sections */
+        .section {
+            background: var(--card-bg);
+            margin: 25px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .links a {
+            display: block;
+            background: var(--accent-color);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .links a:hover {
+            background: #003d7a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .favorite-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #ffd700;
+            transition: var(--transition);
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Useful Links */
+        .useful-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .useful-links a {
+            display: block;
+            background: #f8f9fa;
+            color: var(--accent-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid #dee2e6;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .useful-links a:hover {
+            background: #e9ecef;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .category-title {
+            color: #495057;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+        }
+        
+        /* Ebook Drives */
+        .ebook-drive {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .ebook-drive h3 {
+            color: #2e7d32;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        
+        .ebook-drive a {
+            background: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .ebook-drive a:hover {
+            background: #3d8b40;
+            transform: translateY(-2px);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress {
+            background: var(--accent-color);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-bar span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 0.95em;
+            color: #444;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer .social a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .footer .social a:hover {
+            background: rgba(0, 51, 102, 0.1);
+            text-decoration: none;
+        }
+        
+        .footer .social img {
+            height: 20px;
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        /* Visitor Counter */
+        .visitor-counter {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .visitor-counter .count {
+            font-size: 1.3em;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        /* User Stats */
+        .user-stats {
+            background: #e7f3ff;
+            border: 1px solid #007bff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px auto;
+            max-width: 600px;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Skip to main content for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header .social {
+                gap: 10px;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            
+            .section {
+                padding: 20px;
+                margin: 15px;
+            }
+            
+            .links {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-box button {
+                width: 100%;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+            
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.7em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .section h2 {
+                font-size: 1.5em;
+            }
+            
+            .useful-links {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .nav-bar, .search-container, .alert-test, .footer .social, .visitor-counter, 
+            .theme-toggle, .breadcrumb, .filters {
+                display: none;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+            
+            .links a, .useful-links a {
+                background: none;
+                color: #000;
+                border: 1px solid #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+        🌓
+    </button>
+
+    <div class="header" role="banner">
+        <h1>⚖️ Simulados de Direito</h1>
+        <p>A Fonte Completa do Direito Brasileiro</p>
+
+        <p><a href="index.html" style="color:white;text-decoration:none; font-weight:bold">Design by Fábio Wlademir</a></p>
+
+        <div class="social" aria-label="Redes sociais">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20" height="20"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="20" height="20"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" width="20" height="20"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="20" height="20"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="20" height="20"> Instagram
+            </a>
+        </div>
+    </div>
+
+    <nav class="nav-bar" aria-label="Navegação principal">
+        <a href="index.html">🏠 Início</a>
+        <a href="calculadora_media.html">🧮 Calculadora</a>
+        <a href="https://uiclap.bio/wlademir" target="_blank">ℹ️ Sobre o Autor</a>
+        <a href="#simulados">📝 Simulados</a>
+        <a href="#links-uteis">🔗 Recursos Jurídicos</a>
+        <a href="#ebooks">📚 E-books Gratuitos</a>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Navegação estrutural">
+        <a href="index.html">Início</a> > 
+        <span>Simulados de Direito</span>
+    </nav>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Pesquisar legislação, simulados, recursos..." aria-label="Campo de pesquisa">
+            <button onclick="enhancedSearch()">🔍 Pesquisar</button>
+        </div>
+        
+        <!-- Filtros -->
+        <div class="filters">
+            <select id="areaFilter">
+                <option value="">Todas as áreas</option>
+                <option value="penal">Direito Penal</option>
+                <option value="civil">Direito Civil</option>
+                <option value="constitucional">Direito Constitucional</option>
+                <option value="trabalho">Direito do Trabalho</option>
+                <option value="digital">Direito Digital</option>
+            </select>
+            
+            <select id="difficultyFilter">
+                <option value="">Todos os níveis</option>
+                <option value="basico">Básico</option>
+                <option value="intermediario">Intermediário</option>
+                <option value="avancado">Avançado</option>
+            </select>
+        </div>
+        
+        <!-- Feedback da pesquisa -->
+        <div class="search-feedback" id="searchFeedback"></div>
+    </div>
+
+    <div class="alert-test" role="alert">
+        <strong>⚠️ Versão em Testes</strong><br>
+        Este simulado está em fase de desenvolvimento. Algumas questões ainda estão sendo aprimoradas e ajustadas. Seu feedback é muito importante para melhorar a ferramenta!
+    </div>
+
+    <main id="main-content">
+        <div class="section" id="simulados">
+            <h2>📝 Simulados por Disciplina</h2>
+            
+            <!-- Progress Bar Example -->
+            <div class="progress-bar">
+                <div class="progress" style="width: 25%"></div>
+                <span>Progresso Geral: 25%</span>
+            </div>
+            
+            <div class="category-title">🧮 FERRAMENTAS E CALCULADORAS</div>
+            <div class="links">
+                <a href="calculadora_media.html">
+                    CALCULADORA DE MÉDIA UNISINOS
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+            </div>
+            
+            <div class="category-title">📚 DIREITO BÁSICO E INTRODUTÓRIO</div>
+            <div class="links">
+                <a href="simulado_basico.html">
+                    CONHECENDO O DIREITO - BÁSICO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_intermediario.html">
+                    CONHECENDO O DIREITO - INTERMEDIÁRIO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_avancado.html">
+                    CONHECENDO O DIREITO - AVANÇADO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_historia_direito.html">
+                    HISTÓRIA DO DIREITO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_norma_juridica.html">
+                    CONCEITO DE NORMA JURÍDICA
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_direito_subjetivo.html">
+                    DIREITO SUBJETIVO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_direito_natural.html">
+                    DIREITO NATURAL
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_direito_publico.html">
+                    DIREITO PÚBLICO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_direito_privado.html">
+                    DIREITO PRIVADO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_norma_juridica.html">
+                    POSITIVISMO JURÍDICO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_norma_juridica.html">
+                    HIERARQUIA NORMAS JURÍDICAS
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a> 
+                <a href="simulado_norma_juridica.html">
+                    DIREITOS HUMANOS
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_norma_juridica.html">
+                    TEORIA DO DIREITO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>  
+            </div>
+
+            <!-- NOVA CATEGORIA ADICIONADA AQUI -->
+            <div class="category-title">🚀 DIREITO DIGITAL E TECNOLOGIA</div>
+            <div class="links">
+                <a href="simulado_direito_digital.html">
+                    DIREITO DIGITAL
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_lgpd.html">
+                    LGPD - LEI GERAL DE PROTEÇÃO DE DADOS
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="#">
+                    PROPRIEDADE INTELECTUAL DIGITAL
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="#">
+                    CONTRATOS E NEGÓCIOS DIGITAIS
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+            </div>
+
+            <div class="category-title">⚖️ DIREITO PENAL</div>
+            <div class="links">
+                <a href="simulado_penal_basico.html">
+                    DIREITO PENAL - BÁSICO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_penal_intermediario.html">
+                    DIREITO PENAL - INTERMEDIÁRIO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_penal_avancado.html">
+                    DIREITO PENAL - AVANÇADO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+            </div>
+
+            <div class="category-title">📄 DIREITO PRIVADO</div>
+            <div class="links">
+                <a href="simulado_privado_basico.html">
+                    DIREITO PRIVADO - BÁSICO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_privado_intermediario.html">
+                    DIREITO PRIVADO - INTERMEDIÁRIO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_privado_avancado.html">
+                    DIREITO PRIVADO - AVANÇADO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+            </div>
+
+            <div class="category-title">🏛️ DIREITO CONSTITUCIONAL</div>
+            <div class="links">
+                <a href="simulado_constituicao_basico.html">
+                    CONSTITUIÇÃO E ESTADO - BÁSICO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_constituicao_intermediario.html">
+                    CONSTITUIÇÃO E ESTADO - INTERMEDIÁRIO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+                <a href="simulado_constituicao_avancado.html">
+                    CONSTITUIÇÃO E ESTADO - AVANÇADO
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">★</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="section" id="links-uteis">
+            <h2>🔗 RECURSOS JURÍDICOS COMPLETOS</h2>
+
+            <div class="category-title">📰 NOTÍCIAS JURÍDICAS E ATUALIZAÇÕES</div>
+            <div class="useful-links">
+                <a href="https://www.conjur.com.br/" target="_blank" rel="noopener">📰 Consultor Jurídico (ConJur)</a>
+                <a href="https://www.migalhas.com.br/" target="_blank" rel="noopener">📰 Migalhas</a>
+                <a href="https://www.jota.info/" target="_blank" rel="noopener">📰 JOTA</a>
+                <a href="https://valor.globo.com/" target="_blank" rel="noopener">📰 Valor Econômico</a>
+            </div>
+
+            <div class="category-title">🎓 PERIÓDICOS CIENTÍFICOS E DOUTRINA</div>
+            <div class="useful-links">
+                <a href="https://www.scielo.org/" target="_blank" rel="noopener">🎓 SciELO</a>
+                <a href="https://www.periodicos.capes.gov.br/" target="_blank" rel="noopener">🎓 Periódicos Capes</a>
+                <a href="https://www.revistadostribunais.com.br/maf/app/authentication/signon?sp=UVRS-2" target="_blank" rel="noopener">🎓 Revista dos Tribunais</a>
+                <a href="https://revistas.unisinos.br/index.php/RECHTD/index" target="_blank" rel="noopener">🎓 RECHTD - Unisinos</a>
+            </div>
+
+            <div class="category-title">⚖️ CÓDIGOS PRINCIPAIS E LEGISLAÇÃO BÁSICA</div>
+            <div class="useful-links">
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/757308/Vade_mecum_Senado_Federal_2ed.pdf" target="_blank" rel="noopener">📚 Vade Mecum Senado Federal</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener">📄 Constituição Federal</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm" target="_blank" rel="noopener">👨‍💼 CLT - Consolidação das Leis do Trabalho</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/2002/l10406.htm" target="_blank" rel="noopener">📄 Código Civil</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del2848.htm" target="_blank" rel="noopener">📄 Código Penal</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l5869.htm" target="_blank" rel="noopener">📄 Código de Processo Civil</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">📄 Código de Processo Penal</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l5172.htm" target="_blank" rel="noopener">💰 Código Tributário Nacional</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l4737.htm" target="_blank" rel="noopener">🗳️ Código Eleitoral</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l9503.htm" target="_blank" rel="noopener">🚗 Código de Trânsito Brasileiro</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l8078.htm" target="_blank" rel="noopener">🛒 Código de Defesa do Consumidor</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l6404compilado.htm" target="_blank" rel="noopener">💼 Lei das Sociedades Anônimas</a>
+            </div>
+
+            <div class="category-title">🏛️ ÓRGÃOS OFICIAIS E TRIBUNAIS</div>
+            <div class="useful-links">
+                <a href="https://www.senado.leg.br/" target="_blank" rel="noopener">🏛️ Senado Federal</a>
+                <a href="https://www.camara.leg.br/" target="_blank" rel="noopener">🏛️ Câmara dos Deputados</a>
+                <a href="https://www.stf.jus.br/" target="_blank" rel="noopener">⚖️ STF - Supremo Tribunal Federal</a>
+                <a href="https://www.stj.jus.br/" target="_blank" rel="noopener">⚖️ STJ - Superior Tribunal de Justiça</a>
+                <a href="https://www.tse.jus.br/" target="_blank" rel="noopener">🗳️ TSE - Tribunal Superior Eleitoral</a>
+                <a href="https://www.tst.jus.br/" target="_blank" rel="noopener">⚖️ TST - Tribunal Superior do Trabalho</a>
+                <a href="https://www.tjrs.jus.br/novo/eproc/acesso-ao-sistema/" target="_blank" rel="noopener">⚖️ TJRS - Tribunal de Justiça RS</a>
+                <a href="https://www.trt4.jus.br/portais/trt4" target="_blank" rel="noopener">⚖️ TRT4 - Tribunal Regional do Trabalho</a>
+                <a href="https://www.oab.org.br/" target="_blank" rel="noopener">🎓 OAB - Ordem dos Advogados</a>
+            </div>
+
+            <div class="category-title">📋 ESTATUTOS ESPECIAIS - EDIÇÕES DO SENADO</div>
+            <div class="useful-links">
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/696197/Estatuto_crianca_adolescente_8ed_2025.pdf" target="_blank" rel="noopener">👦 Estatuto da Criança e Adolescente (2025)</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/696180/Estatuto_crianca_adolescente_normas_correlatas_4ed_2025.pdf" target="_blank" rel="noopener">👦 ECA - Normas Correlatas (2025)</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/656403/ECA_em_miudos_2ed.pdf" target="_blank" rel="noopener">👦 ECA em Miúdos (Didático)</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/757474/Estatuto_igualdade_racial_normas_correlatas_4ed.pdf" target="_blank" rel="noopener">✊🏽 Estatuto Igualdade Racial + Normas</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/651228/Estatuto_igualdade_racial_miudos_2ed.pdf" target="_blank" rel="noopener">✊🏽 Estatuto Igualdade Racial em Miúdos</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/756939/Estatuto_pessoa_deficiencia_8ed.pdf" target="_blank" rel="noopener">♿ Estatuto da Pessoa com Deficiência</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/603074/Estatuto_pessoa_idosa_6ed.pdf" target="_blank" rel="noopener">👵 Estatuto da Pessoa Idosa</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/659167/Estatuto_cidade.pdf" target="_blank" rel="noopener">🏙️ Estatuto da Cidade</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener">🚺 Lei Maria da Penha</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener">🔒 LGPD - Proteção de Dados</a>
+            </div>
+
+            <div class="category-title">⚖️ DIREITO PROFISSIONAL E ADVOCACIA</div>
+            <div class="useful-links">
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l8906.htm" target="_blank" rel="noopener">🎓 Estatuto da OAB</a>
+                <a href="http://www.planalto.gov.br/ccivil_03/leis/l4137compilado.htm" target="_blank" rel="noopener">⚖️ Estatuto da Advocacia</a>
+                <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" rel="noopener">🏛️ Advocacia Vera Catarina</a>
+            </div>
+
+            <div class="category-title">🌐 ASSEMBLEIAS LEGISLATIVAS ESTADUAIS</div>
+            <div class="useful-links">
+                <a href="https://ww4.al.rs.gov.br/legislacao-estadual" target="_blank" rel="noopener">🏛️ Assembleia Legislativa RS</a>
+                <a href="https://www.al.sp.gov.br/" target="_blank" rel="noopener">🏛️ Assembleia Legislativa SP</a>
+                <a href="https://www.al.rj.gov.br/" target="_blank" rel="noopener">🏛️ Assembleia Legislativa RJ</a>
+                <a href="https://www.al.mg.gov.br/" target="_blank" rel="noopener">🏛️ Assembleia Legislativa MG</a>
+                <a href="https://www.al.ba.gov.br/" target="_blank" rel="noopener">🏛️ Assembleia Legislativa BA</a>
+                <a href="https://www.al.ce.gov.br/" target="_blank" rel="noopener">🏛️ Assembleia Legislativa CE</a>
+            </div>
+
+            <div class="category-title">📖 JURISPRUDÊNCIA E PESQUISA JURÍDICA</div>
+            <div class="useful-links">
+                <a href="https://www.jusbrasil.com.br/" target="_blank" rel="noopener">📚 JusBrasil</a>
+                <a href="https://www.jus.com.br/" target="_blank" rel="noopener">📚 Jus Navigandi</a>
+                <a href="https://bdjur.stj.jus.br/" target="_blank" rel="noopener">📚 BDJur - STJ</a>
+                <a href="https://www.cnj.jus.br/corregedoria-nacional-justica-eleitoral/jurisprudencia/" target="_blank" rel="noopener">📚 Jurisprudência CNJ</a>
+                <a href="https://www2.senado.leg.br/bdsf" target="_blank" rel="noopener">📚 Biblioteca Digital Senado</a>
+                <a href="https://www.camara.leg.br/biblioteca-e-publicacoes/" target="_blank" rel="noopener">📚 Biblioteca Câmara</a>
+            </div>
+        </div>
+
+        <div class="section" id="ebooks">
+            <h2>📚 BIBLIOTECAS VIRTUAIS - E-BOOKS GRATUITOS</h2>
+
+            <div class="ebook-drive">
+                <h3>🚀 DRIVE 1 - BIBLIOTECA JURÍDICA COMPLETA</h3>
+                <p>Centenas de livros de direito atualizados</p>
+                <a href="https://drive.google.com/drive/folders/1kYtzBIYDRblok5Onp6KHVWTdVEPHp7Xx" target="_blank" rel="noopener">
+                    📖 ACESSAR DRIVE 1
+                </a>
+            </div>
+
+            <div class="ebook-drive">
+                <h3>🚀 DRIVE 2 - COLETÂNEA DE DOUTRINA</h3>
+                <p>Livros clássicos e contemporâneos do direito</p>
+                <a href="https://drive.google.com/drive/folders/0Bz4aEiCzc4bhZXJpVEVkbFdiVDg?resourcekey=0-LW4Dx7DU6s5zE-L1qOKPzg" target="_blank" rel="noopener">
+                    📖 ACESSAR DRIVE 2
+                </a>
+            </div>
+
+            <div class="category-title">🎓 MANUAIS E GUIAS DO SENADO FEDERAL</div>
+            <div class="useful-links">
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/757308/Vade_mecum_Senado_Federal_2ed.pdf" target="_blank" rel="noopener">📚 Vade Mecum Senado Federal</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/656403/ECA_em_miudos_2ed.pdf" target="_blank" rel="noopener">📚 ECA em Miúdos</a>
+                <a href="https://www2.senado.leg.br/bdsf/bitstream/handle/id/651228/Estatuto_igualdade_racial_miudos_2ed.pdf" target="_blank" rel="noopener">📚 Estatuto Igualdade Racial em Miúdos</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <!-- User Stats -->
+        <div class="user-stats" id="userStats"></div>
+
+        <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+        <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+        <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+
+        <div class="visitor-counter">
+            <span>👁️ Total de visitas: <span class="count" id="visitCount">12.683</span></span>
+        </div>
+
+        <div class="social" aria-label="Redes sociais no rodapé">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20" height="20"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" rel="noopener" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="20" height="20"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" rel="noopener" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" width="20" height="20"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" rel="noopener" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="20" height="20"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" rel="noopener" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="20" height="20"> Instagram
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // ===== SISTEMA DE TEMA =====
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Carregar tema salvo
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // ===== CONTADOR DE VISITAS =====
+        function updateVisitorCount() {
+            let visitCount = localStorage.getItem('siteVisitCount');
+            
+            if (!visitCount) {
+                visitCount = 12683; // Começar com 12683 visitas
+            } else {
+                visitCount = parseInt(visitCount) + 1; // Incrementar a cada visita
+            }
+            
+            localStorage.setItem('siteVisitCount', visitCount);
+            document.getElementById('visitCount').textContent = visitCount.toLocaleString('pt-BR');
+        }
+
+        // ===== SISTEMA DE FAVORITOS =====
+        function toggleFavorite(button) {
+            const linkElement = button.parentElement;
+            const linkText = linkElement.textContent.replace('★', '').trim();
+            const linkHref = linkElement.getAttribute('href');
+            
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const existingIndex = favorites.findIndex(fav => fav.href === linkHref);
+            
+            if (existingIndex > -1) {
+                // Remover dos favoritos
+                favorites.splice(existingIndex, 1);
+                button.textContent = '★';
+                button.style.color = '#ffd700';
+                showFeedback('Removido dos favoritos');
+            } else {
+                // Adicionar aos favoritos
+                favorites.push({
+                    text: linkText,
+                    href: linkHref,
+                    timestamp: new Date().toISOString()
+                });
+                button.textContent = '★';
+                button.style.color = '#ff6b6b';
+                showFeedback('Adicionado aos favoritos');
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesDisplay();
+        }
+
+        function updateFavoritesDisplay() {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            // Atualizar botões de favorito
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                const linkHref = btn.parentElement.getAttribute('href');
+                const isFavorite = favorites.some(fav => fav.href === linkHref);
+                btn.style.color = isFavorite ? '#ff6b6b' : '#ffd700';
+            });
+        }
+
+        // ===== PESQUISA AVANÇADA =====
+        function enhancedSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const areaFilter = document.getElementById('areaFilter').value;
+            const difficultyFilter = document.getElementById('difficultyFilter').value;
+            
+            if (!searchTerm) {
+                showFeedback('Por favor, digite um termo para pesquisar.', 'warning');
+                return;
+            }
+            
+            // Pesquisar em todos os links
+            const allLinks = document.querySelectorAll('a');
+            const matches = [];
+            
+            allLinks.forEach(link => {
+                const linkText = link.textContent.toLowerCase();
+                const linkHref = link.getAttribute('href');
+                
+                // Aplicar filtros
+                let matchesArea = true;
+                let matchesDifficulty = true;
+                
+                if (areaFilter && !linkText.includes(areaFilter)) {
+                    matchesArea = false;
+                }
+                
+                if (difficultyFilter && !linkText.includes(difficultyFilter)) {
+                    matchesDifficulty = false;
+                }
+                
+                if (linkText.includes(searchTerm) && matchesArea && matchesDifficulty) {
+                    matches.push(link);
+                }
+            });
+            
+            if (matches.length > 0) {
+                // Remover destaque anterior
+                document.querySelectorAll('.highlight').forEach(el => {
+                    el.classList.remove('highlight');
+                });
+                
+                // Destacar primeiro resultado
+                matches[0].classList.add('highlight');
+                matches[0].scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                
+                showFeedback(`Encontrado${matches.length > 1 ? 's' : ''} ${matches.length} resultado${matches.length > 1 ? 's' : ''} para "${searchTerm}"`, 'success');
+            } else {
+                showFeedback(`Nenhum resultado encontrado para "${searchTerm}". Tente outros termos.`, 'error');
+            }
+        }
+
+        function showFeedback(message, type = 'info') {
+            const feedback = document.getElementById('searchFeedback');
+            feedback.textContent = message;
+            feedback.style.display = 'block';
+            
+            // Estilos baseados no tipo
+            const styles = {
+                success: { background: '#d4edda', border: '1px solid #c3e6cb', color: '#155724' },
+                error: { background: '#f8d7da', border: '1px solid #f5c6cb', color: '#721c24' },
+                warning: { background: '#fff3cd', border: '1px solid #ffeaa7', color: '#856404' },
+                info: { background: '#e7f3ff', border: '1px solid #007bff', color: '#004085' }
+            };
+            
+            Object.assign(feedback.style, styles[type]);
+            
+            // Auto-esconder após 5 segundos
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 5000);
+        }
+
+        // ===== ESTATÍSTICAS DO USUÁRIO =====
+        function updateUserStats() {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const stats = {
+                simuladosAcessados: JSON.parse(localStorage.getItem('accessedSimulados') || '[]'),
+                tempoEstudo: parseInt(localStorage.getItem('studyTime') || '0'),
+                areasPreferidas: JSON.parse(localStorage.getItem('preferredAreas') || '[]')
+            };
+            
+            const statsHTML = `
+                <p>📊 <strong>Seu progresso:</strong> 
+                ${favorites.length} favorito${favorites.length !== 1 ? 's' : ''} |
+                ${stats.simuladosAcessados.length} simulado${stats.simuladosAcessados.length !== 1 ? 's' : ''} acessado${stats.simuladosAcessados.length !== 1 ? 's' : ''} |
+                ${Math.round(stats.tempoEstudo / 60)}min estudado${Math.round(stats.tempoEstudo / 60) !== 1 ? 's' : ''}</p>
+            `;
+            
+            document.getElementById('userStats').innerHTML = statsHTML;
+        }
+
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            updateVisitorCount();
+            updateFavoritesDisplay();
+            updateUserStats();
+            
+            // Permitir pesquisa com Enter
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    enhancedSearch();
+                }
+            });
+            
+            // Aplicar filtros automaticamente
+            document.getElementById('areaFilter').addEventListener('change', enhancedSearch);
+            document.getElementById('difficultyFilter').addEventListener('change', enhancedSearch);
+            
+            // Rastrear cliques em links para estatísticas
+            document.querySelectorAll('a[href*="simulado"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    const simuladosAcessados = JSON.parse(localStorage.getItem('accessedSimulados') || '[]');
+                    const simulado = this.textContent.trim();
+                    
+                    if (!simuladosAcessados.includes(simulado)) {
+                        simuladosAcessados.push(simulado);
+                        localStorage.setItem('accessedSimulados', JSON.stringify(simuladosAcessados));
+                        updateUserStats();
+                    }
+                });
+            });
+        });
+
+        // ===== TEMPO DE ESTUDO (simulação) =====
+        setInterval(() => {
+            const currentTime = parseInt(localStorage.getItem('studyTime') || '0');
+            localStorage.setItem('studyTime', (currentTime + 1).toString());
+        }, 60000); // Incrementa 1 minuto a cada minuto
+    </script>
+</body>
+</html>

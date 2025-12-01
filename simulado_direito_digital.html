@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ Direito Digital - Proteção de Dados, LGPD e Crimes Cibernéticos | Teste Seus Conhecimentos</title>
+    <meta name="description" content="Teste seus conhecimentos sobre Direito Digital, LGPD, crimes cibernéticos, proteção de dados, Marco Civil da Internet e legislação digital brasileira. Quiz completo para estudantes e profissionais.">
+    <meta name="keywords" content="direito digital, LGPD, crimes cibernéticos, proteção de dados, marco civil da internet, quiz direito, segurança digital, lei carolina dieckmann, ANPD, deepfake, phishing">
+    <meta name="author" content="Fábio Wlademir">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1a237e">
+    <link rel="canonical" href="https://simuladosdireito.netlify.app/simulado_direito_digital.html">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="QUIZ Direito Digital - Proteção de Dados e Crimes Cibernéticos">
+    <meta property="og:description" content="Teste seus conhecimentos sobre Direito Digital, LGPD, crimes cibernéticos e proteção de dados">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://simuladosdireito.netlify.app/simulado_direito_digital.html">
+    <meta property="og:image" content="https://simuladosdireito.netlify.app/og-image-direito-digital.jpg">
+    <meta property="og:site_name" content="Simulados de Direito">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QUIZ Direito Digital - Proteção de Dados e Crimes Cibernéticos">
+    <meta name="twitter:description" content="Teste seus conhecimentos sobre Direito Digital, LGPD, crimes cibernéticos e proteção de dados">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "QUIZ Direito Digital",
+      "description": "Teste seus conhecimentos sobre Direito Digital, LGPD, crimes cibernéticos e proteção de dados",
+      "url": "https://simuladosdireito.netlify.app/simulado_direito_digital.html",
+      "numberOfQuestions": "10",
+      "timeRequired": "PT25M",
+      "educationalLevel": "Intermediate",
+      "assesses": "Conhecimento sobre Direito Digital, LGPD, Marco Civil da Internet, crimes cibernéticos e proteção de dados",
+      "creator": {
+        "@type": "Person",
+        "name": "Fábio Wlademir",
+        "url": "https://uiclap.bio/wlademir"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Simulados de Direito",
+        "url": "https://simuladosdireito.netlify.app/"
+      },
+      "mainEntity": {
+        "@type": "WebPage",
+        "name": "QUIZ Direito Digital",
+        "description": "Simulado completo sobre Direito Digital brasileiro"
+      }
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #3949ab;
+            --success-color: #2e7d32;
+            --warning-color: #f57c00;
+            --error-color: #c62828;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f5f5f5;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: 20px;
+        }
+        
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            flex: 1;
+            min-width: 200px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .info-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            background: #002244;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-bar a:hover, .nav-bar a:focus {
+            background: #0055aa;
+            outline: 2px solid white;
+        }
+        
+        /* Social Links */
+        .social {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background: #f8f9fa;
+            transition: all 0.3s;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .social a:hover, .social a:focus {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            outline: 2px solid var(--accent-color);
+        }
+        
+        .social img {
+            height: 20px;
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        /* Quiz Container */
+        .quiz-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        
+        .question:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .question-text {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            min-height: 60px;
+        }
+        
+        .option:hover, .option:focus-within {
+            border-color: var(--accent-color);
+            background-color: #f8f9fa;
+        }
+        
+        .option input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+        
+        .option.correct {
+            background-color: #e8f5e8;
+            border-color: var(--success-color);
+            color: #1b5e20;
+        }
+        
+        .option.incorrect {
+            background-color: #ffebee;
+            border-color: var(--error-color);
+            color: #b71c1c;
+        }
+        
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            min-width: 44px;
+        }
+        
+        .btn:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(57, 73, 171, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color), #1b5e20);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+        }
+        
+        /* Result */
+        .result {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            display: none;
+        }
+        
+        .result h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+        
+        .score {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 20px 0;
+        }
+        
+        .feedback {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+        
+        .timer {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .time-remaining {
+            font-weight: bold;
+            color: var(--warning-color);
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        
+        .difficulty-easy {
+            background: var(--success-color);
+        }
+        
+        .difficulty-medium {
+            background: var(--warning-color);
+        }
+        
+        .difficulty-hard {
+            background: var(--error-color);
+        }
+        
+        /* Simulados Section */
+        .simulados-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .simulados-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+        
+        .simulados-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .simulados-links a {
+            display: block;
+            background: #f8f9fa;
+            color: #0055aa;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid #dee2e6;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 500;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .simulados-links a:hover, .simulados-links a:focus {
+            background: #e9ecef;
+            border-color: #0055aa;
+            transform: translateY(-2px);
+            outline: 2px solid #0055aa;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 30px 20px;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer a:hover, .footer a:focus {
+            text-decoration: underline;
+            outline: 1px solid white;
+        }
+        
+        /* Visitor Counter */
+        .visitor-counter {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .visitor-counter .count {
+            font-size: 1.3em;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        /* Skip to main content for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border-radius: 4px;
+            z-index: 100;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Loading state for better UX */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #000080;
+                --secondary-color: #0000CD;
+                --accent-color: #0000FF;
+                --text-dark: #000000;
+            }
+            
+            .option {
+                border-width: 3px;
+            }
+            
+            .btn {
+                border: 2px solid;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .question:hover, .btn:hover, .simulados-links a:hover, .social a:hover {
+                transform: none;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .nav-bar, .social, .visitor-counter, .timer, .controls {
+                display: none;
+            }
+            
+            .header, .quiz-container, .result, .simulados-section {
+                box-shadow: none;
+                border: 1px solid #000;
+            }
+            
+            a::after {
+                content: " (" attr(href) ")";
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question {
+                padding: 15px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 1em;
+                width: 100%;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .header-info {
+                flex-direction: column;
+            }
+            
+            .nav-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .nav-bar a {
+                width: 90%;
+                text-align: center;
+            }
+            
+            .social {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social a {
+                width: 90%;
+                justify-content: center;
+            }
+            
+            .simulados-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .option {
+                padding: 12px 15px;
+                min-height: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.7em;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+            
+            .option {
+                padding: 10px 12px;
+            }
+            
+            .footer {
+                padding: 20px 15px;
+            }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .question:hover {
+                transform: none;
+                border-color: #e8e8e8;
+            }
+            
+            .option:hover {
+                background-color: inherit;
+                border-color: #e8e8e8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header" role="banner">
+            <h1>💻 QUIZ Direito Digital</h1>
+            <p>Teste seus conhecimentos sobre Direito Digital, LGPD, Crimes Cibernéticos e Proteção de Dados</p>
+            
+            <div class="header-info">
+                <div class="info-item">
+                    <h3>⏱️ Tempo</h3>
+                    <p>25 minutos</p>
+                </div>
+                <div class="info-item">
+                    <h3>📝 Questões</h3>
+                    <p>10 questões</p>
+                </div>
+                <div class="info-item">
+                    <h3>🎯 Dificuldade</h3>
+                    <p>Variada</p>
+                </div>
+            </div>
+            
+            <div class="timer">
+                Tempo restante: <span class="time-remaining" id="timeRemaining">25:00</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="quizProgress" style="width: 0%"></div>
+            </div>
+            
+            <div class="social" aria-label="Redes sociais">
+                <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20" loading="lazy"> WhatsApp
+                </a>
+                <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20" height="20" loading="lazy"> LinkedIn
+                </a>
+                <a href="https://fabiowlademir.github.io/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="20" height="20" loading="lazy"> GitHub
+                </a>
+                <a href="https://f2suporte.blogspot.com/" target="_blank" rel="noopener noreferrer" aria-label="Blog">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" width="20" height="20" loading="lazy"> Blog
+                </a>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="nav-bar" aria-label="Navegação principal">
+            <a href="index.html">🏠 Início</a>
+            <a href="https://uiclap.bio/wlademir" target="_blank" rel="noopener noreferrer">ℹ️ Sobre o Autor</a>
+            <a href="#simulados">📝 Simulados</a>
+            <a href="#links-uteis">🔗 Recursos Jurídicos</a>
+            <a href="#ebooks">📚 E-books Gratuitos</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <div class="quiz-container" id="quizContainer">
+                <!-- As questões serão inseridas aqui via JavaScript -->
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-primary" onclick="submitQuiz()">
+                    ✅ Finalizar Prova
+                </button>
+                <button class="btn btn-secondary" onclick="resetQuiz()">
+                    🔄 Reiniciar Quiz
+                </button>
+                <button class="btn btn-success" onclick="showAnswers()">
+                    📖 Mostrar Gabarito
+                </button>
+            </div>
+
+            <div class="result" id="resultContainer">
+                <h2>🎓 Resultado do Quiz Direito Digital</h2>
+                <div class="score" id="finalScore">0/0</div>
+                <div class="feedback" id="resultFeedback"></div>
+                <button class="btn btn-primary" onclick="resetQuiz()">
+                    🔄 Fazer Novamente
+                </button>
+            </div>
+        </main>
+
+        <!-- Simulados Section -->
+        <section class="simulados-section" id="simulados" aria-labelledby="simulados-title">
+            <h2 id="simulados-title">📝 Outros Simulados de Direito</h2>
+            <div class="simulados-links">
+                <a href="simulado_basico.html">CONHECENDO O DIREITO - BÁSICO</a>
+                <a href="simulado_intermediario.html">CONHECENDO O DIREITO - INTERMEDIÁRIO</a>
+                <a href="simulado_avancado.html">CONHECENDO O DIREITO - AVANÇADO</a>
+                <a href="simulado_historia_direito.html">HISTÓRIA DO DIREITO - CORRENTES JURÍDICAS</a>
+                <a href="simulado_lgpd.html">LGPD - LEI GERAL DE PROTEÇÃO DE DADOS</a>
+                <a href="simulado_penal_basico.html">DIREITO PENAL - BÁSICO</a>
+                <a href="simulado_penal_intermediario.html">DIREITO PENAL - INTERMEDIÁRIO</a>
+                <a href="simulado_penal_avancado.html">DIREITO PENAL - AVANÇADO</a>
+                <a href="simulado_privado_basico.html">DIREITO PRIVADO - BÁSICO</a>
+                <a href="simulado_privado_intermediario.html">DIREITO PRIVADO - INTERMEDIÁRIO</a>
+                <a href="simulado_privado_avancado.html">DIREITO PRIVADO - AVANÇADO</a>
+                <a href="simulado_constituicao_basico.html">CONSTITUIÇÃO E ESTADO - BÁSICO</a>
+                <a href="simulado_constituicao_intermediario.html">CONSTITUIÇÃO E ESTADO - INTERMEDIÁRIO</a>
+                <a href="simulado_constituicao_avancado.html">CONSTITUIÇÃO E ESTADO - AVANÇADO</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+            <p>📧 Encontrou um erro? <a href="mailto:f2sites@gmail.com">Comunique-nos!</a> • Colabore com a melhoria dos simulados!</p>
+            <p>Este quiz foi desenvolvido com base na legislação brasileira de Direito Digital, incluindo LGPD, Marco Civil da Internet e Lei de Crimes Cibernéticos.</p>
+            <p>Este simulado não possui vínculo institucional com a UNISINOS. É um material independente criado com base nos conteúdos ministrados.</p>
+            <p>Respeitamos a LGPD: nenhum dado do usuário é coletado ou armazenado.</p>
+            
+            <div class="visitor-counter">
+                <span>👁️ Total de visitas: <span class="count" id="visitCount">0</span></span>
+            </div>
+            
+            <div class="social" aria-label="Redes sociais no rodapé">
+                <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20" loading="lazy"> WhatsApp
+                </a>
+                <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20" height="20" loading="lazy"> LinkedIn
+                </a>
+                <a href="https://fabiowlademir.github.io/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="20" height="20" loading="lazy"> GitHub
+                </a>
+                <a href="https://f2suporte.blogspot.com/" target="_blank" rel="noopener noreferrer" aria-label="Blog">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog" width="20" height="20" loading="lazy"> Blog
+                </a>
+                <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="20" height="20" loading="lazy"> YouTube
+                </a>
+                <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="20" height="20" loading="lazy"> Instagram
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Banco de questões sobre Direito Digital
+        const questions = [
+            {
+                question: "Qual é o principal objetivo do Marco Civil da Internet (Lei 12.965/2014)?",
+                options: [
+                    "Estabelecer princípios, garantias, direitos e deveres para o uso da Internet no Brasil",
+                    "Criar impostos específicos para serviços digitais",
+                    "Regulamentar exclusivamente o comércio eletrônico",
+                    "Substituir a LGPD na proteção de dados pessoais"
+                ],
+                correct: 0,
+                explanation: "O Marco Civil da Internet estabelece princípios, garantias, direitos e deveres para o uso da Internet no Brasil, sendo considerado a 'Constituição da Internet' brasileira.",
+                difficulty: "medium"
+            },
+            {
+                question: "O que caracteriza um 'crime cibernético' segundo a Lei 12.737/2012 (Lei Carolina Dieckmann)?",
+                options: [
+                    "A invasão de dispositivo informático alheio, conectado ou não à rede de computadores",
+                    "A criação de perfis falsos em redes sociais",
+                    "O compartilhamento de notícias falsas na internet",
+                    "A venda de produtos digitais sem autorização"
+                ],
+                correct: 0,
+                explanation: "A Lei Carolina Dieckmann tipifica a invasão de dispositivo informático alheio, conectado ou não à rede de computadores, com o objetivo de obter, adulterar ou destruir dados.",
+                difficulty: "medium"
+            },
+            {
+                question: "Qual o prazo máximo para retenção de registros de conexão pelos provedores de acordo com o Marco Civil da Internet?",
+                options: [
+                    "1 ano",
+                    "6 meses",
+                    "3 anos",
+                    "5 anos"
+                ],
+                correct: 0,
+                explanation: "O Marco Civil estabelece que os provedores de aplicação devem manter os registros de acesso a aplicações de internet pelo prazo de 6 meses, enquanto os provedores de conexão devem manter os registros de conexão por 1 ano.",
+                difficulty: "hard"
+            },
+            {
+                question: "O que significa o princípio da 'neutralidade de rede' previsto no Marco Civil da Internet?",
+                options: [
+                    "Discriminação ou degradação do tráfego é proibida, salvo por requisitos técnicos indispensáveis",
+                    "Todos os usuários devem pagar o mesmo valor pelos serviços de internet",
+                    "Os provedores devem oferecer velocidade igual para todos os sites",
+                    "O governo controla todo o tráfego de internet"
+                ],
+                correct: 0,
+                explanation: "A neutralidade de rede proíbe a discriminação ou degradação do tráfego, garantindo que os provedores tratem todos os pacotes de dados de forma igualitária, salvo por requisitos técnicos indispensáveis à prestação adequada dos serviços.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual a diferença entre 'dados pessoais' e 'dados pessoais sensíveis' na LGPD?",
+                options: [
+                    "Dados sensíveis são aqueles sobre origem racial, saúde, vida sexual, etc., com tratamento mais restrito",
+                    "Dados sensíveis são apenas informações financeiras",
+                    "Não há diferença significativa na legislação",
+                    "Dados sensíveis são apenas aqueles coletados por órgãos governamentais"
+                ],
+                correct: 0,
+                explanation: "Dados sensíveis são aqueles sobre origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato, saúde, vida sexual, genético ou biométrico, sujeitos a tratamento mais restrito pela LGPD.",
+                difficulty: "medium"
+            },
+            {
+                question: "O que é o 'direito ao esquecimento' no contexto digital?",
+                options: [
+                    "Possibilidade de exigir a remoção de links ou conteúdos desatualizados ou irrelevantes",
+                    "Direito de deletar permanentemente todas as informações pessoais da internet",
+                    "Obrigação dos provedores de apagar automaticamente dados antigos",
+                    "Direito de não ser lembrado por erros do passado"
+                ],
+                correct: 0,
+                explanation: "O direito ao esquecimento refere-se à possibilidade de exigir a remoção de links ou conteúdos desatualizados, irrelevantes ou excessivos, que afetem a honra, imagem e privacidade das pessoas.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual órgão é responsável pela fiscalização da LGPD no Brasil?",
+                options: [
+                    "Autoridade Nacional de Proteção de Dados (ANPD)",
+                    "Ministério da Justiça",
+                    "Comitê Gestor da Internet no Brasil",
+                    "Agência Nacional de Telecomunicações"
+                ],
+                correct: 0,
+                explanation: "A ANPD é o órgão da administração pública federal responsável por zelar, implementar e fiscalizar o cumprimento da LGPD em todo o território nacional.",
+                difficulty: "easy"
+            },
+            {
+                question: "O que caracteriza 'stalking digital' ou 'cyberstalking'?",
+                options: [
+                    "Perseguição insistente e ameaçadora através de meios digitais",
+                    "Compartilhamento de fotos íntimas sem consentimento",
+                    "Criação de perfis falsos em redes sociais",
+                    "Divulgação de segredos comerciais online"
+                ],
+                correct: 0,
+                explanation: "Stalking digital é a perseguição insistente e ameaçadora através de meios digitais, como redes sociais, e-mails e mensagens, podendo configurar crime de ameaça ou importunação sexual.",
+                difficulty: "medium"
+            },
+            {
+                question: "Qual a principal inovação da Lei 14.155/2021 em relação aos crimes cibernéticos?",
+                options: [
+                    "Aumento de penas para crimes sexuais contra crianças e adolescentes praticados por meio digital",
+                    "Criação do crime de phishing bancário",
+                    "Tipificação do crime de fake news",
+                    "Regulamentação das criptomoedas"
+                ],
+                correct: 0,
+                explanation: "A Lei 14.155/2021 aumentou as penas para crimes sexuais contra crianças e adolescentes praticados por meio da internet, incluindo aliciamento, compartilhamento de material e falsidade ideológica.",
+                difficulty: "hard"
+            },
+            {
+                question: "O que é 'deepfake' e quais seus riscos jurídicos?",
+                options: [
+                    "Técnica de inteligência artificial que cria vídeos ou áudios falsos realistas, podendo configurar falsidade ideológica e difamação",
+                    "Tipo avançado de vírus de computador",
+                    "Método de criptografia inviolável",
+                    "Tecnologia de reconhecimento facial"
+                ],
+                correct: 0,
+                explanation: "Deepfake é uma técnica de inteligência artificial que cria vídeos ou áudios falsos extremamente realistas, podendo configurar crimes como falsidade ideológica, difamação, injúria e violação de direitos de imagem e voz.",
+                difficulty: "hard"
+            },
+            {
+                question: "Qual a diferença entre 'provedor de conexão' e 'provedor de aplicação' no Marco Civil?",
+                options: [
+                    "Provedor de conexão viabiliza acesso à internet; provedor de aplicação oferece serviços como redes sociais e e-mail",
+                    "Não há diferença significativa na legislação",
+                    "Provedor de conexão é sempre uma empresa estatal",
+                    "Provedor de aplicação é responsável por todo o conteúdo publicado"
+                ],
+                correct: 0,
+                explanation: "Provedor de conexão é quem viabiliza o acesso à internet (operadoras), enquanto provedor de aplicação oferece serviços como redes sociais, e-mail, busca, etc., com responsabilidades distintas na legislação.",
+                difficulty: "medium"
+            },
+            {
+                question: "O que é 'phishing' e como a legislação brasileira trata essa prática?",
+                options: [
+                    "Tentativa de obter dados sensíveis através de falsa identidade, podendo configurar estelionato e falsidade ideológica",
+                    "Tipo de vírus que infecta computadores",
+                    "Prática de compartilhar arquivos ilegalmente",
+                    "Método de mineração de criptomoedas"
+                ],
+                correct: 0,
+                explanation: "Phishing é a tentativa de obter dados sensíveis (senhas, dados bancários) através de falsa identidade, podendo configurar crimes como estelionato, falsidade ideológica e violação de dispositivo informático.",
+                difficulty: "medium"
+            },
+            {
+                question: "Qual a responsabilidade dos provedores de aplicação por conteúdo de terceiros segundo o Marco Civil?",
+                options: [
+                    "Responsabilidade após ordem judicial específica, salvo em casos de conteúdo não consensual íntimo",
+                    "Responsabilidade solidária por todo conteúdo publicado",
+                    "Isenção total de responsabilidade",
+                    "Responsabilidade apenas por conteúdo comercial"
+                ],
+                correct: 0,
+                explanation: "Os provedores de aplicação só podem ser responsabilizados civilmente por danos decorrentes de conteúdo gerado por terceiros após ordem judicial específica, exceto em casos de conteúdo não consensual íntimo, onde há dever de remoção imediata.",
+                difficulty: "hard"
+            },
+            {
+                question: "O que é o 'direito à portabilidade de dados' na LGPD?",
+                options: [
+                    "Direito de solicitar a transferência de dados para outro fornecedor de serviço ou produto",
+                    "Direito de levar dados pessoais em dispositivos físicos",
+                    "Permissão para vender dados pessoais a terceiros",
+                    "Direito de acessar dados em qualquer lugar do mundo"
+                ],
+                correct: 0,
+                explanation: "O direito à portabilidade permite que o titular solicite a transferência de seus dados para outro fornecedor de serviço ou produto, promovendo a concorrência e o controle sobre os próprios dados.",
+                difficulty: "medium"
+            },
+            {
+                question: "Qual a importância do 'consentimento específico' para tratamento de dados sensíveis na LGPD?",
+                options: [
+                    "Deve ser destacado e específico para finalidades determinadas, sendo obrigatório para dados sensíveis",
+                    "Pode ser genérico e aplicado a todos os tipos de dados",
+                    "É opcional para qualquer tipo de tratamento",
+                    "Apenas necessário para dados de crianças e adolescentes"
+                ],
+                correct: 0,
+                explanation: "Para dados sensíveis, o consentimento deve ser destacado e específico para finalidades determinadas, sendo uma das poucas bases legais possíveis para seu tratamento, com exigências mais rigorosas.",
+                difficulty: "hard"
+            }
+        ];
+
+        let currentQuestions = [];
+        let userAnswers = [];
+        let timeLeft = 1500; // 25 minutos em segundos
+        let timerInterval;
+
+        // Contador de visitas
+        function updateVisitorCount() {
+            let visitCount = localStorage.getItem('digitalVisitCount');
+            
+            if (!visitCount) {
+                visitCount = 1; // Começar com 1 visita
+            } else {
+                visitCount = parseInt(visitCount) + 1; // Incrementar a cada visita
+            }
+            
+            localStorage.setItem('digitalVisitCount', visitCount);
+            document.getElementById('visitCount').textContent = visitCount.toLocaleString('pt-BR');
+        }
+
+        // Função para embaralhar array (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Inicializar quiz
+        function initializeQuiz() {
+            // Embaralhar questões e selecionar 10
+            currentQuestions = shuffleArray([...questions]).slice(0, 10);
+            userAnswers = new Array(currentQuestions.length).fill(null);
+            
+            renderQuiz();
+            startTimer();
+            updateProgress();
+        }
+
+        // Renderizar quiz
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '';
+
+            currentQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.id = `question-${index}`;
+
+                const difficultyBadge = `<span class="badge difficulty-${question.difficulty}">${question.difficulty}</span>`;
+
+                let optionsHTML = '';
+                question.options.forEach((option, optIndex) => {
+                    const isChecked = userAnswers[index] === optIndex ? 'checked' : '';
+                    const optionId = `q${index}opt${optIndex}`;
+                    optionsHTML += `
+                        <label class="option" id="${optionId}">
+                            <input type="radio" name="q${index}" value="${optIndex}" ${isChecked} onchange="selectAnswer(${index}, ${optIndex})" id="${optionId}-input">
+                            ${String.fromCharCode(65 + optIndex)}) ${option}
+                        </label>
+                    `;
+                });
+
+                questionDiv.innerHTML = `
+                    <div class="question-text">
+                        ${index + 1}. ${question.question} ${difficultyBadge}
+                    </div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                    <div class="explanation" id="explanation-${index}">
+                        <strong>Explicação:</strong> ${question.explanation}
+                    </div>
+                `;
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        // Selecionar resposta
+        function selectAnswer(questionIndex, answerIndex) {
+            userAnswers[questionIndex] = answerIndex;
+            updateProgress();
+        }
+
+        // Atualizar barra de progresso
+        function updateProgress() {
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            const total = currentQuestions.length;
+            const progress = (answered / total) * 100;
+            
+            document.getElementById('quizProgress').style.width = `${progress}%`;
+        }
+
+        // Iniciar timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Atualizar display do timer
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timeRemaining').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Submeter quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+
+            let score = 0;
+            const total = currentQuestions.length;
+
+            currentQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const correctAnswer = question.correct;
+                const explanation = document.getElementById(`explanation-${index}`);
+
+                // Mostrar explicação
+                explanation.classList.add('show');
+
+                // Colorir opções
+                question.options.forEach((_, optIndex) => {
+                    const optionElement = document.getElementById(`q${index}opt${optIndex}`);
+                    if (optIndex === correctAnswer) {
+                        optionElement.classList.add('correct');
+                    } else if (optIndex === userAnswer && userAnswer !== correctAnswer) {
+                        optionElement.classList.add('incorrect');
+                    }
+                });
+
+                // Contar acertos
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+            });
+
+            showResults(score, total);
+        }
+
+        // Mostrar resultados
+        function showResults(score, total) {
+            const percentage = (score / total) * 100;
+            const resultContainer = document.getElementById('resultContainer');
+            const finalScore = document.getElementById('finalScore');
+            const feedback = document.getElementById('resultFeedback');
+
+            finalScore.textContent = `${score}/${total}`;
+
+            let feedbackText = '';
+            if (percentage >= 90) {
+                feedbackText = '🎉 Excelente! Você é um expert em Direito Digital!';
+            } else if (percentage >= 70) {
+                feedbackText = '👍 Muito bom! Seu conhecimento sobre legislação digital é sólido!';
+            } else if (percentage >= 50) {
+                feedbackText = '💡 Bom trabalho! Continue estudando o Direito Digital!';
+            } else {
+                feedbackText = '📚 Continue estudando! O Direito Digital é cada vez mais importante!';
+            }
+
+            feedback.innerHTML = `
+                ${feedbackText}<br>
+                <strong>Pontuação:</strong> ${score} de ${total} questões<br>
+                <strong>Percentual:</strong> ${percentage.toFixed(1)}%
+            `;
+
+            resultContainer.style.display = 'block';
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reiniciar quiz
+        function resetQuiz() {
+            currentQuestions = [];
+            userAnswers = [];
+            timeLeft = 1500;
+            
+            document.getElementById('resultContainer').style.display = 'none';
+            initializeQuiz();
+        }
+
+        // Mostrar gabarito
+        function showAnswers() {
+            currentQuestions.forEach((question, index) => {
+                const correctAnswer = question.correct;
+                const explanation = document.getElementById(`explanation-${index}`);
+                
+                // Mostrar explicação
+                explanation.classList.add('show');
+
+                // Colorir apenas a resposta correta
+                question.options.forEach((_, optIndex) => {
+                    const optionElement = document.getElementById(`q${index}opt${optIndex}`);
+                    if (optIndex === correctAnswer) {
+                        optionElement.classList.add('correct');
+                    }
+                });
+            });
+
+            document.getElementById('resultContainer').style.display = 'block';
+            document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeQuiz();
+            updateVisitorCount();
+        });
+    </script>
+</body>
+</html>
