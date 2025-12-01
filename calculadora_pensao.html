@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Pensão Alimentícia | Simulados de Direito</title>
+    <meta name="description" content="Calculadora completa de pensão alimentícia: percentuais por renda, múltiplos dependentes, revisional automático, execução e prisão civil.">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #002244;
+            --accent-color: #0055aa;
+            --pension-color: #2E7D32;
+            --warning-color: #ffc107;
+            --danger-color: #d32f2f;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            font-size: 16px;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .header .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .header .social a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header .social a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .header .social img {
+            height: 16px;
+            width: 16px;
+            margin-right: 6px;
+        }
+        
+        .alert-test {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .legal-advice {
+            background: #e7f3ff;
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .legal-advice a {
+            color: #8B0000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .legal-advice a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-bar {
+            background: var(--secondary-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-size: 0.9em;
+        }
+        
+        .nav-bar a:hover {
+            background: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 5px solid var(--pension-color);
+        }
+        
+        .card h2 {
+            color: var(--pension-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--pension-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 {
+            color: var(--pension-color);
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--pension-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .btn {
+            background: var(--pension-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--accent-color);
+        }
+        
+        .btn-secondary:hover {
+            background: #003d7a;
+        }
+        
+        .btn-danger {
+            background: var(--danger-color);
+        }
+        
+        .btn-danger:hover {
+            background: #b71c1c;
+        }
+        
+        .results {
+            background: #E8F5E9;
+            border: 1px solid var(--pension-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .results h3 {
+            color: var(--pension-color);
+            margin-top: 0;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .result-item {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            border-left: 4px solid var(--pension-color);
+        }
+        
+        .result-item strong {
+            color: var(--pension-color);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--pension-color);
+        }
+        
+        .result-value.danger {
+            color: var(--danger-color);
+        }
+        
+        .result-value.warning {
+            color: var(--warning-color);
+        }
+        
+        .calculation-explanation {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .calculation-explanation h4 {
+            color: var(--pension-color);
+            margin-top: 0;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .danger-box {
+            background: #ffebee;
+            border: 1px solid var(--danger-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .legislation-ref {
+            background: #f8f9fa;
+            border-left: 4px solid var(--pension-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .tab:hover {
+            color: var(--pension-color);
+        }
+        
+        .tab.active {
+            color: var(--pension-color);
+            border-bottom-color: var(--pension-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .pension-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        
+        .pension-table th {
+            background: var(--pension-color);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .pension-table td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .pension-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .pension-table .highlight {
+            background: #E8F5E9;
+            font-weight: bold;
+        }
+        
+        .timeline {
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--pension-color);
+        }
+        
+        .timeline-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--pension-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--pension-color);
+        }
+        
+        .timeline-content {
+            margin-top: 5px;
+        }
+        
+        .dependent-badge {
+            display: inline-block;
+            background: var(--pension-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .footer .social a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            background: rgba(0, 51, 102, 0.1);
+        }
+        
+        .footer .social a:hover {
+            background: rgba(0, 51, 102, 0.2);
+            text-decoration: none;
+        }
+        
+        .footer .social img {
+            height: 16px;
+            width: 16px;
+            margin-right: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .nav-bar {
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .nav-bar a {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: left;
+                padding: 10px 15px;
+            }
+            
+            .header .social a,
+            .footer .social a {
+                font-size: 0.8em;
+                padding: 5px 8px;
+            }
+        }
+        
+        .icon {
+            font-size: 1.2em;
+        }
+        
+        .currency {
+            font-size: 1.4em;
+            color: var(--pension-color);
+            font-weight: bold;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--pension-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .step-indicator:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #dee2e6;
+            z-index: 1;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step.active {
+            border-color: var(--pension-color);
+            background: var(--pension-color);
+            color: white;
+        }
+        
+        .step.completed {
+            border-color: var(--pension-color);
+            background: var(--pension-color);
+            color: white;
+        }
+        
+        .step-label {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.8em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👨‍👩‍👧‍👦 Calculadora de Pensão Alimentícia</h1>
+        <p>Cálculos de pensão: percentuais por renda, múltiplos dependentes, revisional, execução e prisão civil</p>
+        
+        <div class="social">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram
+            </a>
+        </div>
+    </div>
+
+    <div class="alert-test">
+        <strong>⚠️ VERSÃO EM TESTES</strong><br>
+        Esta calculadora está em fase de desenvolvimento. Os cálculos são aproximados e para fins educacionais.
+    </div>
+
+    <div class="legal-advice">
+        <strong>⚖️ PARA ASSESSORIA JURÍDICA EM DIREITO DE FAMÍLIA E PENSÃO ALIMENTÍCIA:</strong><br>
+        Recomendamos consultar a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank">Advocacia Vera Catarina</a><br>
+        E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="https://fabiowlademir.github.io/simuladosdireito/">🏠 Início</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_previdenciaria.html">👵 Calculadora Previdenciária</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_tributaria.html">🏢 Calculadora Tributária</a>
+        <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_aluguel.html">🏠 Calculadora de Aluguel</a>
+        <a href="#basico">👶 Cálculo Básico</a>
+        <a href="#multiplos">👨‍👩‍👧‍👦 Múltiplos Dependentes</a>
+        <a href="#revisional">📈 Revisional</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'basico')">👶 Cálculo Básico</button>
+                <button class="tab" onclick="openTab(event, 'multiplos')">👨‍👩‍👧‍👦 Múltiplos Dependentes</button>
+                <button class="tab" onclick="openTab(event, 'revisional')">📈 Revisional</button>
+                <button class="tab" onclick="openTab(event, 'execucao')">⚖️ Execução</button>
+                <button class="tab" onclick="openTab(event, 'prisao')">🔒 Prisão Civil</button>
+            </div>
+            
+            <!-- Tab 1: Cálculo Básico -->
+            <div id="basico" class="tab-content active">
+                <h2>👶 Cálculo Básico de Pensão Alimentícia</h2>
+                
+                <div class="step-indicator">
+                    <div class="step active">1<div class="step-label">Renda</div></div>
+                    <div class="step">2<div class="step-label">Necessidades</div></div>
+                    <div class="step">3<div class="step-label">Possibilidades</div></div>
+                    <div class="step">4<div class="step-label">Resultado</div></div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="rendaAlimentante">Renda do Alimentante (R$):</label>
+                        <input type="number" id="rendaAlimentante" step="0.01" placeholder="Ex: 3000.00">
+                        <small>Renda líquida mensal (salário + outros rendimentos)</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rendaAlimentado">Renda do Alimentado (R$):</label>
+                        <input type="number" id="rendaAlimentado" step="0.01" placeholder="Ex: 0.00" value="0">
+                        <small>Renda do dependente, se houver</small>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="idadeDependente">Idade do Dependente:</label>
+                        <input type="number" id="idadeDependente" min="0" max="30" placeholder="Ex: 8">
+                        <small>Idade em anos completos</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tipoDependente">Tipo de Dependente:</label>
+                        <select id="tipoDependente">
+                            <option value="filho">Filho(a) menor</option>
+                            <option value="filhoMaior">Filho(a) maior (estudante)</option>
+                            <option value="conjuge">Cônjuge/Companheiro(a)</option>
+                            <option value="idoso">Pais idosos</option>
+                            <option value="incapaz">Pessoa com deficiência</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="custoMensal">Custo Mensal Estimado (R$):</label>
+                        <input type="number" id="custoMensal" step="0.01" placeholder="Ex: 1500.00">
+                        <small>Gastos mensais do dependente (opcional)</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regiao">Região/Estado:</label>
+                        <select id="regiao">
+                            <option value="sul">Sul (RS, SC, PR)</option>
+                            <option value="sudeste">Sudeste (SP, RJ, MG, ES)</option>
+                            <option value="centro">Centro-Oeste (DF, GO, MT, MS)</option>
+                            <option value="nordeste">Nordeste</option>
+                            <option value="norte">Norte</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    📊 <strong>Percentuais de Referência (Jurisprudência):</strong><br>
+                    • <strong>1 filho:</strong> 15% a 30% da renda líquida<br>
+                    • <strong>2 filhos:</strong> 25% a 40% da renda líquida<br>
+                    • <strong>3+ filhos:</strong> 30% a 50% da renda líquida<br>
+                    • <strong>Cônjuge:</strong> 20% a 40% da renda líquida<br>
+                    • <strong>Filho maior estudante:</strong> Até 24 anos ou conclusão do curso
+                </div>
+                
+                <button class="btn" onclick="calcularPensaoBasica()">Calcular Pensão</button>
+                
+                <div class="results" id="resultBasico">
+                    <h3>Resultado do Cálculo de Pensão</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Percentual Sugerido:</strong>
+                            <div class="result-value" id="percentualSugerido">0%</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor da Pensão:</strong>
+                            <div class="result-value" id="valorPensao">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Renda Disponível Alimentante:</strong>
+                            <div class="result-value" id="rendaDisponivel">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Renda Total Dependente:</strong>
+                            <div class="result-value" id="rendaTotalDependente">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Faixa Jurisprudencial:</strong>
+                            <div id="faixaJurisprudencial">15% - 30%</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Limite Mínimo Legal:</strong>
+                            <div class="result-value" id="limiteMinimo">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Limite Máximo Legal:</strong>
+                            <div class="result-value" id="limiteMaximo">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Situação Financeira:</strong>
+                            <div id="situacaoFinanceira" class="result-value">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como é calculada a pensão alimentícia:</h4>
+                        <p><strong>Princípio do Binômio: NECESSIDADE × POSSIBILIDADE</strong></p>
+                        <ol>
+                            <li><strong>Necessidade do Alimentado:</strong>
+                                <ul>
+                                    <li>Despesas básicas: alimentação, moradia, saúde, educação</li>
+                                    <li>Despesas complementares: lazer, vestuário, transporte</li>
+                                    <li>Padrão de vida anterior à separação</li>
+                                </ul>
+                            </li>
+                            <li><strong>Possibilidade do Alimentante:</strong>
+                                <ul>
+                                    <li>Renda líquida disponível</li>
+                                    <li>Despesas próprias necessárias</li>
+                                    <li>Outras obrigações alimentícias</li>
+                                    <li>Patrimônio e capacidade laborativa</li>
+                                </ul>
+                            </li>
+                            <li><strong>Proporcionalidade:</strong> Valor deve ser proporcional às necessidades e possibilidades</li>
+                            <li><strong>Limites:</strong> Não pode comprometer a sobrevivência do alimentante</li>
+                        </ol>
+                        
+                        <p><strong>Fórmula de Cálculo (Simplificada):</strong></p>
+                        <ul>
+                            <li>Pensão = (Renda Líquida Alimentante × Percentual) - Renda do Alimentado</li>
+                            <li>Percentual determinado por: idade, número de dependentes, região</li>
+                            <li>Mínimo: Atender necessidades básicas do dependente</li>
+                            <li>Máximo: Não comprometer subsistência do alimentante</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo Prático:</strong></p>
+                        <ul>
+                            <li>Renda alimentante: R$ 3.000,00</li>
+                            <li>1 filho de 8 anos, sem renda própria</li>
+                            <li>Percentual sugerido: 20%</li>
+                            <li>Pensão: R$ 3.000 × 20% = R$ 600,00</li>
+                            <li>Renda disponível alimentante: R$ 2.400,00</li>
+                            <li>Renda total dependente: R$ 600,00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Pensão Alimentícia:</strong><br>
+                        • <strong>Código Civil, Art. 1.694:</strong> Direito aos alimentos<br>
+                        • <strong>Art. 1.695:</strong> Proporcionalidade necessidade/possibilidade<br>
+                        • <strong>Art. 1.696:</strong> Parentes obrigados reciprocamente<br>
+                        • <strong>Art. 1.707:</strong> Fixação dos alimentos<br>
+                        • <strong>Art. 1.708:</strong> Modificação dos alimentos<br>
+                        • <strong>Lei 5.478/1968 (LA):</strong> Lei de Alimentos<br>
+                        • <strong>Súmula 358 STJ:</strong> Percentuais de referência<br>
+                        • <strong>Súmula 309 STF:</strong> Pensão para maior estudante
+                    </div>
+                    
+                    <h4>📊 Tabela de Percentuais por Região (2024)</h4>
+                    <div class="table-responsive">
+                        <table class="pension-table">
+                            <thead>
+                                <tr>
+                                    <th>Região</th>
+                                    <th>1 Filho</th>
+                                    <th>2 Filhos</th>
+                                    <th>3 Filhos</th>
+                                    <th>Cônjuge</th>
+                                    <th>Filho Maior Estudante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sul</td>
+                                    <td>20% - 30%</td>
+                                    <td>30% - 40%</td>
+                                    <td>35% - 45%</td>
+                                    <td>25% - 35%</td>
+                                    <td>15% - 25%</td>
+                                </tr>
+                                <tr class="highlight">
+                                    <td>Sudeste</td>
+                                    <td>15% - 25%</td>
+                                    <td>25% - 35%</td>
+                                    <td>30% - 40%</td>
+                                    <td>20% - 30%</td>
+                                    <td>12% - 20%</td>
+                                </tr>
+                                <tr>
+                                    <td>Centro-Oeste</td>
+                                    <td>18% - 28%</td>
+                                    <td>28% - 38%</td>
+                                    <td>33% - 43%</td>
+                                    <td>22% - 32%</td>
+                                    <td>14% - 22%</td>
+                                </tr>
+                                <tr>
+                                    <td>Nordeste</td>
+                                    <td>22% - 32%</td>
+                                    <td>32% - 42%</td>
+                                    <td>37% - 47%</td>
+                                    <td>27% - 37%</td>
+                                    <td>17% - 27%</td>
+                                </tr>
+                                <tr>
+                                    <td>Norte</td>
+                                    <td>25% - 35%</td>
+                                    <td>35% - 45%</td>
+                                    <td>40% - 50%</td>
+                                    <td>30% - 40%</td>
+                                    <td>20% - 30%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <small>Obs.: Percentuais variam conforme jurisprudência local e características específicas do caso.</small>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Múltiplos Dependentes -->
+            <div id="multiplos" class="tab-content">
+                <h2>👨‍👩‍👧‍👦 Cálculo para Múltiplos Dependentes</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="rendaAlimentanteMulti">Renda do Alimentante (R$):</label>
+                        <input type="number" id="rendaAlimentanteMulti" step="0.01" placeholder="Ex: 5000.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="outrasObrigacoes">Outras Obrigações (R$):</label>
+                        <input type="number" id="outrasObrigacoes" step="0.01" placeholder="Ex: 1000.00" value="0">
+                        <small>Outras pensões ou obrigações financeiras</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Dependentes:</label>
+                    <div id="dependentesContainer">
+                        <div class="dependente-item" data-index="1">
+                            <div class="input-group">
+                                <div class="form-group">
+                                    <label for="dependente1Tipo">Tipo:</label>
+                                    <select id="dependente1Tipo" class="dependente-tipo">
+                                        <option value="filhoMenor">Filho Menor</option>
+                                        <option value="filhoMaior">Filho Maior Estudante</option>
+                                        <option value="conjuge">Cônjuge</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dependente1Idade">Idade:</label>
+                                    <input type="number" id="dependente1Idade" class="dependente-idade" min="0" max="30" placeholder="Idade">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dependente1Renda">Renda Própria (R$):</label>
+                                    <input type="number" id="dependente1Renda" class="dependente-renda" step="0.01" placeholder="0.00" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="adicionarDependente()" style="margin-top: 10px; padding: 10px 15px; font-size: 0.9em;">+ Adicionar Dependente</button>
+                    <button type="button" class="btn-danger" onclick="removerDependente()" style="margin-top: 10px; padding: 10px 15px; font-size: 0.9em;">- Remover Último</button>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="despesasFixas">Despesas Fixas do Alimentante (R$):</label>
+                        <input type="number" id="despesasFixas" step="0.01" placeholder="Ex: 2000.00">
+                        <small>Aluguel, financiamentos, contas básicas</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regimeGuarda">Regime de Guarda:</label>
+                        <select id="regimeGuarda">
+                            <option value="unilateral">Guarda Unilateral</option>
+                            <option value="compartilhada">Guarda Compartilhada</option>
+                            <option value="alternada">Guarda Alternada</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    ⚖️ <strong>Regra dos 50% para Múltiplos Dependentes:</strong><br>
+                    • <strong>Jurisprudência majoritária:</strong> Total das pensões não deve ultrapassar 50% da renda líquida<br>
+                    • <strong>Exceções:</strong> Situações especiais podem justificar percentual maior<br>
+                    • <strong>Distribuição:</strong> Proporcional às necessidades de cada dependente<br>
+                    • <strong>Guarda Compartilhada:</strong> Pode reduzir valor da pensão em 20-40%
+                </div>
+                
+                <button class="btn" onclick="calcularPensaoMultiplos()">Calcular Pensões</button>
+                
+                <div class="results" id="resultMultiplos">
+                    <h3>Distribuição para Múltiplos Dependentes</h3>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Renda Líquida Disponível:</strong>
+                            <div class="result-value" id="rendaLiquidaDisponivel">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Percentual Total:</strong>
+                            <div class="result-value" id="percentualTotal">0%</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Valor Total em Pensões:</strong>
+                            <div class="result-value" id="valorTotalPensoes">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Renda Restante Alimentante:</strong>
+                            <div class="result-value" id="rendaRestanteAlimentante">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <h4>📋 Distribuição por Dependente:</h4>
+                    <div id="distribuicaoDependentes" class="result-grid">
+                        <!-- Preenchido dinamicamente -->
+                    </div>
+                    
+                    <div class="danger-box" id="alertaPercentual" style="display: none;">
+                        ⚠️ <strong>ATENÇÃO:</strong> O percentual total de <span id="percentualAlerta">0%</span> pode ser considerado elevado pela jurisprudência. Recomenda-se revisão dos valores.
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como distribuir pensão para múltiplos dependentes:</h4>
+                        <p><strong>Princípios da Distribuição:</strong></p>
+                        <ol>
+                            <li><strong>Proporcionalidade:</strong> Cada dependente recebe proporcional às suas necessidades</li>
+                            <li><strong>Equidade:</strong> Considera idade, saúde, educação, situação especial</li>
+                            <li><strong>Capacidade Financeira:</strong> Limite máximo de 50% da renda líquida</li>
+                            <li><strong>Prioridade:</strong> Filhos menores têm prioridade sobre cônjuges</li>
+                        </ol>
+                        
+                        <p><strong>Fórmula de Distribuição Proporcional:</strong></p>
+                        <ul>
+                            <li>Peso de cada dependente = Necessidade × Fator Idade × Fator Especial</li>
+                            <li>Total de pesos = Soma dos pesos de todos os dependentes</li>
+                            <li>Valor para cada dependente = (Peso do dependente / Total de pesos) × Valor total disponível</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo - 3 dependentes:</strong></p>
+                        <ul>
+                            <li>Renda alimentante: R$ 5.000,00</li>
+                            <li>Filho 1 (8 anos): Peso 1.2</li>
+                            <li>Filho 2 (14 anos): Peso 1.5</li>
+                            <li>Cônjuge: Peso 1.0</li>
+                            <li>Total pesos: 3.7</li>
+                            <li>Valor disponível: R$ 5.000 × 40% = R$ 2.000,00</li>
+                            <li>Filho 1: (1.2/3.7) × R$ 2.000 = R$ 648,65</li>
+                            <li>Filho 2: (1.5/3.7) × R$ 2.000 = R$ 810,81</li>
+                            <li>Cônjuge: (1.0/3.7) × R$ 2.000 = R$ 540,54</li>
+                        </ul>
+                        
+                        <p><strong>Guarda Compartilhada:</strong> Redução de 20-40% no valor da pensão, pois os custos são divididos entre os pais.</p>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Múltiplos Dependentes:</strong><br>
+                        • <strong>Art. 1.708, CC:</strong> Proporção na divisão entre vários alimentados<br>
+                        • <strong>Súmula 358, STJ:</strong> Percentual máximo de 50% da renda<br>
+                        • <strong>Lei 13.058/2014:</strong> Guarda compartilhada como regra<br>
+                        • <strong>Art. 1.583, §2º, CC:</strong> Efeitos da guarda compartilhada na pensão<br>
+                        • <strong>Súmula 277, STJ:</strong> Cessação da pensão ao cônjuge com nova união<br>
+                        • <strong>Enunciado 44, CJF:</strong> Prioridade aos filhos menores
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 3: Revisional -->
+            <div id="revisional" class="tab-content">
+                <h2>📈 Cálculo de Revisional de Pensão</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="pensaoAtual">Valor Atual da Pensão (R$):</label>
+                        <input type="number" id="pensaoAtual" step="0.01" placeholder="Ex: 800.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataInicioPensao">Data do Início/Última Revisão:</label>
+                        <input type="date" id="dataInicioPensao">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="rendaAtualAlimentante">Renda Atual do Alimentante (R$):</label>
+                        <input type="number" id="rendaAtualAlimentante" step="0.01" placeholder="Ex: 4000.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rendaAntigaAlimentante">Renda Antiga do Alimentante (R$):</label>
+                        <input type="number" id="rendaAntigaAlimentante" step="0.01" placeholder="Ex: 3000.00">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="custosAtuais">Custos Atuais do Dependente (R$):</label>
+                        <input type="number" id="custosAtuais" step="0.01" placeholder="Ex: 1200.00">
+                        <small>Gastos mensais atualizados</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="custosAntigos">Custos Antigos do Dependente (R$):</label>
+                        <input type="number" id="custosAntigos" step="0.01" placeholder="Ex: 800.00">
+                        <small>Gastos mensais quando fixada a pensão</small>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="indiceCorrecao">Índice de Correção:</label>
+                        <select id="indiceCorrecao">
+                            <option value="ipca">IPCA (IBGE)</option>
+                            <option value="inpc">INPC (IBGE)</option>
+                            <option value="igpm">IGP-M (FGV)</option>
+                            <option value="salario">Salário Mínimo</option>
+                            <option value="jurisprudencia">Jurisprudência Local</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mudancaNecessidade">Houve Mudança nas Necessidades?</label>
+                        <select id="mudancaNecessidade">
+                            <option value="aumento">Aumento (estudos, saúde)</option>
+                            <option value="reducao">Redução (maioridade, emprego)</option>
+                            <option value="igual">Permaneceu igual</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    📅 <strong>Prazos para Revisional de Pensão:</strong><br>
+                    • <strong>A qualquer tempo:</strong> Se houver mudança na necessidade ou possibilidade<br>
+                    • <strong>Correção anual:</strong> Pode pedir atualização pelo índice oficial<br>
+                    • <strong>Maioridade:</strong> Cessa automaticamente, exceto se estudante<br>
+                    • <strong>Morte do alimentante:</strong> Pensão passa aos herdeiros<br>
+                    • <strong>Nova união do cônjuge:</strong> Cessa pensão conjugal
+                </div>
+                
+                <button class="btn" onclick="calcularRevisional()">Calcular Revisional</button>
+                
+                <div class="results" id="resultRevisional">
+                    <h3>Resultado do Cálculo Revisional</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Pensão Atual:</strong>
+                            <div class="result-value" id="pensaoAtualValor">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Pensão Revisada:</strong>
+                            <div class="result-value" id="pensaoRevisada">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Variação Proposta:</strong>
+                            <div class="result-value" id="variacaoPensao">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Percentual de Variação:</strong>
+                            <div class="result-value" id="percentualVariacao">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="dataOriginal">--/--/----</div>
+                            <div class="timeline-content">Pensão original: <strong id="pensaoOriginal">R$ 0,00</strong></div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="dataAtualRevisional">--/--/----</div>
+                            <div class="timeline-content">Pensão atual: <strong id="pensaoAtualExib">R$ 0,00</strong></div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="dataProposta">--/--/----</div>
+                            <div class="timeline-content">Pensão proposta: <strong id="pensaoProposta">R$ 0,00</strong></div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como funciona a revisão de pensão alimentícia:</h4>
+                        <p><strong>Motivos para Revisão (Art. 1.699, CC):</strong></p>
+                        <ol>
+                            <li><strong>Alteração na possibilidade do alimentante:</strong>
+                                <ul>
+                                    <li>Aumento ou redução da renda</li>
+                                    <li>Doença ou incapacidade</li>
+                                    <li>Novas obrigações alimentícias</li>
+                                </ul>
+                            </li>
+                            <li><strong>Alteração na necessidade do alimentado:</strong>
+                                <ul>
+                                    <li>Aumento de despesas (estudos, saúde)</li>
+                                    <li>Redução de necessidades (emprego, maioridade)</li>
+                                    <li>Mudança no padrão de vida</li>
+                                </ul>
+                            </li>
+                            <li><strong>Prova superveniente:</strong> Fatos não conhecidos na decisão original</li>
+                        </ol>
+                        
+                        <p><strong>Fórmula de Revisão:</strong></p>
+                        <ul>
+                            <li>Fator renda = Renda atual / Renda antiga</li>
+                            <li>Fator custos = Custos atuais / Custos antigos</li>
+                            <li>Índice inflacionário = Acumulado do período</li>
+                            <li>Novo valor = Valor atual × (Fator renda × Peso) × (Fator custos × Peso) × Índice</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo de Revisão para Aumento:</strong></p>
+                        <ul>
+                            <li>Pensão atual: R$ 800,00</li>
+                            <li>Renda alimentante antiga: R$ 3.000,00</li>
+                            <li>Renda alimentante atual: R$ 4.000,00 (aumento de 33%)</li>
+                            <li>Custos antigos: R$ 800,00</li>
+                            <li>Custos atuais: R$ 1.200,00 (aumento de 50%)</li>
+                            <li>IPCA acumulado: 15%</li>
+                            <li>Cálculo: R$ 800 × 1,33 × 1,50 × 1,15 = R$ 1.834,80</li>
+                        </ul>
+                        
+                        <p><strong>Redução por Maioridade:</strong> Se filho completar 18 anos e não for estudante, pensão cessa automaticamente.</p>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Revisional de Pensão:</strong><br>
+                        • <strong>Art. 1.699, CC:</strong> Modificação da obrigação alimentar<br>
+                        • <strong>Art. 1.700, CC:</strong> Cessação dos alimentos<br>
+                        • <strong>Art. 1.708, CC:</strong> Redução ou exoneração<br>
+                        • <strong>Lei 5.478/68, Art. 13:</strong> Revisão a qualquer tempo<br>
+                        • <strong>Súmula 309, STF:</strong> Pensão para maior estudante<br>
+                        • <strong>Súmula 277, STJ:</strong> Cessação com nova união<br>
+                        • <strong>Súmula 358, STJ:</strong> Revisão por mudança de circunstâncias
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 4: Execução -->
+            <div id="execucao" class="tab-content">
+                <h2>⚖️ Cálculo de Execução de Pensão</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="valorPensaoExecucao">Valor da Pensão Mensal (R$):</label>
+                        <input type="number" id="valorPensaoExecucao" step="0.01" placeholder="Ex: 800.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mesesInadimplentes">Meses Inadimplentes:</label>
+                        <input type="number" id="mesesInadimplentes" min="1" placeholder="Ex: 6">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="indiceCorrecaoExecucao">Índice de Correção:</label>
+                        <select id="indiceCorrecaoExecucao">
+                            <option value="ipca">IPCA (IBGE)</option>
+                            <option value="inpc">INPC (IBGE)</option>
+                            <option value="selic">SELIC (BCB)</option>
+                            <option value="legal">Juros Legais (1% ao mês)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataInicioInadimplencia">Data Início Inadimplência:</label>
+                        <input type="date" id="dataInicioInadimplencia">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="honorariosAdvocaticios">Honorários Advocatícios (%):</label>
+                        <input type="number" id="honorariosAdvocaticios" min="0" max="50" value="15" step="0.1">
+                        <small>Percentual sobre o valor da execução</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="custasProcessuais">Custas Processuais (%):</label>
+                        <input type="number" id="custasProcessuais" min="0" max="10" value="2" step="0.1">
+                        <small>Percentual sobre o valor da execução</small>
+                    </div>
+                </div>
+                
+                <div class="danger-box">
+                    ⚠️ <strong>ATENÇÃO - PRAZOS PRESCRICIONAIS:</strong><br>
+                    • <strong>Dívida de pensão:</strong> Prescreve em 2 anos (Art. 206, §2º, CC)<br>
+                    • <strong>Cada parcela:</strong> Conta separadamente a partir do vencimento<br>
+                    • <strong>Interrupção:</strong> Ação judicial interrompe a prescrição<br>
+                    • <strong>Reconhecimento:</strong> Confissão ou pagamento parcial renova o prazo
+                </div>
+                
+                <button class="btn" onclick="calcularExecucao()">Calcular Execução</button>
+                
+                <div class="results" id="resultExecucao">
+                    <h3>Resultado do Cálculo de Execução</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Valor Principal:</strong>
+                            <div class="result-value" id="valorPrincipal">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Correção Monetária:</strong>
+                            <div class="result-value" id="correcaoMonetaria">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Juros de Mora:</strong>
+                            <div class="result-value" id="jurosMora">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Multa por Inadimplência:</strong>
+                            <div class="result-value" id="multaInadimplencia">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Honorários Advocatícios:</strong>
+                            <div class="result-value" id="honorariosCalculados">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Custas Processuais:</strong>
+                            <div class="result-value" id="custasCalculadas">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Total da Execução:</strong>
+                            <div class="result-value danger" id="totalExecucao">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Parcelas Vencidas:</strong>
+                            <div class="result-value" id="parcelasVencidas">0</div>
+                        </div>
+                    </div>
+                    
+                    <h4>📅 Cronograma de Parcelas Inadimplentes:</h4>
+                    <div class="table-responsive">
+                        <table class="pension-table">
+                            <thead>
+                                <tr>
+                                    <th>Parcela</th>
+                                    <th>Vencimento</th>
+                                    <th>Valor Original</th>
+                                    <th>Valor Corrigido</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaParcelas">
+                                <!-- Preenchido dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como funciona a execução de pensão alimentícia:</h4>
+                        <p><strong>Rito Especial (Lei 5.478/68):</strong></p>
+                        <ol>
+                            <li><strong>Pedido de execução:</strong> Comprovar inadimplemento de 3 parcelas</li>
+                            <li><strong>Citação do devedor:</strong> Prazo de 3 dias para pagamento</li>
+                            <li><strong>Não pagamento:</strong> Penhora de bens ou rendimentos</li>
+                            <li><strong>Busca e apreensão:</strong> Para bens móveis específicos</li>
+                            <li><strong>Penhorabilidade:</strong> Até 50% do salário pode ser penhorado</li>
+                            <li><strong>Prisão civil:</strong> Último recurso para devedor contumaz</li>
+                        </ol>
+                        
+                        <p><strong>Cálculo dos Encargos:</strong></p>
+                        <ul>
+                            <li><strong>Correção monetária:</strong> Índice oficial desde o vencimento</li>
+                            <li><strong>Juros de mora:</strong> 1% ao mês ou taxa contratual</li>
+                            <li><strong>Multa:</strong> 2% sobre o valor principal (Lei 8.009/90)</li>
+                            <li><strong>Honorários:</strong> 10-20% sobre o valor atualizado</li>
+                            <li><strong>Custas:</strong> 1-3% sobre o valor da causa</li>
+                        </ul>
+                        
+                        <p><strong>Exemplo - 6 meses inadimplentes:</strong></p>
+                        <ul>
+                            <li>Pensão mensal: R$ 800,00</li>
+                            <li>Principal: R$ 800 × 6 = R$ 4.800,00</li>
+                            <li>Correção monetária (IPCA 15%): R$ 4.800 × 15% = R$ 720,00</li>
+                            <li>Juros de mora (1% ao mês × 6): R$ 4.800 × 6% = R$ 288,00</li>
+                            <li>Multa (2%): R$ 4.800 × 2% = R$ 96,00</li>
+                            <li>Subtotal: R$ 5.904,00</li>
+                            <li>Honorários (15%): R$ 886,00</li>
+                            <li>Total: R$ 6.790,00</li>
+                        </ul>
+                        
+                        <p><strong>Impenhorabilidade Parcial:</strong> Salário é penhorável até o limite de 50% para pensão alimentícia.</p>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Execução de Pensão:</strong><br>
+                        • <strong>Lei 5.478/1968:</strong> Rito especial para execução de alimentos<br>
+                        • <strong>Art. 528, CPC:</strong> Execução por quantia certa<br>
+                        • <strong>Art. 911, CPC:</strong> Penhora de salário (limite 50%)<br>
+                        • <strong>Lei 8.009/1990:</strong> Bem de família - impenhorabilidade<br>
+                        • <strong>Art. 732, CPC:</strong> Prisão civil do alimentante<br>
+                        • <strong>Súmula 309, STJ:</strong> Prisão por inadimplemento alimentar<br>
+                        • <strong>Lei 8.078/1990, Art. 42:</strong> Multa de 2% por atraso
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 5: Prisão Civil -->
+            <div id="prisao" class="tab-content">
+                <h2>🔒 Cálculo de Prisão Civil por Inadimplemento</h2>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="valorPensaoPrisao">Valor da Pensão Mensal (R$):</label>
+                        <input type="number" id="valorPensaoPrisao" step="0.01" placeholder="Ex: 800.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mesesSemPagar">Meses Sem Pagar Nada:</label>
+                        <input type="number" id="mesesSemPagar" min="1" placeholder="Ex: 3">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="regimePrisao">Regime de Prisão Possível:</label>
+                        <select id="regimePrisao">
+                            <option value="fechado">Fechado (reincidente)</option>
+                            <option value="semiaberto">Semiaberto</option>
+                            <option value="aberto">Aberto (primário)</option>
+                            <option value="domiciliar">Domiciliar (doente, idoso)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reincidencia">Reincidência em Inadimplemento?</label>
+                        <select id="reincidencia">
+                            <option value="nao">Não (primário)</option>
+                            <option value="sim">Sim (reincidente)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="capacidadePagamento">Capacidade de Pagamento Comprovada?</label>
+                        <select id="capacidadePagamento">
+                            <option value="sim">Sim (tem renda/patrimônio)</option>
+                            <option value="nao">Não (desempregado/sem bens)</option>
+                            <option value="parcial">Parcial (renda insuficiente)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tentativaAcordo">Houve Tentativa de Acordo?</label>
+                        <select id="tentativaAcordo">
+                            <option value="sim">Sim, mas recusou</option>
+                            <option value="nao">Não tentou</option>
+                            <option value="aceito">Aceitou, mas não cumpriu</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="danger-box">
+                    ⚖️ <strong>PRISÃO CIVIL - ÚLTIMO RECURSO:</strong><br>
+                    • <strong>Requisitos:</strong> 3 parcelas vencidas + capacidade financeira comprovada<br>
+                    • <strong>Prazo máximo:</strong> 90 dias (3 meses)<br>
+                    • <strong>Efeito:</strong> Liberdade imediata ao pagamento<br>
+                    • <strong>Exceções:</strong> Doença grave, idade avançada, único provedor<br>
+                    • <strong>Direitos:</strong> Preso civil mantém direitos trabalhistas e previdenciários
+                </div>
+                
+                <button class="btn" onclick="calcularPrisaoCivil()">Analisar Prisão Civil</button>
+                
+                <div class="results" id="resultPrisao">
+                    <h3>Análise de Prisão Civil</h3>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <strong>Débito Total:</strong>
+                            <div class="result-value danger" id="debitoTotalPrisao">R$ 0,00</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Parcelas Vencidas:</strong>
+                            <div class="result-value" id="parcelasVencidasPrisao">0</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Regime Indicado:</strong>
+                            <div class="result-value" id="regimeIndicado">-</div>
+                        </div>
+                        <div class="result-item">
+                            <strong>Prazo Estimado:</strong>
+                            <div class="result-value" id="prazoPrisao">0 dias</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1 / -1;">
+                            <strong>Possibilidade de Prisão:</strong>
+                            <div id="possibilidadePrisao" style="font-size: 1.4em; font-weight: bold; margin: 10px 0; padding: 15px; border-radius: 8px; text-align: center;"></div>
+                            <div id="fundamentoPrisao" style="margin-top: 10px; font-size: 0.9em;"></div>
+                        </div>
+                    </div>
+                    
+                    <h4>📋 Condições para Prisão Civil:</h4>
+                    <div class="table-responsive">
+                        <table class="pension-table">
+                            <thead>
+                                <tr>
+                                    <th>Condição</th>
+                                    <th>Atende?</th>
+                                    <th>Observação</th>
+                                    <th>Fundamento Legal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaCondicoesPrisao">
+                                <!-- Preenchido dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="calculation-explanation">
+                        <h4>📝 Como funciona a prisão civil por inadimplemento alimentar:</h4>
+                        <p><strong>Requisitos Cumulativos (Art. 733, CPC):</strong></p>
+                        <ol>
+                            <li><strong>Inadimplemento de 3 parcelas:</strong> Consecutivas ou alternadas</li>
+                            <li><strong>Capacidade econômica:</strong> Comprovada renda ou patrimônio</li>
+                            <li><strong>Má-fé ou negligência:</strong> Recusa injustificada a pagar</li>
+                            <li><strong>Esgotados outros meios:</strong> Penhora, desconto em folha</li>
+                            <li><strong>Ausência de justificativa:</strong> Desemprego, doença grave</li>
+                        </ol>
+                        
+                        <p><strong>Procedimento para Prisão:</strong></p>
+                        <ul>
+                            <li><strong>Pedido de prisão:</strong> Na própria execução de alimentos</li>
+                            <li><strong>Oitiva do devedor:</strong> Direito à ampla defesa</li>
+                            <li><strong>Provas:</strong> Comprovar capacidade econômica</li>
+                            <li><strong>Decisão:</strong> Juiz fixa prazo de prisão (15-90 dias)</li>
+                            <li><strong>Cumprimento:</strong> Oficial de justiça efetua a prisão</li>
+                            <li><strong>Liberação:</strong> Imediata ao pagamento integral</li>
+                        </ul>
+                        
+                        <p><strong>Prazos de Prisão por Valor Devido:</strong></p>
+                        <ul>
+                            <li><strong>Até 3 salários mínimos:</strong> 15-30 dias</li>
+                            <li><strong>3 a 10 salários mínimos:</strong> 30-60 dias</li>
+                            <li><strong>Acima de 10 salários mínimos:</strong> 60-90 dias</li>
+                            <li><strong>Reincidência:</strong> Aumenta em 50% o prazo</li>
+                        </ul>
+                        
+                        <p><strong>Impedimentos à Prisão:</strong></p>
+                        <ul>
+                            <li>Idade superior a 70 anos</li>
+                            <li>Doença grave comprovada</li>
+                            <li>Único provedor da família</li>
+                            <li>Gestante ou mãe de recém-nascido</li>
+                            <li>Incapacidade econômica real</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legislation-ref">
+                        <strong>📚 Fundamentos Legais - Prisão Civil:</strong><br>
+                        • <strong>Constituição Federal, Art. 5º, LXVII:</strong> Prisão civil por débito alimentar<br>
+                        • <strong>CPC, Art. 528, §4º:</strong> Requisitos para prisão<br>
+                        • <strong>CPC, Art. 528, §5º:</strong> Prazo máximo de 90 dias<br>
+                        • <strong>CPC, Art. 528, §6º:</strong> Liberdade ao pagamento<br>
+                        • <strong>Lei 5.478/1968, Art. 19:</strong> Rito da prisão em execução de alimentos<br>
+                        • <strong>Súmula 309, STJ:</strong> Possibilidade de prisão<br>
+                        • <strong>Súmula 350, STJ:</strong> Prazos e condições<br>
+                        • <strong>Lei 7.210/1984 (LEP):</strong> Regime de cumprimento
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>👨‍👩‍👧‍👦 <strong>Calculadora de Pensão Alimentícia</strong></p>
+        <p>⚠️ <strong>VERSÃO EM TESTES</strong> - Para assessoria jurídica em direito de família:</p>
+        <p>Consulte a <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: #8B0000; font-weight: bold;">Advocacia Vera Catarina</a></p>
+        <p>E-mail: <a href="mailto:dra.veracatarina@gmail.com">dra.veracatarina@gmail.com</a></p>
+        
+        <div class="social">
+            <a href="https://api.whatsapp.com/send/?phone=5551998883187" target="_blank" aria-label="WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/fabiowlademir" target="_blank" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn"> LinkedIn
+            </a>
+            <a href="https://fabiowlademir.github.io/" target="_blank" aria-label="GitHub">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub"> GitHub
+            </a>
+            <a href="https://f2suporte.blogspot.com/" target="_blank" aria-label="Blog">
+                <img src="https://www.gstatic.com/images/branding/product/1x/blogger_512dp.png" alt="Blog"> Blog
+            </a>
+            <a href="https://www.youtube.com/@fabiowlademirrs" target="_blank" aria-label="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"> YouTube
+            </a>
+            <a href="https://www.instagram.com/fabiowlademirrs" target="_blank" aria-label="Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram
+            </a>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+            <strong>Outras Calculadoras Jurídicas:</strong><br>
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_media.html">🧮 Calculadora de Média</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_penas.html">⚖️ Calculadora de Penas</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_trabalhista.html">👷 Calculadora Trabalhista</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_previdenciaria.html">👵 Calculadora Previdenciária</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_tributaria.html">🏢 Calculadora Tributária</a> | 
+            <a href="https://fabiowlademir.github.io/simuladosdireito/calculadora_aluguel.html">🏠 Calculadora de Aluguel</a>
+        </p>
+        
+        <p style="margin-top: 15px; font-size: 0.85em; color: #777;">
+            Referências: Código Civil (Arts. 1.694-1.710), Lei 5.478/1968 (Lei de Alimentos), CPC (Arts. 528-538), Súmulas STF/STJ
+        </p>
+        <p><a href="https://fabiowlademir.github.io/simuladosdireito/">Voltar para Simulados de Direito</a></p>
+    </footer>
+
+    <script>
+        // Sistema de Tabs
+        function openTab(evt, tabName) {
+            const tabcontents = document.querySelectorAll('.tab-content');
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabcontents.forEach(tab => tab.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // Contador de dependentes para Tab 2
+        let contadorDependentes = 1;
+        
+        function adicionarDependente() {
+            if (contadorDependentes >= 8) {
+                alert("Máximo de 8 dependentes permitido.");
+                return;
+            }
+            
+            contadorDependentes++;
+            const novoIndex = contadorDependentes;
+            
+            const novoDependente = document.createElement('div');
+            novoDependente.className = 'dependente-item';
+            novoDependente.setAttribute('data-index', novoIndex);
+            novoDependente.innerHTML = `
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="dependente${novoIndex}Tipo">Tipo:</label>
+                        <select id="dependente${novoIndex}Tipo" class="dependente-tipo">
+                            <option value="filhoMenor">Filho Menor</option>
+                            <option value="filhoMaior">Filho Maior Estudante</option>
+                            <option value="conjuge">Cônjuge</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dependente${novoIndex}Idade">Idade:</label>
+                        <input type="number" id="dependente${novoIndex}Idade" class="dependente-idade" min="0" max="30" placeholder="Idade">
+                    </div>
+                    <div class="form-group">
+                        <label for="dependente${novoIndex}Renda">Renda Própria (R$):</label>
+                        <input type="number" id="dependente${novoIndex}Renda" class="dependente-renda" step="0.01" placeholder="0.00" value="0">
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('dependentesContainer').appendChild(novoDependente);
+        }
+        
+        function removerDependente() {
+            if (contadorDependentes <= 1) {
+                alert("Deve haver pelo menos 1 dependente.");
+                return;
+            }
+            
+            const ultimoDependente = document.querySelector(`.dependente-item[data-index="${contadorDependentes}"]`);
+            if (ultimoDependente) {
+                ultimoDependente.remove();
+                contadorDependentes--;
+            }
+        }
+        
+        // 1. Cálculo Básico de Pensão
+        function calcularPensaoBasica() {
+            const rendaAlimentante = parseFloat(document.getElementById('rendaAlimentante').value);
+            const rendaAlimentado = parseFloat(document.getElementById('rendaAlimentado').value) || 0;
+            const idadeDependente = parseInt(document.getElementById('idadeDependente').value);
+            const tipoDependente = document.getElementById('tipoDependente').value;
+            const custoMensal = parseFloat(document.getElementById('custoMensal').value) || 0;
+            const regiao = document.getElementById('regiao').value;
+            
+            if (!rendaAlimentante || rendaAlimentante <= 0 || !idadeDependente) {
+                alert("Por favor, preencha a renda do alimentante e idade do dependente.");
+                return;
+            }
+            
+            // Determinar percentual base
+            let percentualBase = 0.20; // 20% padrão
+            
+            // Ajustar por tipo de dependente
+            switch(tipoDependente) {
+                case 'filho':
+                    if (idadeDependente < 6) percentualBase = 0.15;
+                    else if (idadeDependente < 12) percentualBase = 0.20;
+                    else if (idadeDependente < 18) percentualBase = 0.25;
+                    else percentualBase = 0.30;
+                    break;
+                case 'filhoMaior':
+                    percentualBase = 0.15;
+                    break;
+                case 'conjuge':
+                    percentualBase = 0.25;
+                    break;
+                case 'idoso':
+                    percentualBase = 0.20;
+                    break;
+                case 'incapaz':
+                    percentualBase = 0.30;
+                    break;
+            }
+            
+            // Ajustar por região
+            const ajustesRegiao = {
+                'sul': 1.0,
+                'sudeste': 0.9,
+                'centro': 0.95,
+                'nordeste': 1.1,
+                'norte': 1.2
+            };
+            percentualBase *= ajustesRegiao[regiao] || 1.0;
+            
+            // Ajustar por custo mensal informado
+            if (custoMensal > 0) {
+                const percentualNecessario = custoMensal / rendaAlimentante;
+                if (percentualNecessario > percentualBase) {
+                    percentualBase = Math.min(percentualNecessario, 0.5); // Máximo 50%
+                }
+            }
+            
+            // Limitar entre 15% e 50%
+            percentualBase = Math.max(0.15, Math.min(0.5, percentualBase));
+            
+            // Calcular pensão
+            const valorPensao = rendaAlimentante * percentualBase - rendaAlimentado;
+            const pensaoFinal = Math.max(0, valorPensao);
+            
+            // Calcular renda disponível
+            const rendaDisponivel = rendaAlimentante - pensaoFinal;
+            const rendaTotalDependente = pensaoFinal + rendaAlimentado;
+            
+            // Determinar faixa jurisprudencial
+            let faixaMin = percentualBase - 0.05;
+            let faixaMax = percentualBase + 0.05;
+            faixaMin = Math.max(0.15, faixaMin);
+            faixaMax = Math.min(0.5, faixaMax);
+            
+            // Limites legal
+            const limiteMinimo = rendaAlimentante * 0.15;
+            const limiteMaximo = rendaAlimentante * 0.5;
+            
+            // Situação financeira
+            let situacao = '';
+            if (rendaDisponivel < 1320) { // Salário mínimo
+                situacao = 'Crítica (alimentante abaixo do mínimo)';
+            } else if (rendaDisponivel < 2640) {
+                situacao = 'Adequada';
+            } else {
+                situacao = 'Confortável';
+            }
+            
+            // Exibir resultados
+            document.getElementById('percentualSugerido').textContent = `${(percentualBase * 100).toFixed(1)}%`;
+            document.getElementById('valorPensao').textContent = `R$ ${pensaoFinal.toFixed(2)}`;
+            document.getElementById('rendaDisponivel').textContent = `R$ ${rendaDisponivel.toFixed(2)}`;
+            document.getElementById('rendaTotalDependente').textContent = `R$ ${rendaTotalDependente.toFixed(2)}`;
+            document.getElementById('faixaJurisprudencial').textContent = `${(faixaMin * 100).toFixed(1)}% - ${(faixaMax * 100).toFixed(1)}%`;
+            document.getElementById('limiteMinimo').textContent = `R$ ${limiteMinimo.toFixed(2)}`;
+            document.getElementById('limiteMaximo').textContent = `R$ ${limiteMaximo.toFixed(2)}`;
+            document.getElementById('situacaoFinanceira').textContent = situacao;
+            
+            document.getElementById('resultBasico').style.display = 'block';
+        }
+        
+        // 2. Cálculo para Múltiplos Dependentes
+        function calcularPensaoMultiplos() {
+            const rendaAlimentante = parseFloat(document.getElementById('rendaAlimentanteMulti').value);
+            const outrasObrigacoes = parseFloat(document.getElementById('outrasObrigacoes').value) || 0;
+            const despesasFixas = parseFloat(document.getElementById('despesasFixas').value) || 0;
+            const regimeGuarda = document.getElementById('regimeGuarda').value;
+            
+            if (!rendaAlimentante || rendaAlimentante <= 0) {
+                alert("Por favor, preencha a renda do alimentante.");
+                return;
+            }
+            
+            // Coletar dados dos dependentes
+            const dependentes = [];
+            let totalRendaDependentes = 0;
+            
+            for (let i = 1; i <= contadorDependentes; i++) {
+                const tipo = document.getElementById(`dependente${i}Tipo`)?.value;
+                const idade = parseInt(document.getElementById(`dependente${i}Idade`)?.value) || 0;
+                const renda = parseFloat(document.getElementById(`dependente${i}Renda`)?.value) || 0;
+                
+                if (tipo && idade >= 0) {
+                    dependentes.push({ tipo, idade, renda });
+                    totalRendaDependentes += renda;
+                }
+            }
+            
+            if (dependentes.length === 0) {
+                alert("Adicione pelo menos um dependente.");
+                return;
+            }
+            
+            // Calcular peso de cada dependente
+            dependentes.forEach(dep => {
+                let peso = 1.0;
+                
+                // Ajustar por tipo
+                switch(dep.tipo) {
+                    case 'filhoMenor':
+                        if (dep.idade < 6) peso = 1.0;
+                        else if (dep.idade < 12) peso = 1.2;
+                        else if (dep.idade < 18) peso = 1.5;
+                        else peso = 1.3; // Maior que 18 mas ainda dependente
+                        break;
+                    case 'filhoMaior':
+                        peso = 1.0;
+                        break;
+                    case 'conjuge':
+                        peso = 1.2;
+                        break;
+                    case 'outro':
+                        peso = 0.8;
+                        break;
+                }
+                
+                dep.peso = peso;
+            });
+            
+            // Calcular total de pesos
+            const totalPesos = dependentes.reduce((sum, dep) => sum + dep.peso, 0);
+            
+            // Calcular renda líquida disponível
+            const rendaLiquida = rendaAlimentante - outrasObrigacoes - despesasFixas;
+            const rendaDisponivel = Math.max(0, rendaLiquida);
+            
+            // Determinar percentual total (máximo 50%)
+            let percentualTotal = 0;
+            if (rendaDisponivel > 5000) {
+                percentualTotal = 0.40; // 40% para renda alta
+            } else if (rendaDisponivel > 3000) {
+                percentualTotal = 0.35; // 35% para renda média
+            } else {
+                percentualTotal = 0.30; // 30% para renda baixa
+            }
+            
+            // Ajustar por regime de guarda
+            if (regimeGuarda === 'compartilhada') {
+                percentualTotal *= 0.7; // Redução de 30%
+            } else if (regimeGuarda === 'alternada') {
+                percentualTotal *= 0.6; // Redução de 40%
+            }
+            
+            // Limitar a 50%
+            percentualTotal = Math.min(0.5, percentualTotal);
+            
+            // Calcular valor total em pensões
+            const valorTotalPensoes = rendaAlimentante * percentualTotal;
+            const rendaRestante = rendaAlimentante - valorTotalPensoes;
+            
+            // Distribuir entre dependentes
+            dependentes.forEach(dep => {
+                dep.valor = (dep.peso / totalPesos) * valorTotalPensoes - dep.renda;
+                dep.valor = Math.max(0, dep.valor); // Não pode ser negativo
+            });
+            
+            // Exibir resultados gerais
+            document.getElementById('rendaLiquidaDisponivel').textContent = `R$ ${rendaDisponivel.toFixed(2)}`;
+            document.getElementById('percentualTotal').textContent = `${(percentualTotal * 100).toFixed(1)}%`;
+            document.getElementById('valorTotalPensoes').textContent = `R$ ${valorTotalPensoes.toFixed(2)}`;
+            document.getElementById('rendaRestanteAlimentante').textContent = `R$ ${rendaRestante.toFixed(2)}`;
+            
+            // Exibir distribuição por dependente
+            const distribuicaoDiv = document.getElementById('distribuicaoDependentes');
+            distribuicaoDiv.innerHTML = '';
+            
+            dependentes.forEach((dep, index) => {
+                const div = document.createElement('div');
+                div.className = 'result-item';
+                div.innerHTML = `
+                    <strong>Dependente ${index + 1}:</strong>
+                    <div>${dep.tipo === 'filhoMenor' ? 'Filho' : dep.tipo === 'filhoMaior' ? 'Filho Maior' : dep.tipo === 'conjuge' ? 'Cônjuge' : 'Outro'} (${dep.idade} anos)</div>
+                    <div class="result-value">R$ ${dep.valor.toFixed(2)}</div>
+                    <small>Renda própria: R$ ${dep.renda.toFixed(2)}</small>
+                `;
+                distribuicaoDiv.appendChild(div);
+            });
+            
+            // Alertar se percentual muito alto
+            const alertaDiv = document.getElementById('alertaPercentual');
+            if (percentualTotal > 0.45) {
+                document.getElementById('percentualAlerta').textContent = `${(percentualTotal * 100).toFixed(1)}%`;
+                alertaDiv.style.display = 'block';
+            } else {
+                alertaDiv.style.display = 'none';
+            }
+            
+            document.getElementById('resultMultiplos').style.display = 'block';
+        }
+        
+        // 3. Cálculo de Revisional
+        function calcularRevisional() {
+            const pensaoAtual = parseFloat(document.getElementById('pensaoAtual').value);
+            const dataInicioStr = document.getElementById('dataInicioPensao').value;
+            const rendaAtual = parseFloat(document.getElementById('rendaAtualAlimentante').value);
+            const rendaAntiga = parseFloat(document.getElementById('rendaAntigaAlimentante').value);
+            const custosAtuais = parseFloat(document.getElementById('custosAtuais').value) || 0;
+            const custosAntigos = parseFloat(document.getElementById('custosAntigos').value) || 0;
+            const indice = document.getElementById('indiceCorrecao').value;
+            const mudancaNecessidade = document.getElementById('mudancaNecessidade').value;
+            
+            if (!pensaoAtual || !dataInicioStr || !rendaAtual || !rendaAntiga) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+            
+            // Calcular diferença de tempo
+            const dataInicio = new Date(dataInicioStr);
+            const hoje = new Date();
+            const diffMeses = (hoje.getFullYear() - dataInicio.getFullYear()) * 12 + 
+                            (hoje.getMonth() - dataInicio.getMonth());
+            
+            // Calcular fatores de ajuste
+            let fatorRenda = 1.0;
+            if (rendaAntiga > 0) {
+                fatorRenda = rendaAtual / rendaAntiga;
+            }
+            
+            let fatorCustos = 1.0;
+            if (custosAntigos > 0 && custosAtuais > 0) {
+                fatorCustos = custosAtuais / custosAntigos;
+            }
+            
+            // Determinar índice de correção
+            let indiceAcumulado = 1.0;
+            switch(indice) {
+                case 'ipca':
+                    indiceAcumulado = 1 + (0.04 * diffMeses); // 4% ao ano
+                    break;
+                case 'inpc':
+                    indiceAcumulado = 1 + (0.035 * diffMeses); // 3.5% ao ano
+                    break;
+                case 'igpm':
+                    indiceAcumulado = 1 + (0.045 * diffMeses); // 4.5% ao ano
+                    break;
+                case 'salario':
+                    indiceAcumulado = 1 + (0.05 * diffMeses); // 5% ao ano
+                    break;
+                case 'jurisprudencia':
+                    indiceAcumulado = 1 + (0.03 * diffMeses); // 3% ao ano
+                    break;
+            }
+            
+            // Ajustar por mudança na necessidade
+            let fatorNecessidade = 1.0;
+            switch(mudancaNecessidade) {
+                case 'aumento':
+                    fatorNecessidade = 1.3;
+                    break;
+                case 'reducao':
+                    fatorNecessidade = 0.7;
+                    break;
+                case 'igual':
+                    fatorNecessidade = 1.0;
+                    break;
+            }
+            
+            // Calcular pensão revisada
+            const pensaoRevisada = pensaoAtual * fatorRenda * fatorCustos * indiceAcumulado * fatorNecessidade;
+            
+            // Limitar a 50% da renda atual
+            const limiteMaximo = rendaAtual * 0.5;
+            const pensaoFinal = Math.min(pensaoRevisada, limiteMaximo);
+            
+            // Calcular variação
+            const variacao = pensaoFinal - pensaoAtual;
+            const percentualVariacao = (variacao / pensaoAtual) * 100;
+            
+            // Calcular datas
+            const dataOriginal = new Date(dataInicio);
+            const dataProposta = new Date(hoje);
+            
+            // Exibir resultados
+            document.getElementById('pensaoAtualValor').textContent = `R$ ${pensaoAtual.toFixed(2)}`;
+            document.getElementById('pensaoRevisada').textContent = `R$ ${pensaoFinal.toFixed(2)}`;
+            document.getElementById('variacaoPensao').textContent = `R$ ${variacao.toFixed(2)}`;
+            document.getElementById('percentualVariacao').textContent = `${percentualVariacao.toFixed(1)}%`;
+            
+            document.getElementById('dataOriginal').textContent = dataOriginal.toLocaleDateString('pt-BR');
+            document.getElementById('pensaoOriginal').textContent = `R$ ${pensaoAtual.toFixed(2)}`;
+            document.getElementById('dataAtualRevisional').textContent = hoje.toLocaleDateString('pt-BR');
+            document.getElementById('pensaoAtualExib').textContent = `R$ ${pensaoAtual.toFixed(2)}`;
+            document.getElementById('dataProposta').textContent = dataProposta.toLocaleDateString('pt-BR');
+            document.getElementById('pensaoProposta').textContent = `R$ ${pensaoFinal.toFixed(2)}`;
+            
+            document.getElementById('resultRevisional').style.display = 'block';
+        }
+        
+        // 4. Cálculo de Execução
+        function calcularExecucao() {
+            const valorPensao = parseFloat(document.getElementById('valorPensaoExecucao').value);
+            const mesesInadimplentes = parseInt(document.getElementById('mesesInadimplentes').value);
+            const indice = document.getElementById('indiceCorrecaoExecucao').value;
+            const dataInicioStr = document.getElementById('dataInicioInadimplencia').value;
+            const honorariosPercent = parseFloat(document.getElementById('honorariosAdvocaticios').value) / 100;
+            const custasPercent = parseFloat(document.getElementById('custasProcessuais').value) / 100;
+            
+            if (!valorPensao || !mesesInadimplentes || !dataInicioStr) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+            
+            // Calcular valor principal
+            const valorPrincipal = valorPensao * mesesInadimplentes;
+            
+            // Calcular correção monetária
+            let correcaoPercentual = 0;
+            switch(indice) {
+                case 'ipca':
+                    correcaoPercentual = 0.04 * mesesInadimplentes; // 4% ao ano
+                    break;
+                case 'inpc':
+                    correcaoPercentual = 0.035 * mesesInadimplentes;
+                    break;
+                case 'selic':
+                    correcaoPercentual = 0.01 * mesesInadimplentes; // 1% ao mês
+                    break;
+                case 'legal':
+                    correcaoPercentual = 0.01 * mesesInadimplentes; // 1% ao mês
+                    break;
+            }
+            
+            const correcaoMonetaria = valorPrincipal * correcaoPercentual;
+            
+            // Calcular juros de mora (1% ao mês)
+            let jurosMora = 0;
+            for (let i = 1; i <= mesesInadimplentes; i++) {
+                jurosMora += (valorPensao * 0.01 * i);
+            }
+            
+            // Calcular multa (2% sobre o principal)
+            const multa = valorPrincipal * 0.02;
+            
+            // Subtotal antes de honorários e custas
+            const subtotal = valorPrincipal + correcaoMonetaria + jurosMora + multa;
+            
+            // Calcular honorários e custas
+            const honorarios = subtotal * honorariosPercent;
+            const custas = subtotal * custasPercent;
+            
+            // Total final
+            const totalExecucao = subtotal + honorarios + custas;
+            
+            // Gerar tabela de parcelas
+            const tabelaParcelas = document.getElementById('tabelaParcelas');
+            tabelaParcelas.innerHTML = '';
+            
+            const dataInicio = new Date(dataInicioStr);
+            
+            for (let i = 0; i < mesesInadimplentes; i++) {
+                const dataVencimento = new Date(dataInicio);
+                dataVencimento.setMonth(dataVencimento.getMonth() + i);
+                
+                const correcaoParcela = valorPensao * correcaoPercentual * (mesesInadimplentes - i) / mesesInadimplentes;
+                const valorCorrigido = valorPensao + correcaoParcela;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${i + 1}</td>
+                    <td>${dataVencimento.toLocaleDateString('pt-BR')}</td>
+                    <td>R$ ${valorPensao.toFixed(2)}</td>
+                    <td>R$ ${valorCorrigido.toFixed(2)}</td>
+                    <td style="color: #d32f2f; font-weight: bold;">INADIMPLENTE</td>
+                `;
+                tabelaParcelas.appendChild(row);
+            }
+            
+            // Exibir resultados
+            document.getElementById('valorPrincipal').textContent = `R$ ${valorPrincipal.toFixed(2)}`;
+            document.getElementById('correcaoMonetaria').textContent = `R$ ${correcaoMonetaria.toFixed(2)}`;
+            document.getElementById('jurosMora').textContent = `R$ ${jurosMora.toFixed(2)}`;
+            document.getElementById('multaInadimplencia').textContent = `R$ ${multa.toFixed(2)}`;
+            document.getElementById('honorariosCalculados').textContent = `R$ ${honorarios.toFixed(2)}`;
+            document.getElementById('custasCalculadas').textContent = `R$ ${custas.toFixed(2)}`;
+            document.getElementById('totalExecucao').textContent = `R$ ${totalExecucao.toFixed(2)}`;
+            document.getElementById('parcelasVencidas').textContent = mesesInadimplentes;
+            
+            document.getElementById('resultExecucao').style.display = 'block';
+        }
+        
+        // 5. Cálculo de Prisão Civil
+        function calcularPrisaoCivil() {
+            const valorPensao = parseFloat(document.getElementById('valorPensaoPrisao').value);
+            const mesesSemPagar = parseInt(document.getElementById('mesesSemPagar').value);
+            const regime = document.getElementById('regimePrisao').value;
+            const reincidencia = document.getElementById('reincidencia').value;
+            const capacidade = document.getElementById('capacidadePagamento').value;
+            const acordo = document.getElementById('tentativaAcordo').value;
+            
+            if (!valorPensao || !mesesSemPagar) {
+                alert("Por favor, preencha o valor da pensão e meses sem pagar.");
+                return;
+            }
+            
+            // Calcular débito total
+            const debitoTotal = valorPensao * mesesSemPagar;
+            
+            // Verificar condições para prisão
+            const condicoes = [];
+            
+            // Condição 1: 3 parcelas inadimplentes
+            condicoes.push({
+                condicao: "3 parcelas vencidas",
+                atende: mesesSemPagar >= 3,
+                observacao: mesesSemPagar >= 3 ? "Sim" : "Não (mínimo 3)",
+                fundamento: "Art. 733, CPC"
+            });
+            
+            // Condição 2: Capacidade econômica
+            const capacidadeAtende = capacidade === 'sim' || capacidade === 'parcial';
+            condicoes.push({
+                condicao: "Capacidade econômica",
+                atende: capacidadeAtende,
+                observacao: capacidade === 'sim' ? "Sim" : capacidade === 'parcial' ? "Parcial" : "Não",
+                fundamento: "Súmula 309, STJ"
+            });
+            
+            // Condição 3: Má-fé ou negligência
+            const maFe = acordo === 'sim' || acordo === 'aceito';
+            condicoes.push({
+                condicao: "Má-fé/Negligência",
+                atende: maFe,
+                observacao: acordo === 'sim' ? "Recusou acordo" : acordo === 'aceito' ? "Aceitou mas não cumpriu" : "Não tentou",
+                fundamento: "Jurisprudência"
+            });
+            
+            // Condição 4: Esgotados outros meios
+            condicoes.push({
+                condicao: "Outros meios esgotados",
+                atende: true, // Presumido
+                observacao: "Presume-se após 3 meses",
+                fundamento: "Art. 528, §4º, CPC"
+            });
+            
+            // Determinar possibilidade de prisão
+            const condicoesAtendidas = condicoes.filter(c => c.atende).length;
+            let possibilidade = '';
+            let fundamento = '';
+            
+            if (mesesSemPagar >= 3 && capacidadeAtende && maFe) {
+                possibilidade = 'SIM - Possível Prisão Civil';
+                fundamento = 'Requisitos cumulativos atendidos';
+            } else if (mesesSemPagar < 3) {
+                possibilidade = 'NÃO - Apenas ' + mesesSemPagar + ' parcela(s)';
+                fundamento = 'Mínimo de 3 parcelas vencidas necessário';
+            } else if (!capacidadeAtende) {
+                possibilidade = 'NÃO - Sem capacidade econômica';
+                fundamento = 'Alimentante não tem renda/patrimônio para pagar';
+            } else {
+                possibilidade = 'ANÁLISE JUDICIAL NECESSÁRIA';
+                fundamento = 'Juiz analisará as circunstâncias específicas';
+            }
+            
+            // Determinar regime e prazo
+            let regimeIndicado = regime;
+            let prazoDias = 0;
+            
+            const salariosMinimos = debitoTotal / 1320; // Considerando SM de R$ 1.320
+            
+            if (salariosMinimos <= 3) {
+                prazoDias = reincidencia === 'sim' ? 45 : 30;
+            } else if (salariosMinimos <= 10) {
+                prazoDias = reincidencia === 'sim' ? 75 : 60;
+            } else {
+                prazoDias = reincidencia === 'sim' ? 90 : 90;
+            }
+            
+            // Ajustar por regime
+            if (regime === 'domiciliar') {
+                prazoDias *= 1.5; // Aumenta 50% para domiciliar
+            }
+            
+            // Exibir resultados
+            document.getElementById('debitoTotalPrisao').textContent = `R$ ${debitoTotal.toFixed(2)}`;
+            document.getElementById('parcelasVencidasPrisao').textContent = mesesSemPagar;
+            document.getElementById('regimeIndicado').textContent = regimeIndicado;
+            document.getElementById('prazoPrisao').textContent = `${prazoDias} dias`;
+            
+            const possibilidadeDiv = document.getElementById('possibilidadePrisao');
+            possibilidadeDiv.textContent = possibilidade;
+            if (possibilidade.includes('SIM')) {
+                possibilidadeDiv.style.background = '#ffebee';
+                possibilidadeDiv.style.color = '#d32f2f';
+                possibilidadeDiv.style.border = '2px solid #d32f2f';
+            } else if (possibilidade.includes('NÃO')) {
+                possibilidadeDiv.style.background = '#e8f5e9';
+                possibilidadeDiv.style.color = '#2e7d32';
+                possibilidadeDiv.style.border = '2px solid #2e7d32';
+            } else {
+                possibilidadeDiv.style.background = '#fff3cd';
+                possibilidadeDiv.style.color = '#ff9800';
+                possibilidadeDiv.style.border = '2px solid #ff9800';
+            }
+            
+            document.getElementById('fundamentoPrisao').textContent = fundamento;
+            
+            // Preencher tabela de condições
+            const tabela = document.getElementById('tabelaCondicoesPrisao');
+            tabela.innerHTML = '';
+            
+            condicoes.forEach(cond => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${cond.condicao}</td>
+                    <td style="color: ${cond.atende ? '#2e7d32' : '#d32f2f'}; font-weight: bold;">
+                        ${cond.atende ? '✓' : '✗'}
+                    </td>
+                    <td>${cond.observacao}</td>
+                    <td>${cond.fundamento}</td>
+                `;
+                tabela.appendChild(row);
+            });
+            
+            document.getElementById('resultPrisao').style.display = 'block';
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preencher campos com exemplos
+            const hoje = new Date();
+            const dataAnterior = new Date(hoje);
+            dataAnterior.setFullYear(hoje.getFullYear() - 2);
+            const dataInadimplencia = new Date(hoje);
+            dataInadimplencia.setMonth(hoje.getMonth() - 6);
+            
+            document.getElementById('rendaAlimentante').value = 3000.00;
+            document.getElementById('idadeDependente').value = 8;
+            document.getElementById('custoMensal').value = 1500.00;
+            
+            document.getElementById('rendaAlimentanteMulti').value = 5000.00;
+            document.getElementById('outrasObrigacoes').value = 1000.00;
+            document.getElementById('despesasFixas').value = 2000.00;
+            
+            document.getElementById('pensaoAtual').value = 800.00;
+            document.getElementById('dataInicioPensao').value = dataAnterior.toISOString().split('T')[0];
+            document.getElementById('rendaAtualAlimentante').value = 4000.00;
+            document.getElementById('rendaAntigaAlimentante').value = 3000.00;
+            document.getElementById('custosAtuais').value = 1200.00;
+            document.getElementById('custosAntigos').value = 800.00;
+            
+            document.getElementById('valorPensaoExecucao').value = 800.00;
+            document.getElementById('mesesInadimplentes').value = 6;
+            document.getElementById('dataInicioInadimplencia').value = dataInadimplencia.toISOString().split('T')[0];
+            
+            document.getElementById('valorPensaoPrisao').value = 800.00;
+            document.getElementById('mesesSemPagar').value = 4;
+        });
+    </script>
+</body>
+</html>
