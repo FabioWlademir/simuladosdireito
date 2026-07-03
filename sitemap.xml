@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Página inicial -->
+  <!-- PÁGINA INICIAL -->
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/</loc>
     <lastmod>2026-07-03</lastmod>
@@ -9,14 +9,14 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Simulados -->
+  <!-- ===== SIMULADOS PRINCIPAIS ===== -->
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/simulado_basico.html</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/simulado_intermediario.html</loc>
     <lastmod>2026-07-03</lastmod>
@@ -31,7 +31,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Simulados por área -->
+  <!-- ===== SIMULADOS POR ÁREA (PENAL) ===== -->
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/simulado_penal_basico.html</loc>
     <lastmod>2026-07-03</lastmod>
@@ -53,6 +53,7 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- ===== SIMULADOS POR ÁREA (PRIVADO) ===== -->
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/simulado_privado_basico.html</loc>
     <lastmod>2026-07-03</lastmod>
@@ -74,6 +75,7 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- ===== SIMULADOS POR ÁREA (CONSTITUIÇÃO) ===== -->
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/simulado_constituicao_basico.html</loc>
     <lastmod>2026-07-03</lastmod>
@@ -95,6 +97,7 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- ===== SIMULADOS POR ÁREA (TEMAS ESPECÍFICOS) ===== -->
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/simulado_direito_digital.html</loc>
     <lastmod>2026-07-03</lastmod>
@@ -151,7 +154,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Calculadoras -->
+  <!-- ===== CALCULADORAS ===== -->
   <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/calculadoras.html</loc>
     <lastmod>2026-07-03</lastmod>
@@ -208,11 +211,18 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- Páginas institucionais -->
+  <!-- ===== PÁGINAS INSTITUCIONAIS ===== -->
   <url>
-    <loc>https://fabiowlademir.github.io/simuladosdireito/sobre.html</loc>
+    <loc>https://fabiowlademir.github.io/simuladosdireito/ajuda.html</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://fabiowlademir.github.io/simuladosdireito/blog.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
@@ -224,38 +234,24 @@
   </url>
 
   <url>
-    <loc>https://fabiowlademir.github.io/simuladosdireito/legislacao.html</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://fabiowlademir.github.io/simuladosdireito/termos.html</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://fabiowlademir.github.io/simuladosdireito/ajuda.html</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://fabiowlademir.github.io/simuladosdireito/perguntas_frequentes.html</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
     <loc>https://fabiowlademir.github.io/simuladosdireito/estatisticas.html</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://fabiowlademir.github.io/simuladosdireito/faq.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://fabiowlademir.github.io/simuladosdireito/legislacao.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
@@ -266,10 +262,17 @@
   </url>
 
   <url>
-    <loc>https://fabiowlademir.github.io/simuladosdireito/blog.html</loc>
+    <loc>https://fabiowlademir.github.io/simuladosdireito/privacidade.html</loc>
     <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://fabiowlademir.github.io/simuladosdireito/termos.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 
 </urlset>
