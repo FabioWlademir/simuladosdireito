@@ -1,0 +1,6 @@
+# Permite que todos os robôs de busca rastreiem todo o site
+User-agent: *
+Disallow:
+
+# Caminho para o sitemap XML
+Sitemap: https://fabiowlademir.github.io/simuladosdireito/sitemap.xml
