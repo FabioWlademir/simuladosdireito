@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parcerias e Colaborações - Simulados de Direito</title>
-    <meta name="description" content="Junte-se a nós! Colabore com o Simulados de Direito como professor, desenvolvedor ou estudante. Agradecimentos especiais.">
+    <meta name="description" content="Junte-se a nós! Colabore com o Simulados de Direito como professor, desenvolvedor ou estudante. Conheça nossos parceiros.">
     <meta name="keywords" content="parcerias, colaboração, contribuir, agradecimentos, desenvolvedor, professor, estudante">
     <meta name="author" content="Fábio Wlademir">
     <meta name="robots" content="index, follow">
@@ -170,45 +170,88 @@
             background: #003d7a;
         }
         
-        .thank-you-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 8px;
-            margin: 40px 0;
-            text-align: center;
-        }
-        
-        .thank-you-section h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        
+        /* ===== NOVOS CARDS DE PARCEIROS COM CORES ===== */
         .partners-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
             margin: 30px 0;
         }
         
         .partner-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 25px 20px;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid #dee2e6;
             transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            min-height: 200px;
         }
         
         .partner-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
         
-        .partner-logo {
-            height: 60px;
-            margin-bottom: 15px;
-            object-fit: contain;
+        .partner-card .collab-icon {
+            font-size: 3.5em;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.2);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+        }
+        
+        .partner-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        
+        .partner-card p {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+        
+        .partner-card a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: underline;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+        
+        .partner-card a:hover {
+            background: rgba(255,255,255,0.4);
+        }
+        
+        /* Cores específicas para cada parceiro */
+        .card-unisinos {
+            background: linear-gradient(135deg, #1a3a5c, #2a5a8c);
+        }
+        
+        .card-veracatarina {
+            background: linear-gradient(135deg, #8B0000, #cc0000);
+        }
+        
+        .card-caed {
+            background: linear-gradient(135deg, #1a6b3c, #2a9d5a);
+        }
+        
+        .card-senado {
+            background: linear-gradient(135deg, #4a4a4a, #6a6a6a);
+        }
+        
+        .card-comunidade {
+            background: linear-gradient(135deg, #6a3a8a, #9a5aba);
         }
         
         .stats-grid {
@@ -267,8 +310,12 @@
             .nav-bar a { padding: 8px 12px; font-size: 0.9em; }
             .section { padding: 20px; margin: 15px; }
             .collaboration-grid { grid-template-columns: 1fr; }
+            .partners-grid { grid-template-columns: 1fr 1fr; }
+            .partner-card { min-height: 180px; }
+        }
+        
+        @media (max-width: 480px) {
             .partners-grid { grid-template-columns: 1fr; }
-            .thank-you-section { padding: 25px; }
         }
     </style>
 </head>
@@ -286,6 +333,7 @@
         <a href="faq.html">❓ FAQ</a>
         <a href="ajuda.html">🆘 Ajuda</a>
         <a href="termos.html">📄 Termos</a>
+        <a href="sobre.html">📄 Sobre</a>
     </nav>
 
     <div class="section">
@@ -333,46 +381,46 @@
             </div>
         </div>
 
-        <div class="thank-you-section">
-            <h3>🙏 Agradecimento Especial</h3>
-            <p style="font-size: 1.2em; margin-bottom: 20px;">
-                Ao colega <strong>Marcio Santos</strong> (<a href="https://www.linkedin.com/in/marcio-santos-179175360/" style="color: white; text-decoration: underline;" target="_blank">LinkedIn</a>) pela dedicação em testar os simulados,
-                e aos demais colegas do curso de Direito da UNISINOS, pelos valiosos feedbacks, fundamentais para o aprimoramento contínuo da plataforma.
-            </p>
-            <p style="font-size: 1.5em; font-weight: bold;">
-                🎉 Mais de 25.000 visitas em 2025! 🎉
-            </p>
-        </div>
-
+        <!-- ===== SEÇÃO PARCEIROS COM CARDS COLORIDOS ===== -->
         <h2>🤝 Parceiros e Colaboradores</h2>
         
         <div class="partners-grid">
-            <div class="partner-card">
-                <div class="collab-icon">⚖️</div>
+            <div class="partner-card card-unisinos">
+                <div class="collab-icon">🏛️</div>
                 <h4>UNISINOS</h4>
                 <p>Inspiração acadêmica e base curricular</p>
             </div>
             
-            <div class="partner-card">
-                <div class="collab-icon">🏛️</div>
+            <div class="partner-card card-veracatarina">
+                <div class="collab-icon">⚖️</div>
                 <h4>Advocacia Vera Catarina</h4>
-                <p>Parceira jurídica e consultoria especializada</p>
-                <a href="https://advocaciasapucaia.blogspot.com/" target="_blank" style="color: var(--accent-color); font-weight: 600;">Visitar Site</a>
+                <p>Sua Liberdade e Seus Direitos Protegidos</p>
+                <p style="font-size: 0.8em; opacity: 0.9;">Defesa criminal, trabalhista, previdenciária, família e consumidor</p>
+                <a href="https://veracatarina.github.io/" target="_blank">Visitar Site</a>
             </div>
             
-            <div class="partner-card">
+            <div class="partner-card card-caed">
+                <div class="collab-icon">🎓</div>
+                <h4>CAED - UNISINOS</h4>
+                <p>Centro Acadêmico de Estudos do Direito</p>
+                <p style="font-size: 0.8em; opacity: 0.9;">Apoio acadêmico e institucional</p>
+                <a href="https://caedunisinos.com.br/" target="_blank">Visitar Site</a>
+            </div>
+            
+            <div class="partner-card card-senado">
                 <div class="collab-icon">📚</div>
                 <h4>Senado Federal</h4>
                 <p>Material legislativo e publicações</p>
             </div>
             
-            <div class="partner-card">
+            <div class="partner-card card-comunidade">
                 <div class="collab-icon">👥</div>
                 <h4>Comunidade Jurídica</h4>
                 <p>Estudantes e profissionais colaboradores</p>
             </div>
         </div>
 
+        <!-- ===== SEÇÃO DE BENEFÍCIOS (mantida) ===== -->
         <div style="margin-top: 40px; padding: 30px; background: #f8f9fa; border-radius: 8px;">
             <h3>💼 Benefícios para Colaboradores</h3>
             <ul style="margin-top: 15px;">
@@ -384,6 +432,7 @@
             </ul>
         </div>
 
+        <!-- ===== BOTÕES DE AÇÃO ===== -->
         <div style="text-align: center; margin-top: 40px;">
             <h3>🚀 Pronto para Fazer Parte Deste Projeto?</h3>
             <p style="margin: 20px 0;">Junte-se a nós na missão de democratizar o ensino jurídico no Brasil!</p>
@@ -407,7 +456,8 @@
             <a href="parcerias.html">🤝 Parcerias</a> • 
             <a href="contato.html">📞 Contato</a> • 
             <a href="faq.html">❓ FAQ</a> • 
-            <a href="termos.html">📄 Termos</a>
+            <a href="termos.html">📄 Termos</a> •
+            <a href="sobre.html">📄 Sobre</a>
         </p>
     </footer>
 
